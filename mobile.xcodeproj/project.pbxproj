@@ -17,8 +17,21 @@
 		A426854F29953D4C00AA424A /* mobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A426854E29953D4C00AA424A /* mobileTests.swift */; };
 		A426855929953D4C00AA424A /* mobileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A426855829953D4C00AA424A /* mobileUITests.swift */; };
 		A426855B29953D4C00AA424A /* mobileUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A426855A29953D4C00AA424A /* mobileUITestsLaunchTests.swift */; };
-		A426856829953F0E00AA424A /* LoginWithPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A426856729953F0E00AA424A /* LoginWithPasswordViewController.swift */; };
 		A426856C29955D3600AA424A /* IconTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A426856B29955D3600AA424A /* IconTextButton.swift */; };
+		A426856E29976DA400AA424A /* LetLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A426856D29976DA400AA424A /* LetLoginViewController.swift */; };
+		A426857029976FC900AA424A /* LoginFirstScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A426856F29976FC900AA424A /* LoginFirstScreenViewController.swift */; };
+		A426857229976FDE00AA424A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A426857129976FDE00AA424A /* SignUpViewController.swift */; };
+		A4268574299A6A2600AA424A /* ProfileAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4268573299A6A2600AA424A /* ProfileAccountViewController.swift */; };
+		A4268577299E1CB200AA424A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4268576299E1CB200AA424A /* HomeViewController.swift */; };
+		A4268579299E1CBE00AA424A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4268578299E1CBE00AA424A /* SearchViewController.swift */; };
+		A426857B299E1CD000AA424A /* ScanQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A426857A299E1CD000AA424A /* ScanQRViewController.swift */; };
+		A426857D299E1CE500AA424A /* TicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A426857C299E1CE500AA424A /* TicketViewController.swift */; };
+		A4268581299E248900AA424A /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A426857F299E248900AA424A /* InfoTableViewCell.swift */; };
+		A4268582299E248900AA424A /* InfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4268580299E248900AA424A /* InfoTableViewCell.xib */; };
+		A4268585299E27F300AA424A /* IconMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4268583299E27F300AA424A /* IconMenuTableViewCell.swift */; };
+		A4268586299E27F300AA424A /* IconMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4268584299E27F300AA424A /* IconMenuTableViewCell.xib */; };
+		A4A91316299F5AB800AC5E75 /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A91315299F5AB800AC5E75 /* ProfileDetailViewController.swift */; };
+		A4A91319299FAA1100AC5E75 /* PaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A91318299FAA1100AC5E75 /* PaymentMethodViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,8 +66,21 @@
 		A426855429953D4C00AA424A /* mobileUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mobileUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A426855829953D4C00AA424A /* mobileUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mobileUITests.swift; sourceTree = "<group>"; };
 		A426855A29953D4C00AA424A /* mobileUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mobileUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		A426856729953F0E00AA424A /* LoginWithPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithPasswordViewController.swift; sourceTree = "<group>"; };
 		A426856B29955D3600AA424A /* IconTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconTextButton.swift; sourceTree = "<group>"; };
+		A426856D29976DA400AA424A /* LetLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetLoginViewController.swift; sourceTree = "<group>"; };
+		A426856F29976FC900AA424A /* LoginFirstScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFirstScreenViewController.swift; sourceTree = "<group>"; };
+		A426857129976FDE00AA424A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		A4268573299A6A2600AA424A /* ProfileAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAccountViewController.swift; sourceTree = "<group>"; };
+		A4268576299E1CB200AA424A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		A4268578299E1CBE00AA424A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		A426857A299E1CD000AA424A /* ScanQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRViewController.swift; sourceTree = "<group>"; };
+		A426857C299E1CE500AA424A /* TicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketViewController.swift; sourceTree = "<group>"; };
+		A426857F299E248900AA424A /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
+		A4268580299E248900AA424A /* InfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoTableViewCell.xib; sourceTree = "<group>"; };
+		A4268583299E27F300AA424A /* IconMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconMenuTableViewCell.swift; sourceTree = "<group>"; };
+		A4268584299E27F300AA424A /* IconMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IconMenuTableViewCell.xib; sourceTree = "<group>"; };
+		A4A91315299F5AB800AC5E75 /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
+		A4A91318299FAA1100AC5E75 /* PaymentMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,8 +164,11 @@
 		A42685692995443A00AA424A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				A426856729953F0E00AA424A /* LoginWithPasswordViewController.swift */,
+				A4268575299E1C7200AA424A /* NavigationController */,
 				A426853829953D4900AA424A /* ViewController.swift */,
+				A426856D29976DA400AA424A /* LetLoginViewController.swift */,
+				A426856F29976FC900AA424A /* LoginFirstScreenViewController.swift */,
+				A426857129976FDE00AA424A /* SignUpViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -150,6 +179,40 @@
 				A426856B29955D3600AA424A /* IconTextButton.swift */,
 			);
 			path = CustomButton;
+			sourceTree = "<group>";
+		};
+		A4268575299E1C7200AA424A /* NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				A426857E299E246B00AA424A /* cellProfile */,
+				A4268573299A6A2600AA424A /* ProfileAccountViewController.swift */,
+				A4268576299E1CB200AA424A /* HomeViewController.swift */,
+				A4268578299E1CBE00AA424A /* SearchViewController.swift */,
+				A426857A299E1CD000AA424A /* ScanQRViewController.swift */,
+				A426857C299E1CE500AA424A /* TicketViewController.swift */,
+			);
+			path = NavigationController;
+			sourceTree = "<group>";
+		};
+		A426857E299E246B00AA424A /* cellProfile */ = {
+			isa = PBXGroup;
+			children = (
+				A4A91317299FA9AA00AC5E75 /* MenuController */,
+				A426857F299E248900AA424A /* InfoTableViewCell.swift */,
+				A4268580299E248900AA424A /* InfoTableViewCell.xib */,
+				A4268583299E27F300AA424A /* IconMenuTableViewCell.swift */,
+				A4268584299E27F300AA424A /* IconMenuTableViewCell.xib */,
+			);
+			path = cellProfile;
+			sourceTree = "<group>";
+		};
+		A4A91317299FA9AA00AC5E75 /* MenuController */ = {
+			isa = PBXGroup;
+			children = (
+				A4A91315299F5AB800AC5E75 /* ProfileDetailViewController.swift */,
+				A4A91318299FAA1100AC5E75 /* PaymentMethodViewController.swift */,
+			);
+			path = MenuController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +320,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A426854429953D4C00AA424A /* LaunchScreen.storyboard in Resources */,
+				A4268582299E248900AA424A /* InfoTableViewCell.xib in Resources */,
+				A4268586299E27F300AA424A /* IconMenuTableViewCell.xib in Resources */,
 				A426854129953D4C00AA424A /* Assets.xcassets in Resources */,
 				A426853C29953D4900AA424A /* Main.storyboard in Resources */,
 			);
@@ -284,9 +349,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				A426853929953D4900AA424A /* ViewController.swift in Sources */,
+				A4268579299E1CBE00AA424A /* SearchViewController.swift in Sources */,
+				A426857D299E1CE500AA424A /* TicketViewController.swift in Sources */,
+				A426857029976FC900AA424A /* LoginFirstScreenViewController.swift in Sources */,
+				A4A91319299FAA1100AC5E75 /* PaymentMethodViewController.swift in Sources */,
+				A426857229976FDE00AA424A /* SignUpViewController.swift in Sources */,
+				A426856E29976DA400AA424A /* LetLoginViewController.swift in Sources */,
+				A4268574299A6A2600AA424A /* ProfileAccountViewController.swift in Sources */,
+				A4268577299E1CB200AA424A /* HomeViewController.swift in Sources */,
 				A426856C29955D3600AA424A /* IconTextButton.swift in Sources */,
-				A426856829953F0E00AA424A /* LoginWithPasswordViewController.swift in Sources */,
+				A426857B299E1CD000AA424A /* ScanQRViewController.swift in Sources */,
+				A4268585299E27F300AA424A /* IconMenuTableViewCell.swift in Sources */,
 				A426853529953D4900AA424A /* AppDelegate.swift in Sources */,
+				A4268581299E248900AA424A /* InfoTableViewCell.swift in Sources */,
+				A4A91316299F5AB800AC5E75 /* ProfileDetailViewController.swift in Sources */,
 				A426853729953D4900AA424A /* SceneDelegate.swift in Sources */,
 				A426853F29953D4900AA424A /* mobile.xcdatamodeld in Sources */,
 			);

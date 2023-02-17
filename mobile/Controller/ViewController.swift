@@ -22,7 +22,7 @@ class ViewController: UIViewController {
 //    }
     
     @objc func changeLoginController() {
-        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginWithPasswordViewController") as? LoginWithPasswordViewController else {
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "LetLoginViewController") as? LetLoginViewController else {
             return
         }
         self.navigationController?.pushViewController(vc, animated: true)
@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
-        btnGetStarted.layer.cornerRadius = 20
+        btnGetStarted.layer.cornerRadius = 15
         btnGetStarted.layer.masksToBounds = true
     }
 

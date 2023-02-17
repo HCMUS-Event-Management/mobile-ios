@@ -1,15 +1,14 @@
 //
-//  LoginWithPasswordViewController.swift
+//  SearchViewController.swift
 //  mobile
 //
-//  Created by NguyenSon_MP on 09/02/2023.
+//  Created by NguyenSon_MP on 16/02/2023.
 //
 
 import UIKit
 
-class LoginWithPasswordViewController: UIViewController {
+class SearchViewController: UIViewController {
 
-    @IBOutlet weak var btnLogin: IconTextButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -17,14 +16,6 @@ class LoginWithPasswordViewController: UIViewController {
     }
     
 
-    override func viewWillAppear(_ animated: Bool) {
-        let btn = IconTextButton(frame: btnLogin.frame)
-
-        
-        btnLogin
-        btnLogin.config(with: IconTextButtonViewModel(text: "Test", image: UIImage(systemName: "cart"), backgroundColor: .systemRed))
-
-    }
     /*
     // MARK: - Navigation
 
