@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ReponseLogout : Codable {
+struct ReponseCommon : Codable {
     let statusCode : Int?
     let message : String?
 

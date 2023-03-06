@@ -43,7 +43,8 @@
 		A4506C3429B44371009B75F6 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4506C3129B44371009B75F6 /* Data.swift */; };
 		A4506C3529B44371009B75F6 /* Json4Swift_Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4506C3229B44371009B75F6 /* Json4Swift_Base.swift */; };
 		A4506C3629B44371009B75F6 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4506C3329B44371009B75F6 /* UserProfile.swift */; };
-		A4506C3829B5B0A2009B75F6 /* ReponseLogout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4506C3729B5B0A2009B75F6 /* ReponseLogout.swift */; };
+		A4506C3829B5B0A2009B75F6 /* ReponseCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4506C3729B5B0A2009B75F6 /* ReponseCommon.swift */; };
+		A4506C3A29B5D144009B75F6 /* UpdateProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4506C3929B5D144009B75F6 /* UpdateProfile.swift */; };
 		A459818329A8FA6C00D816E3 /* ReponseLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A459818229A8FA6C00D816E3 /* ReponseLogin.swift */; };
 		A4A91316299F5AB800AC5E75 /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A91315299F5AB800AC5E75 /* ProfileDetailViewController.swift */; };
 		A4A91319299FAA1100AC5E75 /* PaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A91318299FAA1100AC5E75 /* PaymentMethodViewController.swift */; };
@@ -129,7 +130,8 @@
 		A4506C3129B44371009B75F6 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		A4506C3229B44371009B75F6 /* Json4Swift_Base.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Json4Swift_Base.swift; sourceTree = "<group>"; };
 		A4506C3329B44371009B75F6 /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
-		A4506C3729B5B0A2009B75F6 /* ReponseLogout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReponseLogout.swift; sourceTree = "<group>"; };
+		A4506C3729B5B0A2009B75F6 /* ReponseCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReponseCommon.swift; sourceTree = "<group>"; };
+		A4506C3929B5D144009B75F6 /* UpdateProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfile.swift; sourceTree = "<group>"; };
 		A459818229A8FA6C00D816E3 /* ReponseLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReponseLogin.swift; sourceTree = "<group>"; };
 		A4A91315299F5AB800AC5E75 /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
 		A4A91318299FAA1100AC5E75 /* PaymentMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodViewController.swift; sourceTree = "<group>"; };
@@ -406,7 +408,8 @@
 				A4506C3129B44371009B75F6 /* Data.swift */,
 				A4506C3229B44371009B75F6 /* Json4Swift_Base.swift */,
 				A4506C3329B44371009B75F6 /* UserProfile.swift */,
-				A4506C3729B5B0A2009B75F6 /* ReponseLogout.swift */,
+				A4506C3729B5B0A2009B75F6 /* ReponseCommon.swift */,
+				A4506C3929B5D144009B75F6 /* UpdateProfile.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -837,6 +840,7 @@
 				A4268579299E1CBE00AA424A /* SearchViewController.swift in Sources */,
 				A426857D299E1CE500AA424A /* TicketViewController.swift in Sources */,
 				A426857029976FC900AA424A /* LoginFirstScreenViewController.swift in Sources */,
+				A4506C3A29B5D144009B75F6 /* UpdateProfile.swift in Sources */,
 				A4A9131D29A36D4B00AC5E75 /* ProfileDetailTableViewCell.swift in Sources */,
 				A44F19D929A7156D00476E9B /* LoginFirstScreenViewModel.swift in Sources */,
 				A4C5F01129B2FF5600723FC1 /* ProfileViewModel.swift in Sources */,
@@ -845,7 +849,7 @@
 				A44F19D529A3981600476E9B /* ChangePasswordViewController.swift in Sources */,
 				A44F19F629A71F0C00476E9B /* Contanst.swift in Sources */,
 				A4506C3529B44371009B75F6 /* Json4Swift_Base.swift in Sources */,
-				A4506C3829B5B0A2009B75F6 /* ReponseLogout.swift in Sources */,
+				A4506C3829B5B0A2009B75F6 /* ReponseCommon.swift in Sources */,
 				A4A91319299FAA1100AC5E75 /* PaymentMethodViewController.swift in Sources */,
 				A4CA58BB29A8DFD200B5E318 /* DataReponseLogin.swift in Sources */,
 				A44F1A0029A73EA500476E9B /* TypeCollectionViewCell.swift in Sources */,

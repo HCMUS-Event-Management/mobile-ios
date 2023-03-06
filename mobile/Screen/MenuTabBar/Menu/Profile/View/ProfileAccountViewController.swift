@@ -127,6 +127,8 @@ extension ProfileAccountViewController: UITableViewDelegate {
             self.changeScreen(modelType: PaymentMethodViewController.self, id: "PaymentMethodViewController")
         } else if (indexPath.section == 1 && indexPath.row == 1) {
             self.changeScreen(modelType: FavoriteEventsViewController.self, id: "FavoriteEventsViewController")
+        } else if (indexPath.section == 2 && indexPath.row == 6) {
+            VM.logout()
         }
     }
     
@@ -164,6 +166,17 @@ extension ProfileAccountViewController {
                 print("get User loaded...")
             case .error(let error):
                 print(error)
+            case .logout:
+                // xử lý logout tại đây
+                Contanst.userdefault.removeObject(forKey: "userInfoDetail")
+                Contanst.userdefault.removeObject(forKey: "userInfo")
+                Contanst.userdefault.removeObject(forKey: "userToken")
+                Contanst.userdefault.removeObject(forKey: "refreshToken")
+                DispatchQueue.main.async {
+                    self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
+                }
+
+                print("logout")
             }
         }
     }

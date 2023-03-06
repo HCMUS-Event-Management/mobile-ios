@@ -10,8 +10,8 @@ import Foundation
 
 class LoginFirstScreenViewModel {
    
-    private var username = "nson@gmail.com"
-    private var password = "123456"
+    private var username = ""
+    private var password = ""
     
 //    var userCurrentInfo:GetUserInfor?
     
@@ -42,8 +42,8 @@ class LoginFirstScreenViewModel {
                     Contanst.userdefault.set(info.data?.accessToken, forKey: "userToken")
                     Contanst.userdefault.set(info.data?.refreshToken, forKey: "refreshToken")
                     if let encodedUser = try? JSONEncoder().encode(info.data?.getUserInfor) {
-                            Contanst.userdefault.set(encodedUser, forKey: "userInfo")
-                        }
+                        Contanst.userdefault.set(encodedUser, forKey: "userInfo")
+                    }
 //                        self.userCurrentInfo = info.data?.getUserInfor
                         self.eventHandler?(.dataLoaded)
                     case .failure(let error):

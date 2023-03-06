@@ -11,6 +11,7 @@ enum UserEndPoint {
     case profile // Module - GET
     case login(infoLogin: InfoLogin) // POST
     case logout // POST
+    case updateProfile // POST
 }
 
 // https://fakestoreapi.com/products
@@ -25,22 +26,15 @@ extension UserEndPoint: EndPointType {
             return "api/v1/user-auth/user/sign-in"
         case .logout:
             return "api/v1/user-auth/user/log-out"
+        case .updateProfile:
+            return "api/v1/user-auth/user/update-profile"
         }
+        
         
     }
 
     var baseURL: String {
-//        switch self {
-//        case .profile:
-//            return ProcessInfo.processInfo.environment["BASE_URL"]!
-//        case .login:
-//            return ProcessInfo.processInfo.environment["BASE_URL"]!
-//        case .logout:
-//            return ProcessInfo.processInfo.environment["BASE_URL"]!
-//        }
-        
         return ProcessInfo.processInfo.environment["BASE_URL"]!
- 
     }
 
     var url: URL? {
@@ -55,6 +49,8 @@ extension UserEndPoint: EndPointType {
             return .post
         case .logout:
             return .post
+        case .updateProfile:
+            return .post
         }
     }
 
@@ -66,7 +62,10 @@ extension UserEndPoint: EndPointType {
             return Info
         case .logout:
             return nil
+        case .updateProfile:
+            return nil
         }
+    
     }
 
     var headers: [String : String]? {
@@ -76,6 +75,8 @@ extension UserEndPoint: EndPointType {
         case .login(let infoLogin):
             return APIManager.commonHeaders
         case .logout:
+            return APIManager.bearTokenHeaders
+        case .updateProfile:
             return APIManager.bearTokenHeaders
         }
     }

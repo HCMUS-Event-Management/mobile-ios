@@ -23,13 +23,29 @@ class LoginFirstScreenViewController: UIViewController {
     };
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtUsername: UITextField!
+    
+    @IBAction func saveRemember(_ sender: Any) {
+        if(flag == true) {
+                    
+            Contanst.userdefault.set("1", forKey: "rememberMe")
+            Contanst.userdefault.set(txtUsername.text ?? "" , forKey: "userMail")
+            Contanst.userdefault.set(txtPassword.text ?? "", forKey: "userPassword")
+                    
+                print("Mail & Password Saved Successfully")
+                    
+                }else{
+                    
+                    Contanst.userdefault.set("2", forKey: "rememberMe")
+
+                }
+    }
     @IBAction func checkBoxRemember(_ sender: UIButton) {
         if (flag == false) {
-            sender.setBackgroundImage((UIImage(named: "checkbox")), for: UIControl.State.normal)
+            sender.setBackgroundImage((UIImage(named: "checkbox")), for: .normal)
             flag = true
         }
         else {
-            sender.setBackgroundImage((UIImage(named: "uncheckbox")), for: UIControl.State.normal)
+            sender.setBackgroundImage((UIImage(named: "uncheckbox")), for: .normal)
             flag = false
         }
     }
@@ -37,14 +53,43 @@ class LoginFirstScreenViewController: UIViewController {
     var flag = false
     
     
+    func CheckAndAdd(){
+        if Contanst.userdefault.string(forKey: "rememberMe") == "1" {
+            
+            if let image = UIImage(named: "checkbox") {
+                btnCheckBoxRemember.setBackgroundImage(image, for: .normal)
+            }
+            
+            flag = true
+            
+            // Set values
+            self.txtUsername.text = Contanst.userdefault.string(forKey: "userMail") ?? ""
+            VM.setUsername(username: self.txtUsername.text ?? "")
+
+            self.txtPassword.text = Contanst.userdefault.string(forKey: "userPassword") ?? ""
+            VM.setPassword(password: self.txtPassword.text ?? "")
+
+            
+        }else{
+            
+            if let image = UIImage(named: "uncheckbox") {
+                btnCheckBoxRemember.setBackgroundImage(image, for: .normal)
+            }
+            
+            flag = false
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
+        CheckAndAdd()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        btnSignUp.addTarget(self, action: #selector(changeSignUpController), for: .touchUpInside)
+        self.navigationController?.isNavigationBarHidden = true
+        self.tabBarController?.tabBar.isHidden = true
         btnLogin.addTarget(self, action: #selector(Login), for: .touchUpInside)
         btnLogin.layer.cornerRadius = 15
         btnLogin.layer.masksToBounds = true
@@ -53,13 +98,6 @@ class LoginFirstScreenViewController: UIViewController {
     @objc func Login() {
         VM.handelLogin()
     }
-    
-//    @objc func changeSignUpController() {
-//        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController else {
-//            return
-//        }
-//        self.navigationController?.pushViewController(vc, animated: true)
-//    }
     
     func changeScreen<T: UIViewController>(
         modelType: T.Type,

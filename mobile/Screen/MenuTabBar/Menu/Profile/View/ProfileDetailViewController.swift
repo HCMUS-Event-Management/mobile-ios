@@ -181,6 +181,7 @@ extension ProfileDetailViewController {
                 }
             case .error(let error):
                 print(error)
+            case .logout: break
             }
         }
     }
