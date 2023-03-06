@@ -7,7 +7,25 @@
 		<key>mobile.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>4</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>A426853029953D4900AA424A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A426854929953D4C00AA424A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A426855329953D4C00AA424A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

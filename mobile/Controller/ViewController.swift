@@ -10,16 +10,6 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var btnGetStarted: UIButton!
-//    @IBAction func btnGetStarted(_ sender: UIButton) {
-//        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginWithPasswordViewController") as? LoginWithPasswordViewController else {
-//
-//            return
-//        }
-//        print("Aa")
-//        self.navigationController?.pushViewController(vc, animated: true)
-//
-//
-//    }
     
     @objc func changeLoginController() {
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "LetLoginViewController") as? LetLoginViewController else {
