@@ -64,11 +64,12 @@ final class ProfileViewModel {
     func updateUserDetail() {
         self.eventHandler?(.loading)
         
-        let params = UpdateProfile(fullname: "Nguyen Son", phone: "0779444111", birthday: "2001-11-18T04:05:06.000Z", identityCard: "0779444111", gender: "Nam", avatar: "url/web/jpg", address: "HCM City", isDeleted: true)
+        let params = UpdateProfile(fullname: "Nguyen Son", phone: "0779444111", birthday: "2001-11-18T04:05:06.000Z", identityCard: "0779444111", gender: "Nam", avatar: "url/web/jpg", address: "HCM City", isDeleted: false)
         let parameter = try? APIManager.shared.encodeBody(value: params)
         
         APIManager.shared.request(modelType: ReponseCommon.self, type: UserEndPoint.updateProfile, params: parameter, completion: {
             result in
+            self.eventHandler?(.stopLoading)
             switch result {
             case .success(let data):
                 print(data)

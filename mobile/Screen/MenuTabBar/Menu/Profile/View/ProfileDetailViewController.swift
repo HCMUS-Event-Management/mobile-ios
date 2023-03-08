@@ -163,6 +163,7 @@ extension ProfileDetailViewController {
     }
 
     func initViewModel() {
+//        self.VM.updateUserDetail()
         self.VM.fetchUserDetail()
     }
 

@@ -75,7 +75,7 @@ extension ProfileAccountViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == 0) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as? InfoTableViewCell {
-                cell.txtName.text = self.VM.userInfo?.fullName
+                cell.txtName.text = self.VM.userInfoDetail?.fullName
                 return cell
             }
         } else if (indexPath.section == 1){
@@ -151,7 +151,7 @@ extension ProfileAccountViewController {
     }
 
     func initViewModel() {
-        self.VM.getUser()
+        self.VM.fetchUserDetail()
     }
 
     // Data binding event observe - communication
@@ -164,6 +164,9 @@ extension ProfileAccountViewController {
                 print("Profile Stop loading...")
             case .dataLoaded:
                 print("get User loaded...")
+                DispatchQueue.main.async {
+                    self?.tb.reloadData()
+                }
             case .error(let error):
                 print(error)
             case .logout:

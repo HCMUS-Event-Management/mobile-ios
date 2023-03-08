@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3B4B287768F56DE5D28E295C /* Pods_mobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 255A6CFCF7CB8E0BFE4E57BF /* Pods_mobile.framework */; };
 		A426853529953D4900AA424A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A426853429953D4900AA424A /* AppDelegate.swift */; };
-		A426853729953D4900AA424A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A426853629953D4900AA424A /* SceneDelegate.swift */; };
 		A426853929953D4900AA424A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A426853829953D4900AA424A /* ViewController.swift */; };
 		A426853C29953D4900AA424A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A426853A29953D4900AA424A /* Main.storyboard */; };
 		A426853F29953D4900AA424A /* mobile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A426853D29953D4900AA424A /* mobile.xcdatamodeld */; };
@@ -94,7 +93,6 @@
 		900189BE1947FADEAEC0AE1E /* Pods-mobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobileTests.debug.xcconfig"; path = "Target Support Files/Pods-mobileTests/Pods-mobileTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A426853129953D4900AA424A /* mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A426853429953D4900AA424A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A426853629953D4900AA424A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A426853829953D4900AA424A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A426853B29953D4900AA424A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A426853E29953D4900AA424A /* mobile.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = mobile.xcdatamodel; sourceTree = "<group>"; };
@@ -235,7 +233,6 @@
 				A44F19DA29A717B400476E9B /* Features */,
 				A42685692995443A00AA424A /* Controller */,
 				A426853429953D4900AA424A /* AppDelegate.swift */,
-				A426853629953D4900AA424A /* SceneDelegate.swift */,
 				A426854029953D4C00AA424A /* Assets.xcassets */,
 				A426854529953D4C00AA424A /* Info.plist */,
 				A426853D29953D4900AA424A /* mobile.xcdatamodeld */,
@@ -886,7 +883,6 @@
 				A4506C3429B44371009B75F6 /* Data.swift in Sources */,
 				A4CA58B929A8DFD200B5E318 /* GetUserInfor.swift in Sources */,
 				A4A91316299F5AB800AC5E75 /* ProfileDetailViewController.swift in Sources */,
-				A426853729953D4900AA424A /* SceneDelegate.swift in Sources */,
 				A426853F29953D4900AA424A /* mobile.xcdatamodeld in Sources */,
 				A4506C3D29B8668B009B75F6 /* TokenService.swift in Sources */,
 			);
