@@ -39,8 +39,9 @@ class LoginFirstScreenViewModel {
                 self.eventHandler?(.stopLoading)
                 switch result {
                     case .success(let info):
-                    Contanst.userdefault.set(info.data?.accessToken, forKey: "userToken")
-                    Contanst.userdefault.set(info.data?.refreshToken, forKey: "refreshToken")
+//                    Contanst.userdefault.set(info.data?.accessToken, forKey: "userToken")
+//                    Contanst.userdefault.set(info.data?.refreshToken, forKey: "refreshToken")
+                    TokenService.tokenInstance.saveToken(token: info.data?.accessToken ?? "", refreshToken: info.data?.refreshToken ?? "")
                     if let encodedUser = try? JSONEncoder().encode(info.data?.getUserInfor) {
                         Contanst.userdefault.set(encodedUser, forKey: "userInfo")
                     }

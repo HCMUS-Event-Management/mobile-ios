@@ -45,6 +45,7 @@
 		A4506C3629B44371009B75F6 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4506C3329B44371009B75F6 /* UserProfile.swift */; };
 		A4506C3829B5B0A2009B75F6 /* ReponseCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4506C3729B5B0A2009B75F6 /* ReponseCommon.swift */; };
 		A4506C3A29B5D144009B75F6 /* UpdateProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4506C3929B5D144009B75F6 /* UpdateProfile.swift */; };
+		A4506C3D29B8668B009B75F6 /* TokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4506C3C29B8668B009B75F6 /* TokenService.swift */; };
 		A459818329A8FA6C00D816E3 /* ReponseLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A459818229A8FA6C00D816E3 /* ReponseLogin.swift */; };
 		A4A91316299F5AB800AC5E75 /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A91315299F5AB800AC5E75 /* ProfileDetailViewController.swift */; };
 		A4A91319299FAA1100AC5E75 /* PaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A91318299FAA1100AC5E75 /* PaymentMethodViewController.swift */; };
@@ -132,6 +133,7 @@
 		A4506C3329B44371009B75F6 /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		A4506C3729B5B0A2009B75F6 /* ReponseCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReponseCommon.swift; sourceTree = "<group>"; };
 		A4506C3929B5D144009B75F6 /* UpdateProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfile.swift; sourceTree = "<group>"; };
+		A4506C3C29B8668B009B75F6 /* TokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenService.swift; sourceTree = "<group>"; };
 		A459818229A8FA6C00D816E3 /* ReponseLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReponseLogin.swift; sourceTree = "<group>"; };
 		A4A91315299F5AB800AC5E75 /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
 		A4A91318299FAA1100AC5E75 /* PaymentMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodViewController.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 		A426853329953D4900AA424A /* mobile */ = {
 			isa = PBXGroup;
 			children = (
+				A4506C3B29B86677009B75F6 /* TokenService */,
 				A4C5EFFE29B2F47C00723FC1 /* Extensions */,
 				A4CA58AF29A8DF2300B5E318 /* Utility */,
 				A44F19F429A71F0000476E9B /* Contanst */,
@@ -412,6 +415,14 @@
 				A4506C3929B5D144009B75F6 /* UpdateProfile.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		A4506C3B29B86677009B75F6 /* TokenService */ = {
+			isa = PBXGroup;
+			children = (
+				A4506C3C29B8668B009B75F6 /* TokenService.swift */,
+			);
+			path = TokenService;
 			sourceTree = "<group>";
 		};
 		A4A91317299FA9AA00AC5E75 /* MenuController */ = {
@@ -877,6 +888,7 @@
 				A4A91316299F5AB800AC5E75 /* ProfileDetailViewController.swift in Sources */,
 				A426853729953D4900AA424A /* SceneDelegate.swift in Sources */,
 				A426853F29953D4900AA424A /* mobile.xcdatamodeld in Sources */,
+				A4506C3D29B8668B009B75F6 /* TokenService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

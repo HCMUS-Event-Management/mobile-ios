@@ -86,7 +86,7 @@ final class ProfileViewModel {
             self.eventHandler?(.stopLoading)
             switch result {
             case .success(let data):
-                self.eventHandler?(.logout)
+                self.eventHandler?(.logout) 
             case .failure(let error):
                 self.eventHandler?(.error(error))
             }

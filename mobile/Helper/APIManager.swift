@@ -98,7 +98,7 @@ final class APIManager {
         return [
             "Content-Type": "application/json",
             "Accept": "application/json",
-            "Authorization": "Bearer \(Contanst.userdefault.string(forKey: "userToken") ?? "")",
+            "Authorization": "Bearer \(TokenService.tokenInstance.getToken(key: "userToken"))",
         ]
     }
 }

@@ -168,10 +168,7 @@ extension ProfileAccountViewController {
                 print(error)
             case .logout:
                 // xử lý logout tại đây
-                Contanst.userdefault.removeObject(forKey: "userInfoDetail")
-                Contanst.userdefault.removeObject(forKey: "userInfo")
-                Contanst.userdefault.removeObject(forKey: "userToken")
-                Contanst.userdefault.removeObject(forKey: "refreshToken")
+                TokenService.tokenInstance.removeTokenAndInfo()
                 DispatchQueue.main.async {
                     self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
                 }

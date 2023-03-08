@@ -84,6 +84,7 @@ class LoginFirstScreenViewController: UIViewController {
         super.viewDidLoad()
         configuration()
         CheckAndAdd()
+        print(Contanst.userdefault.string(forKey: "userToken"))
         
     }
     
