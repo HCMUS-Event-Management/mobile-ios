@@ -14,7 +14,6 @@ final class ProfileViewModel {
 
     var eventHandler: ((_ event: Event) -> Void)? // Data Binding Closure
     
-    
     func getUser() {
             if let savedUserData = Contanst.userdefault.object(forKey: "userInfo") as? Foundation.Data {
                 let decoder = JSONDecoder()
@@ -28,12 +27,12 @@ final class ProfileViewModel {
     }
     
     func fetchUserDetail() {
-        self.eventHandler?(.loading)
         if((Contanst.userdefault.object(forKey: "userInfoDetail") == nil)) {
-            print(Contanst.userdefault.object(forKey: "userInfoDetail"))
+            self.eventHandler?(.loading)
             APIManager.shared.request(modelType: Json4Swift_Base.self, type: UserEndPoint.profile, params: nil, completion: {
                 result in
                 self.eventHandler?(.stopLoading)
+
                 switch result {
                 case .success(let profile):
                     self.userInfoDetail = profile.data?.userProfile
@@ -50,7 +49,6 @@ final class ProfileViewModel {
             if let savedUserData = Contanst.userdefault.object(forKey: "userInfoDetail") as? Foundation.Data {
                 let decoder = JSONDecoder()
                 if let savedUser = try? decoder.decode(UserProfile.self, from: savedUserData) {
-                    self.eventHandler?(.stopLoading)
                     self.userInfoDetail = savedUser
                     self.eventHandler?(.dataLoaded)
                     return
@@ -61,18 +59,17 @@ final class ProfileViewModel {
         
     }
     
-    func updateUserDetail() {
+    func updateUserDetail(params: UpdateProfile) {
         self.eventHandler?(.loading)
-        
-        let params = UpdateProfile(fullname: "Nguyen Son", phone: "0779444111", birthday: "2001-11-18T04:05:06.000Z", identityCard: "0779444111", gender: "Nam", avatar: "url/web/jpg", address: "HCM City", isDeleted: false)
         let parameter = try? APIManager.shared.encodeBody(value: params)
-        
+        print(params)
         APIManager.shared.request(modelType: ReponseCommon.self, type: UserEndPoint.updateProfile, params: parameter, completion: {
             result in
             self.eventHandler?(.stopLoading)
             switch result {
             case .success(let data):
-                print(data)
+                Contanst.userdefault.removeObject(forKey: "userInfoDetail")
+                self.eventHandler?(.updateProfile)
             case .failure(let error):
                 self.eventHandler?(.error(error))
             }
@@ -87,6 +84,7 @@ final class ProfileViewModel {
             self.eventHandler?(.stopLoading)
             switch result {
             case .success(let data):
+                TokenService.tokenInstance.removeTokenAndInfo()
                 self.eventHandler?(.logout) 
             case .failure(let error):
                 self.eventHandler?(.error(error))
@@ -105,6 +103,7 @@ extension ProfileViewModel {
         case dataLoaded
         case error(Error?)
         case logout
+        case updateProfile
 //        case newProductAdded(product: AddProduct)
     }
 

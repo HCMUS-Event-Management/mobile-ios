@@ -13,6 +13,7 @@ import UIKit
 enum HTTPMethods: String {
     case get = "GET"
     case post = "POST"
+    case put = "PUT"
 }
 
 protocol EndPointType {
@@ -70,10 +71,16 @@ final class APIManager {
                 completion(.failure(.invalidData))
                 return
             }
+            
         print(response)
 
             guard let response = response as? HTTPURLResponse,
                   200 ... 299 ~= response.statusCode else {
+                do {
+                    let dataType = try JSONDecoder().decode(modelType, from: data)
+                    print(dataType)
+                }catch {
+                }
                 completion(.failure(.invalidResponse))
                 return
             }

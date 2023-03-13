@@ -33,6 +33,8 @@ class ProfileAccountViewController: UIViewController {
 
     
     override func viewWillAppear(_ animated: Bool) {
+        VM.fetchUserDetail()
+
         tabBarController?.tabBar.isHidden = false
         let title = UILabel()
         title.text = "Profile"
@@ -151,17 +153,18 @@ extension ProfileAccountViewController {
     }
 
     func initViewModel() {
-        self.VM.fetchUserDetail()
     }
 
     // Data binding event observe - communication
     func observeEvent() {
+        var loader:UIAlertController?
+
         VM.eventHandler = { [weak self] event in
             switch event {
             case .loading:
-                print("Profile loading....")
+                loader = self?.loader()
             case .stopLoading:
-                print("Profile Stop loading...")
+                self?.stoppedLoader(loader: loader ?? UIAlertController())
             case .dataLoaded:
                 print("get User loaded...")
                 DispatchQueue.main.async {
@@ -171,12 +174,14 @@ extension ProfileAccountViewController {
                 print(error)
             case .logout:
                 // xử lý logout tại đây
-                TokenService.tokenInstance.removeTokenAndInfo()
                 DispatchQueue.main.async {
                     self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
                 }
 
+
                 print("logout")
+            case .updateProfile: break
+                // gọi realoadtb
             }
         }
     }

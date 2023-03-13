@@ -8,7 +8,7 @@
 import Foundation
 
 struct UpdateProfile: Codable {
-    var fullname: String
+    var fullName: String
     var phone: String
     var birthday: String
     var identityCard: String

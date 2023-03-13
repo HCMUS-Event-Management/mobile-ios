@@ -11,7 +11,9 @@ enum UserEndPoint {
     case profile // Module - GET
     case login(infoLogin: InfoLogin) // POST
     case logout // POST
-    case updateProfile // POST
+    case updateProfile // PUT
+    case changePassword // PUT
+    case forgetPassword // POST
 }
 
 // https://fakestoreapi.com/products
@@ -28,9 +30,13 @@ extension UserEndPoint: EndPointType {
             return "api/v1/user-auth/user/log-out"
         case .updateProfile:
             return "api/v1/user-auth/user/update-profile"
+        case.changePassword:
+            return "api/v1/user-auth/user/update-password"
+        case.forgetPassword:
+            return "api/v1/user-auth/user/forget-password"
         }
-        
-        
+   
+
     }
 
     var baseURL: String {
@@ -50,6 +56,10 @@ extension UserEndPoint: EndPointType {
         case .logout:
             return .post
         case .updateProfile:
+            return .put
+        case .changePassword:
+            return .put
+        case .forgetPassword:
             return .post
         }
     }
@@ -63,6 +73,10 @@ extension UserEndPoint: EndPointType {
         case .logout:
             return nil
         case .updateProfile:
+            return nil
+        case .changePassword:
+            return nil
+        case .forgetPassword:
             return nil
         }
     
@@ -78,6 +92,10 @@ extension UserEndPoint: EndPointType {
             return APIManager.bearTokenHeaders
         case .updateProfile:
             return APIManager.bearTokenHeaders
+        case .changePassword:
+            return APIManager.bearTokenHeaders
+        case .forgetPassword:
+            return APIManager.commonHeaders
         }
     }
 }

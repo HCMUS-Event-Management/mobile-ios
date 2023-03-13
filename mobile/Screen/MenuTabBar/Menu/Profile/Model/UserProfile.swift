@@ -60,5 +60,18 @@ struct UserProfile : Codable {
 		updatedAt = try values.decodeIfPresent(String.self, forKey: .updatedAt)
 		lastLogin = try values.decodeIfPresent(String.self, forKey: .lastLogin)
 	}
+    
+//    public func UpdateProfil(nameOfModel model : UpdateProfile?) {
+//        self.fullName = model?.fullName
+//        self.phone = model?.phone
+//        self.gender = model?.gender
+//        self.address = model?.address
+//        self.identityCard = model?.identityCard
+//        self.avatar = model?.avatar
+//        self.isDeleted = model?.isDeleted
+//        self.birthday = model?.birthday
+//    }
 
 }
+
+

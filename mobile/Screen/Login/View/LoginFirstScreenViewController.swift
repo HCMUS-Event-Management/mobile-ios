@@ -13,7 +13,8 @@ class LoginFirstScreenViewController: UIViewController {
     @IBOutlet weak var btnCheckBoxRemember: UIButton!
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var btnSignUp: UIButton!
-    
+    @IBOutlet weak var fotgetPassword: UIButton!
+
     @IBAction func setPassword(_ sender: UITextField) {
         VM.setPassword(password: sender.text ?? "")
         
@@ -50,6 +51,7 @@ class LoginFirstScreenViewController: UIViewController {
         }
     }
     
+    
     var flag = false
     
     
@@ -80,11 +82,17 @@ class LoginFirstScreenViewController: UIViewController {
         }
     }
     
+    @IBAction func forgetPassword(_ sender: UIButton) {
+        changeScreen(modelType: ForgetPasswordViewController.self, id: "ForgetPasswordViewController")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
         CheckAndAdd()
         print(Contanst.userdefault.string(forKey: "userToken"))
+        
+        
         
     }
     
@@ -126,19 +134,27 @@ extension LoginFirstScreenViewController {
 
     // Data binding event observe - communication
     func observeEvent() {
+        var loader:UIAlertController?
+
         VM.eventHandler = { [weak self] event in
             switch event {
             case .loading:
-                print("Login loading....")
+                loader = self?.loader()
             case .stopLoading:
-                print("Login Stop loading...")
+                self?.stoppedLoader(loader: loader ?? UIAlertController())
             case .dataLoaded:
-                print("Data User loaded...")
+//                let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: UIAlertController.Style.alert)
+//                alert.addAction(UIAlertAction(title: "Click", style: UIAlertAction.Style.default, handler: nil))
+//                self?.present(alert, animated: true, completion: nil)
                 DispatchQueue.main.async {
+                    self?.showToast(message: "Successfully Login!", font: .systemFont(ofSize: 12.0))
                     self?.changeScreen(modelType: UIViewController.self,id: "MenuTabBar")
                 }
             case .error(let error):
                 print(error)
+            case .invalid:
+                self?.showToast(message: "Invalid Email or Password!", font: .systemFont(ofSize: 12.0))
+
             }
         }
     }
