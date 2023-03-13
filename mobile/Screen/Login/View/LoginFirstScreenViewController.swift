@@ -147,13 +147,19 @@ extension LoginFirstScreenViewController {
 //                alert.addAction(UIAlertAction(title: "Click", style: UIAlertAction.Style.default, handler: nil))
 //                self?.present(alert, animated: true, completion: nil)
                 DispatchQueue.main.async {
-                    self?.showToast(message: "Successfully Login!", font: .systemFont(ofSize: 12.0))
+                    self?.showToast(message: "Đăng nhập thành công!", font: .systemFont(ofSize: 12.0))
                     self?.changeScreen(modelType: UIViewController.self,id: "MenuTabBar")
                 }
             case .error(let error):
-                print(error)
+                let err = error as! DataError
+                if (err == DataError.invalidResponse400) {
+                    DispatchQueue.main.async {
+                        self?.showToast(message: "Email hoặc Mật khẩu không đúng", font: .systemFont(ofSize: 12.0))
+                        self?.stoppedLoader(loader: loader ?? UIAlertController())
+                    }
+                }
             case .invalid:
-                self?.showToast(message: "Invalid Email or Password!", font: .systemFont(ofSize: 12.0))
+                self?.showToast(message: "Email hoặc Mật khẩu không đúng", font: .systemFont(ofSize: 12.0))
 
             }
         }

@@ -43,6 +43,7 @@ extension ChangePasswordViewController: UITableViewDataSource {
         if(indexPath.row == dataLabel.count){
             if let cell = tableView.dequeueReusableCell(withIdentifier: "EditProfileButtonTableViewCell", for: indexPath) as? EditProfileButtonTableViewCell {
                 cell.delegate = self
+                cell.btnSelect.setTitle("Change", for: .normal)
                 return cell
             }
         } else {
@@ -78,10 +79,15 @@ extension ChangePasswordViewController: EditProfileButtonTableViewCellDelegate {
         let cellNewPassword = self.tb.cellForRow(at: [0,1]) as? ProfileDetailTableViewCell
         let cellConfirmPassword = self.tb.cellForRow(at: [0,2]) as? ProfileDetailTableViewCell
 
-        var params = ChangePassword(password: cellOldPassword?.tf.text ?? "", passwordNew: cellNewPassword?.tf.text ?? "", comfirmPassword: cellConfirmPassword?.tf.text ?? "")
         
-        
-        self.VM.ChangePass(params: params)
+        if cellNewPassword?.tf.text == cellConfirmPassword?.tf.text {
+            var params = ChangePassword(password: cellOldPassword?.tf.text ?? "", passwordNew: cellNewPassword?.tf.text ?? "", comfirmPassword: cellConfirmPassword?.tf.text ?? "")
+            
+            self.VM.ChangePass(params: params)
+        } else {
+            self.showToast(message: "Mật khẩu không khớp", font: .systemFont(ofSize: 12))
+        }
+      
         
         
         
@@ -122,10 +128,17 @@ extension ChangePasswordViewController {
             case .dataLoaded:
                 print("Data loaded...")
             case .error(let error):
-                print(error)
+                let err = error as! DataError
+                if (err == DataError.invalidResponse500) {
+                    DispatchQueue.main.async {
+                        self?.showToast(message: "Mật khẩu cũ không đúng", font: .systemFont(ofSize: 12.0))
+                        self?.stoppedLoader(loader: loader ?? UIAlertController())
+                    }
+                }
             case .logout:
                 // xử lý logout tại đây
                 DispatchQueue.main.async {
+                    self?.showToast(message: "Đổi mật khẩu thành công", font: .systemFont(ofSize: 12.0))
                     self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
                 }
                 print("logout")

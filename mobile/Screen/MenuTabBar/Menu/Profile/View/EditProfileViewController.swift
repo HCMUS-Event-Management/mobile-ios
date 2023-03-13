@@ -13,22 +13,28 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
     }
     
     func callApi() {
-        let email = tb.cellForRow(at: [0,1]) as? ProfileDetailTableViewCell
+        let fullname = tb.cellForRow(at: [0,1]) as? ProfileDetailTableViewCell
         let phone = tb.cellForRow(at: [0,2]) as? ProfileDetailTableViewCell
         let address = tb.cellForRow(at: [0,3]) as? ProfileDetailTableViewCell
         let dot = tb.cellForRow(at: [0,4]) as? ProfileDetailTableViewCell
         let idCard = tb.cellForRow(at: [0,5]) as? ProfileDetailTableViewCell
         let gender = tb.cellForRow(at: [0,6]) as? ProfileDetailTableViewCell
         
-        let infoProfile = UpdateProfile(fullName: VM.userInfoDetail?.fullName ?? "", phone: phone?.tf.text ?? "", birthday: dot?.tf.text ?? "", identityCard: idCard?.tf.text ?? "", gender: gender?.tf.text ?? "", avatar: VM.userInfoDetail?.avatar ?? "", address: address?.tf.text ?? "", isDeleted: false)
-        VM.updateUserDetail(params: infoProfile)
+        if (fullname?.tf.text == VM.userInfoDetail?.fullName && phone?.tf.text == VM.userInfoDetail?.phone && dot?.tf.text == VM.userInfoDetail?.birthday && idCard?.tf.text == VM.userInfoDetail?.identityCard && gender?.tf.text == VM.userInfoDetail?.gender && address?.tf.text == VM.userInfoDetail?.address){
+            showToast(message: "Không có gì thay đổi", font: .systemFont(ofSize: 12))
+        } else {
+            let infoProfile = UpdateProfile(fullName: fullname?.tf.text ?? "", phone: phone?.tf.text ?? "", birthday: dot?.tf.text ?? "", identityCard: idCard?.tf.text ?? "", gender: gender?.tf.text ?? "", avatar: VM.userInfoDetail?.avatar ?? "", address: address?.tf.text ?? "", isDeleted: false)
+            
+            VM.updateUserDetail(params: infoProfile)
+        }
+        
     }
     
     var VM = ProfileViewModel()
 
     
 
-    var dataLabel = ["Email:","Number phone:","Address:","Birthday:","Identity card:","Gender:"]
+    var dataLabel = ["Fullname:","Number phone:","Address:","Birthday:","Identity card:","Gender:"]
     var dataPlaceHolder = ["Ex: ngyenvana@gmail.com","Ex: 01234567892","Ex: 123 Võ Văn Kiệt, P6, Quận 5, TP.HCM","Ex: 09/07/2001","Ex: 212950358","Ex: Male"]
     
     @IBOutlet weak var tb: UITableView!
@@ -56,13 +62,15 @@ extension EditProfileViewController: UITableViewDataSource {
         } else if(indexPath.row == dataLabel.count + 1){
             if let cell = tableView.dequeueReusableCell(withIdentifier: "EditProfileButtonTableViewCell", for: indexPath) as? EditProfileButtonTableViewCell {
                 cell.delegate = self
+                cell.btnSelect.setTitle("Update", for: .normal)
+
                 return cell
             }
         } else if (indexPath.row == 1) {
             print(indexPath)
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileDetailTableViewCell", for: indexPath) as? ProfileDetailTableViewCell {
                 cell.lbl.text = dataLabel[indexPath.row-1]
-                cell.tf.text = VM.userInfoDetail?.email
+                cell.tf.text = VM.userInfoDetail?.fullName
                 return cell
             }
         } else if (indexPath.row == 2) {

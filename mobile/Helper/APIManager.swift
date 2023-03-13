@@ -25,8 +25,15 @@ protocol EndPointType {
     var headers: [String: String]? { get }
 }
 
-enum DataError: Error {
+enum DataError: Error, Equatable {
+    
+    static func == (lhs: DataError, rhs: DataError) -> Bool {
+        return lhs.localizedDescription == rhs.localizedDescription
+    }
+    
     case invalidResponse
+    case invalidResponse400
+    case invalidResponse500
     case invalidURL
     case invalidData
     case network(Error?)
@@ -36,7 +43,7 @@ typealias Handler<T> = (Swift.Result<T, DataError>) -> Void
 
 
 final class APIManager {
-
+    
     static let shared = APIManager()
     private init() {}
 
@@ -74,16 +81,33 @@ final class APIManager {
             
         print(response)
 
+            if let response = response as? HTTPURLResponse,
+                  400 ~= response.statusCode {
+                completion(.failure(.invalidResponse400))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                  500 ~= response.statusCode {
+                completion(.failure(.invalidResponse500))
+                return
+            }
+            
             guard let response = response as? HTTPURLResponse,
                   200 ... 299 ~= response.statusCode else {
-                do {
-                    let dataType = try JSONDecoder().decode(modelType, from: data)
-                    print(dataType)
-                }catch {
-                }
+//                do {
+//                    let dataType = try JSONDecoder().decode(ReponseCommon.self, from: data)
+//                    print(dataType)
+//                    completion(.failure(.invalidResponse(dataType.message ?? "")))
+//                }catch {
+//                    completion(.failure(.network(error)))
+//                }
+//                if response.statusCode
+                
                 completion(.failure(.invalidResponse))
                 return
             }
+            
             do {
                 let dataType = try JSONDecoder().decode(modelType, from: data)
                 completion(.success(dataType))

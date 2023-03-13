@@ -65,7 +65,7 @@ class LoginFirstScreenViewModel {
                     }
                     self.fetchUserDetail()
                     case .failure(let error):
-                        self.eventHandler?(.error(error))
+                        self.eventHandler?(.error(error ))
                     }
             })
         }

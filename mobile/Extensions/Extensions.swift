@@ -11,7 +11,7 @@ import UIKit
 
 extension UIViewController {
     func loader() -> UIAlertController {
-        let alter = UIAlertController(title: nil, message: "Please wait", preferredStyle: .alert)
+        let alter = UIAlertController(title: nil, message: "Vui lòng chờ", preferredStyle: .alert)
         let indicator  = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
         indicator.hidesWhenStopped = true
         indicator.startAnimating()
@@ -44,7 +44,7 @@ extension UIViewController {
 
     func showToast(message : String, font: UIFont) {
 
-        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height-100, width: 150, height: 35))
+        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 120, y: self.view.frame.size.height-100, width: 250, height: 35))
         toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         toastLabel.textColor = UIColor.white
         toastLabel.font = font

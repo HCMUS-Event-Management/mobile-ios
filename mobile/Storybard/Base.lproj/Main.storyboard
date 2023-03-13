@@ -769,7 +769,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TSw-Ys-rdE">
-                                <rect key="frame" x="20" y="133.66666666666669" width="374" height="728.33333333333326"/>
+                                <rect key="frame" x="20" y="133.66666666666669" width="374" height="728.33333333333348"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FoX-kU-yjh">
                                     <size key="itemSize" width="128" height="128"/>
