@@ -162,6 +162,7 @@ extension EditProfileViewController {
                 print("get User loaded...")
                 DispatchQueue.main.async {
                     self?.tb.reloadData()
+                    self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .error(let error):
                 print(error)

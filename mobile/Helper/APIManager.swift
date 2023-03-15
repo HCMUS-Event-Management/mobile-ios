@@ -89,6 +89,12 @@ final class APIManager {
             
             if let response = response as? HTTPURLResponse,
                   500 ~= response.statusCode {
+                do {
+                    let dataType = try JSONDecoder().decode(ReponseCommon.self, from: data)
+                    print(dataType)
+                }catch {
+                    completion(.failure(.network(error)))
+                }
                 completion(.failure(.invalidResponse500))
                 return
             }

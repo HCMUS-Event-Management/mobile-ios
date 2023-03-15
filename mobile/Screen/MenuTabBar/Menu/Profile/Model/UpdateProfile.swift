@@ -8,12 +8,13 @@
 import Foundation
 
 struct UpdateProfile: Codable {
-    var fullName: String?
-    var phone: String?
-    var birthday: String?
-    var identityCard: String?
-    var gender: String?
-    var avatar: String?
-    var address: String?
-    var isDeleted: Bool?
+    let fullName : String?
+    let phone : String?
+    let birthday : String?
+    let identityCard : String?
+    let gender : String?
+    let avatar : String?
+    let address : String?
+    let isDeleted : Bool?
+
 }
