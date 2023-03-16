@@ -33,6 +33,7 @@ enum DataError: Error, Equatable {
     
     case invalidResponse
     case invalidResponse400
+    case invalidResponse401
     case invalidResponse500
     case invalidURL
     case invalidData
@@ -43,7 +44,7 @@ typealias Handler<T> = (Swift.Result<T, DataError>) -> Void
 
 
 final class APIManager {
-    
+    let queue = DispatchQueue(label: "FetchUserDetail")
     static let shared = APIManager()
     private init() {}
 
@@ -52,12 +53,151 @@ final class APIManager {
         return data
     }
     
+    func loginByRefresh(completion: @escaping Handler<ReponseLogin>) {
+        request(modelType: ReponseLogin.self , type: UserEndPoint.refreshToken(token: Contanst.userdefault.string(forKey: "refreshToken") ?? ""), params: nil, completion: {
+            result in
+            switch result {
+            case .success(let info):
+                TokenService.tokenInstance.saveToken(token: info.data?.accessToken ?? "", refreshToken: Contanst.userdefault.string(forKey: "refreshToken") ?? "")
+                if let encodedUser = try? JSONEncoder().encode(info.data?.getUserInfor) {
+                    Contanst.userdefault.set(encodedUser, forKey: "userInfo")
+                }
+                
+                completion(.success(info))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        })
+    }
+    
+    func handleTaskSession<T: Codable>(modelType: T.Type,
+                                       type: EndPointType, params: Foundation.Data?, request: URLRequest ,completion: @escaping Handler<T>) -> URLSessionDataTask {
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                completion(.failure(.invalidData))
+                return
+            }
+            
+
+            if let response = response as? HTTPURLResponse,
+                  400 ~= response.statusCode {
+                completion(.failure(.invalidResponse400))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                  401 ~= response.statusCode {
+                var tastAgain: URLSessionDataTask?
+                
+                let tokenInstance = TokenService.tokenInstance
+                
+//                if let refreshToken = try? tokenInstance.decode(jwtToken: tokenInstance.getToken(key: "refreshToken")) {
+//                    if Date.now.timeIntervalSince1970.isLessThanOrEqualTo(refreshToken["exp"]! as! Double) {
+//                        
+//                        completion(.failure(.invalidResponse401))
+//                        return
+//                    }
+//                    
+//                    
+//                    completion(.failure(.invalidResponse401))
+//                    return
+//                }
+//                
+                
+                self.loginByRefresh(completion: {
+                    result in
+                    switch result {
+                    case .success(_):
+//                        var rq:URLRequest = request
+                        
+                    
+                        
+                        
+                        guard let url = type.url else {
+                            completion(.failure(.invalidURL)) // I forgot to mention this in the video
+                            return
+                        }
+
+                        var rq = URLRequest(url: url)
+                        rq.httpMethod = type.method.rawValue
+
+                        if (params != nil) {
+                            rq.httpBody = params
+                        }
+
+                        rq.allHTTPHeaderFields = type.headers
+
+                        
+                        self.handleTaskSession(modelType: modelType, type: type, params: params, request: rq, completion:  {
+                            result in
+                            switch result {
+                            case .success(let value):
+                                completion(.success(value))
+                            case .failure(let error):
+                                completion(.failure(error))
+                            }
+                         }).resume()
+                        
+
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
+                    
+                    return
+                    
+                })
+                
+                
+                
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                  500 ~= response.statusCode {
+                do {
+                    let dataType = try JSONDecoder().decode(ReponseCommon.self, from: data)
+                }catch {
+                    completion(.failure(.network(error)))
+                }
+                completion(.failure(.invalidResponse500))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+               200 ... 299 ~= response.statusCode {
+//                do {
+//                    let dataType = try JSONDecoder().decode(ReponseCommon.self, from: data)
+//                    print(dataType)
+////                    completion(.failure(.invalidResponse(dataType.message ?? "")))
+//                }catch {
+//                    completion(.failure(.network(error)))
+//                }
+//
+//                completion(.failure(.invalidResponse))
+//                return
+                do {
+                    let dataType = try JSONDecoder().decode(modelType, from: data)
+                    completion(.success(dataType))
+                }catch {
+                    completion(.failure(.network(error)))
+                }
+            }
+            
+            
+
+        }
+        
+        return task
+        
+    }
+    
     func request<T: Codable>(
         modelType: T.Type,
         type: EndPointType,
         params: Foundation.Data?,
         completion: @escaping Handler<T>
     ) {
+
         guard let url = type.url else {
             completion(.failure(.invalidURL)) // I forgot to mention this in the video
             return
@@ -72,56 +212,21 @@ final class APIManager {
 
         request.allHTTPHeaderFields = type.headers
         
-        // Background task
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                completion(.failure(.invalidData))
-                return
-            }
-            
-        print(response)
-
-            if let response = response as? HTTPURLResponse,
-                  400 ~= response.statusCode {
-                completion(.failure(.invalidResponse400))
-                return
-            }
-            
-            if let response = response as? HTTPURLResponse,
-                  500 ~= response.statusCode {
-                do {
-                    let dataType = try JSONDecoder().decode(ReponseCommon.self, from: data)
-                    print(dataType)
-                }catch {
-                    completion(.failure(.network(error)))
-                }
-                completion(.failure(.invalidResponse500))
-                return
-            }
-            
-            guard let response = response as? HTTPURLResponse,
-                  200 ... 299 ~= response.statusCode else {
-//                do {
-//                    let dataType = try JSONDecoder().decode(ReponseCommon.self, from: data)
-//                    print(dataType)
-//                    completion(.failure(.invalidResponse(dataType.message ?? "")))
-//                }catch {
-//                    completion(.failure(.network(error)))
-//                }
-//                if response.statusCode
+        let task = handleTaskSession(modelType: modelType, type: type, params: params, request: request, completion: {
+            result in
+            switch result {
                 
-                completion(.failure(.invalidResponse))
-                return
-            }
-            
-            do {
-                let dataType = try JSONDecoder().decode(modelType, from: data)
-                completion(.success(dataType))
-            }catch {
-                completion(.failure(.network(error)))
-            }
+            case .success(let value):
+                completion(.success(value))
+            case .failure(let error):
+                print(error)
+                completion(.failure(error))
 
-        }.resume()
+            }
+        })
+        
+        // Background task
+        task.resume()
     }
     
     

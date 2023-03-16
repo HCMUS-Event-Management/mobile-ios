@@ -10,8 +10,11 @@ import Foundation
 
 class LoginFirstScreenViewModel {
        
+    
     private var username = ""
     private var password = ""
+    
+    let queue = DispatchQueue(label: "FetchUserDetail")
     
     
 //    var userCurrentInfo:GetUserInfor?
@@ -63,7 +66,13 @@ class LoginFirstScreenViewModel {
                     if let encodedUser = try? JSONEncoder().encode(info.data?.getUserInfor) {
                         Contanst.userdefault.set(encodedUser, forKey: "userInfo")
                     }
-                    self.fetchUserDetail()
+//                    self.fetchUserDetail()
+
+                    self.queue.async {
+                        //Lay du lieu tu server
+                        self.fetchUserDetail()
+                    }
+                    
                     case .failure(let error):
                         self.eventHandler?(.error(error ))
                     }

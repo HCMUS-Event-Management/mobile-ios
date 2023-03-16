@@ -7,8 +7,13 @@
 
 import Foundation
 
+
+typealias CompletionHandler = (_ success:Bool) -> Void
+
 class TokenService {
     static let tokenInstance = TokenService()
+    
+    
     
     func saveToken(token: String, refreshToken: String) {
         Contanst.userdefault.set(token, forKey: "userToken")
@@ -23,24 +28,74 @@ class TokenService {
         }
     }
     
-    func checkForLogin() -> Bool {
-        if getToken(key: "userToken") != "" {
-            let infoToken = try! decode(jwtToken: getToken(key: "userToken"))
-            print(infoToken["exp"]!)
-            print(Date.now.timeIntervalSince1970)
-            if Date.now.timeIntervalSince1970.isLessThanOrEqualTo(infoToken["exp"]! as! Double) {
-                return loginByRefreshToken()
-            }
-            return false
-            
-        } else {
-            return false
-        }
-    }
     
-    func loginByRefreshToken() -> Bool {
+    
+    func checkForLogin(completionHandler: @escaping CompletionHandler) {
+        let now = Date.now.timeIntervalSince1970
+    
+        if getToken(key: "userToken") != "" {
+            if let infoToken = try? decode(jwtToken: getToken(key: "userToken")) {
+                if now.isLessThanOrEqualTo(infoToken["exp"]! as! Double) {
+                    completionHandler(true)
+                } else {
+                    if let refreshToken = try? decode(jwtToken: getToken(key: "refreshToken")) {
+                        if now.isLessThanOrEqualTo(refreshToken["exp"]! as! Double) {
+                                
+                            return loginByRefreshToken(completion: {
+                                result in
+                                switch result {
+                                case .success(_):
+                                    completionHandler(true)
+                                case .failure(let err):
+                                    completionHandler(false)
+                                }
+                            })
+                            
+                        }
+                    }
+                }
+            }
+        }
         
-        return true
+        completionHandler(false)
+        
+        
+//        guard let infoToken = try? decode(jwtToken: getToken(key: "userToken")) else {
+//            return false
+//        }
+//        if now.isLessThanOrEqualTo(infoToken["exp"]! as! Double) {
+//            return true
+//        }
+    
+        
+        
+//        if let
+//        if getToken(key: "userToken") != "" {
+//
+//            print(infoToken["exp"]!)
+//            print(Date.now.timeIntervalSince1970)
+//            if Date.now.timeIntervalSince1970.isLessThanOrEqualTo(infoToken["exp"]! as! Double) {
+//                return false
+//            }
+//            return loginByRefreshToken()
+//
+//        } else {
+//            return false
+//        }
+    }
+//completion: @escaping Handler<ReponseLogin>
+    func loginByRefreshToken(completion: @escaping Handler<ReponseLogin>) {
+//        var check = false
+        APIManager.shared.loginByRefresh(completion: {
+            result in
+            switch result {
+            case .success(let value):
+                completion(.success(value))
+            case .failure(let err):
+                completion(.failure(err))
+            }
+        })
+//        return check
     }
     
     func removeTokenAndInfo() {

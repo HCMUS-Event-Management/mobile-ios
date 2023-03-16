@@ -157,15 +157,23 @@ extension EditProfileViewController {
             case .loading:
                 loader = self?.loader()
             case .stopLoading:
-                self?.stoppedLoader(loader: loader ?? UIAlertController())
+                DispatchQueue.main.async {
+                    self?.stoppedLoader(loader: loader ?? UIAlertController())
+                }
             case .dataLoaded:
-                print("get User loaded...")
                 DispatchQueue.main.async {
                     self?.tb.reloadData()
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .error(let error):
                 print(error)
+
+//                let err = error as! DataError
+//                if (err == DataError.invalidResponse401) {
+//                    DispatchQueue.main.async {
+//                        self?.stoppedLoader(loader: loader ?? UIAlertController())
+//                    }
+//                }
             case .logout: break
             case .updateProfile:
                 self?.VM.fetchUserDetail()

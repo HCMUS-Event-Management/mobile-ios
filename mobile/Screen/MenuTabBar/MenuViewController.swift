@@ -9,14 +9,17 @@ import UIKit
 
 class MenuViewController: UITabBarController {
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(TokenService.tokenInstance.getToken(key: "userToken"))
+        LoginFirstScreenViewModel().fetchUserDetail()
+//        print(TokenService.tokenInstance.getToken(key: "userToken"))
 //        TokenService.tokenInstance.removeTokenAndInfo()
 
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
+        self.showToast(message: "Bạn đã đăng nhập", font: .systemFont(ofSize: 12))
     }
 
 }

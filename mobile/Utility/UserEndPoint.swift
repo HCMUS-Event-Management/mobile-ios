@@ -15,6 +15,7 @@ enum UserEndPoint {
     case changePassword // PUT
     case forgetPassword // POST
     case verifyToken(token: String) // GET
+    case refreshToken(token: String) // POST
 }
 
 // https://fakestoreapi.com/products
@@ -37,6 +38,8 @@ extension UserEndPoint: EndPointType {
             return "api/v1/user-auth/user/forget-password"
         case .verifyToken(let query):
             return "api/v1/user-auth/user/verify/\(query)"
+        case .refreshToken(let query):
+            return "api/v1/user-auth/user/refresh-token?refreshToken=Bearer%20\(query)"
         }
    
 
@@ -66,6 +69,8 @@ extension UserEndPoint: EndPointType {
             return .post
         case .verifyToken:
             return .get
+        case .refreshToken:
+            return .post
         }
     }
 
@@ -84,6 +89,8 @@ extension UserEndPoint: EndPointType {
         case .forgetPassword:
             return nil
         case .verifyToken:
+            return nil
+        case .refreshToken:
             return nil
         }
     
@@ -104,6 +111,8 @@ extension UserEndPoint: EndPointType {
         case .forgetPassword:
             return APIManager.commonHeaders
         case .verifyToken:
+            return APIManager.commonHeaders
+        case .refreshToken:
             return APIManager.commonHeaders
         }
     }
