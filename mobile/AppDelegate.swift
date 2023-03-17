@@ -16,28 +16,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Override point for customization after application launch.
-       
+       // error main thread
         var vc: UIViewController?
-        
-        TokenService.tokenInstance.checkForLogin(completionHandler: { success in
-            
-            
-            DispatchQueue.main.async {
-                if success {
-                    vc = self.window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "MenuTabBar") as? MenuViewController
+            TokenService.tokenInstance.checkForLogin(completionHandler: { success in
 
+                
+                
+                if success {
+                    DispatchQueue.main.async {
+                        vc = self.window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "MenuTabBar") as? MenuViewController
+                        let navVC = UINavigationController(rootViewController: vc!)
+                        self.window?.rootViewController = navVC
+
+                    }
+                   
                 } else {
+                    DispatchQueue.main.async {
                     vc = self.window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "LoginFirstScreenViewController") as? LoginFirstScreenViewController
+                    let navVC = UINavigationController(rootViewController: vc!)
+                    self.window?.rootViewController = navVC
+                    }
                 }
                 
-                
-                
-                let navVC = UINavigationController(rootViewController: vc!)
-                self.window?.rootViewController = navVC
-            }
-            
-            
-        })
+
+
+
+            })
+        
+        
         return true
 
 

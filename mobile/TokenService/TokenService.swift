@@ -55,9 +55,10 @@ class TokenService {
                     }
                 }
             }
+        } else {
+            completionHandler(false)
         }
         
-        completionHandler(false)
         
         
 //        guard let infoToken = try? decode(jwtToken: getToken(key: "userToken")) else {

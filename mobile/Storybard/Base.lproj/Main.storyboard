@@ -714,7 +714,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qxg-tE-1tm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3274" y="2863"/>
+            <point key="canvasLocation" x="-6822" y="2882"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rGH-fN-eg9">
@@ -857,7 +857,7 @@
                         <segue destination="zV4-Ey-5Tb" kind="relationship" relationship="viewControllers" id="YT3-EY-gQ3"/>
                         <segue destination="L75-2H-nbq" kind="relationship" relationship="viewControllers" id="iAi-Si-wmy"/>
                         <segue destination="7I9-LM-VTd" kind="relationship" relationship="viewControllers" id="aeG-DB-b53"/>
-                        <segue destination="D33-7N-WBa" kind="relationship" relationship="viewControllers" id="cmE-Tv-1Sg"/>
+                        <segue destination="aqH-tC-sOq" kind="relationship" relationship="viewControllers" id="cmE-Tv-1Sg"/>
                         <segue destination="dth-94-11V" kind="relationship" relationship="viewControllers" id="SnJ-rW-sYh"/>
                     </connections>
                 </tabBarController>
@@ -879,23 +879,125 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lbi-Du-NAY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2359" y="2863"/>
+            <point key="canvasLocation" x="-5906" y="2882"/>
         </scene>
-        <!--Tickets-->
+        <!--My Tickets View Controller-->
+        <scene sceneID="gI2-ZZ-7nS">
+            <objects>
+                <viewController storyboardIdentifier="MyTicketsViewController" id="RRj-JP-0jP" customClass="MyTicketsViewController" customModule="mobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wIu-kc-K0i">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="nJ3-km-qSw">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rcS-Zk-MqU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="nJ3-km-qSw" firstAttribute="top" secondItem="rcS-Zk-MqU" secondAttribute="top" id="2iw-wz-1PF"/>
+                            <constraint firstItem="nJ3-km-qSw" firstAttribute="leading" secondItem="rcS-Zk-MqU" secondAttribute="leading" id="NcO-ad-fzv"/>
+                            <constraint firstItem="rcS-Zk-MqU" firstAttribute="bottom" secondItem="nJ3-km-qSw" secondAttribute="bottom" id="VNx-KX-mn0"/>
+                            <constraint firstItem="rcS-Zk-MqU" firstAttribute="trailing" secondItem="nJ3-km-qSw" secondAttribute="trailing" id="cPv-ul-6wT"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tb" destination="nJ3-km-qSw" id="Gac-DB-Nd9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Zr-NT-bWY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-778" y="3808"/>
+        </scene>
+        <!--Bought Tickets View Controller-->
+        <scene sceneID="Gnx-IE-Pk9">
+            <objects>
+                <viewController storyboardIdentifier="BoughtTicketsViewController" id="tfC-lr-xKR" customClass="BoughtTicketsViewController" customModule="mobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8gt-vo-RCH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="639-Zc-1rW">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="V3M-mM-XNC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="639-Zc-1rW" firstAttribute="top" secondItem="V3M-mM-XNC" secondAttribute="top" id="KaO-uB-nwJ"/>
+                            <constraint firstItem="V3M-mM-XNC" firstAttribute="trailing" secondItem="639-Zc-1rW" secondAttribute="trailing" id="Lr7-Ao-T8q"/>
+                            <constraint firstItem="639-Zc-1rW" firstAttribute="leading" secondItem="V3M-mM-XNC" secondAttribute="leading" id="brv-HZ-gHd"/>
+                            <constraint firstItem="V3M-mM-XNC" firstAttribute="bottom" secondItem="639-Zc-1rW" secondAttribute="bottom" id="cF3-gS-RPE"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tb" destination="639-Zc-1rW" id="mfG-ej-Jc4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cxa-1p-qvc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-39" y="3808"/>
+        </scene>
+        <!--Detail Ticket View Controller-->
+        <scene sceneID="cT8-XO-Kvh">
+            <objects>
+                <viewController storyboardIdentifier="DetailTicketViewController" id="2NF-yO-nBQ" customClass="DetailTicketViewController" customModule="mobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6yL-ed-Ghs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="cFs-bp-yBi">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="a1u-cr-7a6"/>
+                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                        <constraints>
+                            <constraint firstItem="a1u-cr-7a6" firstAttribute="bottom" secondItem="cFs-bp-yBi" secondAttribute="bottom" id="CmP-Sq-eSy"/>
+                            <constraint firstItem="cFs-bp-yBi" firstAttribute="leading" secondItem="a1u-cr-7a6" secondAttribute="leading" id="ge0-Ic-S8M"/>
+                            <constraint firstItem="cFs-bp-yBi" firstAttribute="top" secondItem="a1u-cr-7a6" secondAttribute="top" id="sDg-Fp-85A"/>
+                            <constraint firstItem="a1u-cr-7a6" firstAttribute="trailing" secondItem="cFs-bp-yBi" secondAttribute="trailing" id="y3v-ud-WVR"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cOC-3D-oA1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-384" y="4509"/>
+        </scene>
+        <!--Ticket View Controller-->
         <scene sceneID="eiq-vN-jRQ">
             <objects>
                 <viewController id="D33-7N-WBa" customClass="TicketViewController" customModule="mobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="M0z-XP-1o9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NUv-9j-bL6" customClass="LZViewPager" customModule="LZViewPager">
+                                <rect key="frame" x="20" y="88" width="374" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="ukg-Bc-xSN"/>
-                        <color key="backgroundColor" systemColor="systemGray2Color"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="NUv-9j-bL6" firstAttribute="top" secondItem="ukg-Bc-xSN" secondAttribute="top" id="ABn-UC-jHg"/>
+                            <constraint firstItem="NUv-9j-bL6" firstAttribute="leading" secondItem="ukg-Bc-xSN" secondAttribute="leading" constant="20" id="k4A-dG-Gb1"/>
+                            <constraint firstItem="NUv-9j-bL6" firstAttribute="centerX" secondItem="M0z-XP-1o9" secondAttribute="centerX" id="k68-H1-Ftp"/>
+                            <constraint firstItem="ukg-Bc-xSN" firstAttribute="bottom" secondItem="NUv-9j-bL6" secondAttribute="bottom" id="mDK-5b-APC"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Tickets" image="TicketIcon" id="xe5-Db-l2f"/>
+                    <navigationItem key="navigationItem" id="xtG-6r-4yS"/>
+                    <connections>
+                        <outlet property="pageView" destination="NUv-9j-bL6" id="aQw-z3-R1r"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vep-qb-Q2A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-639" y="2863"/>
+            <point key="canvasLocation" x="-431.8840579710145" y="3045.5357142857142"/>
         </scene>
         <!--Profile Account View Controller-->
         <scene sceneID="a0r-NN-TxJ">
@@ -926,7 +1028,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8f0-Fa-eWA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1897.1014492753625" y="2862.7232142857142"/>
+            <point key="canvasLocation" x="2807.2463768115945" y="2862.7232142857142"/>
         </scene>
         <!--Payment Method View Controller-->
         <scene sceneID="4QY-17-aeZ">
@@ -941,7 +1043,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OIJ-5R-lrm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1125" y="3593"/>
+            <point key="canvasLocation" x="2034.7826086956522" y="3592.6339285714284"/>
         </scene>
         <!--Profile Detail View Controller-->
         <scene sceneID="p6P-zL-Y8B">
@@ -1013,7 +1115,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fww-hh-jpc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3679.7101449275365" y="3540.4017857142858"/>
+            <point key="canvasLocation" x="4589.8550724637689" y="3540.4017857142858"/>
         </scene>
         <!--Edit Profile View Controller-->
         <scene sceneID="dQR-RE-3Br">
@@ -1043,7 +1145,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ucC-41-lby" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4400" y="3539.7321428571427"/>
+            <point key="canvasLocation" x="5308.695652173913" y="3539.7321428571427"/>
         </scene>
         <!--Scan QR-->
         <scene sceneID="du2-gC-Tdv">
@@ -1059,7 +1161,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lqC-0G-ubQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1494" y="2863"/>
+            <point key="canvasLocation" x="-5041" y="2882"/>
         </scene>
         <!--Profile-->
         <scene sceneID="Nag-Gm-fGB">
@@ -1080,7 +1182,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pbq-Ye-cbR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="986.95652173913049" y="2862.7232142857142"/>
+            <point key="canvasLocation" x="1897.1014492753625" y="2862.7232142857142"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Q6M-Ng-o6e">
@@ -1098,7 +1200,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FvA-50-8CO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2769.5652173913045" y="3540.4017857142858"/>
+            <point key="canvasLocation" x="3679.7101449275365" y="3540.4017857142858"/>
         </scene>
         <!--Change Password View Controller-->
         <scene sceneID="IvL-VW-heX">
@@ -1128,7 +1230,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qPd-e3-04d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5138" y="3540"/>
+            <point key="canvasLocation" x="6047.826086956522" y="3539.7321428571427"/>
         </scene>
         <!--Forget Password View Controller-->
         <scene sceneID="20p-OU-IlA">
@@ -1333,6 +1435,25 @@ PASSWORD</string>
             </objects>
             <point key="canvasLocation" x="1552" y="2099"/>
         </scene>
+        <!--Tickets-->
+        <scene sceneID="3Ne-zP-XRm">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aqH-tC-sOq" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Tickets" image="TicketIcon" id="xe5-Db-l2f"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lRb-Lu-H8X">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="D33-7N-WBa" kind="relationship" relationship="rootViewController" id="GBj-0P-N4u"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="woe-wy-ATk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1342.0289855072465" y="3045.5357142857142"/>
+        </scene>
     </scenes>
     <resources>
         <image name="HomeIcon" width="27" height="27"/>
@@ -1356,8 +1477,8 @@ PASSWORD</string>
         <systemColor name="systemBrownColor">
             <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
