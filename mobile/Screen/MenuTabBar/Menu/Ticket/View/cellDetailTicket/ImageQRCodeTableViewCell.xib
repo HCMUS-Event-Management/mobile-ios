@@ -10,29 +10,30 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="250" id="KGk-i7-Jjw" customClass="ImageQRCodeTableViewCell" customModule="mobile" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="222" height="250"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="242" id="KGk-i7-Jjw" customClass="ImageQRCodeTableViewCell" customModule="mobile" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="225" height="242"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="222" height="250"/>
+                <rect key="frame" x="0.0" y="0.0" width="225" height="242"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Td1-57-8jg">
-                        <rect key="frame" x="15.5" y="30.5" width="191" height="188.5"/>
+                        <rect key="frame" x="-8.5" y="1" width="242" height="239.5"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Td1-57-8jg" secondAttribute="height" multiplier="1:1" id="Y3S-aV-eM6"/>
                         </constraints>
                         <imageReference key="image" image="qrcode" catalog="system" renderingMode="original"/>
                     </imageView>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="Td1-57-8jg" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="3db-mn-Zdc"/>
                     <constraint firstItem="Td1-57-8jg" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="80y-oe-4Zm"/>
-                    <constraint firstItem="Td1-57-8jg" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.860215" id="lxF-fy-Kmo"/>
+                    <constraint firstItem="Td1-57-8jg" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" id="J8t-Pu-Cd5"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <point key="canvasLocation" x="60.869565217391312" y="150.66964285714286"/>
+            <point key="canvasLocation" x="63.04347826086957" y="147.99107142857142"/>
         </tableViewCell>
     </objects>
     <resources>

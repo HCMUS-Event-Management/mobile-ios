@@ -58,6 +58,10 @@
 		A4506C9C29C44CEA009B75F6 /* ImageQRCodeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4506C9A29C44CEA009B75F6 /* ImageQRCodeTableViewCell.xib */; };
 		A4506C9F29C44D63009B75F6 /* InfoEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4506C9D29C44D63009B75F6 /* InfoEventTableViewCell.swift */; };
 		A4506CA029C44D63009B75F6 /* InfoEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4506C9E29C44D63009B75F6 /* InfoEventTableViewCell.xib */; };
+		A4506CA329C45013009B75F6 /* InfoTicketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4506CA129C45013009B75F6 /* InfoTicketTableViewCell.swift */; };
+		A4506CA429C45013009B75F6 /* InfoTicketTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4506CA229C45013009B75F6 /* InfoTicketTableViewCell.xib */; };
+		A4506CA729C45E3A009B75F6 /* InfoPaymentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4506CA529C45E3A009B75F6 /* InfoPaymentTableViewCell.swift */; };
+		A4506CA829C45E3A009B75F6 /* InfoPaymentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4506CA629C45E3A009B75F6 /* InfoPaymentTableViewCell.xib */; };
 		A459818329A8FA6C00D816E3 /* ReponseLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A459818229A8FA6C00D816E3 /* ReponseLogin.swift */; };
 		A4A91316299F5AB800AC5E75 /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A91315299F5AB800AC5E75 /* ProfileDetailViewController.swift */; };
 		A4A91319299FAA1100AC5E75 /* PaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A91318299FAA1100AC5E75 /* PaymentMethodViewController.swift */; };
@@ -158,6 +162,10 @@
 		A4506C9A29C44CEA009B75F6 /* ImageQRCodeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageQRCodeTableViewCell.xib; sourceTree = "<group>"; };
 		A4506C9D29C44D63009B75F6 /* InfoEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoEventTableViewCell.swift; sourceTree = "<group>"; };
 		A4506C9E29C44D63009B75F6 /* InfoEventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoEventTableViewCell.xib; sourceTree = "<group>"; };
+		A4506CA129C45013009B75F6 /* InfoTicketTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTicketTableViewCell.swift; sourceTree = "<group>"; };
+		A4506CA229C45013009B75F6 /* InfoTicketTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoTicketTableViewCell.xib; sourceTree = "<group>"; };
+		A4506CA529C45E3A009B75F6 /* InfoPaymentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPaymentTableViewCell.swift; sourceTree = "<group>"; };
+		A4506CA629C45E3A009B75F6 /* InfoPaymentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoPaymentTableViewCell.xib; sourceTree = "<group>"; };
 		A459818229A8FA6C00D816E3 /* ReponseLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReponseLogin.swift; sourceTree = "<group>"; };
 		A4A91315299F5AB800AC5E75 /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
 		A4A91318299FAA1100AC5E75 /* PaymentMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodViewController.swift; sourceTree = "<group>"; };
@@ -501,6 +509,10 @@
 				A4506C9A29C44CEA009B75F6 /* ImageQRCodeTableViewCell.xib */,
 				A4506C9D29C44D63009B75F6 /* InfoEventTableViewCell.swift */,
 				A4506C9E29C44D63009B75F6 /* InfoEventTableViewCell.xib */,
+				A4506CA129C45013009B75F6 /* InfoTicketTableViewCell.swift */,
+				A4506CA229C45013009B75F6 /* InfoTicketTableViewCell.xib */,
+				A4506CA529C45E3A009B75F6 /* InfoPaymentTableViewCell.swift */,
+				A4506CA629C45E3A009B75F6 /* InfoPaymentTableViewCell.xib */,
 			);
 			path = cellDetailTicket;
 			sourceTree = "<group>";
@@ -799,12 +811,14 @@
 				A426854429953D4C00AA424A /* LaunchScreen.storyboard in Resources */,
 				A4506C9C29C44CEA009B75F6 /* ImageQRCodeTableViewCell.xib in Resources */,
 				A4268582299E248900AA424A /* InfoTableViewCell.xib in Resources */,
+				A4506CA829C45E3A009B75F6 /* InfoPaymentTableViewCell.xib in Resources */,
 				A4268586299E27F300AA424A /* IconMenuTableViewCell.xib in Resources */,
 				A44F1A0129A73EA500476E9B /* TypeCollectionViewCell.xib in Resources */,
 				A4506CA029C44D63009B75F6 /* InfoEventTableViewCell.xib in Resources */,
 				A44F19FD29A73E9700476E9B /* EventCollectionViewCell.xib in Resources */,
 				A426854129953D4C00AA424A /* Assets.xcassets in Resources */,
 				A426853C29953D4900AA424A /* Main.storyboard in Resources */,
+				A4506CA429C45013009B75F6 /* InfoTicketTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -933,6 +947,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A426853929953D4900AA424A /* ViewController.swift in Sources */,
+				A4506CA729C45E3A009B75F6 /* InfoPaymentTableViewCell.swift in Sources */,
+				A4506CA329C45013009B75F6 /* InfoTicketTableViewCell.swift in Sources */,
 				A4CA58BA29A8DFD200B5E318 /* FeatureCodeDtos.swift in Sources */,
 				A44F19FC29A73E9700476E9B /* EventCollectionViewCell.swift in Sources */,
 				A4268579299E1CBE00AA424A /* SearchViewController.swift in Sources */,

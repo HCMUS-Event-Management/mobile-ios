@@ -65,6 +65,10 @@ extension BoughtTicketsViewController: UITableViewDelegate{
         return tableView.layer.frame.height / 4.8
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.changeScreen(modelType: DetailTicketViewController.self, id: "DetailTicketViewController")
+    }
+
    
 }
 

@@ -1,5 +1,5 @@
 //
-//  InfoEventTableViewCell.swift
+//  InfoPaymentTableViewCell.swift
 //  mobile
 //
 //  Created by NguyenSon_MP on 17/03/2023.
@@ -7,12 +7,11 @@
 
 import UIKit
 
-class InfoEventTableViewCell: UITableViewCell {
+class InfoPaymentTableViewCell: UITableViewCell {
 
     @IBOutlet weak var mainView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         mainView.layer.cornerRadius = 10
         mainView.layer.masksToBounds = true
     }

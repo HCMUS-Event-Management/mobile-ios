@@ -69,7 +69,7 @@ extension TicketViewController: LZViewPagerDataSource, LZViewPagerDelegate {
         //Customize your button styles here
        let button = UIButton()
        button.setTitleColor(UIColor.black, for: .normal)
-        button.setTitleColor(.blue, for: .selected)
+        button.setTitleColor( UIColor(red: 94/255, green: 135/255, blue: 240/255, alpha: 1), for: .selected)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         button.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
 
@@ -83,7 +83,7 @@ extension TicketViewController: LZViewPagerDataSource, LZViewPagerDelegate {
     }
     
     func colorForIndicator(at index: Int) -> UIColor {
-        return .blue
+        return UIColor(red: 94/255, green: 135/255, blue: 240/255, alpha: 1)
     }
     
     func widthForButton(at index: Int) -> CGFloat {

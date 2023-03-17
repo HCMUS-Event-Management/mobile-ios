@@ -21,7 +21,7 @@ class TicketTableViewCell: UITableViewCell {
         mainView.layer.masksToBounds = true
         ownerView.layer.cornerRadius = 10
         ownerView.layer.masksToBounds = true
-        ownerView.layer.borderColor =   UIColor.blue.cgColor
+        ownerView.layer.borderColor =  UIColor(red: 94/255, green: 135/255, blue: 240/255, alpha: 1).cgColor
         ownerView.layer.borderWidth = 1
     }
 
