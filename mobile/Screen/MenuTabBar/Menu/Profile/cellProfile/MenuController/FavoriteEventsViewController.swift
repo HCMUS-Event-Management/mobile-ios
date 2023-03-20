@@ -31,25 +31,25 @@ class FavoriteEventsViewController: UIViewController, UICollectionViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = false
 
-        let title = UILabel()
-        title.text = "Favorite Events"
-        
-        title.font = UIFont(name: "Helvetica Bold", size: 18)
-        
-        title.textAlignment = .center
-    
-        
-        let spacer = UIView()
-        
-        let constraint = spacer.widthAnchor.constraint(greaterThanOrEqualToConstant: CGFloat.greatestFiniteMagnitude)
-        constraint.isActive = true
-        constraint.priority = .defaultLow
-        
-        let stack = UIStackView(arrangedSubviews: [title, spacer])
-        stack.axis = .horizontal
-
-        navigationItem.titleView = stack
+       configNaviBar()
     }
+    
+    func configNaviBar() {
+        navigationController?.navigationBar.tintColor = .label
+        
+        
+        let title = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
+        title.text = "Favorite Events"
+        title.font = UIFont(name: "Helvetica Bold", size: 18)
+        title.textAlignment = .center
+        
+        navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .done, target: self, action: #selector(backScreen)),UIBarButtonItem(customView: title)]
+    }
+    
+    @objc func backScreen() {
+        navigationController?.popViewController(animated: true)
+    }
+    
 
 }
 

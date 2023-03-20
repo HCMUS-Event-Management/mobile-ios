@@ -33,22 +33,18 @@ class TicketViewController: UIViewController {
         tabBarController?.tabBar.isHidden = false
         self.navigationController?.isNavigationBarHidden = false
 
-        let title = UILabel()
-        title.text = "Tickets"
+        configNaviBar()
+    }
+    
+    func configNaviBar() {
+        navigationController?.navigationBar.tintColor = .label
+        
+        let title = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
+        title.text = "Ticket"
         title.font = UIFont(name: "Helvetica Bold", size: 18)
         title.textAlignment = .center
-
-
-        let spacer = UIView()
-
-        let constraint = spacer.widthAnchor.constraint(greaterThanOrEqualToConstant: CGFloat.greatestFiniteMagnitude)
-        constraint.isActive = true
-        constraint.priority = .defaultLow
-
-        let stack = UIStackView(arrangedSubviews: [title, spacer])
-        stack.axis = .horizontal
-
-        navigationItem.titleView = stack
+        
+        navigationItem.leftBarButtonItems = [UIBarButtonItem(customView: title)]
     }
     
 

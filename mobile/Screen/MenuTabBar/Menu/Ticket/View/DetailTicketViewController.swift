@@ -16,6 +16,26 @@ class DetailTicketViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        configNaviBar()
+    }
+    
+    func configNaviBar() {
+        navigationController?.navigationBar.tintColor = .label
+        
+        let title = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
+        title.text = "Detail Ticket"
+        title.font = UIFont(name: "Helvetica Bold", size: 18)
+        title.textAlignment = .center
+        
+        navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .done, target: self, action: #selector(backScreen)),UIBarButtonItem(customView: title)]
+    }
+    
+    @objc func backScreen() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    
 
 }
 

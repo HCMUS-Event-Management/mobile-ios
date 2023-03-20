@@ -379,7 +379,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cab-8E-3a1">
                                 <rect key="frame" x="0.0" y="88" width="414" height="448"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background header" translatesAutoresizingMaskIntoConstraints="NO" id="2qr-QZ-Yku">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background header" highlightedImage="bac" translatesAutoresizingMaskIntoConstraints="NO" id="2qr-QZ-Yku">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="448"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LET'S LOGIN" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F9w-dG-aIC">
@@ -1464,6 +1464,7 @@ PASSWORD</string>
         <image name="SearchIcon" width="27" height="27"/>
         <image name="TicketIcon" width="31" height="25"/>
         <image name="VectorIcon" width="23" height="29"/>
+        <image name="bac" width="128" height="128"/>
         <image name="background header" width="1500" height="2100"/>
         <image name="backgroundGetstarted" width="428" height="926"/>
         <image name="icon fb" width="38" height="38"/>

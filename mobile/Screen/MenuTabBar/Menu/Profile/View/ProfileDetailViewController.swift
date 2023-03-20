@@ -34,24 +34,7 @@ class ProfileDetailViewController: UIViewController {
         
         tabBarController?.tabBar.isHidden = true
         
-        let title = UILabel()
-        title.text = "Profile"
-        title.font = UIFont(name: "Helvetica Bold", size: 18)
-        let spacer = UIView()
-        
-        let constraint = spacer.widthAnchor.constraint(greaterThanOrEqualToConstant: CGFloat.greatestFiniteMagnitude)
-        constraint.isActive = true
-        constraint.priority = .defaultLow
-        
-        let btnEdit = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        btnEdit.setBackgroundImage(UIImage(named: "btnEdit"), for: UIControl.State.normal)
-        btnEdit.sizeToFit()
-        btnEdit.addTarget(self, action: #selector(changeEditProfileController), for: .touchUpInside)
-
-        let stack = UIStackView(arrangedSubviews: [title, spacer, btnEdit])
-        stack.axis = .horizontal
-
-        navigationItem.titleView = stack
+        configNaviBar()
         
         btnDeleteaccount.layer.cornerRadius = 15
         btnDeleteaccount.layer.masksToBounds = true
@@ -59,6 +42,24 @@ class ProfileDetailViewController: UIViewController {
         btnChangepassword.layer.cornerRadius = 15
         btnChangepassword.layer.masksToBounds = true
 
+    }
+    
+    func configNaviBar() {
+        navigationController?.navigationBar.tintColor = .label
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"), style: .done, target: self, action: #selector(changeEditProfileController))
+        
+        
+        let title = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
+        title.text = "Profile"
+        title.font = UIFont(name: "Helvetica Bold", size: 18)
+        title.textAlignment = .center
+        
+        navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .done, target: self, action: #selector(backScreen)),UIBarButtonItem(customView: title)]
+    }
+    
+    @objc func backScreen() {
+        navigationController?.popViewController(animated: true)
     }
     
     
@@ -75,6 +76,7 @@ class ProfileDetailViewController: UIViewController {
         }
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
 
 
 }
@@ -97,6 +99,7 @@ extension ProfileDetailViewController: UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileDetailTableViewCell", for: indexPath) as? ProfileDetailTableViewCell {
                 cell.lbl.text = dataLabel[indexPath.row-1]
                 cell.tf.text = VM.userInfoDetail?.email
+                cell.tf.isEnabled = false // hợp lí
                 return cell
             }
         } else if (indexPath.row == 2) {
@@ -110,24 +113,28 @@ extension ProfileDetailViewController: UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileDetailTableViewCell", for: indexPath) as? ProfileDetailTableViewCell {
                 cell.lbl.text = dataLabel[indexPath.row-1]
                 cell.tf.text = VM.userInfoDetail?.address
+                cell.tf.isEnabled = false // hợp lí
                 return cell
             }
         } else if (indexPath.row == 4) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileDetailTableViewCell", for: indexPath) as? ProfileDetailTableViewCell {
                 cell.lbl.text = dataLabel[indexPath.row-1]
                 cell.tf.text = VM.userInfoDetail?.birthday
+                cell.tf.isEnabled = false // hợp lí
                 return cell
             }
         } else if (indexPath.row == 5) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileDetailTableViewCell", for: indexPath) as? ProfileDetailTableViewCell {
                 cell.lbl.text = dataLabel[indexPath.row-1]
                 cell.tf.text = VM.userInfoDetail?.identityCard
+                cell.tf.isEnabled = false // hợp lí
                 return cell
             }
         } else if (indexPath.row == 6) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileDetailTableViewCell", for: indexPath) as? ProfileDetailTableViewCell {
                 cell.lbl.text = dataLabel[indexPath.row-1]
                 cell.tf.text = VM.userInfoDetail?.gender
+                cell.tf.isEnabled = false // hợp lí
                 return cell
             }
         }
