@@ -17,6 +17,8 @@ target 'mobile' do
   end
 pod 'DropDown'
 pod 'LZViewPager', '~> 1.2.5'
+pod 'IQKeyboardManagerSwift'
+
 
 
 end

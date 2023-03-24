@@ -42,8 +42,8 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
         super.viewDidLoad()
         configuration()
         self.hideKeyboardWhenTappedAround()
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-//           NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: Selector("keyboardWillShow:"), name:UIResponder.keyboardWillShowNotification, object: self.view.window)
+//        NotificationCenter.default.addObserver(self, selector: Selector("keyboardWillHide:"), name:UIResponder.keyboardWillHideNotification, object: self.view.window)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,19 +74,7 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
         tb.reloadData()
     }
   
-//    @objc func keyboardWillShow(notification: NSNotification) {
-//        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-//            if self.view.frame.origin.y == 0 {
-//                self.view.frame.origin.y -= keyboardSize.height
-//            }
-//        }
-//    }
-//
-//    @objc func keyboardWillHide(notification: NSNotification) {
-//        if self.view.frame.origin.y != 0 {
-//            self.view.frame.origin.y = 0
-//        }
-//    }
+
 }
 
 

@@ -1,24 +1,28 @@
 PODS:
   - DropDown (2.3.13)
+  - IQKeyboardManagerSwift (6.5.11)
   - LZViewPager (1.2.5):
     - SnapKit (~> 5.0.0)
   - SnapKit (5.0.1)
 
 DEPENDENCIES:
   - DropDown
+  - IQKeyboardManagerSwift
   - LZViewPager (~> 1.2.5)
 
 SPEC REPOS:
   trunk:
     - DropDown
+    - IQKeyboardManagerSwift
     - LZViewPager
     - SnapKit
 
 SPEC CHECKSUMS:
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
+  IQKeyboardManagerSwift: c7955c0bdbf7b2eb29bb7daaa44e3d90f55a9a85
   LZViewPager: 89ddd98246d54b52bde14c8d91702f946d6f8893
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 34e99f3010714fe34d94f0c055a0b6cd4df0eda8
+PODFILE CHECKSUM: 738800a2f03665e1a7d274c6f4d4cbdf9ffa6afe
 
 COCOAPODS: 1.11.3
