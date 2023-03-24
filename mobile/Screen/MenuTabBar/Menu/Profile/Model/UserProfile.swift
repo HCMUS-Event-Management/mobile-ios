@@ -16,9 +16,9 @@ struct UserProfile : Codable {
 	let fullName : String?
 	let email : String?
 	let phone : String?
-	let birthday : String?
+    var birthday : String?
 	let identityCard : String?
-	let gender : String?
+    var gender : String?
 	let avatar : String?
 	let address : String?
 	let isActive : Bool?

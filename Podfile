@@ -15,7 +15,7 @@ target 'mobile' do
   target 'mobileUITests' do
     # Pods for testing
   end
-pod 'Alamofire'
+pod 'DropDown'
 pod 'LZViewPager', '~> 1.2.5'
 
 

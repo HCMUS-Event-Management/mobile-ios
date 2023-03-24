@@ -33,7 +33,7 @@ class TokenService {
     func checkForLogin(completionHandler: @escaping CompletionHandler) {
         let now = Date.now.timeIntervalSince1970
     
-        if getToken(key: "userToken") != "" {
+        if (getToken(key: "userToken") != "" && getToken(key: "refreshToken") != "") {
             if let infoToken = try? decode(jwtToken: getToken(key: "userToken")) {
                 if now.isLessThanOrEqualTo(infoToken["exp"]! as! Double) {
                     completionHandler(true)
@@ -51,6 +51,8 @@ class TokenService {
                                 }
                             })
                             
+                        } else {
+                            completionHandler(false)
                         }
                     }
                 }

@@ -18,6 +18,22 @@ class ChangePasswordViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        configNaviBar()
+    }
+    
+    func configNaviBar() {
+        navigationController?.navigationBar.tintColor = .label
+        
+        let title = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
+        title.text = "Change Password"
+        title.font = UIFont(name: "Helvetica Bold", size: 18)
+        title.textAlignment = .center
+        
+        navigationItem.leftBarButtonItems = [UIBarButtonItem(customView: title)]
+    }
+    
     func changeScreen<T: UIViewController>(
         modelType: T.Type,
         id: String

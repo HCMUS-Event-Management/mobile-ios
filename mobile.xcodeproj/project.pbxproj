@@ -297,7 +297,6 @@
 				A4268575299E1C7200AA424A /* NavigationController */,
 				A426853829953D4900AA424A /* ViewController.swift */,
 				A426857129976FDE00AA424A /* SignUpViewController.swift */,
-				A4506C4629BDACC4009B75F6 /* ForgetPasswordViewController.swift */,
 				A4506C4829BDACDE009B75F6 /* ForgetPassword2ViewController.swift */,
 			);
 			path = Controller;
@@ -340,6 +339,7 @@
 		A44F19DC29A7185B00476E9B /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				A45EBB5A29C8407700120D06 /* ForgetPassword */,
 				A4506C3E29B8751C009B75F6 /* ChangePassword */,
 				A4C5F00129B2F55F00723FC1 /* MenuTabBar */,
 				A44F19DF29A718A100476E9B /* Login */,
@@ -515,6 +515,14 @@
 				A4506CA629C45E3A009B75F6 /* InfoPaymentTableViewCell.xib */,
 			);
 			path = cellDetailTicket;
+			sourceTree = "<group>";
+		};
+		A45EBB5A29C8407700120D06 /* ForgetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				A4506C4629BDACC4009B75F6 /* ForgetPasswordViewController.swift */,
+			);
+			path = ForgetPassword;
 			sourceTree = "<group>";
 		};
 		A4A91317299FA9AA00AC5E75 /* MenuController */ = {

@@ -9,15 +9,18 @@ import UIKit
 
 class EditProfileTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var btnEditImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        btnEditImage.layer.cornerRadius = 5
+        btnEditImage.layer.masksToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+        
     }
     
 }

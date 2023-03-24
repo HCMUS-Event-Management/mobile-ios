@@ -66,7 +66,8 @@ extension FavoriteEventsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.clType {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TypeCollectionViewCell", for: indexPath) as? TypeCollectionViewCell {
-                
+                cell.layer.cornerRadius = 30
+                cell.layer.masksToBounds = true
                 
                 return cell
             }
@@ -104,7 +105,7 @@ extension FavoriteEventsViewController: UICollectionViewDataSource {
                 return CGSize(width: collectionView.frame.width/2 - 10, height: 220)
 
             } else if collectionView == self.clType {
-                return CGSize(width: collectionView.frame.width/7, height: 50)
+                return CGSize(width: collectionView.frame.width/4, height: 50)
             }
             return CGSize(width: collectionView.frame.width/2 - 10, height: 220)
 

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import DropDown
 class EditProfileViewController: UIViewController, EditProfileButtonTableViewCellDelegate {
     func backScreen() {
         self.navigationController?.popViewController(animated: true)
@@ -23,7 +23,7 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
         if (fullname?.tf.text == VM.userInfoDetail?.fullName && phone?.tf.text == VM.userInfoDetail?.phone && dot?.tf.text == VM.userInfoDetail?.birthday && idCard?.tf.text == VM.userInfoDetail?.identityCard && gender?.tf.text == VM.userInfoDetail?.gender && address?.tf.text == VM.userInfoDetail?.address){
             showToast(message: "Không có gì thay đổi", font: .systemFont(ofSize: 12))
         } else {
-            let infoProfile = UpdateProfile(fullName: fullname?.tf.text ?? "", phone: phone?.tf.text ?? "", birthday: dot?.tf.text ?? "", identityCard: idCard?.tf.text ?? "", gender: gender?.tf.text ?? "", avatar: VM.userInfoDetail?.avatar ?? "", address: address?.tf.text ?? "", isDeleted: false)
+            let infoProfile = UpdateProfile(fullName: fullname?.tf.text ?? "", phone: phone?.tf.text ?? "", birthday: VM.userInfoDetail?.birthday ?? "", identityCard: idCard?.tf.text ?? "", gender: gender?.tf.text ?? "", avatar: VM.userInfoDetail?.avatar ?? "", address: address?.tf.text ?? "", isDeleted: false)
             
             VM.updateUserDetail(params: infoProfile)
         }
@@ -41,8 +41,52 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
-        
+        self.hideKeyboardWhenTappedAround()
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+//           NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        configNaviBar()
+    }
+    
+    func configNaviBar() {
+        navigationController?.navigationBar.tintColor = .label
+        
+        let title = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
+        title.text = "Edit Profile"
+        title.font = UIFont(name: "Helvetica Bold", size: 18)
+        title.textAlignment = .center
+        
+        navigationItem.leftBarButtonItems = [UIBarButtonItem(customView: title)]
+    }
+    
+    @objc func datePickerValueChanged(sender: UIDatePicker) {
+//        VM.userInfoDetail?.birthday = sender.date.formatted('YYYY-MM-DD')
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        let date = dateFormatter.string(from: sender.date) + "T00:00:00.000Z"
+        
+        VM.userInfoDetail?.birthday = date
+        tb.reloadData()
+    }
+  
+//    @objc func keyboardWillShow(notification: NSNotification) {
+//        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+//            if self.view.frame.origin.y == 0 {
+//                self.view.frame.origin.y -= keyboardSize.height
+//            }
+//        }
+//    }
+//
+//    @objc func keyboardWillHide(notification: NSNotification) {
+//        if self.view.frame.origin.y != 0 {
+//            self.view.frame.origin.y = 0
+//        }
+//    }
 }
 
 
@@ -77,7 +121,7 @@ extension EditProfileViewController: UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileDetailTableViewCell", for: indexPath) as? ProfileDetailTableViewCell {
                 cell.lbl.text = dataLabel[indexPath.row-1]
                 cell.tf.text = VM.userInfoDetail?.phone
-                cell.tf.isEnabled = false // hợp lí
+                cell.tf.keyboardType = .numberPad
                 return cell
             }
         } else if (indexPath.row == 3) {
@@ -89,19 +133,61 @@ extension EditProfileViewController: UITableViewDataSource {
         } else if (indexPath.row == 4) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileDetailTableViewCell", for: indexPath) as? ProfileDetailTableViewCell {
                 cell.lbl.text = dataLabel[indexPath.row-1]
-                cell.tf.text = VM.userInfoDetail?.birthday
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                
+                let date = dateFormatter.date(from:  VM.userInfoDetail?.birthday ?? "1970-01-01T00:00:00.000Z")
+
+                
+                cell.tf.text = date?.formatted(date: .abbreviated, time: .omitted)
+                
+                // date Picker
+                let datePicker = UIDatePicker()
+                datePicker.setDate(date ?? Date(), animated: true)
+                datePicker.datePickerMode = .date
+                datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
+                datePicker.preferredDatePickerStyle = .inline
+                cell.tf.inputView = datePicker
+                
                 return cell
             }
         } else if (indexPath.row == 5) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileDetailTableViewCell", for: indexPath) as? ProfileDetailTableViewCell {
                 cell.lbl.text = dataLabel[indexPath.row-1]
                 cell.tf.text = VM.userInfoDetail?.identityCard
+                cell.tf.keyboardType = .numberPad
                 return cell
             }
         } else if (indexPath.row == 6) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileDetailTableViewCell", for: indexPath) as? ProfileDetailTableViewCell {
                 cell.lbl.text = dataLabel[indexPath.row-1]
+            
+                // dropDown
+                let countryValuesArray = ["MALE", "FEMALE"]
+
+                let myDropDown = DropDown()
+                myDropDown.anchorView = cell.mainView
+                myDropDown.dataSource = countryValuesArray
+                myDropDown.bottomOffset = CGPoint(x: 0, y: (myDropDown.anchorView?.plainView.bounds.height)!)
+                myDropDown.topOffset = CGPoint(x: 0, y: -(myDropDown.anchorView?.plainView.bounds.height)!)
+                myDropDown.direction = .bottom
+                
+                myDropDown.selectionAction = { (index: Int, item: String) in
+                    self.VM.userInfoDetail?.gender = countryValuesArray[index]
+                    self.tb.reloadData()
+
+                }
+                
+                cell.callback = {
+                    cell.tf.endEditing(true)
+                    myDropDown.show()
+                }
+                
+                //default
                 cell.tf.text = VM.userInfoDetail?.gender
+   
                 return cell
             }
         }
@@ -121,9 +207,9 @@ extension EditProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
         if (indexPath.row == 0) {
-            return 180
+            return tableView.layer.frame.height/5
         }
-        return 80
+        return tableView.layer.frame.height/9
     }
     
 }
@@ -168,12 +254,21 @@ extension EditProfileViewController {
             case .error(let error):
                 print(error)
 
-//                let err = error as! DataError
-//                if (err == DataError.invalidResponse401) {
-//                    DispatchQueue.main.async {
-//                        self?.stoppedLoader(loader: loader ?? UIAlertController())
-//                    }
-//                }
+                let err = error as! DataError
+                if (err == DataError.invalidResponse401) {
+                    DispatchQueue.main.async {
+                        
+//                        var window: UIWindow?
+//                        var vc: UIViewController?
+//                        vc = window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "LoginFirstScreenViewController") as? LoginFirstScreenViewController
+//                        let navVC = UINavigationController(rootViewController: vc!)
+//                        window?.rootViewController = navVC
+//                        self.changeS
+//                        self.navigationController?.popToRootViewController(animated: <#T##Bool#>)
+//                        self?.navigationController.
+                        
+                    }
+                }
             case .logout: break
             case .updateProfile:
                 self?.VM.fetchUserDetail()

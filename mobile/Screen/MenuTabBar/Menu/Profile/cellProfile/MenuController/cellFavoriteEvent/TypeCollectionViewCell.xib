@@ -17,10 +17,10 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U5i-Go-p4a">
-                        <rect key="frame" x="10" y="5" width="243" height="129"/>
+                        <rect key="frame" x="10" y="10" width="243" height="119"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pTe-Q8-1Lv">
-                                <rect key="frame" x="106.5" y="57.5" width="30" height="14.5"/>
+                                <rect key="frame" x="106.5" y="52.5" width="30" height="14.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -36,10 +36,10 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="U5i-Go-p4a" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="LTm-vJ-4AW"/>
+                <constraint firstItem="U5i-Go-p4a" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="LTm-vJ-4AW"/>
                 <constraint firstItem="U5i-Go-p4a" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="aCp-nt-sky"/>
                 <constraint firstAttribute="trailing" secondItem="U5i-Go-p4a" secondAttribute="trailing" constant="10" id="cPj-iD-b9x"/>
-                <constraint firstAttribute="bottom" secondItem="U5i-Go-p4a" secondAttribute="bottom" constant="5" id="sUK-k1-Qvt"/>
+                <constraint firstAttribute="bottom" secondItem="U5i-Go-p4a" secondAttribute="bottom" constant="10" id="sUK-k1-Qvt"/>
             </constraints>
             <size key="customSize" width="263" height="139"/>
             <connections>

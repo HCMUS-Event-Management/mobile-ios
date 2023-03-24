@@ -78,18 +78,29 @@ final class ProfileViewModel {
     }
     
     func logout() {
-        self.eventHandler?(.loading)
-        APIManager.shared.request(modelType: ReponseCommon.self, type: UserEndPoint.logout, params: nil, completion: {
-            result in
-            self.eventHandler?(.stopLoading)
-            switch result {
-            case .success(let data):
+        if let infoToken = try? TokenService.tokenInstance.decode(jwtToken: TokenService.tokenInstance.getToken(key: "userToken")) {
+           
+            if Date().timeIntervalSince1970.isLessThanOrEqualTo(infoToken["exp"]! as! Double) {
+                self.eventHandler?(.loading)
+                APIManager.shared.request(modelType: ReponseCommon.self, type: UserEndPoint.logout, params: nil, completion: {
+                    result in
+                    self.eventHandler?(.stopLoading)
+                    switch result {
+                    case .success(let data):
+                        TokenService.tokenInstance.removeTokenAndInfo()
+                        self.eventHandler?(.logout)
+                    case .failure(let error):
+                        self.eventHandler?(.error(error))
+                    }
+                })
+            } else {
                 TokenService.tokenInstance.removeTokenAndInfo()
-                self.eventHandler?(.logout) 
-            case .failure(let error):
-                self.eventHandler?(.error(error))
+                self.eventHandler?(.logout)
             }
-        })
+            
+        }
+        
+        
     }
     
     

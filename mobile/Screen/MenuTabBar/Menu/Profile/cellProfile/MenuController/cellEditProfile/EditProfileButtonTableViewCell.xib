@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -44,7 +43,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="PKp-BB-8dN" firstAttribute="width" secondItem="EyN-Mu-mzB" secondAttribute="width" multiplier="0.4" id="DEG-u4-T8o"/>
                             <constraint firstItem="PKp-BB-8dN" firstAttribute="centerY" secondItem="EyN-Mu-mzB" secondAttribute="centerY" id="Dxa-Hx-7Pb"/>
@@ -57,6 +56,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="EyN-Mu-mzB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="GMz-kI-wof"/>
                     <constraint firstAttribute="bottom" secondItem="EyN-Mu-mzB" secondAttribute="bottom" id="bZI-3s-KRV"/>
@@ -65,6 +65,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="btnCancel" destination="PKp-BB-8dN" id="0dL-TZ-kVu"/>
                 <outlet property="btnSelect" destination="qbY-if-fMx" id="sqz-zZ-ms2"/>
@@ -72,9 +73,4 @@
             <point key="canvasLocation" x="156.52173913043478" y="104.79910714285714"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

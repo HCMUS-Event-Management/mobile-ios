@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Alamofire
 import UIKit
 // Singleton Design Pattern
 
@@ -103,7 +102,25 @@ final class APIManager {
 //                    completion(.failure(.invalidResponse401))
 //                    return
 //                }
-//                
+                
+                
+                
+//                test
+                if (tokenInstance.getToken(key: "refreshToken") != "") {
+                    if let refreshToken = try? tokenInstance.decode(jwtToken: tokenInstance.getToken(key: "refreshToken")) {
+                        if Date.now.timeIntervalSince1970.isLessThanOrEqualTo(refreshToken["exp"]! as! Double) {
+                            print("còn hạn")
+                        } else {
+                            completion(.failure(.invalidResponse401))
+                            return
+                            print("hết hạn")
+                        }
+                    } else {
+                        print("hết hạn")
+                    }
+                } else {
+                    print("hết hạn")
+                }
                 
                 self.loginByRefresh(completion: {
                     result in

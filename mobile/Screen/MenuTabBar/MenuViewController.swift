@@ -13,7 +13,7 @@ class MenuViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         LoginFirstScreenViewModel().fetchUserDetail()
-//        print(TokenService.tokenInstance.getToken(key: "userToken"))
+        print(TokenService.tokenInstance.getToken(key: "userToken"))
 //        TokenService.tokenInstance.removeTokenAndInfo()
 
     }

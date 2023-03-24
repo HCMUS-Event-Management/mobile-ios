@@ -20,8 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var vc: UIViewController?
             TokenService.tokenInstance.checkForLogin(completionHandler: { success in
 
-                
-                
                 if success {
                     DispatchQueue.main.async {
                         vc = self.window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "MenuTabBar") as? MenuViewController

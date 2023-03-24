@@ -38,6 +38,12 @@ extension String {
         let regex = try! NSRegularExpression(pattern: "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", options: .caseInsensitive)
         return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
     }
+    
+    func isValidPhone() -> Bool {
+            let inputRegEx = "^((\\+)|(00))[0-9]{6,14}$"
+            let inputpred = NSPredicate(format: "SELF MATCHES %@", inputRegEx)
+            return inputpred.evaluate(with:self)
+        }
 }
 
 extension UIViewController {
@@ -61,4 +67,16 @@ extension UIViewController {
         })
     }
     
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }

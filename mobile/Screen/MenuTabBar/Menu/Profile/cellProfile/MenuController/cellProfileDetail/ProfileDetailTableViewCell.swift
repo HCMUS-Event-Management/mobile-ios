@@ -7,9 +7,16 @@
 
 import UIKit
 
+
 class ProfileDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var tf: UITextField!
     @IBOutlet weak var lbl: UILabel!
+    @IBOutlet weak var mainView: UIView!
+    var callback : (() -> Void)?
+
+    @IBAction func pressed(_ sender: Any) {
+        callback?()
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

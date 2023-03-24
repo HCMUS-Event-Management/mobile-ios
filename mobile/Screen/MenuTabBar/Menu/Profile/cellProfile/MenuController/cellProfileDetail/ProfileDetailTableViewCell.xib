@@ -30,6 +30,9 @@
                                 <rect key="frame" x="10" y="45" width="358" height="45"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="pressed:" destination="KGk-i7-Jjw" eventType="editingDidBegin" id="bL7-0y-48E"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -44,6 +47,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="I6z-b7-xoZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="6n1-jv-M06"/>
                     <constraint firstAttribute="trailing" secondItem="I6z-b7-xoZ" secondAttribute="trailing" constant="20" id="fAx-r6-cIM"/>
@@ -54,6 +58,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="lbl" destination="cgH-PF-kn9" id="NjY-m2-u3X"/>
+                <outlet property="mainView" destination="I6z-b7-xoZ" id="Qxs-cC-Hsp"/>
                 <outlet property="tf" destination="hQI-k7-SoA" id="Y1w-Ig-657"/>
             </connections>
             <point key="canvasLocation" x="247.82608695652175" y="63.616071428571423"/>
