@@ -208,6 +208,13 @@ extension ProfileDetailViewController {
                 }
             case .error(let error):
                 print(error)
+//                let err = error as! DataError
+//                if (err == DataError.invalidResponse401) {
+//                    DispatchQueue.main.async {
+//                        self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 12.0))
+//                        self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
+//                    }
+//                }
             case .logout: break
             case .updateProfile: break
                 //reloadtb

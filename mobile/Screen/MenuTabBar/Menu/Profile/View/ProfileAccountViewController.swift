@@ -20,15 +20,15 @@ class ProfileAccountViewController: UIViewController {
         configuration()
     }
 
-    func changeScreen<T: UIViewController>(
-        modelType: T.Type,
-        id: String
-    ) {
-        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: id) as? T else {
-            return
-        }
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
+//    func changeScreen<T: UIViewController>(
+//        modelType: T.Type,
+//        id: String
+//    ) {
+//        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: id) as? T else {
+//            return
+//        }
+//        self.navigationController?.pushViewController(vc, animated: true)
+//    }
         
 
     
@@ -138,11 +138,11 @@ extension ProfileAccountViewController: UITableViewDelegate {
         print(indexPath)
         
         if(indexPath.section == 2 && indexPath.row == 0) {
-            self.changeScreen(modelType: ProfileDetailViewController.self, id: "ProfileDetailViewController")
+            changeScreen(modelType: ProfileDetailViewController.self, id: "ProfileDetailViewController")
         } else if (indexPath.section == 2 && indexPath.row == 1) {
-            self.changeScreen(modelType: PaymentMethodViewController.self, id: "PaymentMethodViewController")
+            changeScreen(modelType: PaymentMethodViewController.self, id: "PaymentMethodViewController")
         } else if (indexPath.section == 1 && indexPath.row == 1) {
-            self.changeScreen(modelType: FavoriteEventsViewController.self, id: "FavoriteEventsViewController")
+            changeScreen(modelType: FavoriteEventsViewController.self, id: "FavoriteEventsViewController")
         } else if (indexPath.section == 2 && indexPath.row == 6) {
             VM.logout()
         }
@@ -185,7 +185,14 @@ extension ProfileAccountViewController {
                     self?.tb.reloadData()
                 }
             case .error(let error):
-                print(error)
+                let err = error as! DataError
+                if (err == DataError.invalidResponse401) {
+                    DispatchQueue.main.async {
+                        self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 12.0))
+                        TokenService.tokenInstance.removeTokenAndInfo()
+                        self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
+                    }
+                }
             case .logout:
                 // xử lý logout tại đây
                 DispatchQueue.main.async {

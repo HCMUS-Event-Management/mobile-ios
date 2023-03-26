@@ -80,3 +80,16 @@ extension UIViewController {
         view.endEditing(true)
     }
 }
+
+extension UIViewController {
+    
+    func changeScreen<T: UIViewController>(
+        modelType: T.Type,
+        id: String
+    ) {
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: id) as? T else {
+            return
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}

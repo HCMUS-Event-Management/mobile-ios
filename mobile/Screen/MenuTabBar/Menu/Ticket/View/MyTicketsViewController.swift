@@ -14,20 +14,7 @@ class MyTicketsViewController: UIViewController {
         super.viewDidLoad()
 
         configuration()
-        // Do any addit ional setup after loading the view.
     }
-    
-
-    func changeScreen<T: UIViewController>(
-        modelType: T.Type,
-        id: String
-    ) {
-        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: id) as? T else {
-            return
-        }
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-
 }
 
 extension MyTicketsViewController: UITableViewDataSource {
@@ -65,7 +52,7 @@ extension MyTicketsViewController: UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.changeScreen(modelType: DetailTicketViewController.self, id: "DetailTicketViewController")
+        changeScreen(modelType: DetailTicketViewController.self, id: "DetailTicketViewController")
     }
 
    

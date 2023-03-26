@@ -9,17 +9,52 @@ import UIKit
 
 class MenuViewController: UITabBarController {
 
-    
+    var VM = LoginFirstScreenViewModel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        LoginFirstScreenViewModel().fetchUserDetail()
+        configuration()
         print(TokenService.tokenInstance.getToken(key: "userToken"))
-//        TokenService.tokenInstance.removeTokenAndInfo()
-
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
         self.showToast(message: "Bạn đã đăng nhập", font: .systemFont(ofSize: 12))
     }
+}
 
+extension MenuViewController {
+
+    func configuration() {
+        initViewModel()
+        observeEvent()
+    }
+
+    func initViewModel() {
+        self.VM.fetchUserDetail()
+    }
+
+    // Data binding event observe - communication
+    func observeEvent() {
+        var loader:UIAlertController?
+
+        VM.eventHandler = { [weak self] event in
+            switch event {
+            case .loading: break
+            case .stopLoading: break
+            case .dataLoaded: break
+            case .error(let error):
+                print(error)
+                let err = error as! DataError
+                if (err == DataError.invalidResponse401) {
+                    DispatchQueue.main.async {
+                        self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 12.0))
+                        TokenService.tokenInstance.removeTokenAndInfo()
+                        self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
+                    }
+                }
+            case .invalid: break
+            }
+    }
+
+    }
 }

@@ -83,7 +83,7 @@ class LoginFirstScreenViewController: UIViewController {
     }
     
     @IBAction func forgetPassword(_ sender: UIButton) {
-        changeScreen(modelType: ForgetPasswordViewController.self, id: "ForgetPasswordViewController")
+        self.changeScreen(modelType: ForgetPasswordViewController.self, id: "ForgetPasswordViewController")
     }
     
     override func viewDidLoad() {
@@ -106,17 +106,6 @@ class LoginFirstScreenViewController: UIViewController {
     
     @objc func Login() {
         VM.handelLogin()
-    }
-    
-    func changeScreen<T: UIViewController>(
-        modelType: T.Type,
-        id: String
-    ) {
-        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: id) as? T else {
-            return
-        }
-        self.navigationController?.pushViewController(vc, animated: true)
-        
     }
 }
 
@@ -143,9 +132,6 @@ extension LoginFirstScreenViewController {
             case .stopLoading:
                 self?.stoppedLoader(loader: loader ?? UIAlertController())
             case .dataLoaded:
-//                let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: UIAlertController.Style.alert)
-//                alert.addAction(UIAlertAction(title: "Click", style: UIAlertAction.Style.default, handler: nil))
-//                self?.present(alert, animated: true, completion: nil)
                 DispatchQueue.main.async {
                     self?.showToast(message: "Đăng nhập thành công!", font: .systemFont(ofSize: 12.0))
                     self?.changeScreen(modelType: UIViewController.self,id: "MenuTabBar")

@@ -12,23 +12,9 @@ class BoughtTicketsViewController: UIViewController {
     @IBOutlet weak var tb: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configuration()
-        
-        
     }
     
-    func changeScreen<T: UIViewController>(
-        modelType: T.Type,
-        id: String
-    ) {
-        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: id) as? T else {
-            return
-        }
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-
 }
 
 extension BoughtTicketsViewController: UITableViewDataSource {
@@ -66,7 +52,7 @@ extension BoughtTicketsViewController: UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.changeScreen(modelType: DetailTicketViewController.self, id: "DetailTicketViewController")
+        changeScreen(modelType: DetailTicketViewController.self, id: "DetailTicketViewController")
     }
 
    

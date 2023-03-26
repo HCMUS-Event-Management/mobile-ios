@@ -34,15 +34,15 @@ class ChangePasswordViewController: UIViewController {
         navigationItem.leftBarButtonItems = [UIBarButtonItem(customView: title)]
     }
     
-    func changeScreen<T: UIViewController>(
-        modelType: T.Type,
-        id: String
-    ) {
-        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: id) as? T else {
-            return
-        }
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
+//    func changeScreen<T: UIViewController>(
+//        modelType: T.Type,
+//        id: String
+//    ) {
+//        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: id) as? T else {
+//            return
+//        }
+//        self.navigationController?.pushViewController(vc, animated: true)
+//    }
 
 }
 
@@ -95,14 +95,18 @@ extension ChangePasswordViewController: EditProfileButtonTableViewCellDelegate {
         let cellNewPassword = self.tb.cellForRow(at: [0,1]) as? ProfileDetailTableViewCell
         let cellConfirmPassword = self.tb.cellForRow(at: [0,2]) as? ProfileDetailTableViewCell
 
-        
-        if cellNewPassword?.tf.text == cellConfirmPassword?.tf.text {
-            var params = ChangePassword(password: cellOldPassword?.tf.text ?? "", passwordNew: cellNewPassword?.tf.text ?? "", comfirmPassword: cellConfirmPassword?.tf.text ?? "")
-            
-            self.VM.ChangePass(params: params)
+        if cellNewPassword?.tf.text != cellOldPassword?.tf.text {
+            if cellNewPassword?.tf.text == cellConfirmPassword?.tf.text {
+                var params = ChangePassword(password: cellOldPassword?.tf.text ?? "", passwordNew: cellNewPassword?.tf.text ?? "", comfirmPassword: cellConfirmPassword?.tf.text ?? "")
+                self.VM.ChangePass(params: params)
+            } else {
+                self.showToast(message: "Mật khẩu mới không trùng khớp với mật khẩu xác nhận", font: .systemFont(ofSize: 12))
+            }
         } else {
-            self.showToast(message: "Mật khẩu không khớp", font: .systemFont(ofSize: 12))
+            self.showToast(message: "Mật khẩu mới không được trùng với mật khẩu cũ", font: .systemFont(ofSize: 12))
         }
+        
+        
       
         
         
@@ -149,6 +153,17 @@ extension ChangePasswordViewController {
                     DispatchQueue.main.async {
                         self?.showToast(message: "Mật khẩu cũ không đúng", font: .systemFont(ofSize: 12.0))
                         self?.stoppedLoader(loader: loader ?? UIAlertController())
+                    }
+                }
+                else if (err == DataError.invalidResponse401) {
+                    DispatchQueue.main.async {
+                        self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 12.0))
+                        TokenService.tokenInstance.removeTokenAndInfo()
+                        self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
+                    }
+                }else if (err == DataError.invalidResponse400) {
+                    DispatchQueue.main.async {
+                        self?.showToast(message: "Mật khẩu hiện tại không đúng", font: .systemFont(ofSize: 12.0))
                     }
                 }
             case .logout:

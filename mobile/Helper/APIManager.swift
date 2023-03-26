@@ -45,8 +45,8 @@ typealias Handler<T> = (Swift.Result<T, DataError>) -> Void
 final class APIManager {
     let queue = DispatchQueue(label: "FetchUserDetail")
     static let shared = APIManager()
+    private var checkRefreshToken = 0
     private init() {}
-
     func encodeBody<T: Encodable>(value: T) throws -> Foundation.Data? {
         let data = try? JSONEncoder().encode(value)
         return data
@@ -72,6 +72,7 @@ final class APIManager {
     func handleTaskSession<T: Codable>(modelType: T.Type,
                                        type: EndPointType, params: Foundation.Data?, request: URLRequest ,completion: @escaping Handler<T>) -> URLSessionDataTask {
         
+        
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
                 completion(.failure(.invalidData))
@@ -81,6 +82,13 @@ final class APIManager {
 
             if let response = response as? HTTPURLResponse,
                   400 ~= response.statusCode {
+//
+                    do {
+                        let dataType = try JSONDecoder().decode(ReponseCommon.self, from: data)
+                        print(dataType)
+                    }catch {
+                        completion(.failure(.network(error)))
+                    }
                 completion(.failure(.invalidResponse400))
                 return
             }
@@ -91,45 +99,41 @@ final class APIManager {
                 
                 let tokenInstance = TokenService.tokenInstance
                 
-//                if let refreshToken = try? tokenInstance.decode(jwtToken: tokenInstance.getToken(key: "refreshToken")) {
-//                    if Date.now.timeIntervalSince1970.isLessThanOrEqualTo(refreshToken["exp"]! as! Double) {
-//                        
-//                        completion(.failure(.invalidResponse401))
-//                        return
-//                    }
-//                    
-//                    
-//                    completion(.failure(.invalidResponse401))
-//                    return
-//                }
-                
+                // sợ lặp
+                if self.checkRefreshToken >= 1 {
+                    self.checkRefreshToken = 0
+                    completion(.failure(.invalidResponse401))
+                    return
+                }
+                if (tokenInstance.getToken(key: "refreshToken") == "") {
+                    return
+                }
                 
                 
 //                test
-                if (tokenInstance.getToken(key: "refreshToken") != "") {
-                    if let refreshToken = try? tokenInstance.decode(jwtToken: tokenInstance.getToken(key: "refreshToken")) {
-                        if Date.now.timeIntervalSince1970.isLessThanOrEqualTo(refreshToken["exp"]! as! Double) {
-                            print("còn hạn")
-                        } else {
-                            completion(.failure(.invalidResponse401))
-                            return
-                            print("hết hạn")
-                        }
-                    } else {
-                        print("hết hạn")
-                    }
-                } else {
-                    print("hết hạn")
-                }
+//                if (tokenInstance.getToken(key: "refreshToken") != "") {
+//                    if let refreshToken = try? tokenInstance.decode(jwtToken: tokenInstance.getToken(key: "refreshToken")) {
+//                        if Date.now.timeIntervalSince1970.isLessThanOrEqualTo(refreshToken["exp"]! as! Double) {
+//                            print("còn hạn")
+//                        } else {
+//                            completion(.failure(.invalidResponse401))
+//                            return
+//                            print("hết hạn")
+//                        }
+//                    } else {
+//                        print("hết hạn")
+//                    }
+//                } else {
+//                    print("hết hạn")
+//                }
                 
+                self.checkRefreshToken+=1
                 self.loginByRefresh(completion: {
                     result in
                     switch result {
                     case .success(_):
-//                        var rq:URLRequest = request
-                        
-                    
-                        
+
+                        self.checkRefreshToken = 0
                         
                         guard let url = type.url else {
                             completion(.failure(.invalidURL)) // I forgot to mention this in the video
@@ -158,6 +162,7 @@ final class APIManager {
                         
 
                     case .failure(let error):
+                        self.checkRefreshToken = 0
                         completion(.failure(error))
                     }
                     
@@ -182,16 +187,6 @@ final class APIManager {
             
             if let response = response as? HTTPURLResponse,
                200 ... 299 ~= response.statusCode {
-//                do {
-//                    let dataType = try JSONDecoder().decode(ReponseCommon.self, from: data)
-//                    print(dataType)
-////                    completion(.failure(.invalidResponse(dataType.message ?? "")))
-//                }catch {
-//                    completion(.failure(.network(error)))
-//                }
-//
-//                completion(.failure(.invalidResponse))
-//                return
                 do {
                     let dataType = try JSONDecoder().decode(modelType, from: data)
                     completion(.success(dataType))

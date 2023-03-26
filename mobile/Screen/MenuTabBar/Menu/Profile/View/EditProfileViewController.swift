@@ -153,7 +153,7 @@ extension EditProfileViewController: UITableViewDataSource {
                 cell.lbl.text = dataLabel[indexPath.row-1]
             
                 // dropDown
-                let countryValuesArray = ["MALE", "FEMALE"]
+                let countryValuesArray = ["Nam", "Nữ"]
 
                 let myDropDown = DropDown()
                 myDropDown.anchorView = cell.mainView
@@ -241,20 +241,12 @@ extension EditProfileViewController {
                 }
             case .error(let error):
                 print(error)
-
                 let err = error as! DataError
                 if (err == DataError.invalidResponse401) {
                     DispatchQueue.main.async {
-                        
-//                        var window: UIWindow?
-//                        var vc: UIViewController?
-//                        vc = window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "LoginFirstScreenViewController") as? LoginFirstScreenViewController
-//                        let navVC = UINavigationController(rootViewController: vc!)
-//                        window?.rootViewController = navVC
-//                        self.changeS
-//                        self.navigationController?.popToRootViewController(animated: <#T##Bool#>)
-//                        self?.navigationController.
-                        
+                        self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 12.0))
+                        TokenService.tokenInstance.removeTokenAndInfo()
+                        self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
                     }
                 }
             case .logout: break
