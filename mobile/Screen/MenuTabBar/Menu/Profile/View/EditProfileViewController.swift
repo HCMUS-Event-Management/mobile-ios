@@ -42,8 +42,6 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
         super.viewDidLoad()
         configuration()
         self.hideKeyboardWhenTappedAround()
-//        NotificationCenter.default.addObserver(self, selector: Selector("keyboardWillShow:"), name:UIResponder.keyboardWillShowNotification, object: self.view.window)
-//        NotificationCenter.default.addObserver(self, selector: Selector("keyboardWillHide:"), name:UIResponder.keyboardWillHideNotification, object: self.view.window)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,7 +69,8 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
         let date = dateFormatter.string(from: sender.date) + "T00:00:00.000Z"
         
         VM.userInfoDetail?.birthday = date
-        tb.reloadData()
+        tb.reloadRows(at: [IndexPath(row: 4, section: 0)], with: .none)
+
     }
   
 
@@ -164,7 +163,8 @@ extension EditProfileViewController: UITableViewDataSource {
                 
                 myDropDown.selectionAction = { (index: Int, item: String) in
                     self.VM.userInfoDetail?.gender = countryValuesArray[index]
-                    self.tb.reloadData()
+//                    self.tb.reloadData()
+                    self.tb.reloadRows(at: [indexPath], with: .none)
 
                 }
                 
@@ -239,14 +239,17 @@ extension EditProfileViewController {
                     self?.tb.reloadData()
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
-            case .error(let error):
-                print(error)
-                let err = error as! DataError
-                if (err == DataError.invalidResponse401) {
-                    DispatchQueue.main.async {
-                        self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 12.0))
+            case .error(let error):                
+//                let err = error as! DataError
+                if (error == DataError.invalidResponse401.localizedDescription) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 11.0))
                         TokenService.tokenInstance.removeTokenAndInfo()
                         self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self?.showToast(message: error!, font: .systemFont(ofSize: 11.0))
                     }
                 }
             case .logout: break

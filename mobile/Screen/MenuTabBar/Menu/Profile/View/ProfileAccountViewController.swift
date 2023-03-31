@@ -185,8 +185,8 @@ extension ProfileAccountViewController {
                     self?.tb.reloadData()
                 }
             case .error(let error):
-                let err = error as! DataError
-                if (err == DataError.invalidResponse401) {
+//                let err = error as! DataError
+                if (error == DataError.invalidResponse401.localizedDescription) {
                     DispatchQueue.main.async {
                         self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 12.0))
                         TokenService.tokenInstance.removeTokenAndInfo()

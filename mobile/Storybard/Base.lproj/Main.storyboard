@@ -682,7 +682,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ccc-JU-CEO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="321.73913043478262" y="673.66071428571422"/>
+            <point key="canvasLocation" x="322" y="674"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LVb-jD-fl0">
@@ -858,14 +858,13 @@
                     <connections>
                         <segue destination="zV4-Ey-5Tb" kind="relationship" relationship="viewControllers" id="YT3-EY-gQ3"/>
                         <segue destination="L75-2H-nbq" kind="relationship" relationship="viewControllers" id="iAi-Si-wmy"/>
-                        <segue destination="7I9-LM-VTd" kind="relationship" relationship="viewControllers" id="aeG-DB-b53"/>
                         <segue destination="aqH-tC-sOq" kind="relationship" relationship="viewControllers" id="cmE-Tv-1Sg"/>
                         <segue destination="dth-94-11V" kind="relationship" relationship="viewControllers" id="SnJ-rW-sYh"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qbu-pS-VuK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1342.0289855072465" y="2127.4553571428569"/>
+            <point key="canvasLocation" x="-2929" y="2166"/>
         </scene>
         <!--Search-->
         <scene sceneID="aHf-XF-7LU">
@@ -1033,7 +1032,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8f0-Fa-eWA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2807.2463768115945" y="2862.7232142857142"/>
+            <point key="canvasLocation" x="2770" y="2988"/>
         </scene>
         <!--Payment Method View Controller-->
         <scene sceneID="4QY-17-aeZ">
@@ -1048,7 +1047,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OIJ-5R-lrm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2034.7826086956522" y="3592.6339285714284"/>
+            <point key="canvasLocation" x="1983" y="3681"/>
         </scene>
         <!--Profile Detail View Controller-->
         <scene sceneID="p6P-zL-Y8B">
@@ -1152,22 +1151,6 @@
             </objects>
             <point key="canvasLocation" x="5308.695652173913" y="3539.7321428571427"/>
         </scene>
-        <!--Scan QR-->
-        <scene sceneID="du2-gC-Tdv">
-            <objects>
-                <viewController id="7I9-LM-VTd" customClass="ScanQRViewController" customModule="mobile" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="XUs-jg-r4F">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="Rxv-eA-SAH"/>
-                        <color key="backgroundColor" systemColor="systemGreenColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Scan QR" image="ScanQRIcon" id="hBl-5K-RKj"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lqC-0G-ubQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-5041" y="2882"/>
-        </scene>
         <!--Profile-->
         <scene sceneID="Nag-Gm-fGB">
             <objects>
@@ -1187,7 +1170,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pbq-Ye-cbR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1897.1014492753625" y="2862.7232142857142"/>
+            <point key="canvasLocation" x="1775" y="2988"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Q6M-Ng-o6e">
@@ -1469,7 +1452,6 @@ PASSWORD</string>
     </scenes>
     <resources>
         <image name="HomeIcon" width="27" height="27"/>
-        <image name="ScanQRIcon" width="25" height="25"/>
         <image name="SearchIcon" width="27" height="27"/>
         <image name="TicketIcon" width="31" height="25"/>
         <image name="VectorIcon" width="23" height="29"/>
@@ -1489,9 +1471,6 @@ PASSWORD</string>
         </systemColor>
         <systemColor name="systemBrownColor">
             <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

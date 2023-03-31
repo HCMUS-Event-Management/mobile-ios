@@ -63,6 +63,7 @@
 		A4506CA729C45E3A009B75F6 /* InfoPaymentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4506CA529C45E3A009B75F6 /* InfoPaymentTableViewCell.swift */; };
 		A4506CA829C45E3A009B75F6 /* InfoPaymentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4506CA629C45E3A009B75F6 /* InfoPaymentTableViewCell.xib */; };
 		A459818329A8FA6C00D816E3 /* ReponseLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A459818229A8FA6C00D816E3 /* ReponseLogin.swift */; };
+		A45EBB6229D2E39C00120D06 /* ReponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EBB6129D2E39C00120D06 /* ReponseError.swift */; };
 		A4A91316299F5AB800AC5E75 /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A91315299F5AB800AC5E75 /* ProfileDetailViewController.swift */; };
 		A4A91319299FAA1100AC5E75 /* PaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A91318299FAA1100AC5E75 /* PaymentMethodViewController.swift */; };
 		A4A9131D29A36D4B00AC5E75 /* ProfileDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A9131B29A36D4B00AC5E75 /* ProfileDetailTableViewCell.swift */; };
@@ -167,6 +168,7 @@
 		A4506CA529C45E3A009B75F6 /* InfoPaymentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPaymentTableViewCell.swift; sourceTree = "<group>"; };
 		A4506CA629C45E3A009B75F6 /* InfoPaymentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoPaymentTableViewCell.xib; sourceTree = "<group>"; };
 		A459818229A8FA6C00D816E3 /* ReponseLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReponseLogin.swift; sourceTree = "<group>"; };
+		A45EBB6129D2E39C00120D06 /* ReponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReponseError.swift; sourceTree = "<group>"; };
 		A4A91315299F5AB800AC5E75 /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
 		A4A91318299FAA1100AC5E75 /* PaymentMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodViewController.swift; sourceTree = "<group>"; };
 		A4A9131B29A36D4B00AC5E75 /* ProfileDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -447,6 +449,7 @@
 				A4506C3329B44371009B75F6 /* UserProfile.swift */,
 				A4506C3729B5B0A2009B75F6 /* ReponseCommon.swift */,
 				A4506C3929B5D144009B75F6 /* UpdateProfile.swift */,
+				A45EBB6129D2E39C00120D06 /* ReponseError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1007,6 +1010,7 @@
 				A4506C9429C39628009B75F6 /* TicketTableViewCell.swift in Sources */,
 				A4CA58B929A8DFD200B5E318 /* GetUserInfor.swift in Sources */,
 				A4A91316299F5AB800AC5E75 /* ProfileDetailViewController.swift in Sources */,
+				A45EBB6229D2E39C00120D06 /* ReponseError.swift in Sources */,
 				A426853F29953D4900AA424A /* mobile.xcdatamodeld in Sources */,
 				A4506C3D29B8668B009B75F6 /* TokenService.swift in Sources */,
 			);
@@ -1191,6 +1195,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1219,6 +1224,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

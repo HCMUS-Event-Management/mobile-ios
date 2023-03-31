@@ -41,7 +41,12 @@ final class ProfileViewModel {
                     }
                     self.eventHandler?(.dataLoaded)
                 case .failure(let error):
-                    self.eventHandler?(.error(error))
+                    if case DataError.invalidResponse400(let reason) = error {
+                        self.eventHandler?(.error(reason))
+                    }
+                    else {
+                        self.eventHandler?(.error(error.localizedDescription))
+                    }
                     
                 }
             })
@@ -71,7 +76,12 @@ final class ProfileViewModel {
                 Contanst.userdefault.removeObject(forKey: "userInfoDetail")
                 self.eventHandler?(.updateProfile)
             case .failure(let error):
-                self.eventHandler?(.error(error))
+                if case DataError.invalidResponse400(let reason) = error {
+                    self.eventHandler?(.error(reason))
+                }
+                else {
+                    self.eventHandler?(.error(error.localizedDescription))
+                }
             }
             
         })
@@ -90,7 +100,12 @@ final class ProfileViewModel {
                         TokenService.tokenInstance.removeTokenAndInfo()
                         self.eventHandler?(.logout)
                     case .failure(let error):
-                        self.eventHandler?(.error(error))
+                        if case DataError.invalidResponse400(let reason) = error {
+                            self.eventHandler?(.error(reason))
+                        }
+                        else {
+                            self.eventHandler?(.error(error.localizedDescription))
+                        }
                     }
                 })
             } else {
@@ -112,7 +127,7 @@ extension ProfileViewModel {
         case loading
         case stopLoading
         case dataLoaded
-        case error(Error?)
+        case error(String?)
         case logout
         case updateProfile
 //        case newProductAdded(product: AddProduct)

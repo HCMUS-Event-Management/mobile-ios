@@ -133,19 +133,34 @@ extension LoginFirstScreenViewController {
                 self?.stoppedLoader(loader: loader ?? UIAlertController())
             case .dataLoaded:
                 DispatchQueue.main.async {
-                    self?.showToast(message: "Đăng nhập thành công!", font: .systemFont(ofSize: 12.0))
+                    self?.showToast(message: "Đăng nhập thành công!", font: .systemFont(ofSize: 11.0))
                     self?.changeScreen(modelType: UIViewController.self,id: "MenuTabBar")
                 }
             case .error(let error):
-                let err = error as! DataError
-                if (err == DataError.invalidResponse400) {
-                    DispatchQueue.main.async {
-                        self?.showToast(message: "Email hoặc Mật khẩu không đúng", font: .systemFont(ofSize: 12.0))
-                        self?.stoppedLoader(loader: loader ?? UIAlertController())
-                    }
+                print(error)
+//                let err = error as! DataError
+                DispatchQueue.main.async {
+                    self?.showToast(message: error!, font: .systemFont(ofSize: 11.0))
+                    self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
+
+                
+                
+//                if (err == DataError.invalidResponse400) {
+//                    DispatchQueue.main.async {
+//                        self?.showToast(message: "Email hoặc Mật khẩu không đúng", font: .systemFont(ofSize: 12.0))
+//                        self?.stoppedLoader(loader: loader ?? UIAlertController())
+//                    }
+//                }
+                
+                
+//                if let err = error as? DataError.invalidResponse400 ,  let msg = err.localizedDescription {
+//                    print(msg)
+//
+//                }
+                
             case .invalid:
-                self?.showToast(message: "Email hoặc Mật khẩu không đúng", font: .systemFont(ofSize: 12.0))
+                self?.showToast(message: "Tên đăng nhập hoặc mật khẩu không đúng", font: .systemFont(ofSize: 11.0))
 
             }
         }

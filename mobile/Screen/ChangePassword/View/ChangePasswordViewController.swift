@@ -148,22 +148,25 @@ extension ChangePasswordViewController {
             case .dataLoaded:
                 print("Data loaded...")
             case .error(let error):
-                let err = error as! DataError
-                if (err == DataError.invalidResponse500) {
+                print(error)
+//                let err = error as! DataError
+                if (error == DataError.invalidResponse500.localizedDescription) {
                     DispatchQueue.main.async {
-                        self?.showToast(message: "Mật khẩu cũ không đúng", font: .systemFont(ofSize: 12.0))
+                        self?.showToast(message: "Mật khẩu cũ không đúng", font: .systemFont(ofSize: 11.0))
                         self?.stoppedLoader(loader: loader ?? UIAlertController())
                     }
                 }
-                else if (err == DataError.invalidResponse401) {
+                else if (error == DataError.invalidResponse401.localizedDescription) {
                     DispatchQueue.main.async {
-                        self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 12.0))
+                        self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 11.0))
                         TokenService.tokenInstance.removeTokenAndInfo()
                         self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
                     }
-                }else if (err == DataError.invalidResponse400) {
+                }
+                else  {
                     DispatchQueue.main.async {
-                        self?.showToast(message: "Mật khẩu hiện tại không đúng", font: .systemFont(ofSize: 12.0))
+                        print(error)
+                        self?.showToast(message: error!, font: .systemFont(ofSize: 7.0))
                     }
                 }
             case .logout:

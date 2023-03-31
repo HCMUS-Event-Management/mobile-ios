@@ -9,20 +9,20 @@ import Foundation
 import UIKit
 // Singleton Design Pattern
 
-enum HTTPMethods: String {
-    case get = "GET"
-    case post = "POST"
-    case put = "PUT"
-}
-
-protocol EndPointType {
-    var path: String { get }
-    var baseURL: String { get }
-    var url: URL? { get }
-    var method: HTTPMethods { get }
-    var body: Encodable? { get }
-    var headers: [String: String]? { get }
-}
+//enum HTTPMethods: String {
+//    case get = "GET"
+//    case post = "POST"
+//    case put = "PUT"
+//}
+//
+//protocol EndPointType {
+//    var path: String { get }
+//    var baseURL: String { get }
+//    var url: URL? { get }
+//    var method: HTTPMethods { get }
+//    var body: Encodable? { get }
+//    var headers: [String: String]? { get }
+//}
 
 enum DataError: Error, Equatable {
     
@@ -31,7 +31,7 @@ enum DataError: Error, Equatable {
     }
     
     case invalidResponse
-    case invalidResponse400
+    case invalidResponse400(String?)
     case invalidResponse401
     case invalidResponse500
     case invalidURL
@@ -78,19 +78,20 @@ final class APIManager {
                 completion(.failure(.invalidData))
                 return
             }
-            
+            print(response)
 
+            
             if let response = response as? HTTPURLResponse,
                   400 ~= response.statusCode {
 //
-                    do {
-                        let dataType = try JSONDecoder().decode(ReponseCommon.self, from: data)
-                        print(dataType)
-                    }catch {
-                        completion(.failure(.network(error)))
-                    }
-                completion(.failure(.invalidResponse400))
-                return
+                do {
+                    let dataType = try JSONDecoder().decode(ReponseError.self, from: data)
+                    completion(.failure(.invalidResponse400(String((dataType.message?.split(separator: ";")[0])!) as String)))
+                    return
+                }catch {
+                    completion(.failure(.network(error)))
+                }
+                
             }
             
             if let response = response as? HTTPURLResponse,
@@ -177,7 +178,7 @@ final class APIManager {
             if let response = response as? HTTPURLResponse,
                   500 ~= response.statusCode {
                 do {
-                    let dataType = try JSONDecoder().decode(ReponseCommon.self, from: data)
+                    let dataType = try JSONDecoder().decode(ReponseError.self, from: data)
                 }catch {
                     completion(.failure(.network(error)))
                 }
@@ -189,6 +190,7 @@ final class APIManager {
                200 ... 299 ~= response.statusCode {
                 do {
                     let dataType = try JSONDecoder().decode(modelType, from: data)
+                    print(dataType)
                     completion(.success(dataType))
                 }catch {
                     completion(.failure(.network(error)))

@@ -7,6 +7,12 @@
 
 import Foundation
  
+
+enum ChangePasswordError: Error {
+    case invalidUpdate
+    case invalidCurrentPassword
+}
+
 class ChangePasswordViewModel {
     
     var eventHandler: ((_ event: Event) -> Void)? // Data Binding Closure
@@ -23,7 +29,16 @@ class ChangePasswordViewModel {
                 TokenService.tokenInstance.removeTokenAndInfo()
                 self.eventHandler?(.logout)
             case .failure(let error):
-                self.eventHandler?(.error(error))
+                
+                if case DataError.invalidResponse400(let reason) = error {
+                    self.eventHandler?(.error(reason))
+                }
+                else {
+                    self.eventHandler?(.error(error.localizedDescription))
+                }
+                
+//                self.eventHandler?(.error(error))
+                
             }
         })
     }
@@ -35,7 +50,8 @@ extension ChangePasswordViewModel {
         case loading
         case stopLoading
         case dataLoaded
-        case error(Error?)
+//        case error(Error?)
+        case error(String?)
         case logout
     }
 

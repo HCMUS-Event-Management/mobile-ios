@@ -42,7 +42,15 @@ class LoginFirstScreenViewModel {
                 self.eventHandler?(.dataLoaded)
 
             case .failure(let error):
-                self.eventHandler?(.error(error))
+                
+                if case DataError.invalidResponse400(let reason) = error {
+                    self.eventHandler?(.error(reason))
+                }
+                else {
+                    self.eventHandler?(.error(error.localizedDescription))
+                }
+                
+//                self.eventHandler?(.error(error.localizedDescription))
                 
             }
         })
@@ -62,19 +70,25 @@ class LoginFirstScreenViewModel {
                 result in
                 switch result {
                     case .success(let info):
-                    TokenService.tokenInstance.saveToken(token: info.data?.accessToken ?? "", refreshToken: info.data?.refreshToken ?? "")
-                    if let encodedUser = try? JSONEncoder().encode(info.data?.getUserInfor) {
-                        Contanst.userdefault.set(encodedUser, forKey: "userInfo")
-                    }
-//                    self.fetchUserDetail()
+                        TokenService.tokenInstance.saveToken(token: info.data?.accessToken ?? "", refreshToken: info.data?.refreshToken ?? "")
+                        if let encodedUser = try? JSONEncoder().encode(info.data?.getUserInfor) {
+                            Contanst.userdefault.set(encodedUser, forKey: "userInfo")
+                        }
+    //                    self.fetchUserDetail()
 
-                    self.queue.async {
-                        //Lay du lieu tu server
-                        self.fetchUserDetail()
-                    }
+                        self.queue.async {
+                            //Lay du lieu tu server
+                            self.fetchUserDetail()
+                        }
                     
                     case .failure(let error):
-                        self.eventHandler?(.error(error ))
+                        if case DataError.invalidResponse400(let reason) = error {
+                            self.eventHandler?(.error(reason))
+                        }
+                        else {
+                            self.eventHandler?(.error(error.localizedDescription))
+                        }
+//                    self.eventHandler?(.error(error.localizedDescription))
                     }
             })
         }
@@ -91,7 +105,9 @@ extension LoginFirstScreenViewModel {
         case invalid
         case stopLoading
         case dataLoaded
-        case error(Error?)
+//        case error(Error?)
+        case error(String?)
+
 //        case newProductAdded(product: AddProduct)
     }
 
