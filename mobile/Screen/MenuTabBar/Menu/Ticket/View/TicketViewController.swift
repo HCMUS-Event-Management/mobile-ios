@@ -7,11 +7,12 @@
 
 import UIKit
 import LZViewPager
+import RealmSwift
 class TicketViewController: UIViewController {
 
     @IBOutlet weak var pageView: LZViewPager!
     private var subControllers:[UIViewController] = []
-
+    private var VM = TicketViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,13 +28,17 @@ class TicketViewController: UIViewController {
         vc2.title = "Bought ticket"
         subControllers = [vc1, vc2]
         pageView.reload()
+        
+        configuration()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = false
         self.navigationController?.isNavigationBarHidden = false
-
+        print(Realm.Configuration.defaultConfiguration.fileURL)
         configNaviBar()
+        
+        VM.fetchMyTicket()
     }
     
     func configNaviBar() {
@@ -102,4 +107,53 @@ extension TicketViewController: LZViewPagerDataSource, LZViewPagerDelegate {
         return UIColor.white
     }
 }
+
+
+extension TicketViewController {
+
+    func configuration() {
+
+        
+        initViewModel()
+        observeEvent()
+    }
+
+    func initViewModel() {
+    }
+
+    // Data binding event observe - communication
+    func observeEvent() {
+        var loader:UIAlertController?
+
+        VM.eventHandler = { [weak self] event in
+            switch event {
+            case .loading:
+                loader = self?.loader()
+            case .stopLoading:
+                self?.stoppedLoader(loader: loader ?? UIAlertController())
+            case .dataLoaded:
+                print("get User loaded...")
+                let container = try! Container()
+                try! container.get(DataMyTicketObject.self)
+            case .error(let error):
+//                let err = error as! DataError
+                if (error == DataError.invalidResponse401.localizedDescription) {
+                    DispatchQueue.main.async {
+                        self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 12.0))
+                        TokenService.tokenInstance.removeTokenAndInfo()
+                        self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
+                    }
+                }
+            case .logout:
+                // xử lý logout tại đây
+//                DispatchQueue.main.async {
+//                    self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
+//                }
+                print("logout")
+        }
+    }
+
+}
+}
+
 

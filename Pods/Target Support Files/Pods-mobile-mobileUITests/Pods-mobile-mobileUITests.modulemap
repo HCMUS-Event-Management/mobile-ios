@@ -1,6 +1,0 @@
-framework module Pods_mobile_mobileUITests {
-  umbrella header "Pods-mobile-mobileUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}

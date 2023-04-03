@@ -7,7 +7,12 @@
 
 import Foundation
 import UIKit
-
+import RealmSwift
+public protocol Persistable {
+    associatedtype ManagedObject: RealmSwift.Object
+    init(managedObject: ManagedObject)
+    func managedObject() -> ManagedObject
+}
 
 extension UIViewController {
     func loader() -> UIAlertController {

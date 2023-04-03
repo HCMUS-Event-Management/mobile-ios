@@ -29,7 +29,7 @@ final class ProfileViewModel {
     func fetchUserDetail() {
         if((Contanst.userdefault.object(forKey: "userInfoDetail") == nil)) {
             self.eventHandler?(.loading)
-            APIManager.shared.request(modelType: Json4Swift_Base.self, type: UserEndPoint.profile, params: nil, completion: {
+            APIManager.shared.request(modelType: ResponseMyProfile.self, type: UserEndPoint.profile, params: nil, completion: {
                 result in
                 self.eventHandler?(.stopLoading)
 

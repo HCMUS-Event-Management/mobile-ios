@@ -73,7 +73,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "BASE_URL"
-            value = "http://localhost:3000/"
+            value = "http://local.kube/"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
