@@ -64,6 +64,7 @@ extension MyTicketsViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.VM.idxDetail = indexPath.section
+        self.VM.idxDetailType = "M"
         changeScreen(modelType: DetailTicketViewController.self, id: "DetailTicketViewController")
 
     }

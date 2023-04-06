@@ -36,6 +36,8 @@ extension MenuViewController {
     func initViewModel() {
         LoginFirstViewModel.fetchUserDetail()
         TickeViewModel.fetchMyTicket()
+        TickeViewModel.fetchBoughtTicket()
+
 
     }
 

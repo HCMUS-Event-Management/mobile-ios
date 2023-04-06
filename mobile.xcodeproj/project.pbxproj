@@ -93,6 +93,8 @@
 		A4DCFC8329D960D600A686AC /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DCFC7C29D960D600A686AC /* Session.swift */; };
 		A4DCFC8429D960D600A686AC /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DCFC7D29D960D600A686AC /* Event.swift */; };
 		A4DCFC8829DAC53500A686AC /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DCFC8729DAC53500A686AC /* RealmHelper.swift */; };
+		A4F0253729DED405002A5DC0 /* ReponseBoughtTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F0253629DED405002A5DC0 /* ReponseBoughtTicket.swift */; };
+		A4F0253929DED416002A5DC0 /* DataBoughtTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F0253829DED416002A5DC0 /* DataBoughtTicket.swift */; };
 		A948CF4ECA66FA52979448CB /* Pods_mobileTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4065F6977C7710BD5DF1BAFE /* Pods_mobileTests.framework */; };
 		F10F1D41DA422D4D02EE798A /* Pods_mobile_mobileUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B48C5994500DF455BD47495D /* Pods_mobile_mobileUITests.framework */; };
 /* End PBXBuildFile section */
@@ -209,6 +211,8 @@
 		A4DCFC7C29D960D600A686AC /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		A4DCFC7D29D960D600A686AC /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		A4DCFC8729DAC53500A686AC /* RealmHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmHelper.swift; sourceTree = "<group>"; };
+		A4F0253629DED405002A5DC0 /* ReponseBoughtTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReponseBoughtTicket.swift; sourceTree = "<group>"; };
+		A4F0253829DED416002A5DC0 /* DataBoughtTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBoughtTicket.swift; sourceTree = "<group>"; };
 		B48C5994500DF455BD47495D /* Pods_mobile_mobileUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mobile_mobileUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D27CF07476327E8A902B46A1 /* Pods-mobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile.release.xcconfig"; path = "Target Support Files/Pods-mobile/Pods-mobile.release.xcconfig"; sourceTree = "<group>"; };
 		DBB7728A83E52BE6F5693AB6 /* Pods-mobile-mobileUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile-mobileUITests.release.xcconfig"; path = "Target Support Files/Pods-mobile-mobileUITests/Pods-mobile-mobileUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -733,16 +737,34 @@
 		A4DCFC7629D960C800A686AC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A4F0253529DED37C002A5DC0 /* BoughtTicket */,
+				A4F0253429DED357002A5DC0 /* MyTicket */,
 				A4DCFC7729D960D600A686AC /* Buyer.swift */,
-				A4DCFC7829D960D600A686AC /* DataMyTicket.swift */,
 				A4DCFC7D29D960D600A686AC /* Event.swift */,
-				A4DCFC7A29D960D600A686AC /* ReponseMyTicket.swift */,
 				A4DCFC7B29D960D600A686AC /* Owner.swift */,
 				A4DCFC7C29D960D600A686AC /* Session.swift */,
 				A4DCFC7929D960D600A686AC /* User.swift */,
 				A44184A529DC2529000B56B2 /* ReponseDetailTicket.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		A4F0253429DED357002A5DC0 /* MyTicket */ = {
+			isa = PBXGroup;
+			children = (
+				A4DCFC7A29D960D600A686AC /* ReponseMyTicket.swift */,
+				A4DCFC7829D960D600A686AC /* DataMyTicket.swift */,
+			);
+			path = MyTicket;
+			sourceTree = "<group>";
+		};
+		A4F0253529DED37C002A5DC0 /* BoughtTicket */ = {
+			isa = PBXGroup;
+			children = (
+				A4F0253629DED405002A5DC0 /* ReponseBoughtTicket.swift */,
+				A4F0253829DED416002A5DC0 /* DataBoughtTicket.swift */,
+			);
+			path = BoughtTicket;
 			sourceTree = "<group>";
 		};
 		FFCA5DF7B62985ED612B4DC2 /* Frameworks */ = {
@@ -1031,6 +1053,7 @@
 				A4506C3529B44371009B75F6 /* ResponseMyProfile.swift in Sources */,
 				A4506C3829B5B0A2009B75F6 /* ReponseCommon.swift in Sources */,
 				A4A91319299FAA1100AC5E75 /* PaymentMethodViewController.swift in Sources */,
+				A4F0253729DED405002A5DC0 /* ReponseBoughtTicket.swift in Sources */,
 				A4DCFC8129D960D600A686AC /* ReponseMyTicket.swift in Sources */,
 				A4CA58BB29A8DFD200B5E318 /* DataReponseLogin.swift in Sources */,
 				A44F1A0029A73EA500476E9B /* TypeCollectionViewCell.swift in Sources */,
@@ -1073,6 +1096,7 @@
 				A426853F29953D4900AA424A /* mobile.xcdatamodeld in Sources */,
 				A4506C3D29B8668B009B75F6 /* TokenService.swift in Sources */,
 				A4DCFC8429D960D600A686AC /* Event.swift in Sources */,
+				A4F0253929DED416002A5DC0 /* DataBoughtTicket.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

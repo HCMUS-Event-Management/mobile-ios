@@ -6,18 +6,24 @@
 //
 
 import UIKit
-
+import CryptoKit
 class DetailTicketViewController: UIViewController {
     
     private var VM = TicketViewModel()
+    private var profileViewModel = ProfileViewModel()
     @IBOutlet weak var tb: UITableView!
     var callback : (() -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
+        profileViewModel.getUser()
         VM.fetchMyTicket()
-        VM.fetchDetailTicket(VM.myTicket[VM.idxDetail].ticketCode)
+        if VM.idxDetailType == "M" {
+            VM.fetchDetailTicket(VM.myTicket[VM.idxDetail].ticketCode)
+        } else if VM.idxDetailType == "B" {
+            VM.fetchDetailTicket(VM.boughtTicket[VM.idxDetail].ticketCode)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,7 +72,12 @@ extension DetailTicketViewController: UITableViewDataSource {
 
         if indexPath.section == 0 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ImageQRCodeTableViewCell", for: indexPath) as? ImageQRCodeTableViewCell  {
-                let image = generateQRCode(from: "Hacking with Swift is the best iOS coding tutorial I've ever read!")
+                
+                let info = "\(VM.detail.eventId)-\(VM.detail.ticketCode)-\(profileViewModel.userInfo!.id!)"
+                let digest = SHA512.hash(data: Data(info.utf8))
+
+                let image = generateQRCode(from: "\(digest)")
+                
                 cell.imgQR.image = image
                 return cell
             }
