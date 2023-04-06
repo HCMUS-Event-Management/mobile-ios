@@ -93,6 +93,7 @@ extension DetailTicketViewController: UITableViewDataSource {
         } else if indexPath.section == 2 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTicketTableViewCell", for: indexPath) as? InfoTicketTableViewCell  {
                 cell.buyerId.text = ticket.buyer?.id
+//                cell.eventTicket.text = ticket.se
                 if let ownerId = ticket.owner?.id {
                     cell.btnAddOwner.isHidden = true
                     cell.ownerId.isHidden = false

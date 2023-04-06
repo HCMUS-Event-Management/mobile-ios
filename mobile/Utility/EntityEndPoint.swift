@@ -8,9 +8,9 @@
 import Foundation
 
 enum EntityEndPoint {
-    case myTicket(page: String, perPage: String)
+    case myTicket(page: Int, perPage: String)
     case ticketDetail(ticketCode: String)
-    case boughtTicket(page: String, perPage: String)
+    case boughtTicket(page: Int, perPage: String)
 }
 
 

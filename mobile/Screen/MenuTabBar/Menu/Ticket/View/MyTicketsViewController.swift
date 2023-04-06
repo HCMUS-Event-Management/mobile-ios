@@ -8,7 +8,7 @@
 import UIKit
 
 class MyTicketsViewController: UIViewController {
-    
+    private var isLoading = false
     private var VM = TicketViewModel()
     @IBOutlet weak var tb: UITableView!
     override func viewDidLoad() {
@@ -18,38 +18,70 @@ class MyTicketsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         VM.fetchMyTicket()
     }
+    
+    func loadMoreData() {
+        if !self.isLoading {
+            self.isLoading = true
+            DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(1)) { // Remove the 1-second delay if you want to load the data without waiting
+                // Download more data here
+                DispatchQueue.main.async {
+                    self.tb.reloadData()
+                    self.isLoading = false
+                }
+            }
+        }
+    }
 }
 
 extension MyTicketsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if section == 0 {
+            // Return the amount of items
+            return self.VM.myTicket.count
+        } else if section == 1 {
+            // Return the Loading cell
+            return 1
+        } else {
+            // Return nothing
+            return 0
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.VM.myTicket.count
+        return 2
     }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return .leastNormalMagnitude
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return UIView()
-    }
+//
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return .leastNormalMagnitude
+//    }
+//
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        return UIView()
+//    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "TicketTableViewCell", for: indexPath) as? TicketTableViewCell  {
-            cell.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
-            
-            let ticket = VM.myTicket[indexPath.section]
-            
-            cell.ownerName.text = ticket.owner?.fullName
-            cell.startTimeSession.text = ticket.session?.startAt
-            cell.titleEvent.text = ticket.session?.event?.title
-            cell.location.text = ticket.session?.event?.location
+        
+        
+        if indexPath.section == 0 {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "TicketTableViewCell", for: indexPath) as? TicketTableViewCell  {
+                cell.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+                
+                let ticket = VM.myTicket[indexPath.section]
+                
+                cell.ownerName.text = ticket.owner?.fullName
+                cell.startTimeSession.text = ticket.session?.startAt
+                cell.titleEvent.text = ticket.session?.event?.title
+                cell.location.text = ticket.session?.event?.location
 
+                return cell
+            }
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingTableViewCell", for: indexPath) as! LoadingTableViewCell
+            cell.indicator.startAnimating()
             return cell
         }
+        
+       
         return UITableViewCell()
     }
     
@@ -59,14 +91,25 @@ extension MyTicketsViewController: UITableViewDataSource {
 }
 extension MyTicketsViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableView.layer.frame.height / 4.8
+        if indexPath.section == 0 {
+            return tableView.layer.frame.height / 4
+        } else {
+            return 55 // Loading Cell height
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.VM.idxDetail = indexPath.section
-        self.VM.idxDetailType = "M"
+            self.VM.idxDetailType = "M"
         changeScreen(modelType: DetailTicketViewController.self, id: "DetailTicketViewController")
 
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == self.VM.myTicket.count - 10, !isLoading {
+            loadMoreData()
+        }
     }
 
    
@@ -77,7 +120,7 @@ extension MyTicketsViewController {
 
     func configuration() {
         self.tb.register(UINib(nibName: "TicketTableViewCell", bundle: nil), forCellReuseIdentifier: "TicketTableViewCell")
-
+        self.tb.register( UINib(nibName: "LoadingTableViewCell", bundle: nil), forCellReuseIdentifier: "LoadingTableViewCell")
         self.tb.dataSource = self
         self.tb.delegate = self
         

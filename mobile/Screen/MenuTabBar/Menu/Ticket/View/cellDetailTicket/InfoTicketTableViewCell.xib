@@ -98,6 +98,7 @@
             <connections>
                 <outlet property="btnAddOwner" destination="uXS-2x-szs" id="amT-cX-nCV"/>
                 <outlet property="buyerId" destination="03G-Hp-cbp" id="xfb-Q4-lF4"/>
+                <outlet property="eventTicket" destination="n2E-CT-YLV" id="VRe-Hf-hzR"/>
                 <outlet property="mainView" destination="ce4-Xc-LCb" id="dyZ-kY-4uz"/>
                 <outlet property="ownerId" destination="yTf-N1-7k2" id="P4o-i5-lfJ"/>
             </connections>

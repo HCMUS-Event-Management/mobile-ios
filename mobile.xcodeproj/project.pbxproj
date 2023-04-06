@@ -95,6 +95,8 @@
 		A4DCFC8829DAC53500A686AC /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DCFC8729DAC53500A686AC /* RealmHelper.swift */; };
 		A4F0253729DED405002A5DC0 /* ReponseBoughtTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F0253629DED405002A5DC0 /* ReponseBoughtTicket.swift */; };
 		A4F0253929DED416002A5DC0 /* DataBoughtTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F0253829DED416002A5DC0 /* DataBoughtTicket.swift */; };
+		A4F0253D29DF1531002A5DC0 /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F0253B29DF1531002A5DC0 /* LoadingTableViewCell.swift */; };
+		A4F0253E29DF1531002A5DC0 /* LoadingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F0253C29DF1531002A5DC0 /* LoadingTableViewCell.xib */; };
 		A948CF4ECA66FA52979448CB /* Pods_mobileTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4065F6977C7710BD5DF1BAFE /* Pods_mobileTests.framework */; };
 		F10F1D41DA422D4D02EE798A /* Pods_mobile_mobileUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B48C5994500DF455BD47495D /* Pods_mobile_mobileUITests.framework */; };
 /* End PBXBuildFile section */
@@ -213,6 +215,8 @@
 		A4DCFC8729DAC53500A686AC /* RealmHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmHelper.swift; sourceTree = "<group>"; };
 		A4F0253629DED405002A5DC0 /* ReponseBoughtTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReponseBoughtTicket.swift; sourceTree = "<group>"; };
 		A4F0253829DED416002A5DC0 /* DataBoughtTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBoughtTicket.swift; sourceTree = "<group>"; };
+		A4F0253B29DF1531002A5DC0 /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
+		A4F0253C29DF1531002A5DC0 /* LoadingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingTableViewCell.xib; sourceTree = "<group>"; };
 		B48C5994500DF455BD47495D /* Pods_mobile_mobileUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mobile_mobileUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D27CF07476327E8A902B46A1 /* Pods-mobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile.release.xcconfig"; path = "Target Support Files/Pods-mobile/Pods-mobile.release.xcconfig"; sourceTree = "<group>"; };
 		DBB7728A83E52BE6F5693AB6 /* Pods-mobile-mobileUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile-mobileUITests.release.xcconfig"; path = "Target Support Files/Pods-mobile-mobileUITests/Pods-mobile-mobileUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -285,6 +289,7 @@
 		A426853329953D4900AA424A /* mobile */ = {
 			isa = PBXGroup;
 			children = (
+				A4F0253A29DF1513002A5DC0 /* test */,
 				A4506C3B29B86677009B75F6 /* TokenService */,
 				A4C5EFFE29B2F47C00723FC1 /* Extensions */,
 				A4CA58AF29A8DF2300B5E318 /* Utility */,
@@ -767,6 +772,15 @@
 			path = BoughtTicket;
 			sourceTree = "<group>";
 		};
+		A4F0253A29DF1513002A5DC0 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				A4F0253B29DF1531002A5DC0 /* LoadingTableViewCell.swift */,
+				A4F0253C29DF1531002A5DC0 /* LoadingTableViewCell.xib */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
 		FFCA5DF7B62985ED612B4DC2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -896,6 +910,7 @@
 				A4506CA829C45E3A009B75F6 /* InfoPaymentTableViewCell.xib in Resources */,
 				A4268586299E27F300AA424A /* IconMenuTableViewCell.xib in Resources */,
 				A44F1A0129A73EA500476E9B /* TypeCollectionViewCell.xib in Resources */,
+				A4F0253E29DF1531002A5DC0 /* LoadingTableViewCell.xib in Resources */,
 				A4506CA029C44D63009B75F6 /* InfoEventTableViewCell.xib in Resources */,
 				A44F19FD29A73E9700476E9B /* EventCollectionViewCell.xib in Resources */,
 				A426854129953D4C00AA424A /* Assets.xcassets in Resources */,
@@ -1038,6 +1053,7 @@
 				A4DCFC8829DAC53500A686AC /* RealmHelper.swift in Sources */,
 				A426857029976FC900AA424A /* LoginFirstScreenViewController.swift in Sources */,
 				A4506C3A29B5D144009B75F6 /* UpdateProfile.swift in Sources */,
+				A4F0253D29DF1531002A5DC0 /* LoadingTableViewCell.swift in Sources */,
 				A4A9131D29A36D4B00AC5E75 /* ProfileDetailTableViewCell.swift in Sources */,
 				A44F19D929A7156D00476E9B /* LoginFirstScreenViewModel.swift in Sources */,
 				A4506C4329B8755C009B75F6 /* ChangePasswordViewModel.swift in Sources */,

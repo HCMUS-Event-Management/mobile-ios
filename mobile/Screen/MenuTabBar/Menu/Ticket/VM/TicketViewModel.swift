@@ -18,7 +18,7 @@ class TicketViewModel {
     
     var boughtTicket = [DataBoughtTicketObject]()
 
-    var page = "1"
+    var page = 1
     var perPage = "10"
     var eventHandler: ((_ event: Event) -> Void)? // Data Binding Closure
 

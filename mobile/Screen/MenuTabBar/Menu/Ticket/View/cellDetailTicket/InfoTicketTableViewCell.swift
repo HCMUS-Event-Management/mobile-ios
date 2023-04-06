@@ -9,6 +9,7 @@ import UIKit
 
 class InfoTicketTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var eventTicket: UILabel!
     @IBOutlet weak var ownerId: UILabel!
     @IBOutlet weak var buyerId: UILabel!
     @IBOutlet weak var btnAddOwner: UIButton!
