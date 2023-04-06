@@ -107,7 +107,11 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="date" destination="mx0-qv-BkR" id="wgN-za-Hx4"/>
+                <outlet property="eventName" destination="ZXc-YY-Sxh" id="RDi-gw-Dej"/>
+                <outlet property="location" destination="fCL-Yt-VNe" id="IoC-UD-Op8"/>
                 <outlet property="mainView" destination="YG0-37-nWq" id="RJP-nr-K2k"/>
+                <outlet property="organizer" destination="T9i-jb-mHg" id="wab-Xi-FIm"/>
             </connections>
             <point key="canvasLocation" x="64.492753623188406" y="88.058035714285708"/>
         </tableViewCell>

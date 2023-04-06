@@ -125,6 +125,7 @@ extension Event: Persistable {
     public func managedObject() -> EventObject {
         let character = EventObject()
         character.id = id ?? ""
+        character.title = title ?? ""
         character.descrip = description ?? ""
         character.startAt = startAt ?? ""
         character.endAt = endAt ?? ""

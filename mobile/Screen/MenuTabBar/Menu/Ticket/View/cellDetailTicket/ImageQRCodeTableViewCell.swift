@@ -9,6 +9,7 @@ import UIKit
 
 class ImageQRCodeTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var imgQR: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

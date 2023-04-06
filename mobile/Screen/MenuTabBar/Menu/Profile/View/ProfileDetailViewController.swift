@@ -123,7 +123,6 @@ extension ProfileDetailViewController: UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileDetailTableViewCell", for: indexPath) as? ProfileDetailTableViewCell {
                 cell.lbl.text = dataLabel[indexPath.row-1]
                 
-                print(VM.userInfoDetail?.birthday)
                 print(Date().formatted(date: .numeric, time: .omitted))
                 
                 

@@ -9,6 +9,11 @@ import UIKit
 
 class InfoPaymentTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var total: UILabel!
+    @IBOutlet weak var method: UILabel!
+    @IBOutlet weak var eventId: UILabel!
+    @IBOutlet weak var discount: UILabel!
+    @IBOutlet weak var ticketPrice: UILabel!
     @IBOutlet weak var mainView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()

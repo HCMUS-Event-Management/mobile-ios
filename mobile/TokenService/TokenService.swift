@@ -106,6 +106,21 @@ class TokenService {
         Contanst.userdefault.removeObject(forKey: "userInfo")
         Contanst.userdefault.removeObject(forKey: "userToken")
         Contanst.userdefault.removeObject(forKey: "refreshToken")
+        
+        
+        let container = try! Container()
+
+        try! container.write{
+            transaction in
+            transaction.deleteAll(DataMyTicketObject.self)
+        }
+        
+        // test
+//        try! container.write{
+//            transaction in
+//            let data = transaction.get(DataMyTicketObject.self)
+//            print(data)
+//        }
     }
 }
 

@@ -8,12 +8,16 @@
 import UIKit
 
 class DetailTicketViewController: UIViewController {
-
+    
+    private var VM = TicketViewModel()
     @IBOutlet weak var tb: UITableView!
+    var callback : (() -> Void)?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
-        // Do any additional setup after loading the view.
+        VM.fetchMyTicket()
+        VM.fetchDetailTicket(VM.myTicket[VM.idxDetail].ticketCode)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,21 +62,42 @@ extension DetailTicketViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        let ticket = VM.detail
+
         if indexPath.section == 0 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ImageQRCodeTableViewCell", for: indexPath) as? ImageQRCodeTableViewCell  {
+                let image = generateQRCode(from: "Hacking with Swift is the best iOS coding tutorial I've ever read!")
+                cell.imgQR.image = image
                 return cell
             }
         } else if indexPath.section == 1 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "InfoEventTableViewCell", for: indexPath) as? InfoEventTableViewCell  {
+
+                cell.eventName.text = ticket.session?.event?.title
+                cell.location.text = ticket.session?.event?.location
+                cell.date.text = ticket.session?.startAt
+                cell.organizer.text = ticket.buyer?.fullName
                 return cell
             }
         } else if indexPath.section == 2 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTicketTableViewCell", for: indexPath) as? InfoTicketTableViewCell  {
+                cell.buyerId.text = ticket.buyer?.id
+                if let ownerId = ticket.owner?.id {
+                    cell.btnAddOwner.isHidden = true
+                    cell.ownerId.isHidden = false
+                    cell.ownerId.text = ownerId
+                }
+                
+                
                 return cell
             }
         } else if indexPath.section == 3 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "InfoPaymentTableViewCell", for: indexPath) as? InfoPaymentTableViewCell  {
+                cell.eventId.text = ticket.session?.eventId
+                cell.method.text = ticket.paymentMethod
+                cell.discount.text = ticket.discount.formatted(.currency(code: "VND"))
+                cell.ticketPrice.text = ticket.price.formatted(.currency(code: "VND"))
+                cell.total.text = (ticket.price - ticket.discount).formatted(.currency(code: "VND"))
                 return cell
             }
         }
@@ -95,7 +120,7 @@ extension DetailTicketViewController: UITableViewDelegate{
             return tableView.layer.frame.height / 3.5
         }
         
-        return tableView.layer.frame.height / 2.3
+        return tableView.layer.frame.height / 2.5
     }
     
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -126,7 +151,36 @@ extension DetailTicketViewController {
 
     // Data binding event observe - communication
     func observeEvent() {
-        
+        var loader:UIAlertController?
+
+        VM.eventHandler = { [weak self] event in
+            switch event {
+            case .loading:
+                loader = self?.loader()
+            case .stopLoading:
+                self?.stoppedLoader(loader: loader ?? UIAlertController())
+            case .dataLoaded:
+                print("Detaik Ticket loaded...")
+                DispatchQueue.main.async {
+                    self?.tb.reloadData()
+                }
+            case .error(let error):
+//                let err = error as! DataError
+                if (error == DataError.invalidResponse401.localizedDescription) {
+                    DispatchQueue.main.async {
+                        self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 12.0))
+                        TokenService.tokenInstance.removeTokenAndInfo()
+                        self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
+                    }
+                }
+            case .logout:
+                // xử lý logout tại đây
+//                DispatchQueue.main.async {
+//                    self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
+//                }
+                print("logout")
+            }
+        }
     }
 
 }

@@ -120,7 +120,12 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="discount" destination="Hme-NB-qLO" id="W3D-XH-ZuD"/>
+                <outlet property="eventId" destination="Wfd-p3-le0" id="ZXB-Aj-JBh"/>
                 <outlet property="mainView" destination="AYb-bD-Hzm" id="uRH-Zg-kDg"/>
+                <outlet property="method" destination="0rt-Zd-aad" id="pfT-xP-hSF"/>
+                <outlet property="ticketPrice" destination="Jpw-Kv-k19" id="fqV-By-6UY"/>
+                <outlet property="total" destination="UA8-A7-2ZI" id="27b-jp-LIX"/>
             </connections>
             <point key="canvasLocation" x="190.57971014492756" y="139.95535714285714"/>
         </tableViewCell>

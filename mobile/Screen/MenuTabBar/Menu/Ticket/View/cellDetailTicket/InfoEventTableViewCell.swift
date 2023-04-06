@@ -9,7 +9,12 @@ import UIKit
 
 class InfoEventTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var organizer: UILabel!
+    @IBOutlet weak var location: UILabel!
+    @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var eventName: UILabel!
     @IBOutlet weak var mainView: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

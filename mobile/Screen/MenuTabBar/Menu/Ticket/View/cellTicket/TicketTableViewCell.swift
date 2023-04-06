@@ -9,6 +9,10 @@ import UIKit
 
 class TicketTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var ownerName: UILabel!
+    @IBOutlet weak var location: UILabel!
+    @IBOutlet weak var startTimeSession: UILabel!
+    @IBOutlet weak var titleEvent: UILabel!
     @IBOutlet weak var ownerView: UIView!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var img: UIImageView!

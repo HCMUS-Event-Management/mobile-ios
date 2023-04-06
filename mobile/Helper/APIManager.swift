@@ -190,7 +190,6 @@ final class APIManager {
                200 ... 299 ~= response.statusCode {
                 do {
                     let dataType = try JSONDecoder().decode(modelType, from: data)
-                    print(dataType)
                     completion(.success(dataType))
                 }catch {
                     completion(.failure(.network(error)))
