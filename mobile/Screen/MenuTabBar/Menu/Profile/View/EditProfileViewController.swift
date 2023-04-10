@@ -152,7 +152,7 @@ extension EditProfileViewController: UITableViewDataSource {
                 cell.lbl.text = dataLabel[indexPath.row-1]
             
                 // dropDown
-                let countryValuesArray = ["Nam", "Nữ"]
+                let countryValuesArray = ["MALE", "FEMALE"]
 
                 let myDropDown = DropDown()
                 myDropDown.anchorView = cell.mainView

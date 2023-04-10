@@ -14,21 +14,29 @@ class MyTicketsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
+        VM.fetchMyTicket()
+
     }
     override func viewWillAppear(_ animated: Bool) {
-        VM.fetchMyTicket()
     }
     
     func loadMoreData() {
-        if !self.isLoading {
+        if self.isLoading == false {
             self.isLoading = true
             DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(1)) { // Remove the 1-second delay if you want to load the data without waiting
                 // Download more data here
                 DispatchQueue.main.async {
-                    self.tb.reloadData()
-                    self.isLoading = false
+                    self.VM.getNextMyTicketFromServer(completion: {
+                        DispatchQueue.main.async {
+                            self.tb.reloadData()
+                            self.isLoading = false
+                        }
+                    })
+                   
                 }
             }
+        } else {
+            print("loading")
         }
     }
 }
@@ -66,18 +74,26 @@ extension MyTicketsViewController: UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "TicketTableViewCell", for: indexPath) as? TicketTableViewCell  {
                 cell.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
                 
-                let ticket = VM.myTicket[indexPath.section]
-                
+                let ticket = VM.myTicket[indexPath.row]
                 cell.ownerName.text = ticket.owner?.fullName
                 cell.startTimeSession.text = ticket.session?.startAt
-                cell.titleEvent.text = ticket.session?.event?.title
+//                cell.titleEvent.text = ticket.session?.event?.title
+                cell.titleEvent.text = ticket.id
                 cell.location.text = ticket.session?.event?.location
 
                 return cell
             }
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingTableViewCell", for: indexPath) as! LoadingTableViewCell
-            cell.indicator.startAnimating()
+//            print(self.VM.currentPage)
+//            print(self.VM.numberPage)
+
+            if self.VM.numberPage >= self.VM.currentPage {
+                cell.indicator.startAnimating()
+            } else {
+                cell.indicator.stopAnimating()
+                cell.indicator.hidesWhenStopped = true
+            }
             return cell
         }
         
@@ -100,14 +116,16 @@ extension MyTicketsViewController: UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.VM.idxDetail = indexPath.section
-            self.VM.idxDetailType = "M"
+        Contanst.userdefault.set("M", forKey: "idxDetailType")
+        Contanst.userdefault.set(indexPath.row, forKey: "idxDetail")
+
+        print(indexPath.row)
         changeScreen(modelType: DetailTicketViewController.self, id: "DetailTicketViewController")
 
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == self.VM.myTicket.count - 10, !isLoading {
+        if indexPath.row == self.VM.myTicket.count - 4, !isLoading {
             loadMoreData()
         }
     }

@@ -18,11 +18,16 @@ class DetailTicketViewController: UIViewController {
         super.viewDidLoad()
         configuration()
         profileViewModel.getUser()
-        VM.fetchMyTicket()
-        if VM.idxDetailType == "M" {
-            VM.fetchDetailTicket(VM.myTicket[VM.idxDetail].ticketCode)
-        } else if VM.idxDetailType == "B" {
-            VM.fetchDetailTicket(VM.boughtTicket[VM.idxDetail].ticketCode)
+        VM.getMyTicketDataLocalDB()
+        
+        let idxDetailType = Contanst.userdefault.string(forKey: "idxDetailType")
+        let idxDetail = Contanst.userdefault.integer(forKey: "idxDetail")
+
+        
+        if idxDetailType == "M" {
+            VM.fetchDetailTicket(VM.myTicket[idxDetail].ticketCode)
+        } else if idxDetailType == "B" {
+            VM.fetchDetailTicket(VM.boughtTicket[idxDetail].ticketCode)
         }
     }
     
@@ -73,9 +78,12 @@ extension DetailTicketViewController: UITableViewDataSource {
         if indexPath.section == 0 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ImageQRCodeTableViewCell", for: indexPath) as? ImageQRCodeTableViewCell  {
                 
+                
+                // hash
                 let info = "\(VM.detail.eventId)-\(VM.detail.ticketCode)-\(profileViewModel.userInfo!.id!)"
                 let digest = SHA512.hash(data: Data(info.utf8))
-
+                print(info)
+                print(digest)
                 let image = generateQRCode(from: "\(digest)")
                 
                 cell.imgQR.image = image
@@ -85,6 +93,7 @@ extension DetailTicketViewController: UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "InfoEventTableViewCell", for: indexPath) as? InfoEventTableViewCell  {
 
                 cell.eventName.text = ticket.session?.event?.title
+                cell.eventName.text = ticket.id
                 cell.location.text = ticket.session?.event?.location
                 cell.date.text = ticket.session?.startAt
                 cell.organizer.text = ticket.buyer?.fullName
