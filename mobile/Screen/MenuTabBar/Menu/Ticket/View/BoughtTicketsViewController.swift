@@ -9,35 +9,78 @@ import UIKit
 
 class BoughtTicketsViewController: UIViewController {
     
+    private var isLoading = false
     private var VM = TicketViewModel()
     @IBOutlet weak var tb: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
+        VM.fetchBoughtTicket()
+
     }
     override func viewWillAppear(_ animated: Bool) {
-        VM.fetchBoughtTicket()
+    }
+    
+    func loadMoreData() {
+        if self.isLoading == false {
+            self.isLoading = true
+            DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(1)) { // Remove the 1-second delay if you want to load the data without waiting
+                // Download more data here
+                DispatchQueue.main.async {
+                    self.VM.getNextBoughtTicketFromServer(completion: {
+                        DispatchQueue.main.async {
+                            self.tb.reloadData()
+                            self.isLoading = false
+                        }
+                    })
+                   
+                }
+            }
+        } else {
+            print("loading")
+        }
     }
 }
 
 extension BoughtTicketsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if section == 0 {
+            // Return the amount of items
+            return self.VM.boughtTicket.count
+        } else if section == 1 {
+            // Return the Loading cell
+            return 1
+        } else {
+            // Return nothing
+            return 0
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.VM.boughtTicket.count
+        return 2
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return .leastNormalMagnitude
-    }
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return 1
+//    }
+//
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        return self.VM.boughtTicket.count
+//    }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return UIView()
-    }
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return .leastNormalMagnitude
+//    }
+//
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        return UIView()
+//    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+    
+    
+    if indexPath.section == 0 {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "TicketTableViewCell", for: indexPath) as? TicketTableViewCell  {
             cell.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
             
@@ -50,26 +93,56 @@ extension BoughtTicketsViewController: UITableViewDataSource {
 
             return cell
         }
-        return UITableViewCell()
+    } else {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingTableViewCell", for: indexPath) as! LoadingTableViewCell
+//            print(self.VM.currentPage)
+//            print(self.VM.numberPage)
+
+        if self.VM.numberPageBoughtTicket >= self.VM.currentPageBoughtTicket {
+            cell.indicator.startAnimating()
+        } else {
+            cell.indicator.stopAnimating()
+            cell.indicator.hidesWhenStopped = true
+        }
+        return cell
     }
     
+   
+    return UITableViewCell()
     
     
     
+    
+    }
 }
+
+
 extension BoughtTicketsViewController: UITableViewDelegate{
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableView.layer.frame.height / 4.8
+        if indexPath.section == 0 {
+            return tableView.layer.frame.height / 4
+        } else {
+            return 55 // Loading Cell height
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.VM.idxDetail = indexPath.section
         Contanst.userdefault.set("B", forKey: "idxDetailType")
+        Contanst.userdefault.set(indexPath.row, forKey: "idxDetail")
+
+        print(indexPath.row)
         changeScreen(modelType: DetailTicketViewController.self, id: "DetailTicketViewController")
 
     }
-
-   
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == self.VM.boughtTicket.count - 4, !isLoading {
+            loadMoreData()
+        }
+    }
+    
 }
 
 
@@ -77,6 +150,7 @@ extension BoughtTicketsViewController {
 
     func configuration() {
         self.tb.register(UINib(nibName: "TicketTableViewCell", bundle: nil), forCellReuseIdentifier: "TicketTableViewCell")
+        self.tb.register( UINib(nibName: "LoadingTableViewCell", bundle: nil), forCellReuseIdentifier: "LoadingTableViewCell")
 
         self.tb.dataSource = self
         self.tb.delegate = self

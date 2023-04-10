@@ -88,7 +88,7 @@ extension MyTicketsViewController: UITableViewDataSource {
 //            print(self.VM.currentPage)
 //            print(self.VM.numberPage)
 
-            if self.VM.numberPage >= self.VM.currentPage {
+            if self.VM.numberPageMyTicket >= self.VM.currentPageMyTicket {
                 cell.indicator.startAnimating()
             } else {
                 cell.indicator.stopAnimating()
