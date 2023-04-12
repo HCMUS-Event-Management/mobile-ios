@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 import RealmSwift
+import SwiftyRSA
+import CoreImage.CIFilterBuiltins
 public protocol Persistable {
     associatedtype ManagedObject: RealmSwift.Object
     init(managedObject: ManagedObject)
@@ -99,18 +101,36 @@ extension UIViewController {
     }
     
     func generateQRCode(from string: String) -> UIImage? {
-        let data = string.data(using: String.Encoding.ascii)
-
-        if let filter = CIFilter(name: "CIQRCodeGenerator") {
-            filter.setValue(data, forKey: "inputMessage")
-            let transform = CGAffineTransform(scaleX: 3, y: 3)
-
-            if let output = filter.outputImage?.transformed(by: transform) {
-                return UIImage(ciImage: output)
-            }
+        let context = CIContext()
+        let filter = CIFilter.qrCodeGenerator()
+        
+        let data = Data(string.utf8)
+        filter.setValue(data, forKey: "inputMessage")
+        let transform = CGAffineTransform(scaleX: 3, y: 3)
+        if let qrCodeImage = filter.outputImage?.transformed(by: transform) {
+           if let qrCodeCGImage = context.createCGImage(qrCodeImage, from: qrCodeImage.extent) {
+               return UIImage(cgImage: qrCodeCGImage)
+           }
         }
+        return UIImage(systemName: "xmark") ?? UIImage()
+    }
+    
+    func hashRSA(from string: String) -> String? {
+        do {
 
-        return nil
+            let publicKey = try PublicKey(pemEncoded: ProcessInfo.processInfo.environment["RSA_PUBLIC_KEY"]!)
+
+            print(string)
+            let clear = try ClearMessage(string: string, using: .utf8)
+            let encrypted = try clear.encrypted(with: publicKey, padding: .PKCS1)
+
+            let base64String = encrypted.base64String
+            return base64String
+        } catch {
+            print(error)
+        }
+        return "Lỗi RSA"
+        
     }
 }
 

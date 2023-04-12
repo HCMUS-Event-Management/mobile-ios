@@ -35,7 +35,7 @@ class TicketViewModel {
             switch result {
                 case .success(let detail):
                     self.detail = (detail.data?.managedObject())!
-                print(self.detail.id)
+                    print(self.detail.id)
                     self.eventHandler?(.dataLoaded)
                     
                 case .failure(let error):

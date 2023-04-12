@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import CryptoKit
+import SwiftyRSA
 class DetailTicketViewController: UIViewController {
     
     private var VM = TicketViewModel()
@@ -19,7 +19,8 @@ class DetailTicketViewController: UIViewController {
         configuration()
         profileViewModel.getUser()
         VM.getMyTicketDataLocalDB()
-        
+        VM.getBoughtTicketDataLocalDB()
+
         let idxDetailType = Contanst.userdefault.string(forKey: "idxDetailType")
         let idxDetail = Contanst.userdefault.integer(forKey: "idxDetail")
 
@@ -77,15 +78,10 @@ extension DetailTicketViewController: UITableViewDataSource {
 
         if indexPath.section == 0 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ImageQRCodeTableViewCell", for: indexPath) as? ImageQRCodeTableViewCell  {
-                
-                
                 // hash
                 let info = "\(VM.detail.eventId)-\(VM.detail.ticketCode)-\(profileViewModel.userInfo!.id!)"
-                let digest = SHA512.hash(data: Data(info.utf8))
-                print(info)
-                print(digest)
-                let image = generateQRCode(from: "\(digest)")
-                
+                let encryptedString = hashRSA(from: info)
+                let image = generateQRCode(from: encryptedString!)
                 cell.imgQR.image = image
                 return cell
             }
@@ -183,7 +179,10 @@ extension DetailTicketViewController {
             case .dataLoaded:
                 print("Detaik Ticket loaded...")
                 DispatchQueue.main.async {
+//                    self?.tb.reloadSections([0], with: .none)
                     self?.tb.reloadData()
+//                    self?.stoppedLoader(loader: loader ?? UIAlertController())
+
                 }
             case .error(let error):
 //                let err = error as! DataError

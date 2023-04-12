@@ -10,6 +10,9 @@ PODS:
   - RealmSwift (10.38.0):
     - Realm (= 10.38.0)
   - SnapKit (5.0.1)
+  - SwiftyRSA (1.7.0):
+    - SwiftyRSA/ObjC (= 1.7.0)
+  - SwiftyRSA/ObjC (1.7.0)
 
 DEPENDENCIES:
   - DropDown
@@ -17,6 +20,7 @@ DEPENDENCIES:
   - LZViewPager (~> 1.2.5)
   - ReachabilitySwift
   - RealmSwift
+  - SwiftyRSA
 
 SPEC REPOS:
   trunk:
@@ -27,6 +31,7 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - SnapKit
+    - SwiftyRSA
 
 SPEC CHECKSUMS:
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
@@ -36,7 +41,8 @@ SPEC CHECKSUMS:
   Realm: 5902885dd1d5e71b0b020830caab937ecdf5bf07
   RealmSwift: 0fc037d6c32c7c4fc9362892380f380114ecdcf0
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SwiftyRSA: 8c6dd1ea7db1b8dc4fb517a202f88bb1354bc2c6
 
-PODFILE CHECKSUM: 068493c392af8f959ebc7cc94ae709273637673c
+PODFILE CHECKSUM: 931c5b145ca422e460b664807c83d73e86c5ef1f
 
 COCOAPODS: 1.11.3

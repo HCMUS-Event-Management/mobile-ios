@@ -72,6 +72,16 @@
       </BuildableProductRunnable>
       <EnvironmentVariables>
          <EnvironmentVariable
+            key = "RSA_PUBLIC_KEY"
+            value = "-----BEGIN PUBLIC KEY-----&#10;MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCPSl8jr4jfwgmnx42grFWmcD0Y&#10;m0A6v+rQwoivZm8OqW4JiYf0aAf9nGZmjSgUM5iTAf3kJw7wRiy7I2tXEuWawY5n&#10;X2Q0b1Mf9kgAqCAx60nuI5j9Ij/4L1J4K6lBtbJLC8V/sQq16LcTxIB8qCokGOrx&#10;H6JCzSQG9XIJxSF+XwIDAQAB&#10;-----END PUBLIC KEY-----"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "RSA_PRIVATE_KEY"
+            value = "-----BEGIN RSA PRIVATE KEY-----\nMIIBOAIBAAJAfMcq+Fm/eR+8s+BmLttgIeaHzVnFxvk6C/Drie8CoVJGTlSmquth4tgv1AnRRdVwW7XyqO3NAKpEY3p1bHpxBQIDAQABAkBBwwZWlZZgU+W0N5QjJeNoeoMgKywdTcTV/kdlDt6n/mHeFJx9DHBhm2r0r8V5IsbJyK8nj1bhn8tXG31Jq2ARAiEA0ZZ5uI5PjFVFEe7/6/Mn5YO/UsSC6CCSr9fw7bOAna8CIQCYaNQA3alm3czk6axI7e+vVatu8Y/vNwa71c+kUrgdiwIgHg4MCnEt6xvXOckiHf3SfNE1wHK5qvvwzRKUVCHnkbUCIADNZHhQsmiZOE/oLwD/R6i7obhmyyQuPPnWKU6rJM77AiBEGcWTmZeUbxKYMeCXIFLglcccNW8sSlP4uQGkw5GpRA==\n-----END RSA PRIVATE KEY-----"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
             key = "BASE_URL"
             value = "http://local.kube/"
             isEnabled = "YES">

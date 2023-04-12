@@ -555,7 +555,9 @@
 		A45EBB5A29C8407700120D06 /* ForgetPassword */ = {
 			isa = PBXGroup;
 			children = (
-				A4506C4629BDACC4009B75F6 /* ForgetPasswordViewController.swift */,
+				A4E156B429E6B41000853BD2 /* Model */,
+				A4E156B329E6B40900853BD2 /* ViewModel */,
+				A4E156B229E6B40300853BD2 /* View */,
 			);
 			path = ForgetPassword;
 			sourceTree = "<group>";
@@ -750,6 +752,28 @@
 				A4DCFC7C29D960D600A686AC /* Session.swift */,
 				A4DCFC7929D960D600A686AC /* User.swift */,
 				A44184A529DC2529000B56B2 /* ReponseDetailTicket.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A4E156B229E6B40300853BD2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A4506C4629BDACC4009B75F6 /* ForgetPasswordViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A4E156B329E6B40900853BD2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A4E156B429E6B41000853BD2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = Model;
 			sourceTree = "<group>";
