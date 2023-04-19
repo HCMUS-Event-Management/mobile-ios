@@ -65,6 +65,9 @@
 		A4506CA829C45E3A009B75F6 /* InfoPaymentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4506CA629C45E3A009B75F6 /* InfoPaymentTableViewCell.xib */; };
 		A459818329A8FA6C00D816E3 /* ReponseLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A459818229A8FA6C00D816E3 /* ReponseLogin.swift */; };
 		A45EBB6229D2E39C00120D06 /* ReponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EBB6129D2E39C00120D06 /* ReponseError.swift */; };
+		A46C1C5F29ED384800F491F1 /* ForgetPassword3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46C1C5E29ED384800F491F1 /* ForgetPassword3ViewController.swift */; };
+		A46C1C6129ED3C9F00F491F1 /* SendOTPDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46C1C6029ED3C9F00F491F1 /* SendOTPDto.swift */; };
+		A46C1C6329ED3D4000F491F1 /* ForgetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46C1C6229ED3D4000F491F1 /* ForgetPasswordViewModel.swift */; };
 		A4A91316299F5AB800AC5E75 /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A91315299F5AB800AC5E75 /* ProfileDetailViewController.swift */; };
 		A4A91319299FAA1100AC5E75 /* PaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A91318299FAA1100AC5E75 /* PaymentMethodViewController.swift */; };
 		A4A9131D29A36D4B00AC5E75 /* ProfileDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A9131B29A36D4B00AC5E75 /* ProfileDetailTableViewCell.swift */; };
@@ -93,6 +96,7 @@
 		A4DCFC8329D960D600A686AC /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DCFC7C29D960D600A686AC /* Session.swift */; };
 		A4DCFC8429D960D600A686AC /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DCFC7D29D960D600A686AC /* Event.swift */; };
 		A4DCFC8829DAC53500A686AC /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DCFC8729DAC53500A686AC /* RealmHelper.swift */; };
+		A4EB83CB29EF9C5100AC6B03 /* ForgetPasswordDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EB83CA29EF9C5100AC6B03 /* ForgetPasswordDto.swift */; };
 		A4F0253729DED405002A5DC0 /* ReponseBoughtTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F0253629DED405002A5DC0 /* ReponseBoughtTicket.swift */; };
 		A4F0253929DED416002A5DC0 /* DataBoughtTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F0253829DED416002A5DC0 /* DataBoughtTicket.swift */; };
 		A4F0253D29DF1531002A5DC0 /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F0253B29DF1531002A5DC0 /* LoadingTableViewCell.swift */; };
@@ -185,6 +189,9 @@
 		A4506CA629C45E3A009B75F6 /* InfoPaymentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoPaymentTableViewCell.xib; sourceTree = "<group>"; };
 		A459818229A8FA6C00D816E3 /* ReponseLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReponseLogin.swift; sourceTree = "<group>"; };
 		A45EBB6129D2E39C00120D06 /* ReponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReponseError.swift; sourceTree = "<group>"; };
+		A46C1C5E29ED384800F491F1 /* ForgetPassword3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPassword3ViewController.swift; sourceTree = "<group>"; };
+		A46C1C6029ED3C9F00F491F1 /* SendOTPDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SendOTPDto.swift; path = mobile/Screen/ForgetPassword/View/SendOTPDto.swift; sourceTree = SOURCE_ROOT; };
+		A46C1C6229ED3D4000F491F1 /* ForgetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ForgetPasswordViewModel.swift; path = mobile/Screen/ForgetPassword/View/ForgetPasswordViewModel.swift; sourceTree = SOURCE_ROOT; };
 		A4A91315299F5AB800AC5E75 /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
 		A4A91318299FAA1100AC5E75 /* PaymentMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodViewController.swift; sourceTree = "<group>"; };
 		A4A9131B29A36D4B00AC5E75 /* ProfileDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -213,6 +220,7 @@
 		A4DCFC7C29D960D600A686AC /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		A4DCFC7D29D960D600A686AC /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		A4DCFC8729DAC53500A686AC /* RealmHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmHelper.swift; sourceTree = "<group>"; };
+		A4EB83CA29EF9C5100AC6B03 /* ForgetPasswordDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ForgetPasswordDto.swift; path = mobile/Screen/ForgetPassword/View/ForgetPasswordDto.swift; sourceTree = SOURCE_ROOT; };
 		A4F0253629DED405002A5DC0 /* ReponseBoughtTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReponseBoughtTicket.swift; sourceTree = "<group>"; };
 		A4F0253829DED416002A5DC0 /* DataBoughtTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBoughtTicket.swift; sourceTree = "<group>"; };
 		A4F0253B29DF1531002A5DC0 /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
@@ -330,7 +338,6 @@
 				A4268575299E1C7200AA424A /* NavigationController */,
 				A426853829953D4900AA424A /* ViewController.swift */,
 				A426857129976FDE00AA424A /* SignUpViewController.swift */,
-				A4506C4829BDACDE009B75F6 /* ForgetPassword2ViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -556,7 +563,7 @@
 			isa = PBXGroup;
 			children = (
 				A4E156B429E6B41000853BD2 /* Model */,
-				A4E156B329E6B40900853BD2 /* ViewModel */,
+				A4E156B329E6B40900853BD2 /* VM */,
 				A4E156B229E6B40300853BD2 /* View */,
 			);
 			path = ForgetPassword;
@@ -759,21 +766,26 @@
 		A4E156B229E6B40300853BD2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A4506C4829BDACDE009B75F6 /* ForgetPassword2ViewController.swift */,
 				A4506C4629BDACC4009B75F6 /* ForgetPasswordViewController.swift */,
+				A46C1C5E29ED384800F491F1 /* ForgetPassword3ViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		A4E156B329E6B40900853BD2 /* ViewModel */ = {
+		A4E156B329E6B40900853BD2 /* VM */ = {
 			isa = PBXGroup;
 			children = (
+				A46C1C6229ED3D4000F491F1 /* ForgetPasswordViewModel.swift */,
 			);
-			path = ViewModel;
+			path = VM;
 			sourceTree = "<group>";
 		};
 		A4E156B429E6B41000853BD2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A46C1C6029ED3C9F00F491F1 /* SendOTPDto.swift */,
+				A4EB83CA29EF9C5100AC6B03 /* ForgetPasswordDto.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1074,12 +1086,15 @@
 				A44F19FC29A73E9700476E9B /* EventCollectionViewCell.swift in Sources */,
 				A4268579299E1CBE00AA424A /* SearchViewController.swift in Sources */,
 				A426857D299E1CE500AA424A /* TicketViewController.swift in Sources */,
+				A46C1C5F29ED384800F491F1 /* ForgetPassword3ViewController.swift in Sources */,
 				A4DCFC8829DAC53500A686AC /* RealmHelper.swift in Sources */,
 				A426857029976FC900AA424A /* LoginFirstScreenViewController.swift in Sources */,
 				A4506C3A29B5D144009B75F6 /* UpdateProfile.swift in Sources */,
+				A4EB83CB29EF9C5100AC6B03 /* ForgetPasswordDto.swift in Sources */,
 				A4F0253D29DF1531002A5DC0 /* LoadingTableViewCell.swift in Sources */,
 				A4A9131D29A36D4B00AC5E75 /* ProfileDetailTableViewCell.swift in Sources */,
 				A44F19D929A7156D00476E9B /* LoginFirstScreenViewModel.swift in Sources */,
+				A46C1C6329ED3D4000F491F1 /* ForgetPasswordViewModel.swift in Sources */,
 				A4506C4329B8755C009B75F6 /* ChangePasswordViewModel.swift in Sources */,
 				A4DCFC8329D960D600A686AC /* Session.swift in Sources */,
 				A4C5F01129B2FF5600723FC1 /* ProfileViewModel.swift in Sources */,
@@ -1105,6 +1120,7 @@
 				A4506C4929BDACDE009B75F6 /* ForgetPassword2ViewController.swift in Sources */,
 				A4DCFC7F29D960D600A686AC /* DataMyTicket.swift in Sources */,
 				A4506C9729C3A21C009B75F6 /* DetailTicketViewController.swift in Sources */,
+				A46C1C6129ED3C9F00F491F1 /* SendOTPDto.swift in Sources */,
 				A426857229976FDE00AA424A /* SignUpViewController.swift in Sources */,
 				A426856E29976DA400AA424A /* LetLoginViewController.swift in Sources */,
 				A4DCFC7E29D960D600A686AC /* Buyer.swift in Sources */,

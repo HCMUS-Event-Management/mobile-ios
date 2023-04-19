@@ -1,62 +1,53 @@
 //
-//  ForgetPasswordViewController.swift
+//  ForgetPassword3ViewController.swift
 //  mobile
 //
-//  Created by NguyenSon_MP on 12/03/2023.
+//  Created by NguyenSon_MP on 17/04/2023.
 //
 
 import UIKit
 
-class ForgetPasswordViewController: UIViewController {
-
-    @IBOutlet weak var btnGetNewPass: UIButton!
-    @IBOutlet weak var btnBack: UIButton!
-    @IBOutlet weak var txtEmail: UITextField!
-
-    
+class ForgetPassword3ViewController: UIViewController {
     private var VM = ForgetPasswordViewModel()
-    
+
+    @IBOutlet weak var btnDone: UIButton!
+    @IBOutlet weak var btnBack: UIButton!
+    @IBOutlet weak var txtConfirmPass: UITextField!
+    @IBOutlet weak var txtNewPass: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        btnGetNewPass.addTarget(self, action: #selector(postAPI), for: .touchUpInside)
+        btnDone.addTarget(self, action: #selector(postAPI), for: .touchUpInside)
         btnBack.addTarget(self, action: #selector(back), for: .touchUpInside)
+        // Do any additional setup after loading the view.
         configuration()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        btnGetNewPass.layer.cornerRadius = 20
-        btnGetNewPass.layer.masksToBounds = true
+        btnDone.layer.cornerRadius = 20
+        btnDone.layer.masksToBounds = true
         btnBack.layer.cornerRadius = 20
         btnBack.layer.masksToBounds = true
         btnBack.layer.borderWidth = 0.5
         btnBack.layer.borderColor = UIColor(red: 94/255, green: 135/255, blue: 240/255, alpha: 1).cgColor
     }
     
+    @objc func postAPI () {
+        if txtNewPass.text == "" || txtConfirmPass.text == ""{
+            print("emtyp")
+        } else {
+            let param = ForgetpasswordDto(email: Contanst.userdefault.string(forKey: "email"), otp:  Contanst.userdefault.string(forKey: "otp"), password: txtNewPass.text, verifiedPassword: txtConfirmPass.text)
+            VM.forgetPassword(from: param)
+        }
+
+    }
     @objc func back () {
         self.navigationController?.popViewController(animated: true)
-    }
-    
-    @objc func postAPI () {
-        if txtEmail.text == ""{
-            print("email emtyp")
-        } else if (!(txtEmail.text?.isValidEmail() ?? false)) {
-            print("email no")
-        } else {
-            let params = SendOTPDto(email: txtEmail.text, type: "FORGET_PASSWORD")
-            VM.sendOTPForget(from: params)
-            
-        }
-       
-        
-        
     }
     
 
 }
 
-
-
-extension ForgetPasswordViewController {
+extension ForgetPassword3ViewController {
 
     func configuration() {
         initViewModel()
@@ -79,7 +70,8 @@ extension ForgetPasswordViewController {
                 self?.stoppedLoader(loader: loader ?? UIAlertController())
             case .dataLoaded:
                 DispatchQueue.main.async {
-                    self?.changeScreen(modelType: ForgetPassword2ViewController.self,id: "ForgetPassword2ViewController")
+                    self?.showToast(message: "Đổi mật khẩu thành công", font: .systemFont(ofSize: 12))
+                    self?.changeScreen(modelType: LoginFirstScreenViewController.self,id: "LoginFirstScreenViewController")
                 }
             case .error(let error):
                 print(error)
@@ -112,5 +104,3 @@ extension ForgetPasswordViewController {
     }
 
 }
-
-

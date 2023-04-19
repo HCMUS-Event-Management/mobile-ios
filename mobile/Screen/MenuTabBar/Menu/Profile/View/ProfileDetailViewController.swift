@@ -29,8 +29,8 @@ class ProfileDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
 
-        VM.fetchUserDetail()
-        self.tb.reloadData()
+//        VM.fetchUserDetail()
+//        self.tb.reloadData()
         
         tabBarController?.tabBar.isHidden = true
         
@@ -190,7 +190,7 @@ extension ProfileDetailViewController {
     }
 
     func initViewModel() {
-//        self.VM.fetchUserDetail()
+        self.VM.getUserDetailFromLocalDB()
     }
 
     // Data binding event observe - communication
@@ -199,8 +199,13 @@ extension ProfileDetailViewController {
 
         VM.eventHandler = { [weak self] event in
             switch event {
-            case .loading: break
-            case .stopLoading: break
+            case .loading:
+                loader = self?.loader()
+            case .stopLoading:
+                DispatchQueue.main.async {
+                    self?.stoppedLoader(loader: loader ?? UIAlertController())
+                    
+                }
             case .dataLoaded:
                 DispatchQueue.main.async {
                     self?.tb.reloadData()

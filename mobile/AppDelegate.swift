@@ -15,11 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+//        self.window = UIWindow(frame: UIScreen.main.bounds)
         // Override point for customization after application launch.
        // error main thread
         var vc: UIViewController?
             TokenService.tokenInstance.checkForLogin(completionHandler: { success in
-
+                
                 if success {
                     DispatchQueue.main.async {
                         vc = self.window?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "MenuTabBar") as? MenuViewController

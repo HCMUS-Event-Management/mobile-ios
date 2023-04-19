@@ -39,7 +39,7 @@ class TicketViewModel {
                     self.eventHandler?(.dataLoaded)
                     
                 case .failure(let error):
-                    if case DataError.invalidResponse400(let reason) = error {
+                    if case DataError.invalidResponse(let reason) = error {
                         self.eventHandler?(.error(reason))
                     }
                     else {
@@ -199,7 +199,7 @@ extension TicketViewModel {
                     self.currentPageMyTicket+=1
                     completion()
                 case .failure(let error):
-                    if case DataError.invalidResponse400(let reason) = error {
+                    if case DataError.invalidResponse(let reason) = error {
                         self.eventHandler?(.error(reason))
                     }
                     else {
@@ -240,7 +240,7 @@ extension TicketViewModel {
                 self.eventHandler?(.dataLoaded)
 
             case .failure(let error):
-                if case DataError.invalidResponse400(let reason) = error {
+                if case DataError.invalidResponse(let reason) = error {
                     self.eventHandler?(.error(reason))
                 }
                 else {
@@ -310,7 +310,7 @@ extension TicketViewModel {
                     self.currentPageBoughtTicket+=1
                     completion()
                 case .failure(let error):
-                    if case DataError.invalidResponse400(let reason) = error {
+                    if case DataError.invalidResponse(let reason) = error {
                         self.eventHandler?(.error(reason))
                     }
                     else {
@@ -351,7 +351,7 @@ extension TicketViewModel {
                 self.eventHandler?(.dataLoaded)
 
             case .failure(let error):
-                if case DataError.invalidResponse400(let reason) = error {
+                if case DataError.invalidResponse(let reason) = error {
                     self.eventHandler?(.error(reason))
                 }
                 else {

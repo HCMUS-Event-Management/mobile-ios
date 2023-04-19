@@ -14,6 +14,7 @@ enum UserEndPoint {
     case updateProfile // PUT
     case changePassword // PUT
     case forgetPassword // POST
+    case sendOTP // POST
     case verifyToken(token: String) // GET
     case refreshToken(token: String) // POST
 }
@@ -40,6 +41,8 @@ extension UserEndPoint: EndPointType {
             return "api/v1/user-auth/user/verify/\(query)"
         case .refreshToken(let query):
             return "api/v1/user-auth/user/refresh-token?refreshToken=Bearer%20\(query)"
+        case .sendOTP:
+            return "api/v1/user-auth/user/send-otp"
         }
    
 
@@ -71,6 +74,8 @@ extension UserEndPoint: EndPointType {
             return .get
         case .refreshToken:
             return .post
+        case .sendOTP:
+            return .post
         }
     }
 
@@ -91,6 +96,8 @@ extension UserEndPoint: EndPointType {
         case .verifyToken:
             return nil
         case .refreshToken:
+            return nil
+        case .sendOTP:
             return nil
         }
     
@@ -113,6 +120,8 @@ extension UserEndPoint: EndPointType {
         case .verifyToken:
             return APIManager.commonHeaders
         case .refreshToken:
+            return APIManager.commonHeaders
+        case .sendOTP:
             return APIManager.commonHeaders
         }
     }

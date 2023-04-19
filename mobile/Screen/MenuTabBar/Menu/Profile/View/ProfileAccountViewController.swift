@@ -18,6 +18,8 @@ class ProfileAccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
+        VM.fetchUserDetail()
+
     }
 
 //    func changeScreen<T: UIViewController>(
@@ -33,7 +35,7 @@ class ProfileAccountViewController: UIViewController {
 
     
     override func viewWillAppear(_ animated: Bool) {
-        VM.fetchUserDetail()
+//        VM.fetchUserDetail()
 
         tabBarController?.tabBar.isHidden = false
 //        let title = UILabel()

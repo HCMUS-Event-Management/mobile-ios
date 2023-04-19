@@ -81,6 +81,7 @@ extension DetailTicketViewController: UITableViewDataSource {
                 // hash
                 let info = "\(VM.detail.eventId)-\(VM.detail.ticketCode)-\(profileViewModel.userInfo!.id!)"
                 let encryptedString = hashRSA(from: info)
+                decodeRSA(from: encryptedString ?? "")
                 let image = generateQRCode(from: encryptedString!)
                 cell.imgQR.image = image
                 return cell
