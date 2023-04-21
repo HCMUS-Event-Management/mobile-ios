@@ -84,25 +84,17 @@ extension ForgetPasswordViewController {
             case .error(let error):
                 print(error)
 //                let err = error as! DataError
-                DispatchQueue.main.async {
-                    self?.showToast(message: error!, font: .systemFont(ofSize: 11.0))
-                    self?.stoppedLoader(loader: loader ?? UIAlertController())
+                if (error == DataError.invalidResponse500.localizedDescription){
+                    DispatchQueue.main.async {
+                        self?.showToast(message: "Chưa kết nối mạng", font: .systemFont(ofSize: 12.0))
+                        self?.stoppedLoader(loader: loader ?? UIAlertController())
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self?.showToast(message: error!, font: .systemFont(ofSize: 12.0))
+                        self?.stoppedLoader(loader: loader ?? UIAlertController())
+                    }
                 }
-
-                
-                
-//                if (err == DataError.invalidResponse400) {
-//                    DispatchQueue.main.async {
-//                        self?.showToast(message: "Email hoặc Mật khẩu không đúng", font: .systemFont(ofSize: 12.0))
-//                        self?.stoppedLoader(loader: loader ?? UIAlertController())
-//                    }
-//                }
-                
-                
-//                if let err = error as? DataError.invalidResponse400 ,  let msg = err.localizedDescription {
-//                    print(msg)
-//
-//                }
                 
 
             case .invalid:

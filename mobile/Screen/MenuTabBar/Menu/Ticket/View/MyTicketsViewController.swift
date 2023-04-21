@@ -172,6 +172,16 @@ extension MyTicketsViewController {
                         TokenService.tokenInstance.removeTokenAndInfo()
                         self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
                     }
+                } else if (error == DataError.invalidResponse500.localizedDescription){
+                    DispatchQueue.main.async {
+                        self?.showToast(message: "Chưa kết nối mạng", font: .systemFont(ofSize: 12.0))
+                        self?.stoppedLoader(loader: loader ?? UIAlertController())
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self?.showToast(message: error!, font: .systemFont(ofSize: 12.0))
+                        self?.stoppedLoader(loader: loader ?? UIAlertController())
+                    }
                 }
             case .logout:
                 // xử lý logout tại đây

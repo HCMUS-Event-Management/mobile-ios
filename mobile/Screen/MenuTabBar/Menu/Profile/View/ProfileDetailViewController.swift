@@ -28,6 +28,7 @@ class ProfileDetailViewController: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
+        self.VM.getUserDetailFromLocalDB()
 
 //        VM.fetchUserDetail()
 //        self.tb.reloadData()
@@ -190,7 +191,6 @@ extension ProfileDetailViewController {
     }
 
     func initViewModel() {
-        self.VM.getUserDetailFromLocalDB()
     }
 
     // Data binding event observe - communication

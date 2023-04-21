@@ -18,46 +18,14 @@ class ProfileAccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
-        VM.fetchUserDetail()
-
     }
 
-//    func changeScreen<T: UIViewController>(
-//        modelType: T.Type,
-//        id: String
-//    ) {
-//        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: id) as? T else {
-//            return
-//        }
-//        self.navigationController?.pushViewController(vc, animated: true)
-//    }
-        
 
     
     override func viewWillAppear(_ animated: Bool) {
-//        VM.fetchUserDetail()
-
+        VM.fetchUserDetail()
         tabBarController?.tabBar.isHidden = false
-//        let title = UILabel()
-//        title.text = "Profile"
-//        title.font = UIFont(name: "Helvetica Bold", size: 18)
-//        title.textAlignment = .center
-//
-//
-//        let spacer = UIView()
-//
-//        let constraint = spacer.widthAnchor.constraint(greaterThanOrEqualToConstant: CGFloat.greatestFiniteMagnitude)
-//        constraint.isActive = true
-//        constraint.priority = .defaultLow
-//
-//        let stack = UIStackView(arrangedSubviews: [title, spacer])
-//        stack.axis = .horizontal
-//
-//        navigationItem.titleView = stack
-        
-        
         configNaviBar()
-
     }
     
     
@@ -180,7 +148,9 @@ extension ProfileAccountViewController {
             case .loading:
                 loader = self?.loader()
             case .stopLoading:
-                self?.stoppedLoader(loader: loader ?? UIAlertController())
+                DispatchQueue.main.async {
+                    self?.stoppedLoader(loader: loader ?? UIAlertController())
+                }
             case .dataLoaded:
                 print("get User loaded...")
                 DispatchQueue.main.async {
@@ -193,6 +163,16 @@ extension ProfileAccountViewController {
                         self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 12.0))
                         TokenService.tokenInstance.removeTokenAndInfo()
                         self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
+                    }
+                } else if (error == DataError.invalidResponse500.localizedDescription){
+                    DispatchQueue.main.async {
+                        self?.showToast(message: "Chưa kết nối mạng", font: .systemFont(ofSize: 12.0))
+                        self?.stoppedLoader(loader: loader ?? UIAlertController())
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self?.showToast(message: error!, font: .systemFont(ofSize: 12.0))
+                        self?.stoppedLoader(loader: loader ?? UIAlertController())
                     }
                 }
             case .logout:

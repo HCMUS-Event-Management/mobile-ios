@@ -8,7 +8,7 @@
 import UIKit
 
 class ChangePasswordViewController: UIViewController {
-    var dataLabel = ["Old password:","Current password:","Confirm password:"]
+    var dataLabel = ["Mật khẩu hiện tại:","Mật khẩu mới:","Xác nhận mật khẩu mới:"]
     var VM = ChangePasswordViewModel()
 
     @IBOutlet weak var tb: UITableView!
@@ -33,16 +33,6 @@ class ChangePasswordViewController: UIViewController {
         
         navigationItem.leftBarButtonItems = [UIBarButtonItem(customView: title)]
     }
-    
-//    func changeScreen<T: UIViewController>(
-//        modelType: T.Type,
-//        id: String
-//    ) {
-//        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: id) as? T else {
-//            return
-//        }
-//        self.navigationController?.pushViewController(vc, animated: true)
-//    }
 
 }
 
@@ -152,21 +142,20 @@ extension ChangePasswordViewController {
 //                let err = error as! DataError
                 if (error == DataError.invalidResponse500.localizedDescription) {
                     DispatchQueue.main.async {
-                        self?.showToast(message: "Mật khẩu cũ không đúng", font: .systemFont(ofSize: 11.0))
+                        self?.showToast(message: "Chưa kết nổi mạng", font: .systemFont(ofSize: 12.0))
                         self?.stoppedLoader(loader: loader ?? UIAlertController())
                     }
                 }
                 else if (error == DataError.invalidResponse401.localizedDescription) {
                     DispatchQueue.main.async {
-                        self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 11.0))
+                        self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 12.0))
                         TokenService.tokenInstance.removeTokenAndInfo()
                         self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
                     }
                 }
                 else  {
                     DispatchQueue.main.async {
-                        print(error)
-                        self?.showToast(message: error!, font: .systemFont(ofSize: 7.0))
+                        self?.showToast(message: error!, font: .systemFont(ofSize: 12.0))
                     }
                 }
             case .logout:
@@ -175,7 +164,6 @@ extension ChangePasswordViewController {
                     self?.showToast(message: "Đổi mật khẩu thành công", font: .systemFont(ofSize: 12.0))
                     self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
                 }
-                print("logout")
             }
         }
     }

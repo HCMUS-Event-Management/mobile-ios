@@ -297,7 +297,6 @@
 		A426853329953D4900AA424A /* mobile */ = {
 			isa = PBXGroup;
 			children = (
-				A4F0253A29DF1513002A5DC0 /* test */,
 				A4506C3B29B86677009B75F6 /* TokenService */,
 				A4C5EFFE29B2F47C00723FC1 /* Extensions */,
 				A4CA58AF29A8DF2300B5E318 /* Utility */,
@@ -305,7 +304,6 @@
 				A44F19E929A719FE00476E9B /* Storybard */,
 				A44F19E629A719D300476E9B /* Helper */,
 				A44F19DC29A7185B00476E9B /* Screen */,
-				A44F19DA29A717B400476E9B /* Features */,
 				A42685692995443A00AA424A /* Controller */,
 				A426853429953D4900AA424A /* AppDelegate.swift */,
 				A426854029953D4C00AA424A /* Assets.xcassets */,
@@ -361,24 +359,10 @@
 			path = cellProfile;
 			sourceTree = "<group>";
 		};
-		A44F19DA29A717B400476E9B /* Features */ = {
-			isa = PBXGroup;
-			children = (
-				A44F19DB29A717C700476E9B /* auth */,
-			);
-			path = Features;
-			sourceTree = "<group>";
-		};
-		A44F19DB29A717C700476E9B /* auth */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = auth;
-			sourceTree = "<group>";
-		};
 		A44F19DC29A7185B00476E9B /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				A4F0253A29DF1513002A5DC0 /* LoadingCell */,
 				A45EBB5A29C8407700120D06 /* ForgetPassword */,
 				A4506C3E29B8751C009B75F6 /* ChangePassword */,
 				A4C5F00129B2F55F00723FC1 /* MenuTabBar */,
@@ -808,13 +792,13 @@
 			path = BoughtTicket;
 			sourceTree = "<group>";
 		};
-		A4F0253A29DF1513002A5DC0 /* test */ = {
+		A4F0253A29DF1513002A5DC0 /* LoadingCell */ = {
 			isa = PBXGroup;
 			children = (
 				A4F0253B29DF1531002A5DC0 /* LoadingTableViewCell.swift */,
 				A4F0253C29DF1531002A5DC0 /* LoadingTableViewCell.xib */,
 			);
-			path = test;
+			path = LoadingCell;
 			sourceTree = "<group>";
 		};
 		FFCA5DF7B62985ED612B4DC2 /* Frameworks */ = {

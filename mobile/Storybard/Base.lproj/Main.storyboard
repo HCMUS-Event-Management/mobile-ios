@@ -142,7 +142,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="MiR-Hn-99z">
-                                <rect key="frame" x="51.666666666666657" y="536" width="310.66666666666674" height="356"/>
+                                <rect key="frame" x="51.666666666666657" y="536" width="310.66666666666674" height="303"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vyr-rb-MaM">
                                         <rect key="frame" x="0.0" y="0.0" width="310.66666666666669" height="38"/>
@@ -289,37 +289,6 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IZp-22-18p">
-                                        <rect key="frame" x="0.0" y="318" width="310.66666666666669" height="38"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don’t have an account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SjU-g4-imn">
-                                                <rect key="frame" x="30.000000000000014" y="9" width="178.66666666666669" height="20"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YjO-XJ-7mw">
-                                                <rect key="frame" x="213.66666666666666" y="3" width="78.999999999999972" height="32"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" title="Sign up">
-                                                    <color key="titleColor" red="0.36862745099999999" green="0.52941176469999995" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                </state>
-                                                <buttonConfiguration key="configuration" style="plain" title="Sign up">
-                                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="15"/>
-                                                    <color key="baseForegroundColor" red="0.36862745099999999" green="0.52941176469999995" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                </buttonConfiguration>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="SjU-g4-imn" firstAttribute="centerY" secondItem="IZp-22-18p" secondAttribute="centerY" id="FF2-On-o3T"/>
-                                            <constraint firstItem="SjU-g4-imn" firstAttribute="top" secondItem="IZp-22-18p" secondAttribute="top" constant="9" id="PCU-AK-GXq"/>
-                                            <constraint firstItem="YjO-XJ-7mw" firstAttribute="centerY" secondItem="SjU-g4-imn" secondAttribute="centerY" id="bie-Gw-eZ3"/>
-                                            <constraint firstItem="SjU-g4-imn" firstAttribute="leading" secondItem="IZp-22-18p" secondAttribute="leading" constant="30" id="blv-d1-3Ef"/>
-                                            <constraint firstItem="YjO-XJ-7mw" firstAttribute="leading" secondItem="SjU-g4-imn" secondAttribute="trailing" constant="5" id="sbZ-pU-dBs"/>
-                                        </constraints>
-                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="zma-fW-Ufj" firstAttribute="height" secondItem="Vyr-rb-MaM" secondAttribute="height" id="6J4-n7-CZV"/>
@@ -342,7 +311,6 @@
                     <connections>
                         <outlet property="btnCheckBoxRemember" destination="hdF-Db-5YD" id="c6j-AJ-2wN"/>
                         <outlet property="btnLogin" destination="GZs-WR-f55" id="DKs-BY-9uA"/>
-                        <outlet property="btnSignUp" destination="YjO-XJ-7mw" id="tgj-gX-IDD"/>
                         <outlet property="fotgetPassword" destination="eBQ-Hm-OC0" id="VOd-78-UsG"/>
                         <outlet property="txtPassword" destination="zma-fW-Ufj" id="Ncy-WF-ft0"/>
                         <outlet property="txtUsername" destination="Vyr-rb-MaM" id="ieG-hu-lLR"/>

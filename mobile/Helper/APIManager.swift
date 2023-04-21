@@ -9,28 +9,8 @@ import Foundation
 import UIKit
 // Singleton Design Pattern
 
-//enum HTTPMethods: String {
-//    case get = "GET"
-//    case post = "POST"
-//    case put = "PUT"
-//}
-//
-//protocol EndPointType {
-//    var path: String { get }
-//    var baseURL: String { get }
-//    var url: URL? { get }
-//    var method: HTTPMethods { get }
-//    var body: Encodable? { get }
-//    var headers: [String: String]? { get }
-//}
-
-enum DataError: Error, Equatable {
+enum DataError: Error {
     
-    static func == (lhs: DataError, rhs: DataError) -> Bool {
-        return lhs.localizedDescription == rhs.localizedDescription
-    }
-    
-//    case invalidResponse
     case invalidResponse(String?)
     case invalidResponse401
     case invalidResponse500

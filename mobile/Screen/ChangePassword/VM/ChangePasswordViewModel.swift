@@ -8,11 +8,6 @@
 import Foundation
  
 
-enum ChangePasswordError: Error {
-    case invalidUpdate
-    case invalidCurrentPassword
-}
-
 class ChangePasswordViewModel {
     
     var eventHandler: ((_ event: Event) -> Void)? // Data Binding Closure
@@ -36,9 +31,6 @@ class ChangePasswordViewModel {
                 else {
                     self.eventHandler?(.error(error.localizedDescription))
                 }
-                
-//                self.eventHandler?(.error(error))
-                
             }
         })
     }
