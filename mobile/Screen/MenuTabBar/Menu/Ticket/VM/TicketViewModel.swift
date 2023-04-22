@@ -10,10 +10,9 @@ import Reachability
 
 class TicketViewModel {
     
-    var idxDetail = 0
-    var idxDetailType = "M"
+//    var idxDetail = 0
+//    var idxDetailType = "M"
     var detail = DataMyTicketObject()
-    
     // my ticket
     var myTicket = [DataMyTicketObject]()
     var numberPageMyTicket = 1.0
@@ -27,7 +26,9 @@ class TicketViewModel {
     var perPage = 10
     var eventHandler: ((_ event: Event) -> Void)? // Data Binding Closure
 
-    func fetchDetailTicket(_ ticketCode: String) {
+    
+    
+    func getDetailTicketFromServer(_ ticketCode: String) {
         self.eventHandler?(.loading)
         APIManager.shared.request(modelType: ReponseDetailTicket.self, type: EntityEndPoint.ticketDetail(ticketCode: ticketCode), params: nil, completion: { result in
             self.eventHandler?(.stopLoading)
@@ -46,22 +47,46 @@ class TicketViewModel {
                         self.eventHandler?(.error(error.localizedDescription))
                     }
             }})
-        
-        }
-}
-
-
-extension TicketViewModel {
-
-    enum Event {
-        case loading
-        case stopLoading
-        case dataLoaded
-        case error(String?)
-        case logout
-//        case newProductAdded(product: AddProduct)
     }
+    
+    func getDetailTicketFromDB(_ ticketCode: String) {
+        let container = try! Container()
 
+        try! container.write{
+            transaction in
+            let items = transaction.get(DataMyTicketObject.self)
+            for item in items.filter("ticketCode == '\(ticketCode)'") {
+                self.detail = item
+                self.eventHandler?(.dataLoaded)
+            }
+        }
+    }
+    
+    func fetchDetailTicket(_ ticketCode: String) {
+        
+        
+        //declare this property where it won't go out of scope relative to your listener
+        let reachability = try! Reachability()
+        
+        switch try! Reachability().connection {
+          case .wifi:
+              print("Reachable via WiFi")
+            getDetailTicketFromServer(ticketCode)
+          case .cellular:
+              print("Reachable via Cellular")
+            getDetailTicketFromServer(ticketCode)
+          case .none:
+              print("Network not reachable")
+              getDetailTicketFromDB(ticketCode)
+          case .unavailable:
+              print("Network not reachable")
+            getDetailTicketFromDB(ticketCode)
+        }
+        
+        
+        
+        
+    }
 }
 
 
@@ -288,4 +313,18 @@ extension TicketViewModel {
             getBoughtTicketDataLocalDB()
         }
     }
+}
+
+
+extension TicketViewModel {
+
+    enum Event {
+        case loading
+        case stopLoading
+        case dataLoaded
+        case error(String?)
+        case logout
+//        case newProductAdded(product: AddProduct)
+    }
+
 }

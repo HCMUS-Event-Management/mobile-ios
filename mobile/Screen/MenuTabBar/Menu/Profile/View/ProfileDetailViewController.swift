@@ -168,9 +168,9 @@ extension ProfileDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
         if (indexPath.row == 0) {
-            return tableView.layer.frame.height/4
+            return (tableView.layer.frame.height/10) * 3
         }
-        return tableView.layer.frame.height/8
+        return (tableView.layer.frame.height/9)
     }
     
 }

@@ -79,8 +79,6 @@ extension BoughtTicketsViewController: UITableViewDataSource {
         }
     } else {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingTableViewCell", for: indexPath) as! LoadingTableViewCell
-//            print(self.VM.currentPage)
-//            print(self.VM.numberPage)
 
         if self.VM.numberPageBoughtTicket >= self.VM.currentPageBoughtTicket {
             cell.indicator.startAnimating()
@@ -113,10 +111,12 @@ extension BoughtTicketsViewController: UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Contanst.userdefault.set("B", forKey: "idxDetailType")
-        Contanst.userdefault.set(indexPath.row, forKey: "idxDetail")
+//        Contanst.userdefault.set("B", forKey: "idxDetailType")
+//        Contanst.userdefault.set(indexPath.row, forKey: "idxDetail")
+//
+//        print(indexPath.row)
+        Contanst.userdefault.set(VM.boughtTicket[indexPath.row].ticketCode, forKey: "ticketCodeDetail")
 
-        print(indexPath.row)
         changeScreen(modelType: DetailTicketViewController.self, id: "DetailTicketViewController")
 
     }

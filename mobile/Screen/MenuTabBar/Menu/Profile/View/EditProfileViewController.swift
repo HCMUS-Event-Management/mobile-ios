@@ -195,9 +195,9 @@ extension EditProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
         if (indexPath.row == 0) {
-            return tableView.layer.frame.height/5
+            return (tableView.layer.frame.height/12) * 3
         }
-        return tableView.layer.frame.height/9
+        return (tableView.layer.frame.height/11)
     }
     
 }

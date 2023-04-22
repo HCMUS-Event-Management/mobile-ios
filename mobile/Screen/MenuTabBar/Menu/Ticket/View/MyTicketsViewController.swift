@@ -58,15 +58,7 @@ extension MyTicketsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-//
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return .leastNormalMagnitude
-//    }
-//
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        return UIView()
-//    }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
@@ -116,16 +108,19 @@ extension MyTicketsViewController: UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Contanst.userdefault.set("M", forKey: "idxDetailType")
-        Contanst.userdefault.set(indexPath.row, forKey: "idxDetail")
-
-        print(indexPath.row)
+        
+        
+        
+        Contanst.userdefault.set(VM.myTicket[indexPath.row].ticketCode, forKey: "ticketCodeDetail")
+//        Contanst.userdefault.set(indexPath.row, forKey: "idxDetail")
+//
+//        print(VM.myTicket[indexPath.row].ticketCode)
         changeScreen(modelType: DetailTicketViewController.self, id: "DetailTicketViewController")
 
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == self.VM.myTicket.count - 4, !isLoading {
+        if indexPath.row == self.VM.myTicket.count - 2, !isLoading {
             loadMoreData()
         }
     }
@@ -163,6 +158,7 @@ extension MyTicketsViewController {
                 print("My Ticket User loaded...")
                 DispatchQueue.main.async {
                     self?.tb.reloadData()
+                    self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .error(let error):
 //                let err = error as! DataError
@@ -184,10 +180,6 @@ extension MyTicketsViewController {
                     }
                 }
             case .logout:
-                // xử lý logout tại đây
-//                DispatchQueue.main.async {
-//                    self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
-//                }
                 print("logout")
             }
         }

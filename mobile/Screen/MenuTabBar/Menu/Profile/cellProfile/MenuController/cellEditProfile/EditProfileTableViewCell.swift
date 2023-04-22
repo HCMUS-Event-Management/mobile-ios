@@ -12,9 +12,21 @@ class EditProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var btnEditImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        btnEditImage.isUserInteractionEnabled = true
+        btnEditImage.addGestureRecognizer(tapGestureRecognizer)
         btnEditImage.layer.cornerRadius = 5
         btnEditImage.layer.masksToBounds = true
+    }
+    
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        let tappedImage = tapGestureRecognizer.view as! UIImageView
+
+        // Your action
+        print(11)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

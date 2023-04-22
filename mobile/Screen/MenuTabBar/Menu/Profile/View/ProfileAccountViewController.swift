@@ -88,9 +88,9 @@ extension ProfileAccountViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
         if (indexPath.section == 0) {
-            return 170
+            return (tableView.layer.frame.height/13) * 3.8
         }
-        return 55
+        return (tableView.layer.frame.height/13)
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
