@@ -10,8 +10,6 @@ import Reachability
 
 class TicketViewModel {
     
-//    var idxDetail = 0
-//    var idxDetailType = "M"
     var detail = DataMyTicketObject()
     // my ticket
     var myTicket = [DataMyTicketObject]()

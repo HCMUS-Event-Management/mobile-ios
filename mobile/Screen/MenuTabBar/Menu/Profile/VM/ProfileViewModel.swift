@@ -14,6 +14,34 @@ final class ProfileViewModel {
 
     var eventHandler: ((_ event: Event) -> Void)? // Data Binding Closure
     
+    
+    func uploadAvatar(imageData: Data?) {
+        self.eventHandler?(.loading)
+
+        let imageStr = imageData?.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
+//            let strBase64 = im
+        let avatar = UploadAvatarDto(data: imageStr)
+        
+
+        let parameter = try? APIManager.shared.encodeBody(value: avatar)
+        APIManager.shared.request(modelType: ReponseCommon.self, type: UserEndPoint.uploadAvatar, params: parameter, completion: {
+            result in
+            self.eventHandler?(.stopLoading)
+            switch result {
+            case .success(let data):
+                self.eventHandler?(.updateProfile)
+            case .failure(let error):
+                if case DataError.invalidResponse(let reason) = error {
+                    self.eventHandler?(.error(reason))
+                }
+                else {
+                    self.eventHandler?(.error(error.localizedDescription))
+                }
+            }
+        })
+        
+    }
+    
     func getUser() {
             if let savedUserData = Contanst.userdefault.object(forKey: "userInfo") as? Foundation.Data {
                 let decoder = JSONDecoder()

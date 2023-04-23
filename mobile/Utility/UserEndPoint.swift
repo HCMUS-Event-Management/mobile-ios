@@ -17,6 +17,7 @@ enum UserEndPoint {
     case sendOTP // POST
     case verifyToken(token: String) // GET
     case refreshToken(token: String) // POST
+    case uploadAvatar // PUT
 }
 
 // https://fakestoreapi.com/products
@@ -43,6 +44,8 @@ extension UserEndPoint: EndPointType {
             return "api/v1/user-auth/user/refresh-token?refreshToken=Bearer%20\(query)"
         case .sendOTP:
             return "api/v1/user-auth/user/send-otp"
+        case .uploadAvatar:
+            return "api/v1/user-auth/user/upload-avatar"
         }
    
 
@@ -76,6 +79,8 @@ extension UserEndPoint: EndPointType {
             return .post
         case .sendOTP:
             return .post
+        case .uploadAvatar:
+            return .put
         }
     }
 
@@ -98,6 +103,8 @@ extension UserEndPoint: EndPointType {
         case .refreshToken:
             return nil
         case .sendOTP:
+            return nil
+        case .uploadAvatar:
             return nil
         }
     
@@ -123,6 +130,8 @@ extension UserEndPoint: EndPointType {
             return APIManager.commonHeaders
         case .sendOTP:
             return APIManager.commonHeaders
+        case .uploadAvatar:
+            return APIManager.bearTokenHeaders
         }
     }
 }

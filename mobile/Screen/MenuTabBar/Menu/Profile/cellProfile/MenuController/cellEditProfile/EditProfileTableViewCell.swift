@@ -9,6 +9,10 @@ import UIKit
 
 class EditProfileTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var avatar: UIImageView!
+    var callback : (() -> Void)?
+
+    private var VM = ProfileViewModel()
     @IBOutlet weak var btnEditImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,7 +29,10 @@ class EditProfileTableViewCell: UITableViewCell {
     {
         let tappedImage = tapGestureRecognizer.view as! UIImageView
 
-        // Your action
+        // Your action 
+
+        callback?()
+
         print(11)
     }
 

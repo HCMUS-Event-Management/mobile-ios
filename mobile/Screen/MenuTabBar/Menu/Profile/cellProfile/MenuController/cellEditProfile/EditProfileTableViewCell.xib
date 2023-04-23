@@ -52,6 +52,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="avatar" destination="LXd-xY-BAk" id="hVi-NU-STq"/>
                 <outlet property="btnEditImage" destination="5Ha-Zw-U74" id="1Ox-wr-QVk"/>
             </connections>
             <point key="canvasLocation" x="241.30434782608697" y="152.34375"/>

@@ -12,7 +12,7 @@ class DetailTicketViewController: UIViewController {
     private var VM = TicketViewModel()
     private var profileViewModel = ProfileViewModel()
     @IBOutlet weak var tb: UITableView!
-    var callback : (() -> Void)?
+//    var callback : (() -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
