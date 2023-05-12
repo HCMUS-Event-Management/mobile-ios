@@ -262,7 +262,7 @@ extension EditProfileViewController {
 
     func initViewModel() {
 //        self.VM.updateUserDetail()
-        self.VM.getUserDetailFromLocalDB()
+        self.VM.fetchUserDetail()
     }
 
     // Data binding event observe - communication

@@ -21,6 +21,7 @@ pod 'IQKeyboardManagerSwift'
 pod 'RealmSwift'
 pod 'SwiftyRSA'
 
+pod 'Kingfisher'
 
 pod 'ReachabilitySwift'
 

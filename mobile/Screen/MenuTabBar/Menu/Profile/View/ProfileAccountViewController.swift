@@ -23,7 +23,7 @@ class ProfileAccountViewController: UIViewController {
 
     
     override func viewWillAppear(_ animated: Bool) {
-        VM.fetchUserDetail()
+        VM.getUserDetailFromLocalDB()
         tabBarController?.tabBar.isHidden = false
         configNaviBar()
     }
