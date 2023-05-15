@@ -20,20 +20,9 @@ class EventsTableViewController: UITableViewController {
         tableView.separatorStyle = .none
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        if apps.count == 0 {
-            return 1
-        } else {
-            return 2
-        }
-    }
-    
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if apps.count != 0 {
-            return "Found \(apps.count) results"
-        }
-        return ""
+        return "Found \(apps.count) results"
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

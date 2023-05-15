@@ -99,20 +99,20 @@ extension FavoriteEventsViewController: UICollectionViewDataSource {
 }
 
 
-    extension FavoriteEventsViewController: UICollectionViewDelegateFlowLayout {
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            if collectionView == self.clEvent {
-                return CGSize(width: collectionView.frame.width/2 - 10, height: 220)
-
-            } else if collectionView == self.clType {
-                return CGSize(width: collectionView.frame.width/4, height: 50)
-            }
+extension FavoriteEventsViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == self.clEvent {
             return CGSize(width: collectionView.frame.width/2 - 10, height: 220)
 
+        } else if collectionView == self.clType {
+            return CGSize(width: collectionView.frame.width/4, height: 50)
         }
-        
-        
+        return CGSize(width: collectionView.frame.width/2 - 10, height: 220)
+
     }
+    
+    
+}
     
 
 

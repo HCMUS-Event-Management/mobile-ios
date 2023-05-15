@@ -111,6 +111,8 @@
 		A4D240D32A0CF06F00B9BF68 /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D240D22A0CF06F00B9BF68 /* EmptyTableViewCell.swift */; };
 		A4D240D42A0CF10E00B9BF68 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A43058F72A0A471D007BC1D0 /* EventTableViewCell.xib */; };
 		A4D240D52A0CF11100B9BF68 /* EmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A43058F52A0A471C007BC1D0 /* EmptyTableViewCell.xib */; };
+		A4D240D72A0DFB8200B9BF68 /* HomeCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D240D62A0DFB8200B9BF68 /* HomeCollectionReusableView.swift */; };
+		A4D240DA2A11E35800B9BF68 /* DetailEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D240D92A11E35800B9BF68 /* DetailEventViewController.swift */; };
 		A4DCFC7229D9584D00A686AC /* EntityEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DCFC7129D9584D00A686AC /* EntityEndPoint.swift */; };
 		A4DCFC7529D95E3400A686AC /* TicketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DCFC7429D95E3400A686AC /* TicketViewModel.swift */; };
 		A4DCFC7E29D960D600A686AC /* Buyer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DCFC7729D960D600A686AC /* Buyer.swift */; };
@@ -260,6 +262,8 @@
 		A4CA58BC29A8E00900B5E318 /* InfoLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoLogin.swift; sourceTree = "<group>"; };
 		A4D240D02A0CF04200B9BF68 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		A4D240D22A0CF06F00B9BF68 /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
+		A4D240D62A0DFB8200B9BF68 /* HomeCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionReusableView.swift; sourceTree = "<group>"; };
+		A4D240D92A11E35800B9BF68 /* DetailEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEventViewController.swift; sourceTree = "<group>"; };
 		A4DCFC7129D9584D00A686AC /* EntityEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityEndPoint.swift; sourceTree = "<group>"; };
 		A4DCFC7429D95E3400A686AC /* TicketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketViewModel.swift; sourceTree = "<group>"; };
 		A4DCFC7729D960D600A686AC /* Buyer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buyer.swift; sourceTree = "<group>"; };
@@ -486,6 +490,7 @@
 		A44F19DC29A7185B00476E9B /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				A4D240D82A11E33C00B9BF68 /* Event */,
 				A4F0253A29DF1513002A5DC0 /* LoadingCell */,
 				A45EBB5A29C8407700120D06 /* ForgetPassword */,
 				A4506C3E29B8751C009B75F6 /* ChangePassword */,
@@ -786,6 +791,7 @@
 			isa = PBXGroup;
 			children = (
 				A4268576299E1CB200AA424A /* HomeViewController.swift */,
+				A4D240D62A0DFB8200B9BF68 /* HomeCollectionReusableView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -837,6 +843,22 @@
 				A4506C9629C3A21C009B75F6 /* DetailTicketViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		A4D240D82A11E33C00B9BF68 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				A4D240DB2A11E49100B9BF68 /* cell */,
+				A4D240D92A11E35800B9BF68 /* DetailEventViewController.swift */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
+		A4D240DB2A11E49100B9BF68 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = cell;
 			sourceTree = "<group>";
 		};
 		A4DCFC7329D95E2500A686AC /* VM */ = {
@@ -1184,6 +1206,7 @@
 				A41A7B3429FA63900024C6F8 /* String+CasePrefix.swift in Sources */,
 				A426853929953D4900AA424A /* ViewController.swift in Sources */,
 				A4506CA729C45E3A009B75F6 /* InfoPaymentTableViewCell.swift in Sources */,
+				A4D240D72A0DFB8200B9BF68 /* HomeCollectionReusableView.swift in Sources */,
 				A4D240BE2A0CE96A00B9BF68 /* ResultsContainerViewController.swift in Sources */,
 				A41A7B2F29FA63900024C6F8 /* UINavigationBar+Shadow.swift in Sources */,
 				A4D240D32A0CF06F00B9BF68 /* EmptyTableViewCell.swift in Sources */,
@@ -1274,6 +1297,7 @@
 				A4A91316299F5AB800AC5E75 /* ProfileDetailViewController.swift in Sources */,
 				A45EBB6229D2E39C00120D06 /* ReponseError.swift in Sources */,
 				A426853F29953D4900AA424A /* mobile.xcdatamodeld in Sources */,
+				A4D240DA2A11E35800B9BF68 /* DetailEventViewController.swift in Sources */,
 				A4506C3D29B8668B009B75F6 /* TokenService.swift in Sources */,
 				A4DCFC8429D960D600A686AC /* Event.swift in Sources */,
 				A4F0253929DED416002A5DC0 /* DataBoughtTicket.swift in Sources */,
