@@ -12,6 +12,9 @@ enum EntityEndPoint {
     case ticketDetail(ticketCode: String)
     case boughtTicket(page: Int, perPage: Int)
     case search(query: String)
+    case listGoingOnEvent(page: Int, perPage: Int, filterStatus: String, sort: String, fullTextSearch: String, type: String)
+    case listIsCommingEvent(page: Int, perPage: Int, filterStatus: String, sort: String, fullTextSearch: String, type: String)
+    case eventDetaik(id: Int)
 }
 
 
@@ -27,6 +30,12 @@ extension EntityEndPoint: EndPointType {
             return "api/v1/entity/ticket/bought?page=\(page)&perPage=\(perPage)"
         case .search(query: let query):
             return "api/v1/entity/event/search?query=\(query)"
+        case .listGoingOnEvent(page: let page, perPage: let perPage, filterStatus: let filterStatus, sort: let sort, fullTextSearch: let fullTextSearch, type: let type):
+            return "api/v1/entity/event/get-list-going-on-event?page=\(page)&perPage=\(perPage)&filterStatus=\(filterStatus)&sort=\(sort)&fullTextSearch=\(fullTextSearch)&type=\(type)"
+        case .listIsCommingEvent(page: let page, perPage: let perPage, filterStatus: let filterStatus, sort: let sort, fullTextSearch: let fullTextSearch, type: let type):
+            return "api/v1/entity/event/get-list-is-coming-event?page=\(page)&perPage=\(perPage)&filterStatus=\(filterStatus)&sort=\(sort)&fullTextSearch=\(fullTextSearch)&type=\(type)"
+        case .eventDetaik(id: let id):
+            return "api/v1/entity/event/get-detail-event/\(id)"
         }
     }
     
@@ -54,7 +63,13 @@ extension EntityEndPoint: EndPointType {
             return .get
         case .boughtTicket:
             return .get
-        case .search(query: let query):
+        case .search:
+            return .get
+        case .listGoingOnEvent:
+            return .get
+        case .eventDetaik:
+            return .get
+        case .listIsCommingEvent:
             return .get
         }
     }
@@ -69,6 +84,12 @@ extension EntityEndPoint: EndPointType {
             return nil
         case .search:
             return nil
+        case .eventDetaik:
+            return nil
+        case .listGoingOnEvent:
+            return nil
+        case .listIsCommingEvent:
+            return nil
         }
     }
     
@@ -80,7 +101,13 @@ extension EntityEndPoint: EndPointType {
             return APIManager.bearTokenHeaders
         case .boughtTicket:
             return APIManager.bearTokenHeaders
+        case .eventDetaik:
+            return APIManager.commonHeaders
         case .search:
+            return APIManager.commonHeaders
+        case .listGoingOnEvent:
+            return APIManager.commonHeaders
+        case .listIsCommingEvent:
             return APIManager.commonHeaders
         }
     }

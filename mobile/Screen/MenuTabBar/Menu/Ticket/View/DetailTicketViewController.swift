@@ -24,16 +24,6 @@ class DetailTicketViewController: UIViewController {
         let ticketCodeDetail = Contanst.userdefault.string(forKey: "ticketCodeDetail")!
         
         VM.fetchDetailTicket(ticketCodeDetail)
-        
-//        let idxDetailType = Contanst.userdefault.string(forKey: "idxDetailType")
-//        let idxDetail = Contanst.userdefault.integer(forKey: "idxDetail")
-//
-//
-//        if idxDetailType == "M" {
-//            VM.fetchDetailTicket(VM.myTicket[idxDetail].ticketCode)
-//        } else if idxDetailType == "B" {
-//            VM.fetchDetailTicket(VM.boughtTicket[idxDetail].ticketCode)
-//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

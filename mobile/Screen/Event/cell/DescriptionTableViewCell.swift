@@ -1,23 +1,21 @@
 //
-//  ImageQRCodeTableViewCell.swift
+//  DescriptionTableViewCell.swift
 //  mobile
 //
-//  Created by NguyenSon_MP on 17/03/2023.
+//  Created by NguyenSon_MP on 16/05/2023.
 //
 
 import UIKit
 
-class ImageQRCodeTableViewCell: UITableViewCell {
+class DescriptionTableViewCell: UITableViewCell {
 
     @IBOutlet weak var mainView: UIView!
-    @IBOutlet weak var imgQR: UIImageView!
+    @IBOutlet weak var txtDescription: UITextView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        mainView.layer.masksToBounds = true
         mainView.layer.cornerRadius = 10
-        mainView.layer.borderWidth = 0.2
-        mainView.layer.borderColor = UIColor.gray.cgColor
+        mainView.layer.masksToBounds = true
+        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -6,21 +6,26 @@
 //
 
 import UIKit
-
+import RealmSwift
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var cl: UICollectionView!
+    
+    private var VM = HomeViewModel()
+    
     private var titleSection = ["Ongoing Events 🔥","Upcoming Events ✨"]
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.cl.register(UINib(nibName: "EventCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "EventCollectionViewCell")
-        self.cl.dataSource = self
-        self.cl.delegate = self
+        configuration()
+        VM.getListEventForHome()
+        print(Realm.Configuration.defaultConfiguration.fileURL)
         // Do any additional setup after loading the view.
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        
 //        tabBarController?.tabBar.isHidden = false
        configNaviBar()
     }
@@ -70,13 +75,24 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell {
-            
-            cell.layer.cornerRadius = 10
-            cell.layer.masksToBounds = true
-            
-            return cell
+        if indexPath.section == 0 {
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell {
+                cell.eventName.text = self.VM.goingOnEvent[indexPath.row].title
+                cell.layer.cornerRadius = 10
+                cell.layer.masksToBounds = true
+                
+                return cell
+            }
+        } else if indexPath.section == 1{
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell {
+                cell.eventName.text = self.VM.isCommingEvent[indexPath.row].title
+                cell.layer.cornerRadius = 10
+                cell.layer.masksToBounds = true
+                
+                return cell
+            }
         }
+        
         return UICollectionViewCell()
 
     }
@@ -87,7 +103,11 @@ extension HomeViewController: UICollectionViewDataSource {
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        if(section == 0) {
+            return self.VM.goingOnEvent.count
+        } else {
+            return self.VM.isCommingEvent.count
+        }
     }
 }
 
@@ -104,5 +124,74 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         }
         return UICollectionReusableView()
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            Contanst.userdefault.set(VM.goingOnEvent[indexPath.row].id, forKey: "eventIdDetail")
+        } else {
+            Contanst.userdefault.set(VM.isCommingEvent[indexPath.row].id, forKey: "eventIdDetail")
+
+        }
+        changeScreen(modelType: DetailEventViewController.self, id: "DetailEventViewController")
+
+    }
 }
 
+
+extension HomeViewController {
+
+    func configuration() {
+        self.cl.register(UINib(nibName: "EventCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "EventCollectionViewCell")
+        self.cl.dataSource = self
+        self.cl.delegate = self
+        
+        initViewModel()
+        observeEvent()
+    }
+
+    func initViewModel() {
+        
+    }
+
+    // Data binding event observe - communication
+    func observeEvent() {
+        var loader:UIAlertController?
+
+        VM.eventHandler = { [weak self] event in
+            switch event {
+            case .loading:
+                loader = self?.loader()
+            case .stopLoading:
+                DispatchQueue.main.async {
+                    self?.stoppedLoader(loader: loader ?? UIAlertController())
+                }
+            case .dataLoaded:
+                print(self!.VM.isCommingEvent)
+                DispatchQueue.main.async {
+                    self?.cl.reloadData()
+                    self?.stoppedLoader(loader: loader ?? UIAlertController())
+                }
+            case .error(let error):
+//                let err = error as! DataError
+                if (error == DataError.invalidResponse401.localizedDescription) {
+                    DispatchQueue.main.async {
+                        self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 12.0))
+                        TokenService.tokenInstance.removeTokenAndInfo()
+                        self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
+                    }
+                } else if (error == DataError.invalidResponse500.localizedDescription){
+                    DispatchQueue.main.async {
+                        self?.showToast(message: "Chưa kết nối mạng", font: .systemFont(ofSize: 12.0))
+                        self?.stoppedLoader(loader: loader ?? UIAlertController())
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self?.showToast(message: error!, font: .systemFont(ofSize: 12.0))
+                        self?.stoppedLoader(loader: loader ?? UIAlertController())
+                    }
+                }
+            }
+        }
+
+    }
+}

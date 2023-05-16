@@ -80,10 +80,7 @@ class TicketViewModel {
               print("Network not reachable")
             getDetailTicketFromDB(ticketCode)
         }
-        
-        
-        
-        
+
     }
 }
 

@@ -9,6 +9,11 @@ import UIKit
 
 class EventCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var imgAvatar: UIImageView!
+    @IBOutlet weak var owner: UILabel!
+    @IBOutlet weak var locationName: UIView!
+    @IBOutlet weak var timeStart: UILabel!
+    @IBOutlet weak var eventName: UILabel!
     @IBOutlet weak var paidView: UIView!
     @IBOutlet weak var archiveView: UIView!
     @IBOutlet weak var mainView: UIView!
@@ -19,6 +24,7 @@ class EventCollectionViewCell: UICollectionViewCell {
         preUI()
         
     }
+    
     func preUI() {
         btnSeeDetail.layer.cornerRadius = 10
         btnSeeDetail.layer.masksToBounds = true

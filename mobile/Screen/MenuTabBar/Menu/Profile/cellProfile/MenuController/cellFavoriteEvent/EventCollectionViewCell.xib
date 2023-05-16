@@ -187,8 +187,13 @@
             <connections>
                 <outlet property="archiveView" destination="eiz-hR-BOK" id="wur-ro-UWh"/>
                 <outlet property="btnSeeDetail" destination="1aQ-b3-hD9" id="4bD-ZY-JWE"/>
+                <outlet property="eventName" destination="Ih9-yr-vNs" id="soX-ac-Fof"/>
+                <outlet property="imgAvatar" destination="m3B-lj-I9S" id="pjy-vX-u1J"/>
+                <outlet property="locationName" destination="qay-TQ-4f9" id="JbQ-gO-Ieg"/>
                 <outlet property="mainView" destination="ELR-KN-cL0" id="yVX-Nl-Hg0"/>
+                <outlet property="owner" destination="5be-8U-lVC" id="hnR-42-i1W"/>
                 <outlet property="paidView" destination="y3r-sY-5Me" id="zj9-lU-Epb"/>
+                <outlet property="timeStart" destination="sdB-H4-Zpf" id="mAC-UI-4Mn"/>
             </connections>
             <point key="canvasLocation" x="250.00000000000003" y="136.60714285714286"/>
         </collectionViewCell>
