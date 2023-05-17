@@ -12,7 +12,8 @@ class ResultsContainerViewController: ContentStateViewController {
     
     private var suggestionsViewController: SuggestedTermsTableViewController!
     var didSelect: (String) -> Void = { _ in }
-    
+    var callback : (() -> Void)?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -40,6 +41,9 @@ class ResultsContainerViewController: ContentStateViewController {
             /// active suggestions.
             let appsListViewController = EventsTableViewController()
             appsListViewController.search(term: term)
+            appsListViewController.callback = {
+                self.callback?()
+            }
             transition(to: .render(appsListViewController))
         }
     }

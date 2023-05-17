@@ -10,31 +10,34 @@ import UIKit
 import Kingfisher
 
 class EventsTableViewController: UITableViewController {
-    var apps = [DataReponseSearch]()
-        
+    var callback : (() -> Void)?
+    var VM = SearchViewModel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(EventTableViewCell.self)
-        tableView.register(EmptyTableViewCell.self)
-
-        tableView.separatorStyle = .none
+        configuration()
     }
     
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Found \(apps.count) results"
+        return "Found \(VM.apps.count) results"
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if apps.count == 0 {
+        if VM.apps.count == 0 {
             return 1
         } else {
-            return apps.count
+            return VM.apps.count
         }
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        Contanst.userdefault.set(VM.apps[indexPath.row].id, forKey: "eventIdDetail")
+        callback?()
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if apps.count == 0 {
+        if VM.apps.count == 0 {
             let cell: EmptyTableViewCell =
                 tableView.dequeueReusableCell(forIndexPath: indexPath)
             return cell
@@ -43,7 +46,7 @@ class EventsTableViewController: UITableViewController {
                 tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
 
-            cell.configure(app: apps[indexPath.row])
+            cell.configure(app: VM.apps[indexPath.row])
             return cell
         }
     }
@@ -52,44 +55,78 @@ class EventsTableViewController: UITableViewController {
         guard let cell = cell as? EventTableViewCell else { return }
         cell.cancel()
     }
+    
+
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if apps.count == 0 {
+        if VM.apps.count == 0 {
             return tableView.layer.frame.height
         } else {
             return tableView.layer.frame.height / 5
         }
     }
     
-    /// For the purpose of a simple blog post this is network call
-    /// is placed on the view controller.
-    ///
-    /// - Parameter term: Term to search.
-    func search(term: String) {
-        let encodedTerm = term //.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
-        APIManager.shared.request(modelType: ReponseSearch.self, type: EntityEndPoint.search(query: encodedTerm  ?? String()), params: nil, completion: { result in
-            switch result {
-            case .success(let data):
-                self.handle(response: data)
-            case .failure(let error):
-                print(error)
-            }
 
-        })
+    func search(term: String) {
+        VM.search(term: term)
+    }
+}
+
+
+extension EventsTableViewController {
+
+    func configuration() {
+        tableView.register(EventTableViewCell.self)
+        tableView.register(EmptyTableViewCell.self)
+
+        tableView.separatorStyle = .none
         
-        
+        initViewModel()
+        observeEvent()
+    }
+
+    func initViewModel() {
         
     }
-    
-    //vm
-    
-    /// Handles the networking response with the searched apps.
-    ///
-    /// - Parameter response: ReponseSearch retrieved from the network.
-    private func handle(response: ReponseSearch) {
-        apps = response.data ?? [DataReponseSearch]()
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
+
+    // Data binding event observe - communication
+    func observeEvent() {
+        var loader:UIAlertController?
+
+        VM.eventHandler = { [weak self] event in
+            switch event {
+            case .loading:
+                loader = self?.loader()
+            case .stopLoading:
+                DispatchQueue.main.async {
+                    self?.stoppedLoader(loader: loader ?? UIAlertController())
+                }
+            case .dataLoaded:
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                    self?.stoppedLoader(loader: loader ?? UIAlertController())
+                }
+            case .error(let error):
+//                let err = error as! DataError
+                if (error == DataError.invalidResponse401.localizedDescription) {
+                    DispatchQueue.main.async {
+                        self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 12.0))
+                        TokenService.tokenInstance.removeTokenAndInfo()
+                        self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
+                    }
+                } else if (error == DataError.invalidResponse500.localizedDescription){
+                    DispatchQueue.main.async {
+                        self?.showToast(message: "Chưa kết nối mạng", font: .systemFont(ofSize: 12.0))
+                        self?.stoppedLoader(loader: loader ?? UIAlertController())
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self?.showToast(message: error!, font: .systemFont(ofSize: 12.0))
+                        self?.stoppedLoader(loader: loader ?? UIAlertController())
+                    }
+                }
+            }
         }
+
     }
 }

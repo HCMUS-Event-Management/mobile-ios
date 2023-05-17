@@ -27,6 +27,9 @@ class SearchViewController: UITableViewController {
         extendedLayoutIncludesOpaqueBars = true
         setSearchController()
         navigationController?.navigationBar.setShadow(hidden: true)
+        resultsContainerViewController.callback = {
+            self.changeScreen(modelType: DetailEventViewController.self, id: "DetailEventViewController")
+        }
     }
     
     private func setSearchController() {

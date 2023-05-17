@@ -85,6 +85,7 @@
 		A46C1C5F29ED384800F491F1 /* ForgetPassword3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46C1C5E29ED384800F491F1 /* ForgetPassword3ViewController.swift */; };
 		A46C1C6129ED3C9F00F491F1 /* SendOTPDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46C1C6029ED3C9F00F491F1 /* SendOTPDto.swift */; };
 		A46C1C6329ED3D4000F491F1 /* ForgetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46C1C6229ED3D4000F491F1 /* ForgetPasswordViewModel.swift */; };
+		A47847972A14D1FA00090EF3 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47847962A14D1FA00090EF3 /* SearchViewModel.swift */; };
 		A49D812929F3D08A009AE469 /* UploadAvatarDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49D812829F3D08A009AE469 /* UploadAvatarDto.swift */; };
 		A4A91316299F5AB800AC5E75 /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A91315299F5AB800AC5E75 /* ProfileDetailViewController.swift */; };
 		A4A91319299FAA1100AC5E75 /* PaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A91318299FAA1100AC5E75 /* PaymentMethodViewController.swift */; };
@@ -261,6 +262,7 @@
 		A46C1C5E29ED384800F491F1 /* ForgetPassword3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPassword3ViewController.swift; sourceTree = "<group>"; };
 		A46C1C6029ED3C9F00F491F1 /* SendOTPDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SendOTPDto.swift; path = mobile/Screen/ForgetPassword/View/SendOTPDto.swift; sourceTree = SOURCE_ROOT; };
 		A46C1C6229ED3D4000F491F1 /* ForgetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ForgetPasswordViewModel.swift; path = mobile/Screen/ForgetPassword/View/ForgetPasswordViewModel.swift; sourceTree = SOURCE_ROOT; };
+		A47847962A14D1FA00090EF3 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		A49D812829F3D08A009AE469 /* UploadAvatarDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAvatarDto.swift; sourceTree = "<group>"; };
 		A4A91315299F5AB800AC5E75 /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
 		A4A91318299FAA1100AC5E75 /* PaymentMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodViewController.swift; sourceTree = "<group>"; };
@@ -491,6 +493,7 @@
 		A43058E62A0A088F007BC1D0 /* VM */ = {
 			isa = PBXGroup;
 			children = (
+				A47847962A14D1FA00090EF3 /* SearchViewModel.swift */,
 			);
 			path = VM;
 			sourceTree = "<group>";
@@ -1337,6 +1340,7 @@
 				A4A91319299FAA1100AC5E75 /* PaymentMethodViewController.swift in Sources */,
 				A49D812929F3D08A009AE469 /* UploadAvatarDto.swift in Sources */,
 				A4F0253729DED405002A5DC0 /* ReponseBoughtTicket.swift in Sources */,
+				A47847972A14D1FA00090EF3 /* SearchViewModel.swift in Sources */,
 				A4DCFC8129D960D600A686AC /* ReponseMyTicket.swift in Sources */,
 				A4CA58BB29A8DFD200B5E318 /* DataReponseLogin.swift in Sources */,
 				A41A7B3329FA63900024C6F8 /* Array+SafeIndex.swift in Sources */,
