@@ -12,7 +12,7 @@ class HomeViewModel {
 
     var eventHandler: ((_ event: Event) -> Void)? // Data Binding Closure
     var goingOnEvent = [DataEventObject]()
-    var isCommingEvent = [DataEvent]()
+    var isCommingEvent = [DataEventObject]()
     var detailEvent = EventDetailObject()
 
 }
@@ -111,11 +111,11 @@ extension HomeViewModel {
     func getListGoingOnFromDB() {
         self.goingOnEvent = [DataEventObject]()
         let container = try! Container()
+        let now = Date();
         try! container.write{
             transaction in
             let temp = transaction.get(DataEventObject.self)
-            temp.forEach {
-                i in
+            for i in temp.filter("%@ >= startAt AND %@ <= endAt", now, now){
                 self.goingOnEvent.append(i)
             }
         }
@@ -150,7 +150,14 @@ extension HomeViewModel {
             result in
             switch result {
             case .success(let value):
-                self.isCommingEvent = value.data ?? [DataEvent]()
+                let container = try! Container()
+                try! container.write { transaction in
+                    value.data?.forEach{
+                        i in
+                        transaction.add(i, update: true)
+                        self.isCommingEvent.append(i.managedObject())
+                    }
+                }
                 self.eventHandler?(.dataLoaded)
             case .failure(let error):
                 if case DataError.invalidResponse(let reason) = error {
@@ -165,10 +172,49 @@ extension HomeViewModel {
     
     
     
+    func getListIsCommingFromDB() {
+        self.isCommingEvent = [DataEventObject]()
+        let container = try! Container()
+        try! container.write{
+            transaction in
+            let temp = transaction.get(DataEventObject.self)
+            let now = Date();
+            let threeDaysLater = Date(timeIntervalSinceNow: 30 * 24 * 60 * 60);
+
+            for i in temp.filter("startAt BETWEEN {%@, %@}", now , threeDaysLater) {
+                self.isCommingEvent.append(i)
+            }
+        }
+        self.eventHandler?(.dataLoaded)
+    }
+    
+    
+    func fetchListIsComming() {
+        //declare this property where it won't go out of scope relative to your listener
+        let reachability = try! Reachability()
+        
+        switch try! Reachability().connection {
+          case .wifi:
+              print("Reachable via WiFi")
+            getListIsCommingFromServer()
+          case .cellular:
+              print("Reachable via Cellular")
+            getListIsCommingFromServer()
+          case .none:
+              print("Network not reachable")
+            getListIsCommingFromDB()
+          case .unavailable:
+              print("Network not reachable")
+            getListIsCommingFromDB()
+        }
+    }
+    
+    
+    
     func getListEventForHome() {
         self.eventHandler?(.loading)
         self.fetchListGoingOn()
-        self.getListIsCommingFromServer()
+        self.fetchListIsComming()
     }
     
 }

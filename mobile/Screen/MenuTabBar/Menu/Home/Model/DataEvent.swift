@@ -88,8 +88,8 @@ final class DataEventObject: Object {
     @objc dynamic var id : String = ""
     @objc dynamic var title : String = ""
     @objc dynamic var description1 : String = ""
-    @objc dynamic var startAt : String = ""
-    @objc dynamic var endAt : String = ""
+    @objc dynamic var startAt : Date? = nil
+    @objc dynamic var endAt : Date? = nil
     @objc dynamic var status : String = ""
     @objc dynamic var urlWeb : String = ""
     @objc dynamic var image : String = ""
@@ -117,8 +117,8 @@ extension DataEvent: Persistable {
         id = managedObject.id
         title = managedObject.title
         description = managedObject.description1
-        startAt = managedObject.startAt
-        endAt = managedObject.endAt
+        startAt = managedObject.startAt?.ISO8601Format()
+        endAt = managedObject.endAt?.ISO8601Format()
         status = managedObject.status
         urlWeb = managedObject.urlWeb
         image = managedObject.image
@@ -134,12 +134,16 @@ extension DataEvent: Persistable {
     }
     
     public func managedObject() -> DataEventObject {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+
         let character = DataEventObject()
         character.id = id ?? ""
         character.title = title  ?? ""
         character.description1 = description  ?? ""
-        character.startAt = startAt  ?? ""
-        character.endAt = endAt  ?? ""
+        character.startAt = dateFormatter.date(from: startAt!) ?? Date()
+        character.endAt = dateFormatter.date(from: endAt!) ?? Date()
         character.status = status  ?? ""
         character.urlWeb = urlWeb  ?? ""
         character.image = image  ?? ""
