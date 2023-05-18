@@ -14,11 +14,41 @@ enum EntityEndPoint {
     case search(query: String)
     case listGoingOnEvent(page: Int, perPage: Int, filterStatus: String, sort: String, fullTextSearch: String, type: String)
     case listIsCommingEvent(page: Int, perPage: Int, filterStatus: String, sort: String, fullTextSearch: String, type: String)
-    case eventDetaik(id: Int)
+    case eventDetail(id: Int)
+    case getAllCategory
+    case listEventOfUser(page: Int, perPage: Int, filterStatus: String, sort: String, fullTextSearch: String, type: String)
 }
 
 
 extension EntityEndPoint: EndPointType {
+    var body: Encodable? {
+        return nil
+    }
+    
+    var headers: [String : String]? {
+        switch self {
+        case .myTicket:
+            return APIManager.bearTokenHeaders
+        case .ticketDetail:
+            return APIManager.bearTokenHeaders
+        case .boughtTicket:
+            return APIManager.bearTokenHeaders
+        case .eventDetail:
+            return APIManager.commonHeaders
+        case .search:
+            return APIManager.commonHeaders
+        case .listGoingOnEvent:
+            return APIManager.commonHeaders
+        case .listIsCommingEvent:
+            return APIManager.commonHeaders
+        case .getAllCategory:
+            return APIManager.commonHeaders
+        case .listEventOfUser:
+            return APIManager.commonHeaders
+        }
+    }
+    
+    
     var path: String {
         switch self {
             
@@ -34,8 +64,12 @@ extension EntityEndPoint: EndPointType {
             return "api/v1/entity/event/get-list-going-on-event?page=\(page)&perPage=\(perPage)&filterStatus=\(filterStatus)&sort=\(sort)&fullTextSearch=\(fullTextSearch)&type=\(type)"
         case .listIsCommingEvent(page: let page, perPage: let perPage, filterStatus: let filterStatus, sort: let sort, fullTextSearch: let fullTextSearch, type: let type):
             return "api/v1/entity/event/get-list-is-coming-event?page=\(page)&perPage=\(perPage)&filterStatus=\(filterStatus)&sort=\(sort)&fullTextSearch=\(fullTextSearch)&type=\(type)"
-        case .eventDetaik(id: let id):
+        case .eventDetail(id: let id):
             return "api/v1/entity/event/get-detail-event/\(id)"
+        case .getAllCategory:
+            return "api/v1/entity/category/get-all"
+        case .listEventOfUser(page: let page, perPage: let perPage, filterStatus: let filterStatus, sort: let sort, fullTextSearch: let fullTextSearch, type: let type):
+            return "api/v1/entity/event/get-list-event-user?page=\(page)&perPage=\(perPage)&filterStatus=\(filterStatus)&sort=\(sort)&fullTextSearch=\(fullTextSearch)&type=\(type)"
         }
     }
     
@@ -44,14 +78,6 @@ extension EntityEndPoint: EndPointType {
     }
 
     var url: URL? {
-//        switch self {
-//        case .myTicket(let page, let perPage): return URL(string: "\(baseURL)\(path)")
-//        case .ticketDetail(let ticketCode): return URL(string: "\(baseURL)\(path)")
-//        case .boughtTicket(let page, let perPage):
-//            return URL(string: "\(baseURL)\(path)")
-//        case .search(let query):
-//            return URL(string:"https://itunes.apple.com/search?term=\(query)&entity=software,iPadSoftware&limit=10")
-//        }
         return URL(string: "\(baseURL)\(path)")
     }
     
@@ -67,50 +93,15 @@ extension EntityEndPoint: EndPointType {
             return .get
         case .listGoingOnEvent:
             return .get
-        case .eventDetaik:
+        case .eventDetail:
             return .get
         case .listIsCommingEvent:
             return .get
+        case .getAllCategory:
+            return .get
+        case .listEventOfUser:
+            return .get
         }
     }
-    
-    var body: Encodable? {
-        switch self {
-        case .myTicket:
-            return nil
-        case .ticketDetail:
-            return nil
-        case .boughtTicket:
-            return nil
-        case .search:
-            return nil
-        case .eventDetaik:
-            return nil
-        case .listGoingOnEvent:
-            return nil
-        case .listIsCommingEvent:
-            return nil
-        }
-    }
-    
-    var headers: [String : String]? {
-        switch self {
-        case .myTicket:
-            return APIManager.bearTokenHeaders
-        case .ticketDetail:
-            return APIManager.bearTokenHeaders
-        case .boughtTicket:
-            return APIManager.bearTokenHeaders
-        case .eventDetaik:
-            return APIManager.commonHeaders
-        case .search:
-            return APIManager.commonHeaders
-        case .listGoingOnEvent:
-            return APIManager.commonHeaders
-        case .listIsCommingEvent:
-            return APIManager.commonHeaders
-        }
-    }
-    
     
 }

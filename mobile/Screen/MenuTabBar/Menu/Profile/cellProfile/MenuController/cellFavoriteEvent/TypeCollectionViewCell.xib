@@ -43,6 +43,7 @@
             </constraints>
             <size key="customSize" width="263" height="139"/>
             <connections>
+                <outlet property="category" destination="pTe-Q8-1Lv" id="hL3-LC-ZYb"/>
                 <outlet property="viewLbl" destination="U5i-Go-p4a" id="mV1-uT-sdL"/>
             </connections>
             <point key="canvasLocation" x="286.23188405797106" y="114.17410714285714"/>

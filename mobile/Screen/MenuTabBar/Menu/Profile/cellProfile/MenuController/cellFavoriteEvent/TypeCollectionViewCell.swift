@@ -9,12 +9,20 @@ import UIKit
 
 class TypeCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var category: UILabel!
     @IBOutlet weak var viewLbl: UIView!
+    override var isSelected: Bool {
+        didSet {
+            contentView.backgroundColor = isSelected ? .red : .white
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         preUI()
     }
+    
     
     func preUI() {
         viewLbl.layer.cornerRadius = 12

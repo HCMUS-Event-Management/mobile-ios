@@ -14,26 +14,37 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 import Foundation
 import RealmSwift
 struct Category : Codable {
-	let name : String?
-	let label : String?
+    var id : String?
+    var name : String?
+    var label : String?
+    var createdAt : String?
+    var updatedAt : String?
 
-	enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
 
-		case name = "name"
-		case label = "label"
-	}
+        case id = "id"
+        case name = "name"
+        case label = "label"
+        case createdAt = "createdAt"
+        case updatedAt = "updatedAt"
+    }
 
-	init(from decoder: Decoder) throws {
-		let values = try decoder.container(keyedBy: CodingKeys.self)
-		name = try values.decodeIfPresent(String.self, forKey: .name)
-		label = try values.decodeIfPresent(String.self, forKey: .label)
-	}
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decodeIfPresent(String.self, forKey: .id)
+        name = try values.decodeIfPresent(String.self, forKey: .name)
+        label = try values.decodeIfPresent(String.self, forKey: .label)
+        createdAt = try values.decodeIfPresent(String.self, forKey: .createdAt)
+        updatedAt = try values.decodeIfPresent(String.self, forKey: .updatedAt)
+    }
 
 }
 
 final class CategoryObject: Object {
     @objc dynamic var name : String = ""
     @objc dynamic var label : String = ""
+    @objc dynamic var createdAt : String = ""
+    @objc dynamic var updatedAt : String = ""
     override static func primaryKey() -> String? {
         return "name"
     }
@@ -43,12 +54,16 @@ extension Category: Persistable {
     public init(managedObject: CategoryObject) {
         name = managedObject.name
         label = managedObject.label
+        createdAt = managedObject.createdAt
+        updatedAt = managedObject.updatedAt
     }
     
     public func managedObject() -> CategoryObject {
         let character = CategoryObject()
         character.name = name ?? ""
         character.label = label ?? ""
+        character.createdAt = createdAt ?? ""
+        character.updatedAt = updatedAt ?? ""
         return character
     }
 }

@@ -86,6 +86,9 @@
 		A46C1C6129ED3C9F00F491F1 /* SendOTPDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46C1C6029ED3C9F00F491F1 /* SendOTPDto.swift */; };
 		A46C1C6329ED3D4000F491F1 /* ForgetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46C1C6229ED3D4000F491F1 /* ForgetPasswordViewModel.swift */; };
 		A47847972A14D1FA00090EF3 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47847962A14D1FA00090EF3 /* SearchViewModel.swift */; };
+		A478479D2A14DA0E00090EF3 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A478479C2A14DA0E00090EF3 /* EventViewController.swift */; };
+		A478479F2A14DEB700090EF3 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A478479E2A14DEB700090EF3 /* EventsViewModel.swift */; };
+		A47847A12A14E40000090EF3 /* ReponseGetAllCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47847A02A14E40000090EF3 /* ReponseGetAllCategory.swift */; };
 		A49D812929F3D08A009AE469 /* UploadAvatarDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49D812829F3D08A009AE469 /* UploadAvatarDto.swift */; };
 		A4A91316299F5AB800AC5E75 /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A91315299F5AB800AC5E75 /* ProfileDetailViewController.swift */; };
 		A4A91319299FAA1100AC5E75 /* PaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A91318299FAA1100AC5E75 /* PaymentMethodViewController.swift */; };
@@ -263,6 +266,9 @@
 		A46C1C6029ED3C9F00F491F1 /* SendOTPDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SendOTPDto.swift; path = mobile/Screen/ForgetPassword/View/SendOTPDto.swift; sourceTree = SOURCE_ROOT; };
 		A46C1C6229ED3D4000F491F1 /* ForgetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ForgetPasswordViewModel.swift; path = mobile/Screen/ForgetPassword/View/ForgetPasswordViewModel.swift; sourceTree = SOURCE_ROOT; };
 		A47847962A14D1FA00090EF3 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		A478479C2A14DA0E00090EF3 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		A478479E2A14DEB700090EF3 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
+		A47847A02A14E40000090EF3 /* ReponseGetAllCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReponseGetAllCategory.swift; sourceTree = "<group>"; };
 		A49D812829F3D08A009AE469 /* UploadAvatarDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAvatarDto.swift; sourceTree = "<group>"; };
 		A4A91315299F5AB800AC5E75 /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
 		A4A91318299FAA1100AC5E75 /* PaymentMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodViewController.swift; sourceTree = "<group>"; };
@@ -535,7 +541,7 @@
 		A44F19DC29A7185B00476E9B /* Screen */ = {
 			isa = PBXGroup;
 			children = (
-				A4D240D82A11E33C00B9BF68 /* Event */,
+				A4D240D82A11E33C00B9BF68 /* DetailEvent */,
 				A4F0253A29DF1513002A5DC0 /* LoadingCell */,
 				A45EBB5A29C8407700120D06 /* ForgetPassword */,
 				A4506C3E29B8751C009B75F6 /* ChangePassword */,
@@ -728,6 +734,40 @@
 			path = ForgetPassword;
 			sourceTree = "<group>";
 		};
+		A47847982A14D60C00090EF3 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				A478479B2A14D61F00090EF3 /* Model */,
+				A478479A2A14D61B00090EF3 /* VM */,
+				A47847992A14D61700090EF3 /* View */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
+		A47847992A14D61700090EF3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A478479C2A14DA0E00090EF3 /* EventViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A478479A2A14D61B00090EF3 /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				A478479E2A14DEB700090EF3 /* EventsViewModel.swift */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		A478479B2A14D61F00090EF3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A47847A02A14E40000090EF3 /* ReponseGetAllCategory.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		A4A91317299FA9AA00AC5E75 /* MenuController */ = {
 			isa = PBXGroup;
 			children = (
@@ -786,6 +826,7 @@
 		A4C5F00429B2FE4800723FC1 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				A47847982A14D60C00090EF3 /* Event */,
 				A4C5F00E29B2FED400723FC1 /* Ticket */,
 				A4C5F00C29B2FEC300723FC1 /* ScanQR */,
 				A4C5F00A29B2FEB200723FC1 /* Search */,
@@ -892,14 +933,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		A4D240D82A11E33C00B9BF68 /* Event */ = {
+		A4D240D82A11E33C00B9BF68 /* DetailEvent */ = {
 			isa = PBXGroup;
 			children = (
 				A4D240EA2A12233F00B9BF68 /* Model */,
 				A4D240DB2A11E49100B9BF68 /* cell */,
 				A4D240D92A11E35800B9BF68 /* DetailEventViewController.swift */,
 			);
-			path = Event;
+			path = DetailEvent;
 			sourceTree = "<group>";
 		};
 		A4D240DB2A11E49100B9BF68 /* cell */ = {
@@ -1299,6 +1340,7 @@
 				A4D240D72A0DFB8200B9BF68 /* HomeCollectionReusableView.swift in Sources */,
 				A4D240BE2A0CE96A00B9BF68 /* ResultsContainerViewController.swift in Sources */,
 				A41A7B2F29FA63900024C6F8 /* UINavigationBar+Shadow.swift in Sources */,
+				A478479F2A14DEB700090EF3 /* EventsViewModel.swift in Sources */,
 				A4D240D32A0CF06F00B9BF68 /* EmptyTableViewCell.swift in Sources */,
 				A4506CA329C45013009B75F6 /* InfoTicketTableViewCell.swift in Sources */,
 				A43058EA2A0A0DF9007BC1D0 /* ReponseSearch.swift in Sources */,
@@ -1324,6 +1366,8 @@
 				A4C5F01129B2FF5600723FC1 /* ProfileViewModel.swift in Sources */,
 				A4CA58B229A8DF2300B5E318 /* EndPointType.swift in Sources */,
 				A4DCFC7229D9584D00A686AC /* EntityEndPoint.swift in Sources */,
+				A47847A12A14E40000090EF3 /* ReponseGetAllCategory.swift in Sources */,
+				A478479D2A14DA0E00090EF3 /* EventViewController.swift in Sources */,
 				A44F19E829A719E200476E9B /* APIManager.swift in Sources */,
 				A44F19D529A3981600476E9B /* ChangePasswordViewController.swift in Sources */,
 				A4D240E52A11F68300B9BF68 /* ReponseListEvent.swift in Sources */,
