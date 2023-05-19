@@ -1,24 +1,43 @@
 //
-//  MyTicketsViewController.swift
+//  PaymentHistoryViewController.swift
 //  mobile
 //
-//  Created by NguyenSon_MP on 17/03/2023.
+//  Created by NguyenSon_MP on 18/05/2023.
 //
 
 import UIKit
 
-class MyTicketsViewController: UIViewController {
+class PaymentHistoryViewController: UIViewController {
     private var isLoading = false
-    private var VM = TicketViewModel()
     @IBOutlet weak var tb: UITableView!
+    private var VM =  PaymentViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
-        VM.fetchMyTicket()
-
+        // Do any additional setup after loading the view.
     }
+    
     override func viewWillAppear(_ animated: Bool) {
+        VM.fetchPaymentHistory()
+        configNaviBar()
     }
+    
+    
+    func configNaviBar() {
+        navigationController?.navigationBar.tintColor = .label
+        
+        let title = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
+        title.text = "Payment History"
+        title.font = UIFont(name: "Helvetica Bold", size: 18)
+        title.textAlignment = .center
+        
+        navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .done, target: self, action: #selector(backScreen)),UIBarButtonItem(customView: title)]
+    }
+    
+    @objc func backScreen() {
+        navigationController?.popViewController(animated: true)
+    }
+
     
     func loadMoreData() {
         if self.isLoading == false {
@@ -26,7 +45,7 @@ class MyTicketsViewController: UIViewController {
             DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(1)) { // Remove the 1-second delay if you want to load the data without waiting
                 // Download more data here
                 DispatchQueue.main.async {
-                    self.VM.getNextMyTicketFromServer(completion: {
+                    self.VM.getNextPaymentHistory(completion: {
                         DispatchQueue.main.async {
                             self.tb.reloadData()
                             self.isLoading = false
@@ -39,13 +58,25 @@ class MyTicketsViewController: UIViewController {
             print("loading")
         }
     }
+
 }
 
-extension MyTicketsViewController: UITableViewDataSource {
+extension PaymentHistoryViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == self.VM.paymentsHistory.count - 2, !isLoading {
+            loadMoreData()
+        }
+    }
+}
+
+extension PaymentHistoryViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             // Return the amount of items
-            return self.VM.myTicket.count
+            return VM.paymentsHistory.count
         } else if section == 1 {
             // Return the Loading cell
             return 1
@@ -53,26 +84,31 @@ extension MyTicketsViewController: UITableViewDataSource {
             // Return nothing
             return 0
         }
+        
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
         if indexPath.section == 0 {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "TicketTableViewCell", for: indexPath) as? TicketTableViewCell  {
-                cell.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+            let payment = VM.paymentsHistory[indexPath.row]
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "PaymentHistoryTableViewCell", for: indexPath) as? PaymentHistoryTableViewCell  {
+                cell.desciption.text = payment.description1
+                cell.owner.text = payment.user?.fullName
+                cell.price.text = "\(payment.price) \(payment.currency)"
                 
-                let ticket = VM.myTicket[indexPath.row]
-                cell.ownerName.text = ticket.owner?.fullName
-                cell.startTimeSession.text = ticket.session?.startAt
-//                cell.titleEvent.text = ticket.session?.event?.title
-                cell.titleEvent.text = ticket.id
-                cell.location.text = ticket.session?.event?.location
-
+                let dateFormatter = DateFormatter()
+                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                
+                let date = dateFormatter.date(from:payment.createdAt)
+                
+                cell.date.text = date?.formatted(date: .abbreviated, time: .omitted)
+                
+                if  payment.method == "paypal" {
+                    cell.logo.image  = UIImage(named: "MomoLogo")
+                }
+                
                 return cell
             }
         } else {
@@ -86,52 +122,20 @@ extension MyTicketsViewController: UITableViewDataSource {
             }
             return cell
         }
-        
-       
         return UITableViewCell()
     }
     
     
-    
-    
-}
-extension MyTicketsViewController: UITableViewDelegate{
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
-            return tableView.layer.frame.height / 4
-        } else {
-            return 55 // Loading Cell height
-        }
-        
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        
-        
-        Contanst.userdefault.set(VM.myTicket[indexPath.row].ticketCode, forKey: "ticketCodeDetail")
-//        Contanst.userdefault.set(indexPath.row, forKey: "idxDetail")
-//
-//        print(VM.myTicket[indexPath.row].ticketCode)
-        changeScreen(modelType: DetailTicketViewController.self, id: "DetailTicketViewController")
-
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == self.VM.myTicket.count - 2, !isLoading {
-            loadMoreData()
-        }
-    }
-
-   
 }
 
 
-extension MyTicketsViewController {
+extension PaymentHistoryViewController {
 
     func configuration() {
-        self.tb.register(UINib(nibName: "TicketTableViewCell", bundle: nil), forCellReuseIdentifier: "TicketTableViewCell")
+        
+        self.tb.register(UINib(nibName: "PaymentHistoryTableViewCell", bundle: nil), forCellReuseIdentifier: "PaymentHistoryTableViewCell")
         self.tb.register( UINib(nibName: "LoadingTableViewCell", bundle: nil), forCellReuseIdentifier: "LoadingTableViewCell")
+
         self.tb.dataSource = self
         self.tb.delegate = self
         
@@ -140,6 +144,7 @@ extension MyTicketsViewController {
     }
 
     func initViewModel() {
+        
     }
 
     // Data binding event observe - communication
@@ -151,9 +156,10 @@ extension MyTicketsViewController {
             case .loading:
                 loader = self?.loader()
             case .stopLoading:
-                self?.stoppedLoader(loader: loader ?? UIAlertController())
+                DispatchQueue.main.async {
+                    self?.stoppedLoader(loader: loader ?? UIAlertController())
+                }
             case .dataLoaded:
-                print("My Ticket User loaded...")
                 DispatchQueue.main.async {
                     self?.tb.reloadData()
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
@@ -177,13 +183,8 @@ extension MyTicketsViewController {
                         self?.stoppedLoader(loader: loader ?? UIAlertController())
                     }
                 }
-            case .logout:
-                print("logout")
             }
         }
 
     }
 }
-
-
-

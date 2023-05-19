@@ -778,7 +778,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q2Q-Ew-dqj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3679.7101449275365" y="4218.75"/>
+            <point key="canvasLocation" x="5099" y="3979"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="Ysf-Gf-0hM">
@@ -985,7 +985,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OIJ-5R-lrm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2892.753623188406" y="3680.3571428571427"/>
+            <point key="canvasLocation" x="4291" y="3980"/>
         </scene>
         <!--Profile Detail View Controller-->
         <scene sceneID="p6P-zL-Y8B">
@@ -1911,6 +1911,36 @@ PASSWORD</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rZ0-Mu-pUN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1328" y="3094"/>
+        </scene>
+        <!--Payment History View Controller-->
+        <scene sceneID="q8N-k9-ZG3">
+            <objects>
+                <viewController storyboardIdentifier="PaymentHistoryViewController" id="Yng-b6-DzM" customClass="PaymentHistoryViewController" customModule="mobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="guZ-hF-4lf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xIc-ks-1zD">
+                                <rect key="frame" x="20" y="44" width="374" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="OuW-xU-2k2"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="OuW-xU-2k2" firstAttribute="trailing" secondItem="xIc-ks-1zD" secondAttribute="trailing" constant="20" id="If4-wY-59U"/>
+                            <constraint firstItem="OuW-xU-2k2" firstAttribute="bottom" secondItem="xIc-ks-1zD" secondAttribute="bottom" id="Ijw-Fr-PbJ"/>
+                            <constraint firstItem="xIc-ks-1zD" firstAttribute="leading" secondItem="OuW-xU-2k2" secondAttribute="leading" constant="20" id="bl3-q7-qrg"/>
+                            <constraint firstItem="xIc-ks-1zD" firstAttribute="top" secondItem="OuW-xU-2k2" secondAttribute="top" id="zJ2-eR-eoW"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tb" destination="xIc-ks-1zD" id="cs1-xD-xYN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cgn-c9-uij" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3374" y="3980"/>
         </scene>
     </scenes>
     <resources>
