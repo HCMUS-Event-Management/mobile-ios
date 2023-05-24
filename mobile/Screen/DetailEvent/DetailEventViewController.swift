@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import RealmSwift
 class DetailEventViewController: UIViewController {
     private var VM = HomeViewModel()
 
@@ -62,19 +62,8 @@ extension DetailEventViewController: UITableViewDataSource {
         if indexPath.section == 0 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ImageQRCodeTableViewCell", for: indexPath) as? ImageQRCodeTableViewCell
             {
-                if let url = URL(string: (event.image) ) {
-                    let task = URLSession.shared.dataTask(with: url) { data, response, error in
-                        guard let data = data, error == nil else { return }
-                        
-                        DispatchQueue.main.async { /// execute on main thread
-                            cell.imgQR.image = UIImage(data: data)
-                        }
-                    }
-                    
-                    task.resume()
-                } else {
-                    cell.imgQR.image = UIImage(named: "picture nil")
-                }
+                cell.imgQR.kf.setImage(with: URL(string: event.image))
+
                 return cell
             }
         } else if indexPath.section == 1 {
@@ -82,7 +71,13 @@ extension DetailEventViewController: UITableViewDataSource {
 
                 cell.eventName.text = event.title
                 cell.location.text = event.location?.name
-                cell.date.text = event.startAt
+                let dateFormatter = DateFormatter()
+                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                
+                let date = dateFormatter.date(from: event.startAt ?? "1970-01-01T00:00:00.000Z")
+                cell.date.text = date?.formatted(date: .abbreviated, time: .shortened)
+               
                 cell.organizer.text = event.user?.fullName
                 return cell
             }
@@ -95,7 +90,20 @@ extension DetailEventViewController: UITableViewDataSource {
         } else if indexPath.section == 3 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTicketEventDetailTableViewCell", for: indexPath) as? InfoTicketEventDetailTableViewCell
             {
-
+                if event.sessions.count == 1 {
+                    cell.receiveData(data: event.sessions[0].proposalSessionTickets,startFSession: event.sessions[0].startAt, startESession: event.sessions[0].endAt)
+                } else {
+                    var data = List<ProposalSessionTicketsObject>()
+                    event.sessions.forEach({
+                        i in
+                        i.proposalSessionTickets.forEach({
+                            j in
+                            data.append(j)
+                        })
+                    })
+                    
+                    cell.receiveData(data: data,startFSession: event.sessions.first?.startAt ?? "1970-01-01T00:00:00.000Z", startESession: event.sessions.last?.endAt ?? "1970-01-01T00:00:00.000Z")
+                }
                 return cell
             }
         }
@@ -113,7 +121,7 @@ extension DetailEventViewController: UITableViewDelegate{
         if indexPath.section == 0 {
             return tableView.layer.frame.height / 3
         } else if indexPath.section == 2 {
-            return tableView.layer.frame.height / 4
+            return tableView.layer.frame.height / 5
         } else if indexPath.section == 3 {
             return tableView.layer.frame.height / 1.5
         }
@@ -155,6 +163,7 @@ extension DetailEventViewController {
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .dataLoaded:
+//                print(self?.VM.detailEvent)
                 DispatchQueue.main.async {
                     self?.tb.reloadData()
                     self?.stoppedLoader(loader: loader ?? UIAlertController())

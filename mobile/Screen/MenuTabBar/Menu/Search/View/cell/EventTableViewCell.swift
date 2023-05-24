@@ -20,8 +20,15 @@ class EventTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
         mainView.layer.cornerRadius = 20
         mainView.layer.masksToBounds = true
         title.text = app.title
-        startAt.text = app.startAt
-        location.text = app.locationId
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        
+        let startTime = dateFormatter.date(from:  app.startAt ?? "1970-01-01T00:00:00.000Z")
+        let endTime = dateFormatter.date(from:  app.endAt ?? "1970-01-01T00:00:00.000Z")
+        startAt.text = "\(startTime!.formatted(date: .omitted, time: .shortened)) - \(endTime!.formatted(date: .abbreviated, time: .shortened))"
+        
+        location.text = app.location?.name
         img.kf.setImage(with: URL(string: app.image!))
     }
     

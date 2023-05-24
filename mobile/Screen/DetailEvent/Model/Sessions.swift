@@ -58,7 +58,7 @@ final class SessionsObject: Object {
     @objc dynamic var zoomMeetingId : String = ""
     @objc dynamic var zoomPasscode : String = ""
     @objc dynamic var zoomLink : String = ""
-    @objc dynamic var proposalSessionTickets : ProposalSessionTicketsObject? = nil
+    var proposalSessionTickets = List<ProposalSessionTicketsObject>()
     override static func primaryKey() -> String? {
         return "id"
     }
@@ -85,10 +85,10 @@ extension Sessions: Persistable {
         character.zoomMeetingId = zoomMeetingId ?? ""
         character.zoomPasscode = zoomPasscode ?? ""
         character.zoomLink = zoomLink ?? ""
-//        proposalSessionTickets?.forEach({
-//            i in
-//            
-//        })
+        proposalSessionTickets?.forEach({
+            i in
+            character.proposalSessionTickets.append(i.managedObject())
+        })
         
         return character
     }

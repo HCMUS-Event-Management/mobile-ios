@@ -39,7 +39,7 @@
                             </label>
                         </subviews>
                     </stackView>
-                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" separatorInsetReference="fromAutomaticInsets" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="30" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="JeY-MS-RdJ">
+                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" style="plain" separatorStyle="none" separatorInsetReference="fromAutomaticInsets" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="30" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="JeY-MS-RdJ">
                         <rect key="frame" x="25" y="102.5" width="318" height="264.5"/>
                         <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -63,7 +63,9 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="Uhe-Wz-SMR"/>
             <connections>
+                <outlet property="StartEndSession" destination="8xe-by-oBJ" id="Kpd-sl-tGq"/>
                 <outlet property="mainView" destination="5Eo-EE-wGc" id="PlQ-mr-Lpa"/>
+                <outlet property="startFirstSession" destination="cVV-96-ttZ" id="z0D-Jn-mxj"/>
                 <outlet property="tb" destination="JeY-MS-RdJ" id="fvA-eS-4ar"/>
             </connections>
             <point key="canvasLocation" x="123.18840579710145" y="196.875"/>

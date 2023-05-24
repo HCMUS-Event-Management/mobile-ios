@@ -20,7 +20,9 @@ class TicketTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        img.layer.cornerRadius = 10
+        img.layer.cornerRadius = 15
+        img.layer.borderWidth = 0.5
+        img.layer.borderColor = UIColor(red: 94/255, green: 135/255, blue: 240/255, alpha: 1).cgColor
         mainView.layer.cornerRadius = 10
         mainView.layer.masksToBounds = true
         ownerView.layer.cornerRadius = 10

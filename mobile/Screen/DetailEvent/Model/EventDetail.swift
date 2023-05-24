@@ -107,9 +107,9 @@ final class EventDetailObject: Object {
     
     @objc dynamic var user : UserObject? = nil
     @objc dynamic var category : CategoryObject? = nil
-    @objc dynamic var sessions : SessionsObject? = nil
+//    @objc dynamic var sessions : [SessionsObject]? = []
     @objc dynamic var location : LocationObject? = nil
-
+    var sessions = List<SessionsObject>()
 
     override static func primaryKey() -> String? {
         return "id"
@@ -158,7 +158,10 @@ extension EventDetail: Persistable {
         
         character.user = user?.managedObject()
         character.category = category?.managedObject()
-//        character.sessions = sessions.
+        sessions?.forEach({
+            i in
+            character.sessions.append(i.managedObject())
+        })
         character.location = location?.managedObject()
         return character
     }

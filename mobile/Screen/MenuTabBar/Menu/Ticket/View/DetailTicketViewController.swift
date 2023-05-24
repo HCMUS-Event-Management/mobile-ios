@@ -84,15 +84,22 @@ extension DetailTicketViewController: UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "InfoEventTableViewCell", for: indexPath) as? InfoEventTableViewCell  {
 
                 cell.eventName.text = ticket.session?.event?.title
-                cell.eventName.text = ticket.id
-                cell.location.text = ticket.session?.event?.location
-                cell.date.text = ticket.session?.startAt
-                cell.organizer.text = ticket.buyer?.fullName
+                cell.location.text = ticket.session?.event?.locationId
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                let startDate = dateFormatter.date(from:  ticket.session?.startAt ?? "1970-01-01T00:00:00.000Z")
+                let endDate = dateFormatter.date(from:  ticket.session?.endAt ?? "1970-01-01T00:00:00.000Z")
+                
+                cell.date.text = "\tStart Date: \(startDate!.formatted(date: .abbreviated, time: .omitted))  \(startDate!.formatted(date: .omitted, time: .shortened)) \n\n\tEnd Date  : \(endDate!.formatted(date: .abbreviated, time: .omitted)) \(endDate!.formatted(date: .omitted, time: .shortened))"
+                
+                cell.organizer.text = ticket.owner?.fullName
                 return cell
             }
         } else if indexPath.section == 2 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTicketTableViewCell", for: indexPath) as? InfoTicketTableViewCell  {
-                cell.buyerId.text = ticket.buyer?.id
+                cell.buyerId.text = ticket.buyer?.fullName
 //                cell.eventTicket.text = ticket.se
                 if let ownerId = ticket.owner?.id {
                     cell.btnAddOwner.isHidden = true

@@ -35,7 +35,7 @@
                                         <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eiz-hR-BOK">
-                                        <rect key="frame" x="146" y="5" width="16" height="19"/>
+                                        <rect key="frame" x="141" y="10" width="16" height="19"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="archivebox.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="aw1-PP-2E9">
                                                 <rect key="frame" x="0.0" y="1" width="16" height="16.5"/>
@@ -84,7 +84,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="y3r-sY-5Me" firstAttribute="height" secondItem="m3B-lj-I9S" secondAttribute="height" multiplier="0.2" id="RQV-iY-YSq"/>
                                     <constraint firstAttribute="bottom" secondItem="m3B-lj-I9S" secondAttribute="bottom" id="VwL-zq-GgP"/>
@@ -93,8 +93,8 @@
                                     <constraint firstItem="m3B-lj-I9S" firstAttribute="leading" secondItem="CLM-m4-0Ky" secondAttribute="leading" id="ZZU-n3-T3X"/>
                                     <constraint firstItem="y3r-sY-5Me" firstAttribute="leading" secondItem="CLM-m4-0Ky" secondAttribute="leading" constant="8" id="bfD-fp-acR"/>
                                     <constraint firstItem="m3B-lj-I9S" firstAttribute="top" secondItem="CLM-m4-0Ky" secondAttribute="top" id="dGi-Sy-FHA"/>
-                                    <constraint firstItem="eiz-hR-BOK" firstAttribute="top" secondItem="CLM-m4-0Ky" secondAttribute="top" constant="5" id="f2q-Ej-Pq6"/>
-                                    <constraint firstAttribute="trailing" secondItem="eiz-hR-BOK" secondAttribute="trailing" constant="5" id="h8P-sk-Tu0"/>
+                                    <constraint firstItem="eiz-hR-BOK" firstAttribute="top" secondItem="CLM-m4-0Ky" secondAttribute="top" constant="10" id="f2q-Ej-Pq6"/>
+                                    <constraint firstAttribute="trailing" secondItem="eiz-hR-BOK" secondAttribute="trailing" constant="10" id="h8P-sk-Tu0"/>
                                     <constraint firstAttribute="bottom" secondItem="y3r-sY-5Me" secondAttribute="bottom" constant="8" id="kfP-v3-5R0"/>
                                 </constraints>
                             </view>
@@ -127,7 +127,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event’s name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ih9-yr-vNs">
-                                        <rect key="frame" x="6" y="26" width="93" height="17"/>
+                                        <rect key="frame" x="6" y="26" width="171" height="17"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -146,6 +146,7 @@
                                     <constraint firstItem="wA4-Yh-c4O" firstAttribute="top" secondItem="pjj-eP-L7y" secondAttribute="bottom" constant="6" id="90x-oU-cMP"/>
                                     <constraint firstItem="sdB-H4-Zpf" firstAttribute="centerY" secondItem="pjj-eP-L7y" secondAttribute="centerY" id="GNP-8B-hV6"/>
                                     <constraint firstItem="sdB-H4-Zpf" firstAttribute="leading" secondItem="pjj-eP-L7y" secondAttribute="trailing" constant="6" id="Gyz-me-0v2"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ih9-yr-vNs" secondAttribute="trailing" id="H4E-5w-5QP"/>
                                     <constraint firstItem="pjj-eP-L7y" firstAttribute="leading" secondItem="5be-8U-lVC" secondAttribute="leading" id="H9n-1P-dzu"/>
                                     <constraint firstItem="Ih9-yr-vNs" firstAttribute="leading" secondItem="5be-8U-lVC" secondAttribute="leading" id="JUP-Sn-t6C"/>
                                     <constraint firstItem="5be-8U-lVC" firstAttribute="top" secondItem="qay-TQ-4f9" secondAttribute="top" constant="4" id="LNm-Wd-iFK"/>
@@ -189,9 +190,10 @@
                 <outlet property="btnSeeDetail" destination="1aQ-b3-hD9" id="4bD-ZY-JWE"/>
                 <outlet property="eventName" destination="Ih9-yr-vNs" id="soX-ac-Fof"/>
                 <outlet property="imgAvatar" destination="m3B-lj-I9S" id="pjy-vX-u1J"/>
-                <outlet property="locationName" destination="qay-TQ-4f9" id="JbQ-gO-Ieg"/>
+                <outlet property="locationName" destination="ucb-XC-0HD" id="KP5-zw-9Jp"/>
                 <outlet property="mainView" destination="ELR-KN-cL0" id="yVX-Nl-Hg0"/>
                 <outlet property="owner" destination="5be-8U-lVC" id="hnR-42-i1W"/>
+                <outlet property="paidName" destination="2RS-wK-Ipr" id="EWU-Xk-Rm7"/>
                 <outlet property="paidView" destination="y3r-sY-5Me" id="zj9-lU-Epb"/>
                 <outlet property="timeStart" destination="sdB-H4-Zpf" id="mAC-UI-4Mn"/>
             </connections>

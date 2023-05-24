@@ -17,6 +17,7 @@ class EditProfileTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        avatar.layer.cornerRadius = 50
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         btnEditImage.isUserInteractionEnabled = true

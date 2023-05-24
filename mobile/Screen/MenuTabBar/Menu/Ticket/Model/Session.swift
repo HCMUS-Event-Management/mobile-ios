@@ -19,7 +19,13 @@ struct Session : Codable {
     var startAt : String?
     var endAt : String?
     var holderId : String?
+    var zoomMeetingId : String?
+    var zoomPasscode : String?
+    var zoomStartUrl : String?
+    var zoomJoinUrl : String?
     var event : Event?
+    var proposalSessionTickets : [ProposalSessionTickets]?
+
 
     enum CodingKeys: String, CodingKey {
 
@@ -28,7 +34,13 @@ struct Session : Codable {
         case startAt = "startAt"
         case endAt = "endAt"
         case holderId = "holderId"
+        case zoomMeetingId = "zoomMeetingId"
+        case zoomPasscode = "zoomPasscode"
+        case zoomStartUrl = "zoomStartUrl"
+        case zoomJoinUrl = "zoomJoinUrl"
         case event = "event"
+        case proposalSessionTickets = "proposalSessionTickets"
+
     }
 
     init(from decoder: Decoder) throws {
@@ -38,7 +50,12 @@ struct Session : Codable {
         startAt = try values.decodeIfPresent(String.self, forKey: .startAt)
         endAt = try values.decodeIfPresent(String.self, forKey: .endAt)
         holderId = try values.decodeIfPresent(String.self, forKey: .holderId)
+        zoomMeetingId = try values.decodeIfPresent(String.self, forKey: .zoomMeetingId)
+        zoomPasscode = try values.decodeIfPresent(String.self, forKey: .zoomPasscode)
+        zoomJoinUrl = try values.decodeIfPresent(String.self, forKey: .zoomJoinUrl)
+        zoomStartUrl = try values.decodeIfPresent(String.self, forKey: .zoomStartUrl)
         event = try values.decodeIfPresent(Event.self, forKey: .event)
+        proposalSessionTickets = try values.decodeIfPresent([ProposalSessionTickets].self, forKey: .proposalSessionTickets)
     }
 
 }
@@ -50,7 +67,13 @@ final class SessionObject: Object {
     @objc dynamic var startAt : String = ""
     @objc dynamic var endAt : String = ""
     @objc dynamic var holderId : String = ""
+    @objc dynamic var zoomMeetingId : String = ""
+    @objc dynamic var zoomPasscode : String = ""
+    @objc dynamic var zoomJoinUrl : String = ""
+    @objc dynamic var zoomStartUrl : String = ""
     @objc dynamic var event : EventObject?
+    @objc dynamic var proposalSessionTickets : ProposalSessionTicketsObject? = nil
+
 
     override static func primaryKey() -> String? {
         return "id"
@@ -64,6 +87,10 @@ extension Session: Persistable {
         startAt = managedObject.startAt
         endAt = managedObject.endAt
         holderId = managedObject.holderId
+        zoomMeetingId = managedObject.zoomMeetingId
+        zoomPasscode = managedObject.zoomPasscode
+        zoomJoinUrl = managedObject.zoomJoinUrl
+        zoomStartUrl = managedObject.zoomStartUrl
     }
     
     public func managedObject() -> SessionObject {
@@ -73,8 +100,12 @@ extension Session: Persistable {
         character.startAt = startAt ?? ""
         character.endAt = endAt ?? ""
         character.holderId = holderId ?? ""
+        character.zoomMeetingId = zoomMeetingId ?? ""
+        character.zoomPasscode = zoomPasscode ?? ""
+        character.zoomJoinUrl = zoomJoinUrl ?? ""
+        character.zoomStartUrl = zoomStartUrl ?? ""
         character.event = event?.managedObject()
-
+//        character.proposalSessionTickets
         return character
     }
 }

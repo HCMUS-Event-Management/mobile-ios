@@ -71,9 +71,17 @@ extension BoughtTicketsViewController: UITableViewDataSource {
             let ticket = VM.boughtTicket[indexPath.section]
             
             cell.ownerName.text = ticket.owner?.fullName
-            cell.startTimeSession.text = ticket.session?.startAt
-            cell.titleEvent.text = ticket.session?.event?.title
-            cell.location.text = ticket.session?.event?.location
+            
+             let dateFormatter = DateFormatter()
+             dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+             let date = dateFormatter.date(from:  ticket.session?.startAt ?? "1970-01-01T00:00:00.000Z")
+
+             cell.startTimeSession.text = "\(date!.formatted(date: .abbreviated, time: .omitted)) - \(date!.formatted(date: .omitted, time: .shortened))"
+             cell.titleEvent.text = ticket.session?.event?.title
+             cell.location.text = ticket.session?.event?.locationId
+            
+            cell.img.kf.setImage(with: URL(string: ticket.session?.event!.image ?? "https://nestjs-entity-service-bucket.s3.ap-southeast-1.amazonaws.com/event_id_186/seating_plan/wF9NFk0T7NVnhDAXoh3AU8Uz1xBLBpbkrsS4a2Poo0EybGK5EE.jpeg"))
 
             return cell
         }

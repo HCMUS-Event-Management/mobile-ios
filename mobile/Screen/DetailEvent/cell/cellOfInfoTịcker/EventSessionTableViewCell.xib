@@ -100,7 +100,11 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="end" destination="ouG-oz-P74" id="rum-Az-7l6"/>
                 <outlet property="mainView" destination="H2p-sc-9uM" id="g2w-48-odW"/>
+                <outlet property="price" destination="EU8-bt-oBm" id="pg8-cJ-c3l"/>
+                <outlet property="start" destination="Vvu-LP-yk8" id="7pF-uU-7wm"/>
+                <outlet property="title" destination="gTn-rv-jaf" id="Jqw-TM-9jN"/>
             </connections>
             <point key="canvasLocation" x="115.21739130434783" y="94.084821428571431"/>
         </tableViewCell>

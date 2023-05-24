@@ -27,6 +27,7 @@ struct DataBoughtTicket : Codable {
     var ticketCode : String?
     var price : Int?
     var paymentMethod : String?
+    var proposalSessionTicketId : String?
     var session : Session?
     var buyer : Buyer?
     var owner : Owner?
@@ -45,6 +46,7 @@ struct DataBoughtTicket : Codable {
         case ticketCode = "ticketCode"
         case price = "price"
         case paymentMethod = "paymentMethod"
+        case proposalSessionTicketId = "proposalSessionTicketId"
         case session = "session"
         case buyer = "buyer"
         case owner = "owner"
@@ -64,6 +66,7 @@ struct DataBoughtTicket : Codable {
         ticketCode = try values.decodeIfPresent(String.self, forKey: .ticketCode)
         price = try values.decodeIfPresent(Int.self, forKey: .price)
         paymentMethod = try values.decodeIfPresent(String.self, forKey: .paymentMethod)
+        proposalSessionTicketId = try values.decodeIfPresent(String.self, forKey: .proposalSessionTicketId)
         session = try values.decodeIfPresent(Session.self, forKey: .session)
         buyer = try values.decodeIfPresent(Buyer.self, forKey: .buyer)
         owner = try values.decodeIfPresent(Owner.self, forKey: .owner)
@@ -85,6 +88,8 @@ final class DataBoughtTicketObject: Object {
     @objc dynamic var ticketCode : String = ""
     @objc dynamic var price : Int = 0
     @objc dynamic var paymentMethod : String = ""
+    @objc dynamic var proposalSessionTicketId : String = ""
+
 //    @objc dynamic var session : Session?
 //    @objc dynamic var buyer : Buyer?
 //    @objc dynamic var owner : Owner?
@@ -114,6 +119,8 @@ extension DataBoughtTicket: Persistable {
         ticketCode = managedObject.ticketCode
         price = managedObject.price
         paymentMethod = managedObject.paymentMethod
+        proposalSessionTicketId = managedObject.proposalSessionTicketId
+
 //        session  = managedObject.session
     }
     
@@ -130,7 +137,7 @@ extension DataBoughtTicket: Persistable {
         character.price = price ?? 0
         character.ticketCode = ticketCode ?? ""
         character.paymentMethod = paymentMethod ?? ""
-//        character.session = session
+        character.proposalSessionTicketId = proposalSessionTicketId ?? ""
         character.session = session?.managedObject()
         character.owner = owner?.managedObject()
         character.buyer = buyer?.managedObject()

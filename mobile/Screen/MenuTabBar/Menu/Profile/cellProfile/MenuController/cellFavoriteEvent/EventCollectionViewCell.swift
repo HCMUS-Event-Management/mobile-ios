@@ -8,10 +8,12 @@
 import UIKit
 
 class EventCollectionViewCell: UICollectionViewCell {
+    var callback : (() -> Void)?
 
+    @IBOutlet weak var locationName: UILabel!
+    @IBOutlet weak var paidName: UILabel!
     @IBOutlet weak var imgAvatar: UIImageView!
     @IBOutlet weak var owner: UILabel!
-    @IBOutlet weak var locationName: UIView!
     @IBOutlet weak var timeStart: UILabel!
     @IBOutlet weak var eventName: UILabel!
     @IBOutlet weak var paidView: UIView!
@@ -22,15 +24,23 @@ class EventCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         preUI()
+        btnSeeDetail.addTarget(self, action: #selector(changeDetail), for: .touchUpInside)
+        
         
     }
     
+    @objc func changeDetail() {
+        callback?()
+    }
     func preUI() {
         btnSeeDetail.layer.cornerRadius = 10
         btnSeeDetail.layer.masksToBounds = true
         
         paidView.layer.cornerRadius = 10
         paidView.layer.masksToBounds = true
+        
+        imgAvatar.layer.cornerRadius = 20
+        imgAvatar.layer.masksToBounds = true
         
         
         archiveView.layer.cornerRadius = 5

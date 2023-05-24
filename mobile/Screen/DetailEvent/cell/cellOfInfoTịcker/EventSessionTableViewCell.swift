@@ -9,6 +9,10 @@ import UIKit
 
 class EventSessionTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var end: UILabel!
+    @IBOutlet weak var start: UILabel!
+    @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var title: UILabel!
     @IBOutlet weak var mainView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -30,6 +30,7 @@ struct DataReponseSearch : Codable {
 	let isOnline : Bool?
 	let categoryId : String?
 	let userId : String?
+    let location: Location?
 
 	enum CodingKeys: String, CodingKey {
 
@@ -50,6 +51,8 @@ struct DataReponseSearch : Codable {
 		case isOnline = "isOnline"
 		case categoryId = "categoryId"
 		case userId = "userId"
+        case location = "location"
+
 	}
 
 	init(from decoder: Decoder) throws {
@@ -71,6 +74,8 @@ struct DataReponseSearch : Codable {
 		isOnline = try values.decodeIfPresent(Bool.self, forKey: .isOnline)
 		categoryId = try values.decodeIfPresent(String.self, forKey: .categoryId)
 		userId = try values.decodeIfPresent(String.self, forKey: .userId)
+        location = try values.decodeIfPresent(Location.self, forKey: .location)
+
 	}
 
 }

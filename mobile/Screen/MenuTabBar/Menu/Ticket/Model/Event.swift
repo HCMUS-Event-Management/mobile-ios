@@ -22,7 +22,7 @@ struct Event : Codable {
     var status : String?
     var urlWeb : String?
     var image : String?
-    var location : String?
+    var locationId : String?
     var seatingPlan : String?
     var createdAt : String?
     var updatedAt : String?
@@ -42,7 +42,7 @@ struct Event : Codable {
         case status = "status"
         case urlWeb = "urlWeb"
         case image = "image"
-        case location = "location"
+        case locationId = "locationId"
         case seatingPlan = "seatingPlan"
         case createdAt = "createdAt"
         case updatedAt = "updatedAt"
@@ -63,7 +63,7 @@ struct Event : Codable {
         status = try values.decodeIfPresent(String.self, forKey: .status)
         urlWeb = try values.decodeIfPresent(String.self, forKey: .urlWeb)
         image = try values.decodeIfPresent(String.self, forKey: .image)
-        location = try values.decodeIfPresent(String.self, forKey: .location)
+        locationId = try values.decodeIfPresent(String.self, forKey: .locationId)
         seatingPlan = try values.decodeIfPresent(String.self, forKey: .seatingPlan)
         createdAt = try values.decodeIfPresent(String.self, forKey: .createdAt)
         updatedAt = try values.decodeIfPresent(String.self, forKey: .updatedAt)
@@ -86,7 +86,7 @@ final class EventObject: Object {
     @objc dynamic var status : String = ""
     @objc dynamic var urlWeb : String = ""
     @objc dynamic var image : String = ""
-    @objc dynamic var location : String = ""
+    @objc dynamic var locationId : String = ""
     @objc dynamic var seatingPlan: String = ""
     @objc dynamic var createdAt : String = ""
     @objc dynamic var updatedAt : String = ""
@@ -112,7 +112,7 @@ extension Event: Persistable {
         status = managedObject.status
         urlWeb = managedObject.urlWeb
         image = managedObject.image
-        location = managedObject.location
+        locationId = managedObject.locationId
         seatingPlan = managedObject.seatingPlan
         createdAt = managedObject.createdAt
         updatedAt = managedObject.updatedAt
@@ -132,7 +132,7 @@ extension Event: Persistable {
         character.status = status ?? ""
         character.urlWeb = urlWeb ?? ""
         character.image = image ?? ""
-        character.location = location ?? ""
+        character.locationId = locationId ?? ""
         character.seatingPlan = seatingPlan ?? ""
         character.createdAt = createdAt ?? ""
         character.updatedAt = updatedAt ?? ""

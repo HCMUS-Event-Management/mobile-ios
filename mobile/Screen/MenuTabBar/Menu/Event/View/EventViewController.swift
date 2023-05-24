@@ -12,6 +12,7 @@ class EventViewController: UIViewController {
     @IBOutlet weak var clEvent: UICollectionView!
     @IBOutlet weak var clType: UICollectionView!
     
+    @IBOutlet weak var countType: UILabel!
     private var VM = EventsViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,11 @@ class EventViewController: UIViewController {
         
         navigationItem.leftBarButtonItems = [UIBarButtonItem(customView: title)]
     }
+    
+    func changeDetailEvent(indexPath: IndexPath) {
+        Contanst.userdefault.set(VM.events[indexPath.row].id, forKey: "eventIdDetail")
+        changeScreen(modelType: DetailEventViewController.self, id: "DetailEventViewController")
+    }
 
 
 }
@@ -53,18 +59,35 @@ extension EventViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
         if collectionView == self.clType {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TypeCollectionViewCell", for: indexPath) as? TypeCollectionViewCell {
                 cell.layer.cornerRadius = 30
                 cell.layer.masksToBounds = true
                 cell.category.text = VM.catagorys[indexPath.row].name
+                cell.callback = {
+                    self.countType.text = "\(self.VM.catagorys[indexPath.row].name)"
+                }
                 return cell
             }
             
         }else if collectionView == self.clEvent {
+            let event = self.VM.events[indexPath.row]
+
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell {
                 
-                cell.eventName.text = VM.events[indexPath.row].title
+                cell.eventName.text = event.title
+                cell.owner.text = "By \(event.user!.fullName)"
+                cell.paidName.text = event.type
+                cell.timeStart.text = event.startAt?.formatted(date: .abbreviated, time: .omitted)
+                cell.locationName.text = event.location?.name
+                cell.imgAvatar.kf.setImage(with: URL(string: self.VM.events[indexPath.row].image))
+
+                
+                cell.callback = {
+                    self.changeDetailEvent(indexPath: indexPath)
+                }
+                
                 cell.layer.cornerRadius = 10
                 cell.layer.masksToBounds = true
                 
@@ -83,7 +106,7 @@ extension EventViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: collectionView.frame.width/2 - 10, height: 220)
 
         } else if collectionView == self.clType {
-            return CGSize(width: collectionView.frame.width/4, height: 100)
+            return CGSize(width: collectionView.frame.width/4, height: 50)
         }
         return CGSize(width: collectionView.frame.width/2 - 10, height: 220)
 
@@ -91,17 +114,9 @@ extension EventViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.clType {
-//            if let selectedCell:UICollectionViewCell = self.clType.cellForItem(at: indexPath) {
-//                if selectedCell.isSelected == true {
-//                    selectedCell.contentView.backgroundColor = UIColor(red: 102/256, green: 255/256, blue: 255/256, alpha: 0.66)
-//                } else {
-//                    selectedCell.contentView.backgroundColor = UIColor.clear
-//                }
-//            }
             VM.getListEventOfUserFromServer(fullTextSearch: VM.catagorys[indexPath.row].label)
         } else if collectionView == self.clEvent {
-            Contanst.userdefault.set(VM.events[indexPath.row].id, forKey: "eventIdDetail")
-            changeScreen(modelType: DetailEventViewController.self, id: "DetailEventViewController")
+            changeDetailEvent(indexPath: indexPath)
         }
     }
 }
@@ -113,7 +128,7 @@ extension EventViewController {
     func configuration() {
         self.clEvent.register(UINib(nibName: "EventCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "EventCollectionViewCell")
         self.clType.register(UINib(nibName: "TypeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TypeCollectionViewCell")
-//
+
         self.clType.dataSource = self
         self.clType.delegate = self
 

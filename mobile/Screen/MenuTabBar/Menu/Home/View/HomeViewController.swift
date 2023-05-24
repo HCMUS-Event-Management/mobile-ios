@@ -24,9 +24,6 @@ class HomeViewController: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        
-//        tabBarController?.tabBar.isHidden = false
        configNaviBar()
     }
     
@@ -54,10 +51,17 @@ class HomeViewController: UIViewController {
         }
         
         navigationItem.leftBarButtonItems = [UIBarButtonItem(customView: label),UIBarButtonItem(customView: txtFullname)]
-        
-        
-        
 
+    }
+    
+    func changeDetailEvent(indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            Contanst.userdefault.set(VM.goingOnEvent[indexPath.row].id, forKey: "eventIdDetail")
+        } else {
+            Contanst.userdefault.set(VM.isCommingEvent[indexPath.row].id, forKey: "eventIdDetail")
+
+        }
+        changeScreen(modelType: DetailEventViewController.self, id: "DetailEventViewController")
     }
 
     /*
@@ -76,16 +80,40 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
-            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell {
-                cell.eventName.text = self.VM.goingOnEvent[indexPath.row].title
+            let eventGoingOnEvent = self.VM.goingOnEvent[indexPath.row]
+            if let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell {
+                cell.eventName.text = eventGoingOnEvent.title
+                cell.owner.text = "By \(eventGoingOnEvent.user!.fullName)"
+                cell.paidName.text = eventGoingOnEvent.type
+                cell.timeStart.text = eventGoingOnEvent.startAt?.formatted(date: .abbreviated, time: .omitted)
+                cell.locationName.text = eventGoingOnEvent.location?.name
+                
+                cell.imgAvatar.kf.setImage(with: URL(string: self.VM.goingOnEvent[indexPath.row].image))
+
+                cell.callback = {
+                    self.changeDetailEvent(indexPath: indexPath)
+                }
                 cell.layer.cornerRadius = 10
                 cell.layer.masksToBounds = true
                 
                 return cell
             }
         } else if indexPath.section == 1{
+            let eventIsCommingEvent = self.VM.isCommingEvent[indexPath.row]
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell {
-                cell.eventName.text = self.VM.isCommingEvent[indexPath.row].title
+                
+                cell.eventName.text = eventIsCommingEvent.title
+                cell.owner.text = "By \(eventIsCommingEvent.user!.fullName)"
+                cell.paidName.text = eventIsCommingEvent.type
+                cell.timeStart.text = eventIsCommingEvent.startAt?.formatted(date: .abbreviated, time: .omitted)
+                cell.locationName.text = eventIsCommingEvent.location?.name
+                cell.imgAvatar.kf.setImage(with: URL(string: self.VM.isCommingEvent[indexPath.row].image))
+
+                
+                cell.callback = {
+                    self.changeDetailEvent(indexPath: indexPath)
+                }
+                
                 cell.layer.cornerRadius = 10
                 cell.layer.masksToBounds = true
                 
@@ -126,14 +154,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            Contanst.userdefault.set(VM.goingOnEvent[indexPath.row].id, forKey: "eventIdDetail")
-        } else {
-            Contanst.userdefault.set(VM.isCommingEvent[indexPath.row].id, forKey: "eventIdDetail")
-
-        }
-        changeScreen(modelType: DetailEventViewController.self, id: "DetailEventViewController")
-
+        changeDetailEvent(indexPath: indexPath)
     }
 }
 
