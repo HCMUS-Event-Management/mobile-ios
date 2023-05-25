@@ -79,7 +79,7 @@ extension BoughtTicketsViewController: UITableViewDataSource {
 
              cell.startTimeSession.text = "\(date!.formatted(date: .abbreviated, time: .omitted)) - \(date!.formatted(date: .omitted, time: .shortened))"
              cell.titleEvent.text = ticket.session?.event?.title
-             cell.location.text = ticket.session?.event?.locationId
+             cell.location.text = ticket.session?.event?.location?.name
             
             cell.img.kf.setImage(with: URL(string: ticket.session?.event!.image ?? "https://nestjs-entity-service-bucket.s3.ap-southeast-1.amazonaws.com/event_id_186/seating_plan/wF9NFk0T7NVnhDAXoh3AU8Uz1xBLBpbkrsS4a2Poo0EybGK5EE.jpeg"))
 

@@ -31,7 +31,7 @@ class HomeViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .label
         
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
-        label.text = "Xin Chào,"
+        label.text = "Xin Chào,\n"
         label.font = UIFont(name: "Helvetica", size: 18)
         label.textAlignment = .center
         label.textColor = .gray
@@ -63,16 +63,6 @@ class HomeViewController: UIViewController {
         }
         changeScreen(modelType: DetailEventViewController.self, id: "DetailEventViewController")
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

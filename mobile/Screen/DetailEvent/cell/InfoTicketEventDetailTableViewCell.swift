@@ -70,7 +70,7 @@ extension InfoTicketEventDetailTableViewCell:  UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "EventSessionTableViewCell", for: indexPath) as? EventSessionTableViewCell
         {
-            cell.price.text = "\(data[indexPath.section].price)"
+            cell.price.text = "\(data[indexPath.section].price.formatted(.currency(code: "VND")))"
             cell.title.text = data[indexPath.section].ticketTitle
             var startSell = self.dateFormatter.date(from: data[indexPath.section].startTimeForSell)
             var endSell = self.dateFormatter.date(from: data[indexPath.section].endTimeForSell)

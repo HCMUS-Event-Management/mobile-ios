@@ -90,6 +90,7 @@
 		A478479F2A14DEB700090EF3 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A478479E2A14DEB700090EF3 /* EventsViewModel.swift */; };
 		A47847A12A14E40000090EF3 /* ReponseGetAllCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47847A02A14E40000090EF3 /* ReponseGetAllCategory.swift */; };
 		A49D812929F3D08A009AE469 /* UploadAvatarDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49D812829F3D08A009AE469 /* UploadAvatarDto.swift */; };
+		A4A336772A1EDF86005CF3B9 /* DetailPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A336762A1EDF86005CF3B9 /* DetailPaymentViewController.swift */; };
 		A4A91316299F5AB800AC5E75 /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A91315299F5AB800AC5E75 /* ProfileDetailViewController.swift */; };
 		A4A91319299FAA1100AC5E75 /* PaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A91318299FAA1100AC5E75 /* PaymentMethodViewController.swift */; };
 		A4A9131D29A36D4B00AC5E75 /* ProfileDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A9131B29A36D4B00AC5E75 /* ProfileDetailTableViewCell.swift */; };
@@ -279,6 +280,7 @@
 		A478479E2A14DEB700090EF3 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
 		A47847A02A14E40000090EF3 /* ReponseGetAllCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReponseGetAllCategory.swift; sourceTree = "<group>"; };
 		A49D812829F3D08A009AE469 /* UploadAvatarDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAvatarDto.swift; sourceTree = "<group>"; };
+		A4A336762A1EDF86005CF3B9 /* DetailPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPaymentViewController.swift; sourceTree = "<group>"; };
 		A4A91315299F5AB800AC5E75 /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
 		A4A91318299FAA1100AC5E75 /* PaymentMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodViewController.swift; sourceTree = "<group>"; };
 		A4A9131B29A36D4B00AC5E75 /* ProfileDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -1021,6 +1023,7 @@
 			children = (
 				A4DC31082A16004F003539F6 /* PaymentHistoryViewController.swift */,
 				A4DC31122A1603DC003539F6 /* cellPayHistory */,
+				A4A336762A1EDF86005CF3B9 /* DetailPaymentViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1427,6 +1430,7 @@
 				A43058E92A0A0DF9007BC1D0 /* DataReponseSearch.swift in Sources */,
 				A4CA40702A171D84004F837B /* DataReponsePaymentHistory.swift in Sources */,
 				A41A7B2429FA63250024C6F8 /* ReusableCells.swift in Sources */,
+				A4A336772A1EDF86005CF3B9 /* DetailPaymentViewController.swift in Sources */,
 				A4F0253D29DF1531002A5DC0 /* LoadingTableViewCell.swift in Sources */,
 				A4CA40712A171D84004F837B /* ReponsePaymentHistory.swift in Sources */,
 				A4A9131D29A36D4B00AC5E75 /* ProfileDetailTableViewCell.swift in Sources */,

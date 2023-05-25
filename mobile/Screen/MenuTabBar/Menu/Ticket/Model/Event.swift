@@ -31,7 +31,8 @@ struct Event : Codable {
     var categoryId : String?
     var userId : String?
     var user : User?
-
+    var location : Location?
+    
     enum CodingKeys: String, CodingKey {
 
         case id = "id"
@@ -51,6 +52,8 @@ struct Event : Codable {
         case categoryId = "categoryId"
         case userId = "userId"
         case user = "user"
+        case location = "location"
+
     }
 
     init(from decoder: Decoder) throws {
@@ -72,6 +75,8 @@ struct Event : Codable {
         categoryId = try values.decodeIfPresent(String.self, forKey: .categoryId)
         userId = try values.decodeIfPresent(String.self, forKey: .userId)
         user = try values.decodeIfPresent(User.self, forKey: .user)
+        location = try values.decodeIfPresent(Location.self, forKey: .location)
+
     }
 
 }
@@ -95,8 +100,8 @@ final class EventObject: Object {
     @objc dynamic var categoryId : String = ""
     @objc dynamic var userId : String = ""
     @objc dynamic var user: UserObject? = nil
+    @objc dynamic var location: LocationObject? = nil
 
-    
     override static func primaryKey() -> String? {
         return "id"
     }
@@ -141,6 +146,8 @@ extension Event: Persistable {
         character.categoryId = categoryId ?? ""
         character.userId = userId ?? ""
         character.user =  user?.managedObject()
+        character.location =  location?.managedObject()
+
         return character
     }
 }

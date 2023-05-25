@@ -1833,7 +1833,7 @@ PASSWORD</string>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" indicatorStyle="black" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vGi-e9-OhP">
                                         <rect key="frame" x="0.0" y="10" width="374" height="27"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="20" id="VeP-zc-Cq4">
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="5" minimumInteritemSpacing="20" id="VeP-zc-Cq4">
                                             <size key="itemSize" width="128" height="128"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -1849,7 +1849,7 @@ PASSWORD</string>
                                                 </collectionViewCellContentView>
                                             </collectionViewCell>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="NGS-lo-7wy">
-                                                <rect key="frame" x="138" y="-50.666666666666664" width="128" height="128"/>
+                                                <rect key="frame" x="133" y="-50.666666666666664" width="128" height="128"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Pfo-yd-l6v">
                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
@@ -1857,7 +1857,7 @@ PASSWORD</string>
                                                 </collectionViewCellContentView>
                                             </collectionViewCell>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="c5e-LP-qnQ">
-                                                <rect key="frame" x="276" y="-50.666666666666664" width="128" height="128"/>
+                                                <rect key="frame" x="266" y="-50.666666666666664" width="128" height="128"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="2kt-Jg-CbB">
                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
@@ -1867,7 +1867,7 @@ PASSWORD</string>
                                         </cells>
                                     </collectionView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Giáo dục" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J5R-IG-wdS">
-                                        <rect key="frame" x="0.0" y="56.999999999999993" width="374" height="21.666666666666664"/>
+                                        <rect key="frame" x="0.0" y="47" width="374" height="32.666666666666657"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1877,10 +1877,11 @@ PASSWORD</string>
                                 <constraints>
                                     <constraint firstItem="vGi-e9-OhP" firstAttribute="leading" secondItem="kvX-ob-zen" secondAttribute="leading" id="4cE-Ze-Zm0"/>
                                     <constraint firstItem="J5R-IG-wdS" firstAttribute="leading" secondItem="kvX-ob-zen" secondAttribute="leading" id="722-VO-nTj"/>
+                                    <constraint firstAttribute="bottom" secondItem="J5R-IG-wdS" secondAttribute="bottom" constant="10" id="95j-DD-iuI"/>
                                     <constraint firstItem="vGi-e9-OhP" firstAttribute="height" secondItem="kvX-ob-zen" secondAttribute="height" multiplier="0.3" id="A13-9w-DwX"/>
                                     <constraint firstItem="vGi-e9-OhP" firstAttribute="top" secondItem="kvX-ob-zen" secondAttribute="top" constant="10" id="EDY-8s-OsE"/>
                                     <constraint firstAttribute="trailing" secondItem="J5R-IG-wdS" secondAttribute="trailing" id="F9t-59-KRY"/>
-                                    <constraint firstItem="J5R-IG-wdS" firstAttribute="top" secondItem="vGi-e9-OhP" secondAttribute="bottom" constant="20" id="HNg-Ux-XjD"/>
+                                    <constraint firstItem="J5R-IG-wdS" firstAttribute="top" secondItem="vGi-e9-OhP" secondAttribute="bottom" constant="10" id="HNg-Ux-XjD"/>
                                     <constraint firstAttribute="trailing" secondItem="vGi-e9-OhP" secondAttribute="trailing" id="KqO-ut-MXM"/>
                                 </constraints>
                             </view>

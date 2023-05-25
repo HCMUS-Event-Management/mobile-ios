@@ -62,7 +62,7 @@ extension EventViewController: UICollectionViewDataSource {
 
         if collectionView == self.clType {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TypeCollectionViewCell", for: indexPath) as? TypeCollectionViewCell {
-                cell.layer.cornerRadius = 30
+                cell.layer.cornerRadius = 25
                 cell.layer.masksToBounds = true
                 cell.category.text = VM.catagorys[indexPath.row].name
                 cell.callback = {

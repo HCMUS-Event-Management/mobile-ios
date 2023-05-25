@@ -95,7 +95,7 @@ extension PaymentHistoryViewController: UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "PaymentHistoryTableViewCell", for: indexPath) as? PaymentHistoryTableViewCell  {
                 cell.desciption.text = payment.description1
                 cell.owner.text = payment.user?.fullName
-                cell.price.text = "\(payment.price) \(payment.currency)"
+                cell.price.text = "\(payment.price.formatted(.currency(code: payment.currency)))"
                 
                 let dateFormatter = DateFormatter()
                 dateFormatter.locale = Locale(identifier: "en_US_POSIX")
@@ -105,8 +105,10 @@ extension PaymentHistoryViewController: UITableViewDataSource {
                 
                 cell.date.text = date?.formatted(date: .abbreviated, time: .omitted)
                 
-                if  payment.method == "paypal" {
-                    cell.logo.image  = UIImage(named: "MomoLogo")
+                if payment.method == "paypal" {
+                    cell.logo.image  = UIImage(named: "PaypalLogo")
+                } else if payment.method == "vnpay" {
+                    cell.logo.image  = UIImage(named: "VnpayLogo")
                 }
                 
                 return cell

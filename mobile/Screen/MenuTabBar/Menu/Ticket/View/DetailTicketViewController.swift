@@ -84,7 +84,7 @@ extension DetailTicketViewController: UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "InfoEventTableViewCell", for: indexPath) as? InfoEventTableViewCell  {
 
                 cell.eventName.text = ticket.session?.event?.title
-                cell.location.text = ticket.session?.event?.locationId
+                cell.location.text = ticket.session?.event?.location?.name  
                 
                 let dateFormatter = DateFormatter()
                 dateFormatter.locale = Locale(identifier: "en_US_POSIX")
@@ -92,7 +92,7 @@ extension DetailTicketViewController: UITableViewDataSource {
                 let startDate = dateFormatter.date(from:  ticket.session?.startAt ?? "1970-01-01T00:00:00.000Z")
                 let endDate = dateFormatter.date(from:  ticket.session?.endAt ?? "1970-01-01T00:00:00.000Z")
                 
-                cell.date.text = "\tStart Date: \(startDate!.formatted(date: .abbreviated, time: .omitted))  \(startDate!.formatted(date: .omitted, time: .shortened)) \n\n\tEnd Date  : \(endDate!.formatted(date: .abbreviated, time: .omitted)) \(endDate!.formatted(date: .omitted, time: .shortened))"
+                cell.date.text = "Start Date : \(startDate!.formatted(date: .abbreviated, time: .omitted))  \(startDate!.formatted(date: .omitted, time: .shortened)) \nEnd Date   : \(endDate!.formatted(date: .abbreviated, time: .omitted)) \(endDate!.formatted(date: .omitted, time: .shortened))"
                 
                 cell.organizer.text = ticket.owner?.fullName
                 return cell
