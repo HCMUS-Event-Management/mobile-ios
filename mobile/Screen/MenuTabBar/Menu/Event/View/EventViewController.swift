@@ -79,7 +79,16 @@ extension EventViewController: UICollectionViewDataSource {
                 cell.eventName.text = event.title
                 cell.owner.text = "By \(event.user!.fullName)"
                 cell.paidName.text = event.type
-                cell.timeStart.text = event.startAt?.formatted(date: .abbreviated, time: .omitted)
+                if #available(iOS 15.0, *) {
+                    cell.timeStart.text = event.startAt?.formatted(date: .abbreviated, time: .omitted)
+                } else {
+                    let newDateFormatter = DateFormatter()
+                    newDateFormatter.dateStyle = .short
+                    newDateFormatter.timeStyle = .none
+                    let formattedDate = newDateFormatter.string(from: event.startAt ?? Date())
+                    cell.timeStart.text = formattedDate
+                
+                }
                 cell.locationName.text = event.location?.name
                 cell.imgAvatar.kf.setImage(with: URL(string: self.VM.events[indexPath.row].image))
 

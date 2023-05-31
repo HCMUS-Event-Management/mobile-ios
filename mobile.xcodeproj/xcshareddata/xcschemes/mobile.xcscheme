@@ -78,7 +78,7 @@
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "BASE_URL1"
-            value = "http://local.kube/"
+            value = "https://api.hcmus.online/"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
@@ -88,7 +88,7 @@
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "BASE_URL"
-            value = "http://local.kube/"
+            value = "https://api.hcmus.online/"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

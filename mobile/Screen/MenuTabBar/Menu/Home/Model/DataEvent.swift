@@ -117,8 +117,8 @@ extension DataEvent: Persistable {
         id = managedObject.id
         title = managedObject.title
         description = managedObject.description1
-        startAt = managedObject.startAt?.ISO8601Format()
-        endAt = managedObject.endAt?.ISO8601Format()
+        startAt = DateFormatter().iso8601String(from: managedObject.startAt ?? Date())
+        endAt = DateFormatter().iso8601String(from: managedObject.endAt ?? Date())
         status = managedObject.status
         urlWeb = managedObject.urlWeb
         image = managedObject.image

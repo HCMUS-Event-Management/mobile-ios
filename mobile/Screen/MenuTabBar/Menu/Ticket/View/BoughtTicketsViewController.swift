@@ -72,12 +72,36 @@ extension BoughtTicketsViewController: UITableViewDataSource {
             
             cell.ownerName.text = ticket.owner?.fullName
             
-             let dateFormatter = DateFormatter()
-             dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-             let date = dateFormatter.date(from:  ticket.session?.startAt ?? "1970-01-01T00:00:00.000Z")
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+            let startDate = dateFormatter.date(from: ticket.session?.startAt ?? "1970-01-01T00:00:00.000Z")
+            let endDate = dateFormatter.date(from: ticket.session?.endAt ?? "1970-01-01T00:00:00.000Z")
+            var formattedStartTime: String
+            var formattedEndTime: String
+            if #available(iOS 15.0, *) {
+                formattedStartTime = startDate?.formatted(date: .abbreviated, time: .omitted) ?? ""
+                formattedEndTime = startDate?.formatted(date: .abbreviated, time: .omitted) ?? ""
+            } else {
+                let newDateFormatter = DateFormatter()
+                newDateFormatter.dateStyle = .short
+                newDateFormatter.timeStyle = .none
+                formattedStartTime = newDateFormatter.string(from: startDate ?? Date())
+                formattedEndTime = newDateFormatter.string(from: endDate ?? Date())
+            }
 
-             cell.startTimeSession.text = "\(date!.formatted(date: .abbreviated, time: .omitted)) - \(date!.formatted(date: .omitted, time: .shortened))"
+            
+
+            cell.startTimeSession.text = "\(formattedStartTime) - \(formattedEndTime)"
+
+            
+//             let dateFormatter = DateFormatter()
+//             dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+//             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+//             let date = dateFormatter.date(from:  ticket.session?.startAt ?? "1970-01-01T00:00:00.000Z")
+//
+//             cell.startTimeSession.text = "\(date!.formatted(date: .abbreviated, time: .omitted)) - \(date!.formatted(date: .omitted, time: .shortened))"
              cell.titleEvent.text = ticket.session?.event?.title
              cell.location.text = ticket.session?.event?.location?.name
             

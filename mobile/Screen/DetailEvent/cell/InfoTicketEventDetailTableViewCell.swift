@@ -41,11 +41,11 @@ class InfoTicketEventDetailTableViewCell: UITableViewCell {
         self.startESession = startESession
         
         
-        
-        let start = dateFormatter.date(from: self.startFSession ?? "1970-01-01T00:00:00.000Z")
-        let end = dateFormatter.date(from: self.startESession ?? "1970-01-01T00:00:00.000Z")
-        self.startFirstSession.text = start?.formatted(date: .numeric, time: .shortened)
-        self.StartEndSession.text = end?.formatted(date: .numeric, time: .shortened)
+//
+//        let start = dateFormatter.date(from: self.startFSession ?? "1970-01-01T00:00:00.000Z")
+//        let end = dateFormatter.date(from: self.startESession ?? "1970-01-01T00:00:00.000Z")
+//        self.startFirstSession.text = start?.formatted(date: .numeric, time: .shortened)
+//        self.StartEndSession.text = end?.formatted(date: .numeric, time: .shortened)
 
         self.tb.reloadData()
         
@@ -70,13 +70,13 @@ extension InfoTicketEventDetailTableViewCell:  UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "EventSessionTableViewCell", for: indexPath) as? EventSessionTableViewCell
         {
-            cell.price.text = "\(data[indexPath.section].price.formatted(.currency(code: "VND")))"
+//            cell.price.text = "\(data[indexPath.section].price.formatted(.currency(code: "VND")))"
             cell.title.text = data[indexPath.section].ticketTitle
             var startSell = self.dateFormatter.date(from: data[indexPath.section].startTimeForSell)
             var endSell = self.dateFormatter.date(from: data[indexPath.section].endTimeForSell)
 
-            cell.start.text = startSell?.formatted(date: .numeric, time: .shortened)
-            cell.end.text = endSell?.formatted(date: .numeric, time: .shortened)
+//            cell.start.text = startSell?.formatted(date: .numeric, time: .shortened)
+//            cell.end.text = endSell?.formatted(date: .numeric, time: .shortened)
 
             return cell
         }

@@ -95,15 +95,33 @@ extension PaymentHistoryViewController: UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "PaymentHistoryTableViewCell", for: indexPath) as? PaymentHistoryTableViewCell  {
                 cell.desciption.text = payment.description1
                 cell.owner.text = payment.user?.fullName
-                cell.price.text = "\(payment.price.formatted(.currency(code: payment.currency)))"
+//                cell.price.text = "\(payment.price.formatted(.currency(code: payment.currency)))"
+                
                 
                 let dateFormatter = DateFormatter()
                 dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-                
-                let date = dateFormatter.date(from:payment.createdAt)
-                
-                cell.date.text = date?.formatted(date: .abbreviated, time: .omitted)
+
+                let date = dateFormatter.date(from: payment.createdAt)
+
+                if #available(iOS 15.0, *) {
+                    cell.date.text = date?.formatted(date: .abbreviated, time: .omitted)
+                } else {
+                    // Xử lý cho phiên bản iOS dưới 15.0
+                    // Ví dụ: Hiển thị ngày giờ theo định dạng tùy chỉnh
+                    let customDateFormatter = DateFormatter()
+                    customDateFormatter.dateFormat = "yyyy-MM-dd"
+                    let dateString = customDateFormatter.string(from: date ?? Date())
+                    cell.date.text = dateString
+                }
+
+//                let dateFormatter = DateFormatter()
+//                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+//                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+//
+//                let date = dateFormatter.date(from:payment.createdAt)
+//
+//                cell.date.text = date?.formatted(date: .abbreviated, time: .omitted)
                 
                 if payment.method == "paypal" {
                     cell.logo.image  = UIImage(named: "PaypalLogo")

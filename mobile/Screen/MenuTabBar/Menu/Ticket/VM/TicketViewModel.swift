@@ -27,7 +27,6 @@ class TicketViewModel {
     
     
     func getDetailTicketFromServer(_ ticketCode: String) {
-        self.eventHandler?(.loading)
         APIManager.shared.request(modelType: ReponseDetailTicket.self, type: EntityEndPoint.ticketDetail(ticketCode: ticketCode), params: nil, completion: { result in
             self.eventHandler?(.stopLoading)
 
@@ -62,7 +61,7 @@ class TicketViewModel {
     
     func fetchDetailTicket(_ ticketCode: String) {
         
-        
+        self.eventHandler?(.loading)
         //declare this property where it won't go out of scope relative to your listener
         let reachability = try! Reachability()
         

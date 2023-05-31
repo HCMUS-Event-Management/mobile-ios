@@ -31,8 +31,8 @@ class TokenService {
     
     
     func checkForLogin(completionHandler: @escaping CompletionHandler) {
-        let now = Date.now.timeIntervalSince1970
-    
+        let now = Date().timeIntervalSince1970
+
         if (getToken(key: "userToken") != "" && getToken(key: "refreshToken") != "") {
             if let infoToken = try? decode(jwtToken: getToken(key: "userToken")) {
                 if now.isLessThanOrEqualTo(infoToken["exp"]! as! Double) {
@@ -61,31 +61,39 @@ class TokenService {
             completionHandler(false)
         }
         
-        
-        
-//        guard let infoToken = try? decode(jwtToken: getToken(key: "userToken")) else {
-//            return false
-//        }
-//        if now.isLessThanOrEqualTo(infoToken["exp"]! as! Double) {
-//            return true
-//        }
-    
-        
-        
-//        if let
-//        if getToken(key: "userToken") != "" {
-//
-//            print(infoToken["exp"]!)
-//            print(Date.now.timeIntervalSince1970)
-//            if Date.now.timeIntervalSince1970.isLessThanOrEqualTo(infoToken["exp"]! as! Double) {
-//                return false
-//            }
-//            return loginByRefreshToken()
-//
-//        } else {
-//            return false
-//        }
     }
+    
+    
+    func isLoggedIn(completionHandler: @escaping (Bool) -> Void) {
+        let now = Date().timeIntervalSince1970
+        
+        if (getToken(key: "userToken") != "" && getToken(key: "refreshToken") != "") {
+            if let infoToken = try? decode(jwtToken: getToken(key: "userToken")) {
+                if now <= (infoToken["exp"] as? Double ?? 0) {
+                    completionHandler(true)
+                    return
+                } else {
+                    if let refreshToken = try? decode(jwtToken: getToken(key: "refreshToken")) {
+                        if now <= (refreshToken["exp"] as? Double ?? 0) {
+                            loginByRefreshToken(completion: { result in
+                                switch result {
+                                case .success(_):
+                                    completionHandler(true)
+                                case .failure(let err):
+                                    completionHandler(false)
+                                }
+                            })
+                            return
+                        }
+                    }
+                }
+            }
+        }
+        
+        completionHandler(false)
+    }
+    
+    
 //completion: @escaping Handler<ReponseLogin>
     func loginByRefreshToken(completion: @escaping Handler<ReponseLogin>) {
 //        var check = false

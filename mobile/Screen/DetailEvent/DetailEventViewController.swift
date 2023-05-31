@@ -71,13 +71,30 @@ extension DetailEventViewController: UITableViewDataSource {
 
                 cell.eventName.text = event.title
                 cell.location.text = event.location?.name
+//                let dateFormatter = DateFormatter()
+//                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+//                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+//
+//                let date = dateFormatter.date(from: event.startAt ?? "1970-01-01T00:00:00.000Z")
+//                cell.date.text = date?.formatted(date: .abbreviated, time: .shortened)
                 let dateFormatter = DateFormatter()
                 dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-                
-                let date = dateFormatter.date(from: event.startAt ?? "1970-01-01T00:00:00.000Z")
-                cell.date.text = date?.formatted(date: .abbreviated, time: .shortened)
-               
+
+                let startDate = dateFormatter.date(from: event.startAt ?? "1970-01-01T00:00:00.000Z")
+
+                var formattedDate: String
+                if #available(iOS 15.0, *) {
+                    formattedDate = startDate?.formatted(date: .abbreviated, time: .shortened) ?? ""
+                } else {
+                    let newDateFormatter = DateFormatter()
+                    newDateFormatter.dateStyle = .short
+                    newDateFormatter.timeStyle = .short
+                    formattedDate = newDateFormatter.string(from: startDate ?? Date())
+                }
+
+                cell.date.text = formattedDate
+
                 cell.organizer.text = event.user?.fullName
                 return cell
             }

@@ -35,7 +35,7 @@ extension PaymentEndPoint: EndPointType {
     }
     
     var baseURL: String {
-        return ProcessInfo.processInfo.environment["BASE_URL1"]!
+        return "https://api.hcmus.online/"
     }
 
     var url: URL? {

@@ -75,7 +75,16 @@ extension HomeViewController: UICollectionViewDataSource {
                 cell.eventName.text = eventGoingOnEvent.title
                 cell.owner.text = "By \(eventGoingOnEvent.user!.fullName)"
                 cell.paidName.text = eventGoingOnEvent.type
-                cell.timeStart.text = eventGoingOnEvent.startAt?.formatted(date: .abbreviated, time: .omitted)
+                if #available(iOS 15.0, *) {
+                    cell.timeStart.text = eventGoingOnEvent.startAt?.formatted(date: .abbreviated, time: .omitted)
+                } else {
+                    let newDateFormatter = DateFormatter()
+                    newDateFormatter.dateStyle = .short
+                    newDateFormatter.timeStyle = .none
+                    let formattedDate = newDateFormatter.string(from: eventGoingOnEvent.startAt ?? Date())
+                    cell.timeStart.text = formattedDate
+                
+                }
                 cell.locationName.text = eventGoingOnEvent.location?.name
                 
                 cell.imgAvatar.kf.setImage(with: URL(string: self.VM.goingOnEvent[indexPath.row].image))
@@ -95,7 +104,16 @@ extension HomeViewController: UICollectionViewDataSource {
                 cell.eventName.text = eventIsCommingEvent.title
                 cell.owner.text = "By \(eventIsCommingEvent.user!.fullName)"
                 cell.paidName.text = eventIsCommingEvent.type
-                cell.timeStart.text = eventIsCommingEvent.startAt?.formatted(date: .abbreviated, time: .omitted)
+                if #available(iOS 15.0, *) {
+                    cell.timeStart.text = eventIsCommingEvent.startAt?.formatted(date: .abbreviated, time: .omitted)
+                } else {
+                    let newDateFormatter = DateFormatter()
+                    newDateFormatter.dateStyle = .short
+                    newDateFormatter.timeStyle = .none
+                    let formattedDate = newDateFormatter.string(from: eventIsCommingEvent.startAt ?? Date())
+                    cell.timeStart.text = formattedDate
+                
+                }
                 cell.locationName.text = eventIsCommingEvent.location?.name
                 cell.imgAvatar.kf.setImage(with: URL(string: self.VM.isCommingEvent[indexPath.row].image))
 

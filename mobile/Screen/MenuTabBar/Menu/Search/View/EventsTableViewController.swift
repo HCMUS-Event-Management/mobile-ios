@@ -12,13 +12,14 @@ import Kingfisher
 class EventsTableViewController: UITableViewController {
     var callback : (() -> Void)?
     var VM = SearchViewModel()
-
+    var hiddenHeaderSections: [Int: Bool] = [:]
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
     }
     
     
+
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Found \(VM.apps.count) results"
     }

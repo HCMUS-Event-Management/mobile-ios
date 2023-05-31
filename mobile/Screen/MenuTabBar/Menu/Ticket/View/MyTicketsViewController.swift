@@ -69,12 +69,30 @@ extension MyTicketsViewController: UITableViewDataSource {
                 let ticket = VM.myTicket[indexPath.row]
                 cell.ownerName.text = ticket.owner?.fullName
                
+                
                 let dateFormatter = DateFormatter()
                 dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-                let date = dateFormatter.date(from:  ticket.session?.startAt ?? "1970-01-01T00:00:00.000Z")
+                let date = dateFormatter.date(from: ticket.session?.startAt ?? "1970-01-01T00:00:00.000Z")
 
-                cell.startTimeSession.text = "\(date!.formatted(date: .abbreviated, time: .omitted)) - \(date!.formatted(date: .omitted, time: .shortened))"
+                if #available(iOS 15.0, *) {
+                    let formattedDate = date?.formatted(date: .abbreviated, time: .omitted)
+                    let formattedTime = date?.formatted(date: .omitted, time: .shortened)
+                    cell.startTimeSession.text = "\(formattedDate ?? "") - \(formattedTime ?? "")"
+                } else {
+                    dateFormatter.dateFormat = "MMM d, yyyy"
+                    let formattedDate = dateFormatter.string(from: date ?? Date())
+                    dateFormatter.dateFormat = "h:mm a"
+                    let formattedTime = dateFormatter.string(from: date ?? Date())
+                    cell.startTimeSession.text = "\(formattedDate) - \(formattedTime)"
+                }
+
+//                let dateFormatter = DateFormatter()
+//                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+//                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+//                let date = dateFormatter.date(from:  ticket.session?.startAt ?? "1970-01-01T00:00:00.000Z")
+//
+//                cell.startTimeSession.text = "\(date!.formatted(date: .abbreviated, time: .omitted)) - \(date!.formatted(date: .omitted, time: .shortened))"
                 cell.titleEvent.text = ticket.session?.event?.title
                 cell.location.text = ticket.session?.event?.location?.name
 
@@ -127,7 +145,7 @@ extension MyTicketsViewController: UITableViewDelegate{
    
 }
 
-
+ 
 extension MyTicketsViewController {
 
     func configuration() {

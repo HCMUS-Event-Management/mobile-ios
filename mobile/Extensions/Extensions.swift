@@ -184,3 +184,11 @@ extension String {
         return dateFormatter.date(from: self)
     }
 }
+
+
+extension DateFormatter {
+    func iso8601String(from date: Date) -> String {
+        dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        return string(from: date)
+    }
+}

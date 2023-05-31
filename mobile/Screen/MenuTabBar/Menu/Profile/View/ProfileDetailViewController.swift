@@ -140,15 +140,31 @@ extension ProfileDetailViewController: UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileDetailTableViewCell", for: indexPath) as? ProfileDetailTableViewCell {
                 cell.lbl.text = dataLabel[indexPath.row-1]
                                 
-                
                 let dateFormatter = DateFormatter()
                 dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-                
-                let date = dateFormatter.date(from:  VM.userInfoDetail?.birthday ?? "1970-01-01T00:00:00.000Z")
-                
-                
-                cell.tf.text = date?.formatted(date: .abbreviated, time: .omitted)
+
+                let date = dateFormatter.date(from: VM.userInfoDetail?.birthday ?? "1970-01-01T00:00:00.000Z")
+
+                if #available(iOS 15.0, *) {
+                    cell.tf.text = date?.formatted(date: .abbreviated, time: .omitted)
+                } else {
+                    // Xử lý cho phiên bản iOS dưới 15.0
+                    // Ví dụ: Hiển thị ngày giờ theo định dạng tùy chỉnh
+                    let customDateFormatter = DateFormatter()
+                    customDateFormatter.dateFormat = "yyyy-MM-dd"
+                    let dateString = customDateFormatter.string(from: date ?? Date())
+                    cell.tf.text = dateString
+                }
+
+//                let dateFormatter = DateFormatter()
+//                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+//                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+//
+//                let date = dateFormatter.date(from:  VM.userInfoDetail?.birthday ?? "1970-01-01T00:00:00.000Z")
+//
+//
+//                cell.tf.text = date?.formatted(date: .abbreviated, time: .omitted)
                 
                 cell.tf.isEnabled = false // hợp lí
                 return cell

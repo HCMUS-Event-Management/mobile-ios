@@ -20,13 +20,14 @@ class DetailTicketViewController: UIViewController {
         profileViewModel.getUser()
         VM.getMyTicketDataLocalDB()
         VM.getBoughtTicketDataLocalDB()
-
-        let ticketCodeDetail = Contanst.userdefault.string(forKey: "ticketCodeDetail")!
         
+        let ticketCodeDetail = Contanst.userdefault.string(forKey: "ticketCodeDetail")!
         VM.fetchDetailTicket(ticketCodeDetail)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         configNaviBar()
     }
     
@@ -74,9 +75,11 @@ extension DetailTicketViewController: UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ImageQRCodeTableViewCell", for: indexPath) as? ImageQRCodeTableViewCell  {
                 // hash
                 let info = "\(VM.detail.eventId)-\(VM.detail.ticketCode)-\(profileViewModel.userInfo!.id!)"
-                let encryptedString = hashRSA(from: info)
-                decodeRSA(from: encryptedString ?? "")
-                let image = generateQRCode(from: encryptedString!)
+//                let encryptedString = hashRSA(from: info)
+//                decodeRSA(from: encryptedString ?? "")
+//                let image = generateQRCode(from: encryptedString!)
+                let image = generateQRCode(from: info)
+
                 cell.imgQR.image = image
                 return cell
             }
@@ -86,13 +89,50 @@ extension DetailTicketViewController: UITableViewDataSource {
                 cell.eventName.text = ticket.session?.event?.title
                 cell.location.text = ticket.session?.event?.location?.name  
                 
+//                let dateFormatter = DateFormatter()
+//                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+//                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+//                let startDate = dateFormatter.date(from:  ticket.session?.startAt ?? "1970-01-01T00:00:00.000Z")
+//                let endDate = dateFormatter.date(from:  ticket.session?.endAt ?? "1970-01-01T00:00:00.000Z")
+//
+//                cell.date.text = "Start Date : \(startDate!.formatted(date: .abbreviated, time: .omitted))  \(startDate!.formatted(date: .omitted, time: .shortened)) \nEnd Date   : \(endDate!.formatted(date: .abbreviated, time: .omitted)) \(endDate!.formatted(date: .omitted, time: .shortened))"
+                
+                
                 let dateFormatter = DateFormatter()
                 dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-                let startDate = dateFormatter.date(from:  ticket.session?.startAt ?? "1970-01-01T00:00:00.000Z")
-                let endDate = dateFormatter.date(from:  ticket.session?.endAt ?? "1970-01-01T00:00:00.000Z")
+
+                let startDate = dateFormatter.date(from: ticket.session?.startAt ?? "1970-01-01T00:00:00.000Z")
+                let endDate = dateFormatter.date(from: ticket.session?.endAt ?? "1970-01-01T00:00:00.000Z")
+
+                var formattedStartDate: String
+                var formattedEndDate: String
+
+                if #available(iOS 15.0, *) {
+                    formattedStartDate = startDate?.formatted(date: .abbreviated, time: .omitted) ?? ""
+                    formattedEndDate = endDate?.formatted(date: .abbreviated, time: .omitted) ?? ""
+                } else {
+                    let newDateFormatter = DateFormatter()
+                    newDateFormatter.dateStyle = .short
+                    newDateFormatter.timeStyle = .none
+                    formattedStartDate = newDateFormatter.string(from: startDate ?? Date())
+                    formattedEndDate = newDateFormatter.string(from: endDate ?? Date())
+                }
                 
-                cell.date.text = "Start Date : \(startDate!.formatted(date: .abbreviated, time: .omitted))  \(startDate!.formatted(date: .omitted, time: .shortened)) \nEnd Date   : \(endDate!.formatted(date: .abbreviated, time: .omitted)) \(endDate!.formatted(date: .omitted, time: .shortened))"
+                let timeFormatter = DateFormatter()
+                timeFormatter.locale = Locale(identifier: "en_US_POSIX")
+                timeFormatter.dateFormat = "HH:mm"
+
+                let formattedStartTime = timeFormatter.string(from: startDate ?? Date())
+                let formattedEndTime = timeFormatter.string(from: endDate ?? Date())
+                
+                cell.date.text = """
+                    Start Date: \(formattedStartDate) \(formattedStartTime)\n
+                    End Date: \(formattedEndDate) \(formattedEndTime)
+                """
+                
+                
+                
                 
                 cell.organizer.text = ticket.owner?.fullName
                 return cell
@@ -114,9 +154,32 @@ extension DetailTicketViewController: UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "InfoPaymentTableViewCell", for: indexPath) as? InfoPaymentTableViewCell  {
                 cell.eventId.text = ticket.session?.eventId
                 cell.method.text = ticket.paymentMethod
-                cell.discount.text = ticket.discount.formatted(.currency(code: "VND"))
-                cell.ticketPrice.text = ticket.price.formatted(.currency(code: "VND"))
-                cell.total.text = (ticket.price - ticket.discount).formatted(.currency(code: "VND"))
+//                cell.discount.text = ticket.discount.formatted(.currency(code: "VND"))
+//                cell.ticketPrice.text = ticket.price.formatted(.currency(code: "VND"))
+//                cell.total.text = (ticket.price - ticket.discount).formatted(.currency(code: "VND"))
+                let currencyFormatter = NumberFormatter()
+                currencyFormatter.numberStyle = .currency
+                currencyFormatter.currencyCode = "VND"
+
+                if #available(iOS 15.0, *) {
+                    currencyFormatter.formattingContext = .standalone
+                }
+
+                
+
+                if #available(iOS 15.0, *) {
+                    cell.discount.text = ticket.discount.formatted(.currency(code: "VND"))
+                    cell.ticketPrice.text = ticket.price.formatted(.currency(code: "VND"))
+                    let total = ticket.price - ticket.discount
+                    cell.total.text = total.formatted(.currency(code: "VND"))
+                } else {
+                    let discountFormatted = currencyFormatter.string(from: NSNumber(value: ticket.discount))
+                    cell.discount.text = discountFormatted
+                    let priceFormatted = currencyFormatter.string(from: NSNumber(value: ticket.price))
+                    cell.ticketPrice.text = priceFormatted
+                    let totalFormatted = currencyFormatter.string(from: NSNumber(value: ticket.price - ticket.discount))
+                    cell.total.text = totalFormatted
+                }
                 return cell
             }
         }
@@ -166,6 +229,7 @@ extension DetailTicketViewController {
     }
 
     func initViewModel() {
+        
     }
 
     // Data binding event observe - communication
@@ -175,15 +239,22 @@ extension DetailTicketViewController {
         VM.eventHandler = { [weak self] event in
             switch event {
             case .loading:
+                
                 loader = self?.loader()
+                print(loader)
             case .stopLoading:
-                self?.stoppedLoader(loader: loader ?? UIAlertController())
+                DispatchQueue.main.async {
+                    print(2)
+                    print(loader ?? UIAlertController())
+
+                    self?.stoppedLoader(loader: loader ?? UIAlertController())
+                }
             case .dataLoaded:
                 print("Detaik Ticket loaded...")
                 DispatchQueue.main.async {
 //                    self?.tb.reloadSections([0], with: .none)
                     self?.tb.reloadData()
-//                    self?.stoppedLoader(loader: loader ?? UIAlertController())
+                    self?.stoppedLoader(loader: loader ?? UIAlertController())
 
                 }
             case .error(let error):

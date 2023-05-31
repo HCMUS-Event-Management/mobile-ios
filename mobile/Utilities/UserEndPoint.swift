@@ -52,7 +52,8 @@ extension UserEndPoint: EndPointType {
     }
 
     var baseURL: String {
-        return ProcessInfo.processInfo.environment["BASE_URL"]!
+//        return ProcessInfo.processInfo.environment["BASE_URL"]!
+        return "https://api.hcmus.online/"
     }
 
     var url: URL? {
