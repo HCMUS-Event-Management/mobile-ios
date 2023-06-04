@@ -18,6 +18,7 @@ enum UserEndPoint {
     case verifyToken(token: String) // GET
     case refreshToken(token: String) // POST
     case uploadAvatar // PUT
+    case loginGG
 }
 
 // https://fakestoreapi.com/products
@@ -46,6 +47,8 @@ extension UserEndPoint: EndPointType {
             return "api/v1/user-auth/user/send-otp"
         case .uploadAvatar:
             return "api/v1/user-auth/user/upload-avatar"
+        case .loginGG:
+            return "api/v1/user-auth/user/google-sign-in"
         }
    
 
@@ -82,33 +85,13 @@ extension UserEndPoint: EndPointType {
             return .post
         case .uploadAvatar:
             return .put
+        case .loginGG:
+            return .get
         }
     }
 
     var body: Encodable? {
-        switch self {
-        case .profile:
-            return nil
-        case .login(let Info):
-            return Info
-        case .logout:
-            return nil
-        case .updateProfile:
-            return nil
-        case .changePassword:
-            return nil
-        case .forgetPassword:
-            return nil
-        case .verifyToken:
-            return nil
-        case .refreshToken:
-            return nil
-        case .sendOTP:
-            return nil
-        case .uploadAvatar:
-            return nil
-        }
-    
+        return nil
     }
 
     var headers: [String : String]? {
@@ -133,6 +116,8 @@ extension UserEndPoint: EndPointType {
             return APIManager.commonHeaders
         case .uploadAvatar:
             return APIManager.bearTokenHeaders
+        case .loginGG:
+            return APIManager.commonHeaders
         }
     }
 }

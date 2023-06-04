@@ -6,15 +6,19 @@
 //
 
 import UIKit
+import WebKit
 
 class LoginFirstScreenViewController: UIViewController {
+    var webView: WKWebView!
+    var currentURL: URL?
 
     var VM = LoginFirstScreenViewModel()
     @IBOutlet weak var btnCheckBoxRemember: UIButton!
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var btnSignUp: UIButton!
     @IBOutlet weak var fotgetPassword: UIButton!
-
+    @IBOutlet weak var btnLoginFB: UIButton!
+    @IBOutlet weak var btnLoginGG: UIButton!
     @IBAction func setPassword(_ sender: UITextField) {
         VM.setPassword(password: sender.text ?? "")
         
@@ -91,6 +95,8 @@ class LoginFirstScreenViewController: UIViewController {
         configuration()
         CheckAndAdd()
         print(Contanst.userdefault.string(forKey: "userToken"))
+        btnLoginGG.addTarget(self, action: #selector(redirectGoogle), for: .touchUpInside)
+
         
         
         
@@ -107,7 +113,85 @@ class LoginFirstScreenViewController: UIViewController {
     @objc func Login() {
         VM.handelLogin()
     }
+    
+    @objc func redirectGoogle() {
+        // Create an instance of WKWebView
+        webView = WKWebView(frame: view.bounds)
+        webView.navigationDelegate = self
+        view.addSubview(webView)
+        webView.customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1"
+
+        // Create a URL from the initial link
+        guard let initialURL = URL(string: "https://api.hcmus.online/api/v1/user-auth/user/google-sign-in") else {
+            return
+        }
+
+        // Start loading the page
+        var request = URLRequest(url: initialURL)
+        request.httpMethod = "GET"
+        webView.load(request)
+        
+    }
+
 }
+
+extension LoginFirstScreenViewController: WKNavigationDelegate {
+    // Handle the response from the web page
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        // Check the current URL
+        
+        if let currentURL = webView.url?.absoluteString {
+            // Check the URL to determine the success or failure response
+            print(currentURL)
+            if currentURL.contains("https://api.hcmus.online/api/v1/user-auth/user/google-redirect?code=") {
+                // Successful response, you can handle further actions
+
+                // Get information from the response
+                let htmlContent = webView.evaluateJavaScript("document.documentElement.outerHTML") { (result, error) in
+                    if let htmlString = result as? String {
+                        
+                        let jsonData = htmlString.removeHTMLTag()
+                        do {
+                            let decoder = JSONDecoder()
+                            let info = try decoder.decode(ReponseLogin.self, from: jsonData.data(using: .utf8)!)
+                            
+                            if info.statusCode == 200 {
+                                TokenService.tokenInstance.saveToken(token: info.data?.accessToken ?? "", refreshToken: info.data?.refreshToken ?? "")
+                                if let encodedUser = try? JSONEncoder().encode(info.data?.getUserInfor) {
+                                    Contanst.userdefault.set(encodedUser, forKey: "userInfo")
+                                }
+
+                                DispatchQueue.main.async {
+                                    //Lay du lieu tu server
+                                    self.VM.fetchUserDetail()
+                                }
+                            } else {
+                                self.showToast(message: info.message ?? "   ", font: .systemFont(ofSize: 12.0))
+                            }
+                            
+                            
+                            
+                        } catch {
+                            print("Failed to decode JSON:", error)
+                        }
+                }
+                    
+
+                // Stop loading the page and hide the WebView if necessary
+                webView.stopLoading()
+                webView.isHidden = true
+
+                // Continue processing the data and perform further steps
+                // ...
+                }
+            } else {
+                // Failed response, handle any unexpected situations here
+            }
+        }
+    }
+}
+
+
 
 
 extension LoginFirstScreenViewController {
@@ -130,7 +214,9 @@ extension LoginFirstScreenViewController {
             case .loading:
                 loader = self?.loader()
             case .stopLoading:
-                self?.stoppedLoader(loader: loader ?? UIAlertController())
+                DispatchQueue.main.async {
+                    self?.stoppedLoader(loader: loader ?? UIAlertController())
+                }
             case .dataLoaded:
                 DispatchQueue.main.async {
                     self?.showToast(message: "Đăng nhập thành công!", font: .systemFont(ofSize: 12.0))

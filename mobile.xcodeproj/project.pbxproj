@@ -90,6 +90,7 @@
 		A478479F2A14DEB700090EF3 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A478479E2A14DEB700090EF3 /* EventsViewModel.swift */; };
 		A47847A12A14E40000090EF3 /* ReponseGetAllCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47847A02A14E40000090EF3 /* ReponseGetAllCategory.swift */; };
 		A49D812929F3D08A009AE469 /* UploadAvatarDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49D812829F3D08A009AE469 /* UploadAvatarDto.swift */; };
+		A4A1FC762A2C50C50018EDEB /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A1FC752A2C50C50018EDEB /* Authentication.swift */; };
 		A4A336772A1EDF86005CF3B9 /* DetailPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A336762A1EDF86005CF3B9 /* DetailPaymentViewController.swift */; };
 		A4A91316299F5AB800AC5E75 /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A91315299F5AB800AC5E75 /* ProfileDetailViewController.swift */; };
 		A4A91319299FAA1100AC5E75 /* PaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A91318299FAA1100AC5E75 /* PaymentMethodViewController.swift */; };
@@ -281,6 +282,7 @@
 		A478479E2A14DEB700090EF3 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
 		A47847A02A14E40000090EF3 /* ReponseGetAllCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReponseGetAllCategory.swift; sourceTree = "<group>"; };
 		A49D812829F3D08A009AE469 /* UploadAvatarDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAvatarDto.swift; sourceTree = "<group>"; };
+		A4A1FC752A2C50C50018EDEB /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		A4A336762A1EDF86005CF3B9 /* DetailPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPaymentViewController.swift; sourceTree = "<group>"; };
 		A4A91315299F5AB800AC5E75 /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
 		A4A91318299FAA1100AC5E75 /* PaymentMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodViewController.swift; sourceTree = "<group>"; };
@@ -627,6 +629,7 @@
 				A4CA58B529A8DFD200B5E318 /* GetUserInfor.swift */,
 				A4CA58B429A8DFD200B5E318 /* Role.swift */,
 				A4CA58BC29A8E00900B5E318 /* InfoLogin.swift */,
+				A4A1FC752A2C50C50018EDEB /* Authentication.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1440,6 +1443,7 @@
 				A44F19D929A7156D00476E9B /* LoginFirstScreenViewModel.swift in Sources */,
 				A46C1C6329ED3D4000F491F1 /* ForgetPasswordViewModel.swift in Sources */,
 				A4506C4329B8755C009B75F6 /* ChangePasswordViewModel.swift in Sources */,
+				A4A1FC762A2C50C50018EDEB /* Authentication.swift in Sources */,
 				A4DCFC8329D960D600A686AC /* Session.swift in Sources */,
 				A4C5F01129B2FF5600723FC1 /* ProfileViewModel.swift in Sources */,
 				A4CA58B229A8DF2300B5E318 /* EndPointType.swift in Sources */,

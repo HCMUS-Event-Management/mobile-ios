@@ -294,6 +294,8 @@
                     <connections>
                         <outlet property="btnCheckBoxRemember" destination="hdF-Db-5YD" id="c6j-AJ-2wN"/>
                         <outlet property="btnLogin" destination="GZs-WR-f55" id="DKs-BY-9uA"/>
+                        <outlet property="btnLoginFB" destination="JWp-b9-nW1" id="iYj-kk-d59"/>
+                        <outlet property="btnLoginGG" destination="z67-OL-ufI" id="nu5-QJ-luL"/>
                         <outlet property="fotgetPassword" destination="eBQ-Hm-OC0" id="VOd-78-UsG"/>
                         <outlet property="txtPassword" destination="zma-fW-Ufj" id="Ncy-WF-ft0"/>
                         <outlet property="txtUsername" destination="Vyr-rb-MaM" id="ieG-hu-lLR"/>

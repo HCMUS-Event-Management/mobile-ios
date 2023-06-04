@@ -18,6 +18,7 @@ class LetLoginViewController: UIViewController {
         
         btnLogin.addTarget(self, action: #selector(changeLoginController), for: .touchUpInside)
         btnSignUp.addTarget(self, action: #selector(changeSignUpController), for: .touchUpInside)
+        btnLoginGG.addTarget(self, action: #selector(redirectGoogle), for: .touchUpInside)
 
     }
     
@@ -41,7 +42,18 @@ class LetLoginViewController: UIViewController {
         btnLoginGG.layer.borderColor = UIColor.gray.cgColor
     }
     
-    
+    @objc func redirectGoogle() {
+        APIManager.shared.request(modelType: ReponseCommon.self, type:UserEndPoint.loginGG, params: nil, completion: {
+            result in
+            switch result {
+                
+            case .success(let value):
+                print(value)
+            case .failure(let error):
+                print(error)
+            }
+        })
+    }
     @objc func changeLoginController() {
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginFirstScreenViewController") as? LoginFirstScreenViewController else {
             return
