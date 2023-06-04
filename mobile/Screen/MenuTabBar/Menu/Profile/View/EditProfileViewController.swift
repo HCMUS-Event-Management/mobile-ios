@@ -19,14 +19,22 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
         let dot = tb.cellForRow(at: [0,4]) as? ProfileDetailTableViewCell
         let idCard = tb.cellForRow(at: [0,5]) as? ProfileDetailTableViewCell
         let gender = tb.cellForRow(at: [0,6]) as? ProfileDetailTableViewCell
-        
-        if (fullname?.tf.text == VM.userInfoDetail?.fullName && phone?.tf.text == VM.userInfoDetail?.phone && dot?.tf.text == VM.userInfoDetail?.birthday && idCard?.tf.text == VM.userInfoDetail?.identityCard && gender?.tf.text == VM.userInfoDetail?.gender && address?.tf.text == VM.userInfoDetail?.address){
-            showToast(message: "Không có gì thay đổi", font: .systemFont(ofSize: 12))
-        } else {
-            let infoProfile = UpdateProfile(fullName: fullname?.tf.text ?? "", phone: phone?.tf.text ?? "", birthday: VM.userInfoDetail?.birthday ?? "", identityCard: idCard?.tf.text ?? "", gender: gender?.tf.text ?? "", avatar: VM.userInfoDetail?.avatar ?? "", address: address?.tf.text ?? "", isDeleted: false)
-            
-            VM.updateUserDetail(params: infoProfile)
+        convertImageUrlToUploadDto(urlString: VM.userInfoDetail?.avatar ?? "https://nestjs-user-auth-service-bucket.s3.ap-southeast-1.amazonaws.com/user_id_3/avatar/vT6eDoY3T1umU3rTtkoiV5QTve0yTBQTx5R3XLjRlr5tGNwwB1.%28format_file%3A%20jpeg") { (uploadDto) in
+            if let uploadDto = uploadDto {
+                DispatchQueue.main.async {
+                    if (fullname?.tf.text == self.VM.userInfoDetail?.fullName && phone?.tf.text == self.VM.userInfoDetail?.phone && dot?.tf.text == self.VM.userInfoDetail?.birthday && idCard?.tf.text == self.VM.userInfoDetail?.identityCard && gender?.tf.text == self.VM.userInfoDetail?.gender && address?.tf.text == self.VM.userInfoDetail?.address){
+                        self.showToast(message: "Không có gì thay đổi", font: .systemFont(ofSize: 12))
+                    } else {
+                        let infoProfile = UpdateProfile(fullName: fullname?.tf.text ?? "", phone: phone?.tf.text ?? "", birthday: self.VM.userInfoDetail?.birthday ?? "", identityCard: idCard?.tf.text ?? "", gender: gender?.tf.text ?? "",address: address?.tf.text ?? "", image: uploadDto)
+                        self.VM.updateUserDetail(params: infoProfile)
+                    }
+                }
+            } else {
+                self.showToast(message: "Lỗi trong quá trình update của convert link ảnh sang updaload avatar", font: .systemFont(ofSize: 12))
+            }
         }
+        
+        
         
     }
     
@@ -87,6 +95,31 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
 
     }
   
+    
+    
+    func convertImageUrlToUploadDto(urlString: String, completion: @escaping (UploadAvatarDto?) -> Void) {
+        guard let url = URL(string: urlString) else {
+            completion(nil)
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let imageData = data else {
+                completion(nil)
+                return
+            }
+            
+            let base64String = imageData.base64EncodedString()
+            
+            let pathExtension = url.pathExtension
+            
+            var uploadDto = UploadAvatarDto(mime: "image/(format_file: \(pathExtension))", data: base64String)
+            
+            completion(uploadDto)
+        }
+        
+        task.resume()
+    }
 
 }
 
@@ -172,11 +205,11 @@ extension EditProfileViewController: UITableViewDataSource {
 
                 var formattedDate: String
                 if #available(iOS 15.0, *) {
-                    formattedDate = date?.formatted(date: .abbreviated, time: .shortened) ?? ""
+                    formattedDate = date?.formatted(date: .numeric, time: .omitted) ?? ""
                 } else {
                     let newDateFormatter = DateFormatter()
                     newDateFormatter.dateStyle = .short
-                    newDateFormatter.timeStyle = .short
+                    newDateFormatter.timeStyle = .none
                     formattedDate = newDateFormatter.string(from: date ?? Date())
                 }
 

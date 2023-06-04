@@ -30,11 +30,8 @@ class EditProfileTableViewCell: UITableViewCell {
     {
         let tappedImage = tapGestureRecognizer.view as! UIImageView
 
-        // Your action 
-
+        // Your action
         callback?()
-
-        print(11)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

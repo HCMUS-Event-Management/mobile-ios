@@ -97,7 +97,7 @@ extension ProfileDetailViewController: UITableViewDataSource {
         if (indexPath.row == 0) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTableViewCell", for: indexPath) as? InfoTableViewCell {
                 
-                if let url = URL(string: (VM.userInfoDetail?.avatar) ?? "") {
+                if let url = URL(string: (VM.userInfoDetail?.avatar)!) {
                     let task = URLSession.shared.dataTask(with: url) { data, response, error in
                         guard let data = data, error == nil else { return }
                         
