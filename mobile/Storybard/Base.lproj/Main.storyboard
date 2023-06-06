@@ -267,7 +267,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z67-OL-ufI">
                                                 <rect key="frame" x="105.33333333333333" y="0.0" width="205.33333333333337" height="38"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" title="Button" image="icon gg vuong"/>
+                                                <state key="normal" image="icon gg vuong"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="icon gg vuong"/>
                                             </button>
                                         </subviews>

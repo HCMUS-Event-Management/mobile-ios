@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Reachability
 class EventViewController: UIViewController {
 
     @IBOutlet weak var clEvent: UICollectionView!
@@ -19,7 +19,6 @@ class EventViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         configuration()
-        VM.getCategoryAllFromServer()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -152,7 +151,16 @@ extension EventViewController {
     }
 
     func initViewModel() {
-        
+        switch try! Reachability().connection {
+          case .wifi:
+            VM.getCategoryAllFromServer()
+          case .cellular:
+            VM.getCategoryAllFromServer()
+          case .none:
+            showToast(message: "Network not reachable", font: .systemFont(ofSize: 12))
+          case .unavailable:
+            showToast(message: "Network not reachable", font: .systemFont(ofSize: 12))
+        }
     }
 
     // Data binding event observe - communication

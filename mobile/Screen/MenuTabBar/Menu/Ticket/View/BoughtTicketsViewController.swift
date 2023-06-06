@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Reachability
 class BoughtTicketsViewController: UIViewController {
     
     private var isLoading = false
@@ -155,7 +155,14 @@ extension BoughtTicketsViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == self.VM.boughtTicket.count - 4, !isLoading {
-            loadMoreData()
+            switch try! Reachability().connection {
+              case .wifi:
+                loadMoreData()
+              case .cellular:
+                loadMoreData()
+              case .none: break
+              case .unavailable: break
+            }
         }
     }
     

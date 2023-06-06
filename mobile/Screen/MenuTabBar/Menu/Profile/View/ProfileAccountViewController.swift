@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Reachability
 class ProfileAccountViewController: UIViewController {
 
     @IBOutlet weak var tb: UITableView!
@@ -131,7 +131,16 @@ extension ProfileAccountViewController: UITableViewDelegate {
         } else if (indexPath.section == 1 && indexPath.row == 1) {
             changeScreen(modelType: FavoriteEventsViewController.self, id: "FavoriteEventsViewController")
         } else if (indexPath.section == 2 && indexPath.row == 6) {
-            VM.logout()
+            switch try! Reachability().connection {
+              case .wifi:
+                VM.logout()
+              case .cellular:
+                VM.logout()
+              case .none:
+                showToast(message: "Network not reachable", font: .systemFont(ofSize: 12))
+              case .unavailable:
+                showToast(message: "Network not reachable", font: .systemFont(ofSize: 12))
+            }
         }
     }
     

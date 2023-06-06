@@ -50,7 +50,7 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
-        self.VM.fetchUserDetail()
+        self.VM.getUserDetailFromLocalDB()
         self.hideKeyboardWhenTappedAround()
     }
     

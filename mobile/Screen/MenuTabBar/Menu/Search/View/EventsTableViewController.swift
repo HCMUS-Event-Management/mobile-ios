@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import Reachability
 
 class EventsTableViewController: UITableViewController {
     var callback : (() -> Void)?
@@ -69,7 +70,16 @@ class EventsTableViewController: UITableViewController {
     
 
     func search(term: String) {
-        VM.search(term: term)
+        switch try! Reachability().connection {
+          case .wifi:
+            VM.search(term: term)
+          case .cellular:
+            VM.search(term: term)
+          case .none:
+            showToast(message: "Network not reachable", font: .systemFont(ofSize: 12))
+          case .unavailable:
+            showToast(message: "Network not reachable", font: .systemFont(ofSize: 12))
+        }
     }
 }
 

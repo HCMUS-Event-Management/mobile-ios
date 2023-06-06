@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Reachability
 class MyTicketsViewController: UIViewController {
     private var isLoading = false
     private var VM = TicketViewModel()
@@ -17,7 +17,10 @@ class MyTicketsViewController: UIViewController {
         VM.fetchMyTicket()
 
     }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
+        
     }
     
     func loadMoreData() {
@@ -138,7 +141,15 @@ extension MyTicketsViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == self.VM.myTicket.count - 2, !isLoading {
-            loadMoreData()
+            switch try! Reachability().connection {
+              case .wifi:
+                loadMoreData()
+              case .cellular:
+                loadMoreData()
+              case .none: break
+              case .unavailable: break
+            }
+            
         }
     }
 

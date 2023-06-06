@@ -22,7 +22,7 @@ class ProfileDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         btnChangepassword.addTarget(self, action: #selector(changeChangePasswordController), for: .touchUpInside)
-
+        configNaviBar()
         configuration()
     }
     
@@ -35,7 +35,6 @@ class ProfileDetailViewController: UIViewController {
         
         tabBarController?.tabBar.isHidden = true
         
-        configNaviBar()
         
         btnDeleteaccount.layer.cornerRadius = 10
         btnDeleteaccount.layer.masksToBounds = true

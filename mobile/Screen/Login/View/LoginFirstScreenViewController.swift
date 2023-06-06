@@ -7,10 +7,9 @@
 
 import UIKit
 import WebKit
-
+import Reachability
 class LoginFirstScreenViewController: UIViewController {
     var webView: WKWebView!
-    var currentURL: URL?
 
     var VM = LoginFirstScreenViewModel()
     @IBOutlet weak var btnCheckBoxRemember: UIButton!
@@ -111,10 +110,39 @@ class LoginFirstScreenViewController: UIViewController {
     }
     
     @objc func Login() {
-        VM.handelLogin()
+        
+        switch try! Reachability().connection {
+          case .wifi:
+            VM.handelLogin()
+          case .cellular:
+            VM.handelLogin()
+          case .none:
+            showToast(message: "Network not reachable", font: .systemFont(ofSize: 12))
+          case .unavailable:
+            showToast(message: "Network not reachable", font: .systemFont(ofSize: 12))
+        }
+        
     }
     
     @objc func redirectGoogle() {
+        
+        
+        switch try! Reachability().connection {
+          case .wifi:
+            webViewLoad()
+          case .cellular:
+            webViewLoad()
+          case .none:
+            showToast(message: "Network not reachable", font: .systemFont(ofSize: 12))
+          case .unavailable:
+            showToast(message: "Network not reachable", font: .systemFont(ofSize: 12))
+        }
+        
+        
+        
+    }
+    
+    func webViewLoad() {
         // Create an instance of WKWebView
         webView = WKWebView(frame: view.bounds)
         webView.navigationDelegate = self
@@ -130,7 +158,6 @@ class LoginFirstScreenViewController: UIViewController {
         var request = URLRequest(url: initialURL)
         request.httpMethod = "GET"
         webView.load(request)
-        
     }
 
 }

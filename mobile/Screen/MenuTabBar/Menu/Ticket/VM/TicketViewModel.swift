@@ -54,23 +54,26 @@ class TicketViewModel {
             let items = transaction.get(DataMyTicketObject.self)
             for item in items.filter("ticketCode == '\(ticketCode)'") {
                 self.detail = item
-                self.eventHandler?(.dataLoaded)
             }
         }
+        self.eventHandler?(.stopLoading)
+        self.eventHandler?(.dataLoaded)
+
     }
     
     func fetchDetailTicket(_ ticketCode: String) {
         
-        self.eventHandler?(.loading)
         //declare this property where it won't go out of scope relative to your listener
         let reachability = try! Reachability()
         
         switch try! Reachability().connection {
           case .wifi:
               print("Reachable via WiFi")
+            self.eventHandler?(.loading)
+
             getDetailTicketFromServer(ticketCode)
           case .cellular:
-              print("Reachable via Cellular")
+            self.eventHandler?(.loading)
             getDetailTicketFromServer(ticketCode)
           case .none:
               print("Network not reachable")

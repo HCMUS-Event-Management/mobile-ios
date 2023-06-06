@@ -154,9 +154,6 @@ extension DetailTicketViewController: UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "InfoPaymentTableViewCell", for: indexPath) as? InfoPaymentTableViewCell  {
                 cell.eventId.text = ticket.session?.eventId
                 cell.method.text = ticket.paymentMethod
-//                cell.discount.text = ticket.discount.formatted(.currency(code: "VND"))
-//                cell.ticketPrice.text = ticket.price.formatted(.currency(code: "VND"))
-//                cell.total.text = (ticket.price - ticket.discount).formatted(.currency(code: "VND"))
                 let currencyFormatter = NumberFormatter()
                 currencyFormatter.numberStyle = .currency
                 currencyFormatter.currencyCode = "VND"
@@ -239,22 +236,18 @@ extension DetailTicketViewController {
         VM.eventHandler = { [weak self] event in
             switch event {
             case .loading:
-                
                 loader = self?.loader()
-                print(loader)
             case .stopLoading:
                 DispatchQueue.main.async {
-                    print(2)
-                    print(loader ?? UIAlertController())
-
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .dataLoaded:
                 print("Detaik Ticket loaded...")
                 DispatchQueue.main.async {
-//                    self?.tb.reloadSections([0], with: .none)
                     self?.tb.reloadData()
+                    print(loader)
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
+
 
                 }
             case .error(let error):
