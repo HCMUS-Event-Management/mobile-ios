@@ -16,7 +16,7 @@ class EventViewController: UIViewController {
     private var VM = EventsViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        VM.fetchCategoryAll()
         // Do any additional setup after loading the view.
         configuration()
     }
@@ -127,7 +127,7 @@ extension EventViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.clType {
-            VM.getListEventOfUserFromServer(fullTextSearch: VM.catagorys[indexPath.row].label)
+            VM.fetchListEventOfUser(fullTextSearch: VM.catagorys[indexPath.row].label)
         } else if collectionView == self.clEvent {
             changeDetailEvent(indexPath: indexPath)
         }
@@ -156,16 +156,6 @@ extension EventViewController {
     }
 
     func initViewModel() {
-        switch try! Reachability().connection {
-          case .wifi:
-            VM.getCategoryAllFromServer()
-          case .cellular:
-            VM.getCategoryAllFromServer()
-          case .none:
-            showToast(message: "Network not reachable", font: .systemFont(ofSize: 12))
-          case .unavailable:
-            showToast(message: "Network not reachable", font: .systemFont(ofSize: 12))
-        }
     }
 
     // Data binding event observe - communication

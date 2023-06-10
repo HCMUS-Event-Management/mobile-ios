@@ -6,11 +6,40 @@
 //
 
 import Foundation
-
+import Reachability
 class EventsViewModel {
     var eventHandler: ((_ event: Event) -> Void)? // Data Binding Closure
     var catagorys = [CategoryObject]()
     var events = [DataEventObject]()
+    
+    
+    func fetchCategoryAll() {
+        switch try! Reachability().connection {
+          case .wifi:
+            getCategoryAllFromServer()
+          case .cellular:
+            getCategoryAllFromServer()
+          case .none:
+            getCategoryAllFromDB()
+          case .unavailable:
+            getCategoryAllFromDB()
+
+        }
+    }
+    
+    func getCategoryAllFromDB() {
+        self.catagorys = [CategoryObject]()
+        let container = try! Container()
+        try! container.write{
+            transaction in
+            let temp = transaction.get(CategoryObject.self)
+            for i in temp {
+                self.catagorys.append(i)
+            }
+        }
+        self.eventHandler?(.dataLoaded)
+    }
+    
     func getCategoryAllFromServer() {
         self.eventHandler?(.loading)
 
@@ -30,9 +59,43 @@ class EventsViewModel {
                 }
                 self.eventHandler?(.categoryLoaded)
             case .failure(let error):
-                print(error)
+                if case DataError.invalidResponse(let reason) = error {
+                    self.eventHandler?(.error(reason))
+                }
+                else {
+                    self.eventHandler?(.error(error.localizedDescription))
+                }
             }
         })
+    }
+    
+    func fetchListEventOfUser(fullTextSearch: String) {
+        switch try! Reachability().connection {
+          case .wifi:
+            getListEventOfUserFromServer(fullTextSearch: fullTextSearch)
+          case .cellular:
+            getListEventOfUserFromServer(fullTextSearch: fullTextSearch)
+          case .none:
+            getListEventOfUserFromDB(fullTextSearch: fullTextSearch)
+          case .unavailable:
+            getListEventOfUserFromDB(fullTextSearch: fullTextSearch)
+
+        }
+    }
+    
+    
+    
+    func getListEventOfUserFromDB(fullTextSearch: String) {
+        self.events = [DataEventObject]()
+        let container = try! Container()
+        try! container.write{
+            transaction in
+            let temp = transaction.get(DataEventObject.self)
+            for i in temp.filter("category.label == '\(fullTextSearch)'") {
+                self.events.append(i)
+            }
+        }
+        self.eventHandler?(.dataLoaded)
     }
     
     func getListEventOfUserFromServer(fullTextSearch: String) {
@@ -55,7 +118,12 @@ class EventsViewModel {
                 }
                 self.eventHandler?(.dataLoaded)
             case .failure(let error):
-                print(error)
+                if case DataError.invalidResponse(let reason) = error {
+                    self.eventHandler?(.error(reason))
+                }
+                else {
+                    self.eventHandler?(.error(error.localizedDescription))
+                }
             }
         })
     }
