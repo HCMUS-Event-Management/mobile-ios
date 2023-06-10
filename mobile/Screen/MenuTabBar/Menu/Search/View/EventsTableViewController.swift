@@ -22,7 +22,7 @@ class EventsTableViewController: UITableViewController {
     
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Found \(VM.apps.count) results"
+        return "Tìm \(VM.apps.count) kết quả"
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

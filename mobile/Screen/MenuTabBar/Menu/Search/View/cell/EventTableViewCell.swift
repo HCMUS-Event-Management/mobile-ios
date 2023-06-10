@@ -57,8 +57,7 @@ class EventTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
         let formattedEndTime = timeFormatter.string(from: endDate ?? Date())
 
         startAt.text = """
-            Start Date: \(formattedStartDate) \(formattedStartTime)
-            End Date: \(formattedEndDate) \(formattedEndTime)
+        \(formattedStartDate) \(formattedStartTime)
         """
 
         

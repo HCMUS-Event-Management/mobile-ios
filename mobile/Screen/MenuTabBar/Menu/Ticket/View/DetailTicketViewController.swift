@@ -35,7 +35,7 @@ class DetailTicketViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .label
         
         let title = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
-        title.text = "Detail Ticket"
+        title.text = "Chi tiết"
         title.font = UIFont(name: "Helvetica Bold", size: 18)
         title.textAlignment = .center
         
@@ -245,10 +245,7 @@ extension DetailTicketViewController {
                 print("Detaik Ticket loaded...")
                 DispatchQueue.main.async {
                     self?.tb.reloadData()
-                    print(loader)
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
-
-
                 }
             case .error(let error):
 //                let err = error as! DataError

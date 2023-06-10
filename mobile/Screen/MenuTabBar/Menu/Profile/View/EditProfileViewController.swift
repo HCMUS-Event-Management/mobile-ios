@@ -42,8 +42,7 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
 
     var imagePicker = UIImagePickerController()
 
-
-    var dataLabel = ["Fullname:","Number phone:","Address:","Birthday:","Identity card:","Gender:"]
+    var dataLabel = ["Họ và tên:","Số điện thoại:","Địa chỉ:","Ngày sinh:","Chứng minh thư:","Giới tính:"]
     var dataPlaceHolder = ["Ex: ngyenvana@gmail.com","Ex: 01234567892","Ex: 123 Võ Văn Kiệt, P6, Quận 5, TP.HCM","Ex: 09/07/2001","Ex: 212950358","Ex: Male"]
     
     @IBOutlet weak var tb: UITableView!
@@ -74,7 +73,7 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
         navigationController?.navigationBar.tintColor = .label
         
         let title = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
-        title.text = "Edit Profile"
+        title.text = "Chỉnh sửa"
         title.font = UIFont(name: "Helvetica Bold", size: 18)
         title.textAlignment = .center
         

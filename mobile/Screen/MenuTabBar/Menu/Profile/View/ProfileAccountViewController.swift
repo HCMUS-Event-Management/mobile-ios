@@ -33,7 +33,7 @@ class ProfileAccountViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .label
         
         let title = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
-        title.text = "Profile"
+        title.text = "Thông tin"
         title.font = UIFont(name: "Helvetica Bold", size: 18)
         title.textAlignment = .center
         
@@ -48,9 +48,9 @@ extension ProfileAccountViewController: UITableViewDataSource {
         if (section == 0) {
             return 1
         } else if(section == 1){
-            return 2
+            return 1
         } else {
-            return 7
+            return 4
         }
     }
     
@@ -105,7 +105,7 @@ extension ProfileAccountViewController: UITableViewDelegate {
         if (indexPath.section == 0) {
             return (tableView.layer.frame.height/13) * 3.8
         }
-        return (tableView.layer.frame.height/13)
+        return (tableView.layer.frame.height/10)
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -120,17 +120,13 @@ extension ProfileAccountViewController: UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath)
-        
         if(indexPath.section == 2 && indexPath.row == 0) {
             changeScreen(modelType: ProfileDetailViewController.self, id: "ProfileDetailViewController")
         } else if (indexPath.section == 2 && indexPath.row == 1) {
             changeScreen(modelType: PaymentMethodViewController.self, id: "PaymentMethodViewController")
-        } else if (indexPath.section == 2 && indexPath.row == 2) {
+        } else if (indexPath.section == 2 && indexPath.row == 1) {
             changeScreen(modelType: PaymentHistoryViewController.self, id: "PaymentHistoryViewController")
-        } else if (indexPath.section == 1 && indexPath.row == 1) {
-            changeScreen(modelType: FavoriteEventsViewController.self, id: "FavoriteEventsViewController")
-        } else if (indexPath.section == 2 && indexPath.row == 6) {
+        } else if (indexPath.section == 2 && indexPath.row == 3) {
             switch try! Reachability().connection {
               case .wifi:
                 VM.logout()

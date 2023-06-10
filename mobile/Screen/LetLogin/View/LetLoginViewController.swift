@@ -8,7 +8,6 @@
 import UIKit
 
 class LetLoginViewController: UIViewController {
-    @IBOutlet weak var btnSignUp: UIButton!
     @IBOutlet weak var btnLoginFB: UIButton!
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var btnLoginGG: UIButton!
@@ -17,7 +16,6 @@ class LetLoginViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         btnLogin.addTarget(self, action: #selector(changeLoginController), for: .touchUpInside)
-        btnSignUp.addTarget(self, action: #selector(changeSignUpController), for: .touchUpInside)
         btnLoginGG.addTarget(self, action: #selector(redirectGoogle), for: .touchUpInside)
 
     }

@@ -26,10 +26,10 @@ class DetailEventViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .label
         
         let title = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
-        title.text = "Detail Event"
+        title.text = "Chi tiết"
         title.font = UIFont(name: "Helvetica Bold", size: 18)
         title.textAlignment = .center
-        
+            
         navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "arrow.backward"), style: .done, target: self, action: #selector(backScreen)),UIBarButtonItem(customView: title)]
     }
     

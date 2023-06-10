@@ -78,10 +78,42 @@
             filePath = "mobile/Screen/LetLogin/View/LetLoginViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "redirectGoogle()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CC42D1DD-22B6-4CE4-8CEC-A4C831C18F58 - 5d0f7c4d8e7f5918"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "mobile.LetLoginViewController.viewWillAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "mobile"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macbookpro2018/Desktop/Checl/Untitled/mobile-ios/mobile/Screen/LetLogin/View/LetLoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "3075">
+               </Location>
+               <Location
+                  uuid = "CC42D1DD-22B6-4CE4-8CEC-A4C831C18F58 - 66d7cdbdd0c85075"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "mobile.LetLoginViewController.redirectGoogle() -&gt; ()"
+                  moduleName = "mobile"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macbookpro2018/Desktop/Checl/Untitled/mobile-ios/mobile/Screen/LetLogin/View/LetLoginViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "30">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

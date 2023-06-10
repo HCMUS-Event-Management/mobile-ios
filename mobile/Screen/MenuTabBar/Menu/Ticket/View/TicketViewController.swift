@@ -21,10 +21,10 @@ class TicketViewController: UIViewController {
         
         
         let vc1 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyTicketsViewController") as! MyTicketsViewController
-        vc1.title = "My ticket"
+        vc1.title = "Vé của tôi"
         
         let vc2 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BoughtTicketsViewController") as! BoughtTicketsViewController
-        vc2.title = "Bought ticket"
+        vc2.title = "Vé mua"
         subControllers = [vc1, vc2]
         pageView.reload()
         
@@ -43,7 +43,7 @@ class TicketViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .label
         
         let title = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
-        title.text = "Ticket"
+        title.text = "Mục Vé"
         title.font = UIFont(name: "Helvetica Bold", size: 18)
         title.textAlignment = .center
         

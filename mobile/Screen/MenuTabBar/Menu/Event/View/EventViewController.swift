@@ -31,7 +31,7 @@ class EventViewController: UIViewController {
         
         
         let title = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
-        title.text = "Events"
+        title.text = "Sự kiện"
         title.font = UIFont(name: "Helvetica Bold", size: 18)
         title.textAlignment = .center
         
@@ -76,8 +76,13 @@ extension EventViewController: UICollectionViewDataSource {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell {
                 
                 cell.eventName.text = event.title
-                cell.owner.text = "By \(event.user!.fullName)"
-                cell.paidName.text = event.type
+                cell.owner.text = "Bởi \(event.user!.fullName)"
+                if event.type == "PAID" {
+                    cell.paidName.text = "Có Phí"
+                } else {
+                    cell.paidName.text = "Miễn Phí"
+                }
+                
                 if #available(iOS 15.0, *) {
                     cell.timeStart.text = event.startAt?.formatted(date: .abbreviated, time: .omitted)
                 } else {

@@ -89,6 +89,8 @@
 		A478479D2A14DA0E00090EF3 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A478479C2A14DA0E00090EF3 /* EventViewController.swift */; };
 		A478479F2A14DEB700090EF3 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A478479E2A14DEB700090EF3 /* EventsViewModel.swift */; };
 		A47847A12A14E40000090EF3 /* ReponseGetAllCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47847A02A14E40000090EF3 /* ReponseGetAllCategory.swift */; };
+		A4865BA82A33168C00C1C6DD /* NoItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4865BA62A33168C00C1C6DD /* NoItemCollectionViewCell.swift */; };
+		A4865BA92A33168C00C1C6DD /* NoItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4865BA72A33168C00C1C6DD /* NoItemCollectionViewCell.xib */; };
 		A49D812929F3D08A009AE469 /* UploadAvatarDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49D812829F3D08A009AE469 /* UploadAvatarDto.swift */; };
 		A4A1FC762A2C50C50018EDEB /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A1FC752A2C50C50018EDEB /* Authentication.swift */; };
 		A4A336772A1EDF86005CF3B9 /* DetailPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A336762A1EDF86005CF3B9 /* DetailPaymentViewController.swift */; };
@@ -281,6 +283,8 @@
 		A478479C2A14DA0E00090EF3 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		A478479E2A14DEB700090EF3 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
 		A47847A02A14E40000090EF3 /* ReponseGetAllCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReponseGetAllCategory.swift; sourceTree = "<group>"; };
+		A4865BA62A33168C00C1C6DD /* NoItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		A4865BA72A33168C00C1C6DD /* NoItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		A49D812829F3D08A009AE469 /* UploadAvatarDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAvatarDto.swift; sourceTree = "<group>"; };
 		A4A1FC752A2C50C50018EDEB /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		A4A336762A1EDF86005CF3B9 /* DetailPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPaymentViewController.swift; sourceTree = "<group>"; };
@@ -566,6 +570,7 @@
 		A44F19DC29A7185B00476E9B /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				A4865BA52A33167500C1C6DD /* NoItemCell */,
 				A4DC310A2A160169003539F6 /* Payment */,
 				A4D240D82A11E33C00B9BF68 /* DetailEvent */,
 				A4F0253A29DF1513002A5DC0 /* LoadingCell */,
@@ -794,6 +799,15 @@
 				A47847A02A14E40000090EF3 /* ReponseGetAllCategory.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		A4865BA52A33167500C1C6DD /* NoItemCell */ = {
+			isa = PBXGroup;
+			children = (
+				A4865BA62A33168C00C1C6DD /* NoItemCollectionViewCell.swift */,
+				A4865BA72A33168C00C1C6DD /* NoItemCollectionViewCell.xib */,
+			);
+			path = NoItemCell;
 			sourceTree = "<group>";
 		};
 		A4A91317299FA9AA00AC5E75 /* MenuController */ = {
@@ -1272,6 +1286,7 @@
 				A44F1A0129A73EA500476E9B /* TypeCollectionViewCell.xib in Resources */,
 				A4F0253E29DF1531002A5DC0 /* LoadingTableViewCell.xib in Resources */,
 				A41A7B2829FA633F0024C6F8 /* terms.json in Resources */,
+				A4865BA92A33168C00C1C6DD /* NoItemCollectionViewCell.xib in Resources */,
 				A4506CA029C44D63009B75F6 /* InfoEventTableViewCell.xib in Resources */,
 				A4D240D42A0CF10E00B9BF68 /* EventTableViewCell.xib in Resources */,
 				A42702362A13772100E708CC /* EventSessionTableViewCell.xib in Resources */,
@@ -1457,6 +1472,7 @@
 				A4D240E62A11F68300B9BF68 /* Location.swift in Sources */,
 				A4506C9029C38946009B75F6 /* BoughtTicketsViewController.swift in Sources */,
 				A4506C9F29C44D63009B75F6 /* InfoEventTableViewCell.swift in Sources */,
+				A4865BA82A33168C00C1C6DD /* NoItemCollectionViewCell.swift in Sources */,
 				A41A7B3029FA63900024C6F8 /* AutoLayoutHelper.swift in Sources */,
 				A44F19F629A71F0C00476E9B /* Contanst.swift in Sources */,
 				A4506C3529B44371009B75F6 /* ResponseMyProfile.swift in Sources */,
@@ -1639,7 +1655,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1693,7 +1709,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

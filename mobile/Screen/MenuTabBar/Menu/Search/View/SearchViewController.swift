@@ -38,7 +38,7 @@ class SearchViewController: UITableViewController {
         )
         resultsContainerViewController.didSelect = search
         searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.placeholder = "Tìm kiếm"
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false

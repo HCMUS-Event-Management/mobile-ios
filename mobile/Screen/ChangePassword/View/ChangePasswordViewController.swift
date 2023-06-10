@@ -27,7 +27,7 @@ class ChangePasswordViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .label
         
         let title = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
-        title.text = "Change Password"
+        title.text = "Đổi mật khẩu"
         title.font = UIFont(name: "Helvetica Bold", size: 18)
         title.textAlignment = .center
         
@@ -49,7 +49,7 @@ extension ChangePasswordViewController: UITableViewDataSource {
         if(indexPath.row == dataLabel.count){
             if let cell = tableView.dequeueReusableCell(withIdentifier: "EditProfileButtonTableViewCell", for: indexPath) as? EditProfileButtonTableViewCell {
                 cell.delegate = self
-                cell.btnSelect.setTitle("Change", for: .normal)
+                cell.btnSelect.setTitle("Thay đổi", for: .normal)
                 return cell
             }
         } else {

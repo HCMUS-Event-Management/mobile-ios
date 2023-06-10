@@ -27,16 +27,16 @@ extension UIViewController {
         present(alter, animated: true, completion: nil)
         return alter
     }
-    
-    
-    
+
+
+
     func stoppedLoader(loader: UIAlertController) {
         DispatchQueue.main.async {
             loader.dismiss(animated: true)
         }
     }
-    
-    
+
+
 }
 
 extension String {
