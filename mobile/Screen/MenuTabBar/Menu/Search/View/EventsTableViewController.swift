@@ -34,8 +34,12 @@ class EventsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Contanst.userdefault.set(VM.apps[indexPath.row].id, forKey: "eventIdDetail")
-        callback?()
+
+        if VM.apps.count == 0 {
+        } else {
+            Contanst.userdefault.set(VM.apps[indexPath.row].id, forKey: "eventIdDetail")
+            callback?()
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
