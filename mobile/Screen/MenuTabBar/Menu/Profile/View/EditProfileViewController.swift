@@ -291,7 +291,7 @@ extension EditProfileViewController: UITableViewDelegate {
         if (indexPath.row == 0) {
             return (tableView.layer.frame.height/12) * 3
         }
-        return (tableView.layer.frame.height/11)
+        return (tableView.layer.frame.height/10)
     }
     
 }

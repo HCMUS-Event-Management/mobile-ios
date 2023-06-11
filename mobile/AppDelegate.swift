@@ -20,9 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
 
         performLoginFlow()
-
-        
-      
         return true
 
 
@@ -97,27 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        if let scheme = url.scheme, scheme == "myapp" { // Thay "myapp" bằng URLScheme của bạn
-            if let host = url.host, host == "response" { // Kiểm tra phần host của URL (nếu cần)
-                // Lấy dữ liệu phản hồi từ URL
-                if let queryItems = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems {
-                    for item in queryItems {
-                        if item.name == "data" {
-                            if let response = item.value {
-                                // Xử lý dữ liệu phản hồi
-                                print("Response data: \(response)")
-                                // Tiếp tục xử lý dữ liệu và thực hiện các bước tiếp theo
-                                // ...
-                                return true
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return false
-    }
+   
 
     
 }

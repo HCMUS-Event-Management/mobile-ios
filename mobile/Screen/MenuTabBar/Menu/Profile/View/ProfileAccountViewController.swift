@@ -200,11 +200,11 @@ extension ProfileAccountViewController {
             case .logout:
                 // xử lý logout tại đây
                 DispatchQueue.main.async {
-                    self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
+                    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                    let vc = self?.storyboard?.instantiateViewController(withIdentifier: "LoginFirstScreenViewController") as? LoginFirstScreenViewController
+                    let navVC = UINavigationController(rootViewController: vc!)
+                    appDelegate?.window?.rootViewController = navVC
                 }
-
-
-                print("logout")
             case .updateProfile: break
                 // gọi realoadtb
             }

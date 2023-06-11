@@ -247,7 +247,12 @@ extension LoginFirstScreenViewController {
             case .dataLoaded:
                 DispatchQueue.main.async {
                     self?.showToast(message: "Đăng nhập thành công!", font: .systemFont(ofSize: 12.0))
-                    self?.changeScreen(modelType: UIViewController.self,id: "MenuTabBar")
+
+                    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                    let vc = self?.storyboard?.instantiateViewController(withIdentifier: "MenuTabBar") as? MenuViewController
+                    let navVC = UINavigationController(rootViewController: vc!)
+                    print(appDelegate?.window)
+                    appDelegate?.window?.rootViewController = navVC
                 }
             case .error(let error):
 

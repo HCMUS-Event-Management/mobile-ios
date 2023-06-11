@@ -215,6 +215,7 @@ extension HomeViewModel {
         self.eventHandler?(.loading)
         self.fetchListGoingOn()
         self.fetchListIsComming()
+
     }
     
 }
