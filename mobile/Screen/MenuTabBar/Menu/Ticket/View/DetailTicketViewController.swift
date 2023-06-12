@@ -127,8 +127,8 @@ extension DetailTicketViewController: UITableViewDataSource {
                 let formattedEndTime = timeFormatter.string(from: endDate ?? Date())
                 
                 cell.date.text = """
-                    Start Date: \(formattedStartDate) \(formattedStartTime)\n
-                    End Date: \(formattedEndDate) \(formattedEndTime)
+                Start Date: \(formattedStartDate) \(formattedStartTime)\n
+                End Date: \(formattedEndDate) \(formattedEndTime)
                 """
                 
                 
@@ -236,14 +236,15 @@ extension DetailTicketViewController {
         VM.eventHandler = { [weak self] event in
             switch event {
             case .loading:
+                print("loading")
                 loader = self?.loader()
             case .stopLoading:
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                print("stoploading")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .dataLoaded:
-                print("Detaik Ticket loaded...")
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self?.tb.reloadData()
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }

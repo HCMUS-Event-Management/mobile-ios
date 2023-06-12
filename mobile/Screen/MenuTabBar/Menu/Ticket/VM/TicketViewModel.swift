@@ -27,11 +27,12 @@ class TicketViewModel {
     
     
     func getDetailTicketFromServer(_ ticketCode: String) {
+        self.eventHandler?(.loading)
         APIManager.shared.request(modelType: ReponseDetailTicket.self, type: EntityEndPoint.ticketDetail(ticketCode: ticketCode), params: nil, completion: { result in
-            self.eventHandler?(.stopLoading)
 
             switch result {
                 case .success(let detail):
+                    self.eventHandler?(.stopLoading)
                     self.detail = (detail.data?.managedObject())!
                     print(self.detail.id)
                     self.eventHandler?(.dataLoaded)
@@ -69,11 +70,8 @@ class TicketViewModel {
         switch try! Reachability().connection {
           case .wifi:
               print("Reachable via WiFi")
-            self.eventHandler?(.loading)
-
             getDetailTicketFromServer(ticketCode)
           case .cellular:
-            self.eventHandler?(.loading)
             getDetailTicketFromServer(ticketCode)
           case .none:
               print("Network not reachable")

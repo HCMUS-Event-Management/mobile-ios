@@ -37,6 +37,7 @@ class LoginFirstScreenViewModel {
                     Contanst.userdefault.set(encodedUserDetail, forKey: "userInfoDetail")
                 }
                 self.eventHandler?(.dataLoaded)
+                print(profile)
 
             case .failure(let error):
                 

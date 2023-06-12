@@ -7,22 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B8276C27-4F90-4086-BB5B-99159B597746"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "mobile/Screen/MenuTabBar/Menu/Ticket/View/DetailTicketViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "03273D19-8914-40CE-83D7-F8EB59A54734"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -141,13 +125,13 @@
             filePath = "mobile/Screen/MenuTabBar/Menu/Ticket/VM/TicketViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "fetchDetailTicket(_:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "B6441053-6C63-407E-A065-82B48632F5BD - c8360b5e234ff887"
+                  uuid = "B6441053-6C63-407E-A065-82B48632F5BD - c8360b5e234ff8a6"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -157,12 +141,12 @@
                   urlString = "file:///Users/macbookpro2018/Desktop/Checl/Untitled/mobile-ios/mobile/Screen/MenuTabBar/Menu/Ticket/VM/TicketViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "80"
-                  endingLineNumber = "80"
-                  offsetFromSymbolStart = "1150">
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "919">
                </Location>
                <Location
-                  uuid = "B6441053-6C63-407E-A065-82B48632F5BD - c8360b5e234ff887"
+                  uuid = "B6441053-6C63-407E-A065-82B48632F5BD - c8360b5e234ff849"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -172,9 +156,9 @@
                   urlString = "file:///Users/macbookpro2018/Desktop/Checl/Untitled/mobile-ios/mobile/Screen/MenuTabBar/Menu/Ticket/VM/TicketViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "80"
-                  endingLineNumber = "80"
-                  offsetFromSymbolStart = "1276">
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "857">
                </Location>
             </Locations>
          </BreakpointContent>
