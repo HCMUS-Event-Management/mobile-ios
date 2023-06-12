@@ -21,8 +21,27 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
         let gender = tb.cellForRow(at: [0,6]) as? ProfileDetailTableViewCell
         convertImageUrlToUploadDto(urlString: VM.userInfoDetail?.avatar ?? "https://nestjs-user-auth-service-bucket.s3.ap-southeast-1.amazonaws.com/user_id_3/avatar/vT6eDoY3T1umU3rTtkoiV5QTve0yTBQTx5R3XLjRlr5tGNwwB1.%28format_file%3A%20jpeg") { (uploadDto) in
             if let uploadDto = uploadDto {
+                
+                // ngày giờ
+                let dateFormatter = DateFormatter()
+                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+
+                let date = dateFormatter.date(from:  self.VM.userInfoDetail?.birthday ?? "1970-01-01T00:00:00.000Z")
+
+                var formattedDate: String
+                if #available(iOS 15.0, *) {
+                    formattedDate = date?.formatted(date: .numeric, time: .omitted) ?? ""
+                } else {
+                    let newDateFormatter = DateFormatter()
+                    newDateFormatter.dateStyle = .short
+                    newDateFormatter.timeStyle = .none
+                    formattedDate = newDateFormatter.string(from: date ?? Date())
+                }
+
+                // so sánh
                 DispatchQueue.main.async {
-                    if (fullname?.tf.text == self.VM.userInfoDetail?.fullName && phone?.tf.text == self.VM.userInfoDetail?.phone && dot?.tf.text == self.VM.userInfoDetail?.birthday && idCard?.tf.text == self.VM.userInfoDetail?.identityCard && gender?.tf.text == self.VM.userInfoDetail?.gender && address?.tf.text == self.VM.userInfoDetail?.address){
+                    if (fullname?.tf.text == self.VM.userInfoDetail?.fullName && phone?.tf.text == self.VM.userInfoDetail?.phone && dot?.tf.text == formattedDate && idCard?.tf.text == self.VM.userInfoDetail?.identityCard && gender?.tf.text == self.VM.userInfoDetail?.gender && address?.tf.text == self.VM.userInfoDetail?.address){
                         self.showToast(message: "Không có gì thay đổi", font: .systemFont(ofSize: 12))
                     } else {
                         let infoProfile = UpdateProfile(fullName: fullname?.tf.text ?? "", phone: phone?.tf.text ?? "", birthday: self.VM.userInfoDetail?.birthday ?? "", identityCard: idCard?.tf.text ?? "", gender: gender?.tf.text ?? "",address: address?.tf.text ?? "", image: uploadDto)
@@ -321,13 +340,16 @@ extension EditProfileViewController {
         VM.eventHandler = { [weak self] event in
             switch event {
             case .loading:
-                loader = self?.loader()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    
+                    loader = self?.loader()
+                }
             case .stopLoading:
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .dataLoaded:
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self?.tb.reloadData()
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
@@ -341,7 +363,7 @@ extension EditProfileViewController {
                     }
                 } else if (error == DataError.invalidResponse500.localizedDescription){
                     DispatchQueue.main.async {
-                        self?.showToast(message: "Chưa kết nối mạng", font: .systemFont(ofSize: 12.0))
+                        self?.showToast(message: "Chưa kết nối mạng Hoặc hình ảnh quá nặng", font: .systemFont(ofSize: 12.0))
                         self?.stoppedLoader(loader: loader ?? UIAlertController())
                     }
                 }
