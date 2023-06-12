@@ -194,7 +194,10 @@ extension BoughtTicketsViewController {
             case .loading:
                 loader = self?.loader()
             case .stopLoading:
-                self?.stoppedLoader(loader: loader ?? UIAlertController())
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    
+                    self?.stoppedLoader(loader: loader ?? UIAlertController())
+                }
             case .dataLoaded:
                 print("Bought Ticket User loaded...")
                 DispatchQueue.main.async {

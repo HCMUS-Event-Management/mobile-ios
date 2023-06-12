@@ -134,7 +134,10 @@ extension ChangePasswordViewController {
             case .loading:
                 loader = self?.loader()
             case .stopLoading:
-                self?.stoppedLoader(loader: loader ?? UIAlertController())
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    
+                    self?.stoppedLoader(loader: loader ?? UIAlertController())
+                }
             case .dataLoaded:
                 print("Data loaded...")
             case .error(let error):

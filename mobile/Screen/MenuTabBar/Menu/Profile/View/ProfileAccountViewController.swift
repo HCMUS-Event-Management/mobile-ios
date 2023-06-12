@@ -123,8 +123,6 @@ extension ProfileAccountViewController: UITableViewDelegate {
         if(indexPath.section == 2 && indexPath.row == 0) {
             changeScreen(modelType: ProfileDetailViewController.self, id: "ProfileDetailViewController")
         } else if (indexPath.section == 2 && indexPath.row == 1) {
-            changeScreen(modelType: PaymentMethodViewController.self, id: "PaymentMethodViewController")
-        } else if (indexPath.section == 2 && indexPath.row == 1) {
             changeScreen(modelType: PaymentHistoryViewController.self, id: "PaymentHistoryViewController")
         } else if (indexPath.section == 2 && indexPath.row == 3) {
             switch try! Reachability().connection {
@@ -170,7 +168,7 @@ extension ProfileAccountViewController {
             case .loading:
                 loader = self?.loader()
             case .stopLoading:
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .dataLoaded:

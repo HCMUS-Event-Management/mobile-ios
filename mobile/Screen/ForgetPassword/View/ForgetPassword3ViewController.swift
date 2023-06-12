@@ -67,7 +67,9 @@ extension ForgetPassword3ViewController {
             case .loading:
                 loader = self?.loader()
             case .stopLoading:
-                self?.stoppedLoader(loader: loader ?? UIAlertController())
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self?.stoppedLoader(loader: loader ?? UIAlertController())
+                }
             case .dataLoaded:
                 DispatchQueue.main.async {
                     self?.showToast(message: "Đổi mật khẩu thành công", font: .systemFont(ofSize: 12))

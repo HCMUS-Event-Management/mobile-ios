@@ -17,9 +17,11 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
+
         VM.getListEventForHome()
         print(Realm.Configuration.defaultConfiguration.fileURL)
         // Do any additional setup after loading the view.
+
     }
     
     
@@ -226,7 +228,7 @@ extension HomeViewController {
             case .loading:
                 loader = self?.loader()
             case .stopLoading:
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .dataLoaded:

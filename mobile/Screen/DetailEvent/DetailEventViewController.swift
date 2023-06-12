@@ -176,17 +176,15 @@ extension DetailEventViewController {
             case .loading:
                 loader = self?.loader()
             case .stopLoading:
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .dataLoaded:
-//                print(self?.VM.detailEvent)
                 DispatchQueue.main.async {
                     self?.tb.reloadData()
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .error(let error):
-//                let err = error as! DataError
                 if (error == DataError.invalidResponse401.localizedDescription) {
                     DispatchQueue.main.async {
                         self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 12.0))

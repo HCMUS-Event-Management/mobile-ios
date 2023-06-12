@@ -24,10 +24,10 @@ extension HomeViewModel {
     func getDetailEventFromServer(_ id: Int) {
         self.eventHandler?(.loading)
         APIManager.shared.request(modelType: ReponseDetailEvent.self, type: EntityEndPoint.eventDetail(id: id), params: nil, completion: { result in
-            self.eventHandler?(.stopLoading)
 
             switch result {
                 case .success(let detail):
+                self.eventHandler?(.stopLoading)
                     self.detailEvent = (detail.data?.eventDetail?.managedObject())!
                     self.eventHandler?(.dataLoaded)
                     
