@@ -179,53 +179,5 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6D7000ED-5A91-4409-86BB-837E57BF9ECD"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "mobile/Screen/MenuTabBar/Menu/Profile/View/EditProfileViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "6D7000ED-5A91-4409-86BB-837E57BF9ECD - f03c93a0ce8dcb32"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "mobile.EditProfileViewController.configNaviBar() -&gt; ()"
-                  moduleName = "mobile"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbookpro2018/Desktop/Checl/Untitled/mobile-ios/mobile/Screen/MenuTabBar/Menu/Profile/View/EditProfileViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "85"
-                  endingLineNumber = "85"
-                  offsetFromSymbolStart = "578">
-               </Location>
-               <Location
-                  uuid = "6D7000ED-5A91-4409-86BB-837E57BF9ECD - 69dc4af7fef7d68b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "mobile.EditProfileViewController.imagePickerController(_: __C.UIImagePickerController, didFinishPickingMediaWithInfo: Swift.Dictionary&lt;__C.UIImagePickerControllerInfoKey, Any&gt;) -&gt; ()"
-                  moduleName = "mobile"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbookpro2018/Desktop/Checl/Untitled/mobile-ios/mobile/Screen/MenuTabBar/Menu/Profile/View/EditProfileViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "85"
-                  endingLineNumber = "85"
-                  offsetFromSymbolStart = "957">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

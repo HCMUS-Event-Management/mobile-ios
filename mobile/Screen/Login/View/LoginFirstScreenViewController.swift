@@ -133,9 +133,9 @@ class LoginFirstScreenViewController: UIViewController {
           case .cellular:
             webViewLoad()
           case .none:
-            showToast(message: "Network not reachable", font: .systemFont(ofSize: 12))
+            showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
           case .unavailable:
-            showToast(message: "Network not reachable", font: .systemFont(ofSize: 12))
+            showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
         }
         
         

@@ -7,12 +7,13 @@
 
 import UIKit
 import DropDown
+import Reachability
 class EditProfileViewController: UIViewController, EditProfileButtonTableViewCellDelegate , UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     func backScreen() {
         self.navigationController?.popViewController(animated: true)
     }
     
-    func callApi() {
+    func updateProfile() {
         let fullname = tb.cellForRow(at: [0,1]) as? ProfileDetailTableViewCell
         let phone = tb.cellForRow(at: [0,2]) as? ProfileDetailTableViewCell
         let address = tb.cellForRow(at: [0,3]) as? ProfileDetailTableViewCell
@@ -52,9 +53,19 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
                 self.showToast(message: "Lỗi trong quá trình update của convert link ảnh sang updaload avatar", font: .systemFont(ofSize: 12))
             }
         }
-        
-        
-        
+    }
+    
+    func callApi() {
+        switch try! Reachability().connection {
+          case .wifi:
+            updateProfile()
+          case .cellular:
+            updateProfile()
+          case .none:
+            showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+          case .unavailable:
+            showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+        }
     }
     
     var VM = ProfileViewModel()

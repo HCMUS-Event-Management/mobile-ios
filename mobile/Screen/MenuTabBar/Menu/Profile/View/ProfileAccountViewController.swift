@@ -12,9 +12,7 @@ class ProfileAccountViewController: UIViewController {
     @IBOutlet weak var tb: UITableView!
     
     var VM = ProfileViewModel()
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
@@ -131,9 +129,9 @@ extension ProfileAccountViewController: UITableViewDelegate {
               case .cellular:
                 VM.logout()
               case .none:
-                showToast(message: "Network not reachable", font: .systemFont(ofSize: 12))
+                showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
               case .unavailable:
-                showToast(message: "Network not reachable", font: .systemFont(ofSize: 12))
+                showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
             }
         }
     }

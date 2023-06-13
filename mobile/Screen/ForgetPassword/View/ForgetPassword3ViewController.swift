@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Reachability
 class ForgetPassword3ViewController: UIViewController {
     private var VM = ForgetPasswordViewModel()
 
@@ -35,8 +35,20 @@ class ForgetPassword3ViewController: UIViewController {
         if txtNewPass.text == "" || txtConfirmPass.text == ""{
             print("emtyp")
         } else {
-            let param = ForgetpasswordDto(email: Contanst.userdefault.string(forKey: "email"), otp:  Contanst.userdefault.string(forKey: "otp"), password: txtNewPass.text, verifiedPassword: txtConfirmPass.text)
-            VM.forgetPassword(from: param)
+            switch try! Reachability().connection {
+              case .wifi:
+                let param = ForgetpasswordDto(email: Contanst.userdefault.string(forKey: "email"), otp:  Contanst.userdefault.string(forKey: "otp"), password: txtNewPass.text, verifiedPassword: txtConfirmPass.text)
+                VM.forgetPassword(from: param)
+            case .cellular:
+                let param = ForgetpasswordDto(email: Contanst.userdefault.string(forKey: "email"), otp:  Contanst.userdefault.string(forKey: "otp"), password: txtNewPass.text, verifiedPassword: txtConfirmPass.text)
+                VM.forgetPassword(from: param)
+            case .none:
+                showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+              case .unavailable:
+                showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+            }
+            
+            
         }
 
     }
