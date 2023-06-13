@@ -12,7 +12,9 @@ class ProfileAccountViewController: UIViewController {
     @IBOutlet weak var tb: UITableView!
     
     var VM = ProfileViewModel()
-
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
@@ -118,7 +120,9 @@ extension ProfileAccountViewController: UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(indexPath.section == 2 && indexPath.row == 0) {
+        if(indexPath.section == 1 && indexPath.row == 0) {
+            changeScreen(modelType: ManagementEventsViewController.self, id: "ManagementEventsViewController")
+        }else if(indexPath.section == 2 && indexPath.row == 0) {
             changeScreen(modelType: ProfileDetailViewController.self, id: "ProfileDetailViewController")
         } else if (indexPath.section == 2 && indexPath.row == 1) {
             changeScreen(modelType: PaymentHistoryViewController.self, id: "PaymentHistoryViewController")

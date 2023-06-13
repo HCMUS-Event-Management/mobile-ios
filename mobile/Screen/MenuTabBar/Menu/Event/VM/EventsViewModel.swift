@@ -131,6 +131,66 @@ class EventsViewModel {
 }
 
 extension EventsViewModel {
+    func fetchListEventOfManagerUser(fullTextSearch: String) {
+        switch try! Reachability().connection {
+          case .wifi:
+            getListEventOfManagerUserFromServer(fullTextSearch: fullTextSearch)
+          case .cellular:
+            getListEventOfManagerUserFromServer(fullTextSearch: fullTextSearch)
+          case .none:
+            getListEventOfManagerUserFromDB(fullTextSearch: fullTextSearch)
+          case .unavailable:
+            getListEventOfManagerUserFromDB(fullTextSearch: fullTextSearch)
+
+        }
+    }
+    
+    
+    func getListEventOfManagerUserFromDB(fullTextSearch: String) {
+        self.events = [DataEventObject]()
+        let container = try! Container()
+        try! container.write{
+            transaction in
+            let temp = transaction.get(DataEventObject.self)
+            for i in temp.filter("category.label == '\(fullTextSearch)'") {
+                self.events.append(i)
+            }
+        }
+        self.eventHandler?(.dataLoaded)
+    }
+    
+    func getListEventOfManagerUserFromServer(fullTextSearch: String) {
+        self.eventHandler?(.loading)
+
+        APIManager.shared.request(modelType: ReponseListEvent.self, type: EntityEndPoint.listEventOfManagerUser(page: 1, perPage: 10, filterStatus: "APPROVED", sort: "", fullTextSearch: fullTextSearch, type: ""), params: nil, completion: {
+            result in
+            self.eventHandler?(.stopLoading)
+
+            switch result {
+            case .success(let value):
+                self.events = [DataEventObject]()
+                let container = try! Container()
+                try! container.write { transaction in
+                    value.data?.forEach{
+                        i in
+                        transaction.add(i, update: true)
+                        self.events.append(i.managedObject())
+                    }
+                }
+                self.eventHandler?(.dataLoaded)
+            case .failure(let error):
+                if case DataError.invalidResponse(let reason) = error {
+                    self.eventHandler?(.error(reason))
+                }
+                else {
+                    self.eventHandler?(.error(error.localizedDescription))
+                }
+            }
+        })
+    }
+}
+
+extension EventsViewModel {
 
     enum Event {
         case loading

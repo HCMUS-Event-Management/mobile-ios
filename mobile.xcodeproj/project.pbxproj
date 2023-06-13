@@ -52,7 +52,7 @@
 		A44F19D929A7156D00476E9B /* LoginFirstScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44F19D829A7156D00476E9B /* LoginFirstScreenViewModel.swift */; };
 		A44F19E829A719E200476E9B /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44F19E729A719E200476E9B /* APIManager.swift */; };
 		A44F19F629A71F0C00476E9B /* Contanst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44F19F529A71F0C00476E9B /* Contanst.swift */; };
-		A44F19F829A7362600476E9B /* FavoriteEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44F19F729A7362600476E9B /* FavoriteEventsViewController.swift */; };
+		A44F19F829A7362600476E9B /* ManagementEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44F19F729A7362600476E9B /* ManagementEventsViewController.swift */; };
 		A44F19FC29A73E9700476E9B /* EventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44F19FA29A73E9700476E9B /* EventCollectionViewCell.swift */; };
 		A44F19FD29A73E9700476E9B /* EventCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44F19FB29A73E9700476E9B /* EventCollectionViewCell.xib */; };
 		A44F1A0029A73EA500476E9B /* TypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44F19FE29A73EA500476E9B /* TypeCollectionViewCell.swift */; };
@@ -246,7 +246,7 @@
 		A44F19D829A7156D00476E9B /* LoginFirstScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFirstScreenViewModel.swift; sourceTree = "<group>"; };
 		A44F19E729A719E200476E9B /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		A44F19F529A71F0C00476E9B /* Contanst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contanst.swift; sourceTree = "<group>"; };
-		A44F19F729A7362600476E9B /* FavoriteEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEventsViewController.swift; sourceTree = "<group>"; };
+		A44F19F729A7362600476E9B /* ManagementEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementEventsViewController.swift; sourceTree = "<group>"; };
 		A44F19FA29A73E9700476E9B /* EventCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCollectionViewCell.swift; sourceTree = "<group>"; };
 		A44F19FB29A73E9700476E9B /* EventCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCollectionViewCell.xib; sourceTree = "<group>"; };
 		A44F19FE29A73EA500476E9B /* TypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -817,7 +817,7 @@
 				A44F19F929A73AB100476E9B /* cellFavoriteEvent */,
 				A4A9131A29A36D1500AC5E75 /* cellProfileDetail */,
 				A4A91318299FAA1100AC5E75 /* PaymentMethodViewController.swift */,
-				A44F19F729A7362600476E9B /* FavoriteEventsViewController.swift */,
+				A44F19F729A7362600476E9B /* ManagementEventsViewController.swift */,
 			);
 			path = MenuController;
 			sourceTree = "<group>";
@@ -1522,7 +1522,7 @@
 				A4268585299E27F300AA424A /* IconMenuTableViewCell.swift in Sources */,
 				A4C5F00329B2F61100723FC1 /* MenuViewController.swift in Sources */,
 				A426853529953D4900AA424A /* AppDelegate.swift in Sources */,
-				A44F19F829A7362600476E9B /* FavoriteEventsViewController.swift in Sources */,
+				A44F19F829A7362600476E9B /* ManagementEventsViewController.swift in Sources */,
 				A4DCFC8029D960D600A686AC /* User.swift in Sources */,
 				A459818329A8FA6C00D816E3 /* ReponseLogin.swift in Sources */,
 				A4D240D12A0CF04200B9BF68 /* EventTableViewCell.swift in Sources */,

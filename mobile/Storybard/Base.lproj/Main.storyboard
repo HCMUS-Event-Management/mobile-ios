@@ -651,10 +651,10 @@
             </objects>
             <point key="canvasLocation" x="1676.8115942028987" y="1402.9017857142856"/>
         </scene>
-        <!--Favorite Events View Controller-->
+        <!--Management Events View Controller-->
         <scene sceneID="0Lq-fu-YIR">
             <objects>
-                <viewController storyboardIdentifier="FavoriteEventsViewController" id="BE7-Yh-NfA" customClass="FavoriteEventsViewController" customModule="mobile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ManagementEventsViewController" id="BE7-Yh-NfA" customClass="ManagementEventsViewController" customModule="mobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Cc-PF-ErL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -665,7 +665,7 @@
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" indicatorStyle="white" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="F5N-4M-B6s">
                                         <rect key="frame" x="0.0" y="10" width="374" height="27"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Ws3-DE-cZV">
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="20" id="Ws3-DE-cZV">
                                             <size key="itemSize" width="128" height="128"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -682,7 +682,7 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50 favorite events" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vEK-XO-oo4">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Giáo dục" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vEK-XO-oo4">
                                         <rect key="frame" x="0.0" y="56.999999999999993" width="374" height="21.666666666666664"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <nil key="textColor"/>
@@ -737,6 +737,7 @@
                     <connections>
                         <outlet property="clEvent" destination="TSw-Ys-rdE" id="lhN-DH-4zB"/>
                         <outlet property="clType" destination="F5N-4M-B6s" id="szP-Dd-A3Z"/>
+                        <outlet property="countType" destination="vEK-XO-oo4" id="w95-nL-c7I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q2Q-Ew-dqj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

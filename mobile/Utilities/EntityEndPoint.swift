@@ -17,6 +17,8 @@ enum EntityEndPoint {
     case eventDetail(id: Int)
     case getAllCategory
     case listEventOfUser(page: Int, perPage: Int, filterStatus: String, sort: String, fullTextSearch: String, type: String)
+    case listEventOfManagerUser(page: Int, perPage: Int, filterStatus: String, sort: String, fullTextSearch: String, type: String)
+
 }
 
 
@@ -45,6 +47,9 @@ extension EntityEndPoint: EndPointType {
             return APIManager.commonHeaders
         case .listEventOfUser:
             return APIManager.commonHeaders
+        case .listEventOfManagerUser:
+            return APIManager.bearTokenHeaders
+
         }
     }
     
@@ -70,6 +75,8 @@ extension EntityEndPoint: EndPointType {
             return "api/v1/entity/category/get-all"
         case .listEventOfUser(page: let page, perPage: let perPage, filterStatus: let filterStatus, sort: let sort, fullTextSearch: let fullTextSearch, type: let type):
             return "api/v1/entity/event/get-list-event-user?page=\(page)&perPage=\(perPage)&filterStatus=\(filterStatus)&sort=\(sort)&fullTextSearch=\(fullTextSearch)&type=\(type)"
+        case .listEventOfManagerUser(page: let page, perPage: let perPage, filterStatus: let filterStatus, sort: let sort, fullTextSearch: let fullTextSearch, type: let type):
+            return "api/v1/entity/event/get-my-created-list-event?page=\(page)&perPage=\(perPage)&filterStatus=\(filterStatus)&sort=\(sort)&fullTextSearch=\(fullTextSearch)&type=\(type)"
         }
     }
     
@@ -100,6 +107,8 @@ extension EntityEndPoint: EndPointType {
         case .getAllCategory:
             return .get
         case .listEventOfUser:
+            return .get
+        case .listEventOfManagerUser:
             return .get
         }
     }
