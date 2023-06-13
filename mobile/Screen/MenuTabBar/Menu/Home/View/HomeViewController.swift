@@ -12,7 +12,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var cl: UICollectionView!
     
     private var VM = HomeViewModel()
-    
+    private var isCollectionViewInteractionEnabled = true
+    private var clickProcessing = false
     private var titleSection = ["Sự kiện đang diễn ra 🔥","Sự kiện sắp diễn ra    ✨"]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,7 +107,18 @@ extension HomeViewController: UICollectionViewDataSource {
                     cell.imgAvatar.kf.setImage(with: URL(string: self.VM.goingOnEvent[indexPath.row].image))
                     
                     cell.callback = {
+                        guard self.isCollectionViewInteractionEnabled, !self.clickProcessing else {
+                            return
+                        }
+                                    
+                        self.clickProcessing = true
+                                    
+                        // Perform your desired action for the selected item
                         self.changeDetailEvent(indexPath: indexPath)
+                                    
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            self.clickProcessing = false
+                        }
                     }
                     cell.layer.cornerRadius = 10
                     cell.layer.masksToBounds = true
@@ -147,7 +159,18 @@ extension HomeViewController: UICollectionViewDataSource {
                     
                     
                     cell.callback = {
+                        guard self.isCollectionViewInteractionEnabled, !self.clickProcessing else {
+                            return
+                        }
+                                    
+                        self.clickProcessing = true
+                                    
+                        // Perform your desired action for the selected item
                         self.changeDetailEvent(indexPath: indexPath)
+                                    
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            self.clickProcessing = false
+                        }
                     }
                     
                     cell.layer.cornerRadius = 10
@@ -197,8 +220,21 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        changeDetailEvent(indexPath: indexPath)
-    }
+        guard isCollectionViewInteractionEnabled, !clickProcessing else {
+                        return
+                    }
+                    
+                    clickProcessing = true
+                    
+                    // Perform your desired action for the selected item
+                    changeDetailEvent(indexPath: indexPath)
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        self.clickProcessing = false
+                    }
+            
+            collectionView.deselectItem(at: indexPath, animated: true)
+        }
 }
 
 

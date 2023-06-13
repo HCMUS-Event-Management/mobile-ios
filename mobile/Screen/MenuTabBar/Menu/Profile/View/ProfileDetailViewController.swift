@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Reachability
 class ProfileDetailViewController: UIViewController {
 
     @IBOutlet weak var btnDeleteaccount: UIButton!
@@ -22,6 +22,8 @@ class ProfileDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         btnChangepassword.addTarget(self, action: #selector(changeChangePasswordController), for: .touchUpInside)
+        btnDeleteaccount.addTarget(self, action: #selector(deleteAccount), for: .touchUpInside)
+
         configNaviBar()
         configuration()
     }
@@ -62,6 +64,36 @@ class ProfileDetailViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    func showAlert() {
+        let alertController = UIAlertController(title: "Xoá Tài Khoản", message: "Bạn có thực sự muốn xoá tài khoản?", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            // OK button tapped
+            switch try! Reachability().connection {
+              case .wifi:
+                self.VM.deleteAccount()
+            case .cellular:
+                self.VM.deleteAccount()
+            case .none:
+                self.showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+              case .unavailable:
+                self.showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+            }
+        }
+        alertController.addAction(okAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            // Cancel button tapped
+            print("Cancel button tapped")
+        }
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    @objc func deleteAccount() {
+        showAlert()
+    }
     
     @objc func changeChangePasswordController() {
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChangePasswordViewController") as? ChangePasswordViewController else {
@@ -240,17 +272,35 @@ extension ProfileDetailViewController {
                     self?.tb.reloadData()
                 }
             case .error(let error):
-                print(error)
-//                let err = error as! DataError
-//                if (err == DataError.invalidResponse401) {
-//                    DispatchQueue.main.async {
-//                        self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 12.0))
-//                        self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
-//                    }
-//                }
+                if (error == DataError.invalidResponse401.localizedDescription) {
+                    DispatchQueue.main.async {
+                        self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 12.0))
+                        TokenService.tokenInstance.removeTokenAndInfo()
+                        self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
+                    }
+                } else if (error == DataError.invalidResponse500.localizedDescription){
+                    DispatchQueue.main.async {
+                        self?.showToast(message: "Chưa kết nối mạng", font: .systemFont(ofSize: 12.0))
+                        self?.stoppedLoader(loader: loader ?? UIAlertController())
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self?.showToast(message: error!, font: .systemFont(ofSize: 12.0))
+                        self?.stoppedLoader(loader: loader ?? UIAlertController())
+                    }
+                }
             case .logout: break
             case .updateProfile: break
                 //reloadtb
+            case .deleteAcc:
+                DispatchQueue.main.async {
+                    TokenService.tokenInstance.removeTokenAndInfo()
+                    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                    let vc = self?.storyboard?.instantiateViewController(withIdentifier: "LoginFirstScreenViewController") as? LoginFirstScreenViewController
+                    let navVC = UINavigationController(rootViewController: vc!)
+                    appDelegate?.window?.rootViewController = navVC
+                    self?.showToast(message: "Xoá tài khoản thành công", font: .systemFont(ofSize: 12.0))
+                }
             }
         }
     }

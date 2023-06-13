@@ -30,7 +30,7 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
 
                 let date = dateFormatter.date(from:  self.VM.userInfoDetail?.birthday ?? "1970-01-01T00:00:00.000Z")
 
-                var formattedDate: String
+                var formattedDate: String?
                 if #available(iOS 15.0, *) {
                     formattedDate = date?.formatted(date: .numeric, time: .omitted) ?? ""
                 } else {
@@ -43,9 +43,10 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
                 // so sánh
                 DispatchQueue.main.async {
                     if (fullname?.tf.text == self.VM.userInfoDetail?.fullName && phone?.tf.text == self.VM.userInfoDetail?.phone && dot?.tf.text == formattedDate && idCard?.tf.text == self.VM.userInfoDetail?.identityCard && gender?.tf.text == self.VM.userInfoDetail?.gender && address?.tf.text == self.VM.userInfoDetail?.address){
+                        print(fullname?.tf.text, self.VM.userInfoDetail?.fullName , phone?.tf.text ,self.VM.userInfoDetail?.phone ,dot?.tf.text , formattedDate,self.VM.userInfoDetail?.birthday ,idCard?.tf.text, self.VM.userInfoDetail?.identityCard , gender?.tf.text, self.VM.userInfoDetail?.gender, address?.tf.text ,self.VM.userInfoDetail?.address)
                         self.showToast(message: "Không có gì thay đổi", font: .systemFont(ofSize: 12))
                     } else {
-                        let infoProfile = UpdateProfile(fullName: fullname?.tf.text ?? "", phone: phone?.tf.text ?? "", birthday: self.VM.userInfoDetail?.birthday ?? "", identityCard: idCard?.tf.text ?? "", gender: gender?.tf.text ?? "",address: address?.tf.text ?? "", image: uploadDto)
+                        let infoProfile = UpdateProfile(fullName: fullname?.tf.text ?? "", phone: phone?.tf.text ?? "", birthday: self.birthday ?? "", identityCard: idCard?.tf.text ?? "", gender: gender?.tf.text ?? "",address: address?.tf.text ?? "", image: uploadDto)
                         self.VM.updateUserDetail(params: infoProfile)
                     }
                 }
@@ -69,7 +70,7 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
     }
     
     var VM = ProfileViewModel()
-
+    var birthday:String?
     var imagePicker = UIImagePickerController()
 
     var dataLabel = ["Họ và tên:","Số điện thoại:","Địa chỉ:","Ngày sinh:","Chứng minh thư:","Giới tính:"]
@@ -81,6 +82,7 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
         configuration()
         self.VM.getUserDetailFromLocalDB()
         self.hideKeyboardWhenTappedAround()
+        birthday = VM.userInfoDetail?.birthday
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -118,8 +120,8 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         let date = dateFormatter.string(from: sender.date) + "T00:00:00.000Z"
-        
-        VM.userInfoDetail?.birthday = date
+        birthday = date
+//        VM.userInfoDetail?.birthday = date
         tb.reloadRows(at: [IndexPath(row: 4, section: 0)], with: .none)
 
     }
@@ -230,7 +232,7 @@ extension EditProfileViewController: UITableViewDataSource {
                 dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
 
-                let date = dateFormatter.date(from:  VM.userInfoDetail?.birthday ?? "1970-01-01T00:00:00.000Z")
+                let date = dateFormatter.date(from:  birthday ?? "1970-01-01T00:00:00.000Z")
 
                 var formattedDate: String
                 if #available(iOS 15.0, *) {
@@ -390,6 +392,8 @@ extension EditProfileViewController {
                     self?.VM.getUserDetailFromSever()
                 }
                 //reloadtb
+            case .deleteAcc:
+                break
             }
         }
     }

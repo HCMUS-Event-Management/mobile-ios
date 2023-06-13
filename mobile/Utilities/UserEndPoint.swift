@@ -19,6 +19,7 @@ enum UserEndPoint {
     case refreshToken(token: String) // POST
     case uploadAvatar // PUT
     case loginGG
+    case deleteAcc(id: Int)
 }
 
 // https://fakestoreapi.com/products
@@ -49,6 +50,8 @@ extension UserEndPoint: EndPointType {
             return "api/v1/user-auth/user/upload-avatar"
         case .loginGG:
             return "api/v1/user-auth/user/google-sign-in"
+        case .deleteAcc(let id):
+            return "api/v1/user-auth/user/delete/\(id)"
         }
    
 
@@ -87,6 +90,8 @@ extension UserEndPoint: EndPointType {
             return .put
         case .loginGG:
             return .get
+        case .deleteAcc:
+            return .put
         }
     }
 
@@ -98,7 +103,7 @@ extension UserEndPoint: EndPointType {
         switch self {
         case .profile:
             return APIManager.bearTokenHeaders
-        case .login(let infoLogin):
+        case .login:
             return APIManager.commonHeaders
         case .logout:
             return APIManager.bearTokenHeaders
@@ -118,6 +123,9 @@ extension UserEndPoint: EndPointType {
             return APIManager.bearTokenHeaders
         case .loginGG:
             return APIManager.commonHeaders
+        case .deleteAcc:
+            return APIManager.bearTokenHeaders
+
         }
     }
 }
