@@ -46,6 +46,9 @@ extension BoughtTicketsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             // Return the amount of items
+            if VM.boughtTicket.count == 0 {
+                return 1
+            }
             return self.VM.boughtTicket.count
         } else if section == 1 {
             // Return the Loading cell
@@ -65,49 +68,56 @@ extension BoughtTicketsViewController: UITableViewDataSource {
     
     
     if indexPath.section == 0 {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "TicketTableViewCell", for: indexPath) as? TicketTableViewCell  {
-            cell.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
-            
-            let ticket = VM.boughtTicket[indexPath.section]
-            
-            cell.ownerName.text = ticket.owner?.fullName
-            
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-            let startDate = dateFormatter.date(from: ticket.session?.startAt ?? "1970-01-01T00:00:00.000Z")
-            let endDate = dateFormatter.date(from: ticket.session?.endAt ?? "1970-01-01T00:00:00.000Z")
-            var formattedStartTime: String
-            var formattedEndTime: String
-            if #available(iOS 15.0, *) {
-                formattedStartTime = startDate?.formatted(date: .abbreviated, time: .omitted) ?? ""
-                formattedEndTime = startDate?.formatted(date: .abbreviated, time: .omitted) ?? ""
-            } else {
-                let newDateFormatter = DateFormatter()
-                newDateFormatter.dateStyle = .short
-                newDateFormatter.timeStyle = .none
-                formattedStartTime = newDateFormatter.string(from: startDate ?? Date())
-                formattedEndTime = newDateFormatter.string(from: endDate ?? Date())
+        if self.VM.boughtTicket.count == 0 {
+            if let cell =  tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as? TableViewCell {
+                cell.descrip.text = "Không có vé nào"
+               return cell
             }
-
-            
-
-            cell.startTimeSession.text = "\(formattedStartTime) - \(formattedEndTime)"
-
-            
-//             let dateFormatter = DateFormatter()
-//             dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-//             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-//             let date = dateFormatter.date(from:  ticket.session?.startAt ?? "1970-01-01T00:00:00.000Z")
-//
-//             cell.startTimeSession.text = "\(date!.formatted(date: .abbreviated, time: .omitted)) - \(date!.formatted(date: .omitted, time: .shortened))"
-             cell.titleEvent.text = ticket.session?.event?.title
-             cell.location.text = ticket.session?.event?.location?.name
-            
-            cell.img.kf.setImage(with: URL(string: ticket.session?.event!.image ?? "https://nestjs-entity-service-bucket.s3.ap-southeast-1.amazonaws.com/event_id_186/seating_plan/wF9NFk0T7NVnhDAXoh3AU8Uz1xBLBpbkrsS4a2Poo0EybGK5EE.jpeg"))
-
-            return cell
+        } else {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "TicketTableViewCell", for: indexPath) as? TicketTableViewCell  {
+                cell.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+                
+                let ticket = VM.boughtTicket[indexPath.section]
+                
+                cell.ownerName.text = ticket.owner?.fullName
+                
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                let startDate = dateFormatter.date(from: ticket.session?.startAt ?? "1970-01-01T00:00:00.000Z")
+                let endDate = dateFormatter.date(from: ticket.session?.endAt ?? "1970-01-01T00:00:00.000Z")
+                var formattedStartTime: String
+                var formattedEndTime: String
+                if #available(iOS 15.0, *) {
+                    formattedStartTime = startDate?.formatted(date: .abbreviated, time: .omitted) ?? ""
+                    formattedEndTime = startDate?.formatted(date: .abbreviated, time: .omitted) ?? ""
+                } else {
+                    let newDateFormatter = DateFormatter()
+                    newDateFormatter.dateStyle = .short
+                    newDateFormatter.timeStyle = .none
+                    formattedStartTime = newDateFormatter.string(from: startDate ?? Date())
+                    formattedEndTime = newDateFormatter.string(from: endDate ?? Date())
+                }
+                
+                
+                
+                cell.startTimeSession.text = "\(formattedStartTime) - \(formattedEndTime)"
+                
+                
+                //             let dateFormatter = DateFormatter()
+                //             dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                //             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                //             let date = dateFormatter.date(from:  ticket.session?.startAt ?? "1970-01-01T00:00:00.000Z")
+                //
+                //             cell.startTimeSession.text = "\(date!.formatted(date: .abbreviated, time: .omitted)) - \(date!.formatted(date: .omitted, time: .shortened))"
+                cell.titleEvent.text = ticket.session?.event?.title
+                cell.location.text = ticket.session?.event?.location?.name
+                
+                cell.img.kf.setImage(with: URL(string: ticket.session?.event!.image ?? "https://nestjs-entity-service-bucket.s3.ap-southeast-1.amazonaws.com/event_id_186/seating_plan/wF9NFk0T7NVnhDAXoh3AU8Uz1xBLBpbkrsS4a2Poo0EybGK5EE.jpeg"))
+                
+                return cell
+            }
         }
     } else {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingTableViewCell", for: indexPath) as! LoadingTableViewCell
@@ -143,13 +153,12 @@ extension BoughtTicketsViewController: UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        Contanst.userdefault.set("B", forKey: "idxDetailType")
-//        Contanst.userdefault.set(indexPath.row, forKey: "idxDetail")
-//
-//        print(indexPath.row)
-        Contanst.userdefault.set(VM.boughtTicket[indexPath.row].ticketCode, forKey: "ticketCodeDetail")
-
-        changeScreen(modelType: DetailTicketViewController.self, id: "DetailTicketViewController")
+        if self.VM.boughtTicket.count != 0 {
+            
+            Contanst.userdefault.set(VM.boughtTicket[indexPath.row].ticketCode, forKey: "ticketCodeDetail")
+            
+            changeScreen(modelType: DetailTicketViewController.self, id: "DetailTicketViewController")
+        }
 
     }
     
@@ -174,6 +183,7 @@ extension BoughtTicketsViewController {
     func configuration() {
         self.tb.register(UINib(nibName: "TicketTableViewCell", bundle: nil), forCellReuseIdentifier: "TicketTableViewCell")
         self.tb.register( UINib(nibName: "LoadingTableViewCell", bundle: nil), forCellReuseIdentifier: "LoadingTableViewCell")
+        self.tb.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "TableViewCell")
 
         self.tb.dataSource = self
         self.tb.delegate = self

@@ -38,8 +38,10 @@ class EventViewController: UIViewController {
     }
     
     func changeDetailEvent(indexPath: IndexPath) {
-        Contanst.userdefault.set(VM.events[indexPath.row].id, forKey: "eventIdDetail")
-        changeScreen(modelType: DetailEventViewController.self, id: "DetailEventViewController")
+        if self.VM.events.count != 0 {
+            Contanst.userdefault.set(VM.events[indexPath.row].id, forKey: "eventIdDetail")
+            changeScreen(modelType: DetailEventViewController.self, id: "DetailEventViewController")
+        }
     }
 
 
@@ -51,6 +53,9 @@ extension EventViewController: UICollectionViewDataSource {
         if collectionView == self.clType {
             return VM.catagorys.count
         } else if collectionView == self.clEvent {
+            if VM.events.count == 0 {
+                return 1
+            }
             return VM.events.count
         }
         return 0
@@ -70,40 +75,49 @@ extension EventViewController: UICollectionViewDataSource {
             }
             
         }else if collectionView == self.clEvent {
-            let event = self.VM.events[indexPath.row]
+            
+            if self.VM.events.count == 0 {
+                if let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "NoItemCollectionViewCell", for: indexPath) as? NoItemCollectionViewCell {
+                    cell.tilte.text = "Không có sự kiện"
+                    cell.indicator.startAnimating()
+                   return cell
+                }
+            } else {
+                let event = self.VM.events[indexPath.row]
 
-            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell {
-                
-                cell.eventName.text = event.title
-                cell.owner.text = "Bởi \(event.user!.fullName)"
-                if event.type == "PAID" {
-                    cell.paidName.text = "Có Phí"
-                } else {
-                    cell.paidName.text = "Miễn Phí"
+                if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell {
+                    
+                    cell.eventName.text = event.title
+                    cell.owner.text = "Bởi \(event.user!.fullName)"
+                    if event.type == "PAID" {
+                        cell.paidName.text = "Có Phí"
+                    } else {
+                        cell.paidName.text = "Miễn Phí"
+                    }
+                    
+                    if #available(iOS 15.0, *) {
+                        cell.timeStart.text = event.startAt?.formatted(date: .abbreviated, time: .omitted)
+                    } else {
+                        let newDateFormatter = DateFormatter()
+                        newDateFormatter.dateStyle = .short
+                        newDateFormatter.timeStyle = .none
+                        let formattedDate = newDateFormatter.string(from: event.startAt ?? Date())
+                        cell.timeStart.text = formattedDate
+                        
+                    }
+                    cell.locationName.text = event.location?.name
+                    cell.imgAvatar.kf.setImage(with: URL(string: self.VM.events[indexPath.row].image))
+                    
+                    
+                    cell.callback = {
+                        self.changeDetailEvent(indexPath: indexPath)
+                    }
+                    
+                    cell.layer.cornerRadius = 10
+                    cell.layer.masksToBounds = true
+                    
+                    return cell
                 }
-                
-                if #available(iOS 15.0, *) {
-                    cell.timeStart.text = event.startAt?.formatted(date: .abbreviated, time: .omitted)
-                } else {
-                    let newDateFormatter = DateFormatter()
-                    newDateFormatter.dateStyle = .short
-                    newDateFormatter.timeStyle = .none
-                    let formattedDate = newDateFormatter.string(from: event.startAt ?? Date())
-                    cell.timeStart.text = formattedDate
-                
-                }
-                cell.locationName.text = event.location?.name
-                cell.imgAvatar.kf.setImage(with: URL(string: self.VM.events[indexPath.row].image))
-
-                
-                cell.callback = {
-                    self.changeDetailEvent(indexPath: indexPath)
-                }
-                
-                cell.layer.cornerRadius = 10
-                cell.layer.masksToBounds = true
-                
-                return cell
             }
         }
         return UICollectionViewCell()
@@ -140,6 +154,7 @@ extension EventViewController {
     func configuration() {
         self.clEvent.register(UINib(nibName: "EventCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "EventCollectionViewCell")
         self.clType.register(UINib(nibName: "TypeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TypeCollectionViewCell")
+        self.clEvent.register(UINib(nibName: "NoItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "NoItemCollectionViewCell")
 
         self.clType.dataSource = self
         self.clType.delegate = self
@@ -170,16 +185,15 @@ extension EventViewController {
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .categoryLoaded:
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self?.clType.reloadData()
                     let ind =  IndexPath(item: 0, section: 0)
                     self?.clType.selectItem(at:ind, animated: false, scrollPosition: [])
                     self?.collectionView((self?.clType)!, didSelectItemAt:ind)
                     self?.clEvent.reloadData()
-                    self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .dataLoaded:
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
 //                    self?.clType.reloadData()
                     self?.clEvent.reloadData()
                     self?.stoppedLoader(loader: loader ?? UIAlertController())

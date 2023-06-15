@@ -92,6 +92,8 @@
 		A4865BA82A33168C00C1C6DD /* NoItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4865BA62A33168C00C1C6DD /* NoItemCollectionViewCell.swift */; };
 		A4865BA92A33168C00C1C6DD /* NoItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4865BA72A33168C00C1C6DD /* NoItemCollectionViewCell.xib */; };
 		A49D812929F3D08A009AE469 /* UploadAvatarDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49D812829F3D08A009AE469 /* UploadAvatarDto.swift */; };
+		A49EDCE82A3AC4CD00A8953B /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49EDCE62A3AC4CD00A8953B /* TableViewCell.swift */; };
+		A49EDCE92A3AC4CD00A8953B /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A49EDCE72A3AC4CD00A8953B /* TableViewCell.xib */; };
 		A4A1FC762A2C50C50018EDEB /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A1FC752A2C50C50018EDEB /* Authentication.swift */; };
 		A4A336772A1EDF86005CF3B9 /* DetailPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A336762A1EDF86005CF3B9 /* DetailPaymentViewController.swift */; };
 		A4A91316299F5AB800AC5E75 /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A91315299F5AB800AC5E75 /* ProfileDetailViewController.swift */; };
@@ -286,6 +288,8 @@
 		A4865BA62A33168C00C1C6DD /* NoItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		A4865BA72A33168C00C1C6DD /* NoItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		A49D812829F3D08A009AE469 /* UploadAvatarDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAvatarDto.swift; sourceTree = "<group>"; };
+		A49EDCE62A3AC4CD00A8953B /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		A49EDCE72A3AC4CD00A8953B /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		A4A1FC752A2C50C50018EDEB /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		A4A336762A1EDF86005CF3B9 /* DetailPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPaymentViewController.swift; sourceTree = "<group>"; };
 		A4A91315299F5AB800AC5E75 /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
@@ -804,10 +808,28 @@
 		A4865BA52A33167500C1C6DD /* NoItemCell */ = {
 			isa = PBXGroup;
 			children = (
+				A49EDCE52A3AC4B400A8953B /* TableView */,
+				A49EDCE42A3AC4A600A8953B /* CollectionView */,
+			);
+			path = NoItemCell;
+			sourceTree = "<group>";
+		};
+		A49EDCE42A3AC4A600A8953B /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
 				A4865BA62A33168C00C1C6DD /* NoItemCollectionViewCell.swift */,
 				A4865BA72A33168C00C1C6DD /* NoItemCollectionViewCell.xib */,
 			);
-			path = NoItemCell;
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		A49EDCE52A3AC4B400A8953B /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				A49EDCE62A3AC4CD00A8953B /* TableViewCell.swift */,
+				A49EDCE72A3AC4CD00A8953B /* TableViewCell.xib */,
+			);
+			path = TableView;
 			sourceTree = "<group>";
 		};
 		A4A91317299FA9AA00AC5E75 /* MenuController */ = {
@@ -1283,6 +1305,7 @@
 				A4268582299E248900AA424A /* InfoTableViewCell.xib in Resources */,
 				A4506CA829C45E3A009B75F6 /* InfoPaymentTableViewCell.xib in Resources */,
 				A4268586299E27F300AA424A /* IconMenuTableViewCell.xib in Resources */,
+				A49EDCE92A3AC4CD00A8953B /* TableViewCell.xib in Resources */,
 				A44F1A0129A73EA500476E9B /* TypeCollectionViewCell.xib in Resources */,
 				A4F0253E29DF1531002A5DC0 /* LoadingTableViewCell.xib in Resources */,
 				A41A7B2829FA633F0024C6F8 /* terms.json in Resources */,
@@ -1536,6 +1559,7 @@
 				A44184A629DC2529000B56B2 /* ReponseDetailTicket.swift in Sources */,
 				A4268581299E248900AA424A /* InfoTableViewCell.swift in Sources */,
 				A4CA58B329A8DF2300B5E318 /* UserEndPoint.swift in Sources */,
+				A49EDCE82A3AC4CD00A8953B /* TableViewCell.swift in Sources */,
 				A4506C3429B44371009B75F6 /* DateMyProfile.swift in Sources */,
 				A4506C9429C39628009B75F6 /* TicketTableViewCell.swift in Sources */,
 				A41A7B3129FA63900024C6F8 /* UIViewController+Child.swift in Sources */,

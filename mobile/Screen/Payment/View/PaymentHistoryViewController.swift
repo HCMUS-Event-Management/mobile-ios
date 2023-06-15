@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Reachability
 class PaymentHistoryViewController: UIViewController {
     private var isLoading = false
     @IBOutlet weak var tb: UITableView!
@@ -64,7 +64,14 @@ class PaymentHistoryViewController: UIViewController {
 extension PaymentHistoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == self.VM.paymentsHistory.count - 2, !isLoading {
-            loadMoreData()
+            switch try! Reachability().connection {
+              case .wifi:
+                loadMoreData()
+              case .cellular:
+                loadMoreData()
+              case .none: break
+              case .unavailable: break
+            }
         }
     }
 }
@@ -76,6 +83,9 @@ extension PaymentHistoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             // Return the amount of items
+            if VM.paymentsHistory.count == 0 {
+                return 1
+            }
             return VM.paymentsHistory.count
         } else if section == 1 {
             // Return the Loading cell
@@ -91,45 +101,52 @@ extension PaymentHistoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == 0 {
-            let payment = VM.paymentsHistory[indexPath.row]
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "PaymentHistoryTableViewCell", for: indexPath) as? PaymentHistoryTableViewCell  {
-                cell.desciption.text = payment.description1
-                cell.owner.text = payment.user?.fullName
-//                cell.price.text = "\(payment.price.formatted(.currency(code: payment.currency)))"
-                
-                
-                let dateFormatter = DateFormatter()
-                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-
-                let date = dateFormatter.date(from: payment.createdAt)
-
-                if #available(iOS 15.0, *) {
-                    cell.date.text = date?.formatted(date: .abbreviated, time: .omitted)
-                } else {
-                    // Xử lý cho phiên bản iOS dưới 15.0
-                    // Ví dụ: Hiển thị ngày giờ theo định dạng tùy chỉnh
-                    let customDateFormatter = DateFormatter()
-                    customDateFormatter.dateFormat = "yyyy-MM-dd"
-                    let dateString = customDateFormatter.string(from: date ?? Date())
-                    cell.date.text = dateString
+            if self.VM.paymentsHistory.count == 0 {
+                if let cell =  tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as? TableViewCell {
+                    cell.descrip.text = "Không có thanh toán nào"
+                   return cell
                 }
-
-//                let dateFormatter = DateFormatter()
-//                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-//                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-//
-//                let date = dateFormatter.date(from:payment.createdAt)
-//
-//                cell.date.text = date?.formatted(date: .abbreviated, time: .omitted)
-                
-                if payment.method == "paypal" {
-                    cell.logo.image  = UIImage(named: "PaypalLogo")
-                } else if payment.method == "vnpay" {
-                    cell.logo.image  = UIImage(named: "VnpayLogo")
+            } else {
+                let payment = VM.paymentsHistory[indexPath.row]
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "PaymentHistoryTableViewCell", for: indexPath) as? PaymentHistoryTableViewCell  {
+                    cell.desciption.text = payment.description1
+                    cell.owner.text = payment.user?.fullName
+                    //                cell.price.text = "\(payment.price.formatted(.currency(code: payment.currency)))"
+                    
+                    
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                    
+                    let date = dateFormatter.date(from: payment.createdAt)
+                    
+                    if #available(iOS 15.0, *) {
+                        cell.date.text = date?.formatted(date: .abbreviated, time: .omitted)
+                    } else {
+                        // Xử lý cho phiên bản iOS dưới 15.0
+                        // Ví dụ: Hiển thị ngày giờ theo định dạng tùy chỉnh
+                        let customDateFormatter = DateFormatter()
+                        customDateFormatter.dateFormat = "yyyy-MM-dd"
+                        let dateString = customDateFormatter.string(from: date ?? Date())
+                        cell.date.text = dateString
+                    }
+                    
+                    //                let dateFormatter = DateFormatter()
+                    //                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                    //                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                    //
+                    //                let date = dateFormatter.date(from:payment.createdAt)
+                    //
+                    //                cell.date.text = date?.formatted(date: .abbreviated, time: .omitted)
+                    
+                    if payment.method == "paypal" {
+                        cell.logo.image  = UIImage(named: "PaypalLogo")
+                    } else if payment.method == "vnpay" {
+                        cell.logo.image  = UIImage(named: "VnpayLogo")
+                    }
+                    
+                    return cell
                 }
-                
-                return cell
             }
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingTableViewCell", for: indexPath) as! LoadingTableViewCell
@@ -155,6 +172,7 @@ extension PaymentHistoryViewController {
         
         self.tb.register(UINib(nibName: "PaymentHistoryTableViewCell", bundle: nil), forCellReuseIdentifier: "PaymentHistoryTableViewCell")
         self.tb.register( UINib(nibName: "LoadingTableViewCell", bundle: nil), forCellReuseIdentifier: "LoadingTableViewCell")
+        self.tb.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "TableViewCell")
 
         self.tb.dataSource = self
         self.tb.delegate = self
