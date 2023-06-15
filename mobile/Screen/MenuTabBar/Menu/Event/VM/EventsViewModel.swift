@@ -37,7 +37,7 @@ class EventsViewModel {
                 self.catagorys.append(i)
             }
         }
-        self.eventHandler?(.dataLoaded)
+        self.eventHandler?(.categoryLoaded)
     }
     
     func getCategoryAllFromServer() {

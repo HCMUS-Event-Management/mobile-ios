@@ -71,6 +71,8 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
     
     var VM = ProfileViewModel()
     var birthday:String?
+    var gender:String?
+
     var imagePicker = UIImagePickerController()
 
     var dataLabel = ["Họ và tên:","Số điện thoại:","Địa chỉ:","Ngày sinh:","Chứng minh thư:","Giới tính:"]
@@ -83,6 +85,7 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
         self.VM.getUserDetailFromLocalDB()
         self.hideKeyboardWhenTappedAround()
         birthday = VM.userInfoDetail?.birthday
+        gender = VM.userInfoDetail?.gender
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,7 +96,16 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
 
         if let image = info[.originalImage] as? UIImage {
             let imageData:Data = image.pngData()!
-            VM.uploadAvatar(imageData: imageData)
+            switch try! Reachability().connection {
+              case .wifi:
+                VM.uploadAvatar(imageData: imageData)
+              case .cellular:
+                VM.uploadAvatar(imageData: imageData)
+              case .none:
+                showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+              case .unavailable:
+                showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+            }
         } else{
            print("Something went wrong")
         }
@@ -288,8 +300,7 @@ extension EditProfileViewController: UITableViewDataSource {
                 myDropDown.direction = .bottom
                 
                 myDropDown.selectionAction = { (index: Int, item: String) in
-                    self.VM.userInfoDetail?.gender = countryValuesArray[index]
-//                    self.tb.reloadData()
+                    self.gender = countryValuesArray[index]
                     self.tb.reloadRows(at: [indexPath], with: .none)
 
                 }
@@ -300,7 +311,7 @@ extension EditProfileViewController: UITableViewDataSource {
                 }
                 
                 //default
-                cell.tf.text = VM.userInfoDetail?.gender
+                cell.tf.text = self.gender
    
                 return cell
             }
@@ -366,7 +377,7 @@ extension EditProfileViewController {
                     self?.tb.reloadData()
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
-            case .error(let error):                
+            case .error(let error):
 //                let err = error as! DataError
                 if (error == DataError.invalidResponse401.localizedDescription) {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

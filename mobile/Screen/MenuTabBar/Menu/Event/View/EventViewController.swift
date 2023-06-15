@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Reachability
 class EventViewController: UIViewController {
 
     @IBOutlet weak var clEvent: UICollectionView!
@@ -16,9 +15,9 @@ class EventViewController: UIViewController {
     private var VM = EventsViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
+        configuration()
         VM.fetchCategoryAll()
         // Do any additional setup after loading the view.
-        configuration()
     }
 
     override func viewWillAppear(_ animated: Bool) {

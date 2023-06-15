@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Reachability
 class ChangePasswordViewController: UIViewController {
     var dataLabel = ["Mật khẩu hiện tại:","Mật khẩu mới:","Xác nhận mật khẩu mới:"]
     var VM = ChangePasswordViewModel()
@@ -80,7 +80,7 @@ extension ChangePasswordViewController: EditProfileButtonTableViewCellDelegate {
         self.navigationController?.popViewController(animated: true)
     }
     
-    func callApi() {
+    func changePass() {
         let cellOldPassword = self.tb.cellForRow(at: [0,0]) as? ProfileDetailTableViewCell
         let cellNewPassword = self.tb.cellForRow(at: [0,1]) as? ProfileDetailTableViewCell
         let cellConfirmPassword = self.tb.cellForRow(at: [0,2]) as? ProfileDetailTableViewCell
@@ -96,9 +96,24 @@ extension ChangePasswordViewController: EditProfileButtonTableViewCellDelegate {
             self.showToast(message: "Mật khẩu mới không được trùng với mật khẩu cũ", font: .systemFont(ofSize: 12))
         }
         
+    }
+    
+    func callApi() {
+        
+        
+        
         
       
-        
+        switch try! Reachability().connection {
+          case .wifi:
+            changePass()
+          case .cellular:
+            changePass()
+          case .none:
+            showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+          case .unavailable:
+            showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+        }
         
         
 
