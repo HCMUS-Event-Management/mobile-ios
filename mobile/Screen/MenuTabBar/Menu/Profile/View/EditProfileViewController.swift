@@ -217,7 +217,6 @@ extension EditProfileViewController: UITableViewDataSource {
                 return cell
             }
         } else if (indexPath.row == 1) {
-            print(indexPath)
             if let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileDetailTableViewCell", for: indexPath) as? ProfileDetailTableViewCell {
                 cell.lbl.text = dataLabel[indexPath.row-1]
                 cell.tf.text = VM.userInfoDetail?.fullName

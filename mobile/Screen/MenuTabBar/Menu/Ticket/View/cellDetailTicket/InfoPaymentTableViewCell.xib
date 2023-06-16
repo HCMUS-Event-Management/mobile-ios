@@ -32,26 +32,26 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phương thức thanh toán:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gY-Gs-01R">
-                                <rect key="frame" x="28" y="113.5" width="139" height="14.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Phương thức thanh toán:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gY-Gs-01R">
+                                <rect key="frame" x="28" y="122" width="139" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ZaloPay" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0rt-Zd-aad">
-                                <rect key="frame" x="170" y="112.5" width="165" height="17"/>
+                                <rect key="frame" x="170" y="121" width="165" height="17"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID Sự kiện:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MYj-Kc-8E9">
-                                <rect key="frame" x="28" y="143" width="61" height="14.5"/>
+                                <rect key="frame" x="28" y="151.5" width="61" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4302040044" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wfd-p3-le0">
-                                <rect key="frame" x="170" y="142" width="165" height="17"/>
+                                <rect key="frame" x="170" y="150.5" width="165" height="17"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -83,7 +83,6 @@
                         </subviews>
                         <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottomMargin" secondItem="MYj-Kc-8E9" secondAttribute="bottom" constant="21.5" id="0Wc-Wl-1aa"/>
                             <constraint firstItem="Wfd-p3-le0" firstAttribute="trailing" secondItem="Jpw-Kv-k19" secondAttribute="trailing" id="3eI-Ef-SQb"/>
                             <constraint firstItem="Hme-NB-qLO" firstAttribute="centerY" secondItem="He7-w5-IDo" secondAttribute="centerY" id="7dK-ip-G8V"/>
                             <constraint firstItem="9gY-Gs-01R" firstAttribute="leading" secondItem="jpB-zg-KA1" secondAttribute="leading" id="BLT-Km-tdJ"/>
@@ -93,6 +92,7 @@
                             <constraint firstItem="Hme-NB-qLO" firstAttribute="trailing" secondItem="Jpw-Kv-k19" secondAttribute="trailing" id="Nfg-r8-Yqr"/>
                             <constraint firstItem="Hme-NB-qLO" firstAttribute="width" secondItem="UA8-A7-2ZI" secondAttribute="width" id="Nzf-Fe-9h2"/>
                             <constraint firstItem="UA8-A7-2ZI" firstAttribute="trailing" secondItem="Jpw-Kv-k19" secondAttribute="trailing" id="QdL-ho-ShX"/>
+                            <constraint firstAttribute="bottom" secondItem="MYj-Kc-8E9" secondAttribute="bottom" constant="21" id="Rg2-4T-vJ6"/>
                             <constraint firstItem="Wfd-p3-le0" firstAttribute="centerY" secondItem="MYj-Kc-8E9" secondAttribute="centerY" id="Rgu-o3-DHG"/>
                             <constraint firstItem="NPC-44-lmP" firstAttribute="leading" secondItem="jpB-zg-KA1" secondAttribute="leading" id="Rlp-72-bCM"/>
                             <constraint firstItem="UA8-A7-2ZI" firstAttribute="width" secondItem="AYb-bD-Hzm" secondAttribute="width" multiplier="0.4" constant="19.799999999999997" id="eCM-hs-rfj"/>
@@ -104,10 +104,10 @@
                             <constraint firstItem="0rt-Zd-aad" firstAttribute="width" secondItem="UA8-A7-2ZI" secondAttribute="width" id="j3S-0f-snP"/>
                             <constraint firstItem="0rt-Zd-aad" firstAttribute="trailing" secondItem="Jpw-Kv-k19" secondAttribute="trailing" id="kfo-4I-O36"/>
                             <constraint firstItem="He7-w5-IDo" firstAttribute="leading" secondItem="jpB-zg-KA1" secondAttribute="leading" id="mLa-iZ-R1g"/>
+                            <constraint firstItem="MYj-Kc-8E9" firstAttribute="top" secondItem="9gY-Gs-01R" secondAttribute="bottom" constant="15" id="moN-RV-OKi"/>
                             <constraint firstItem="UA8-A7-2ZI" firstAttribute="centerY" secondItem="NPC-44-lmP" secondAttribute="centerY" id="rD6-iL-Jsb"/>
                             <constraint firstItem="MYj-Kc-8E9" firstAttribute="leading" secondItem="jpB-zg-KA1" secondAttribute="leading" id="tpg-Ga-0IZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UA8-A7-2ZI" secondAttribute="trailing" constant="20" id="vkC-Wf-vit"/>
-                            <constraint firstItem="MYj-Kc-8E9" firstAttribute="top" secondItem="9gY-Gs-01R" secondAttribute="bottom" constant="15" id="zA3-y1-Mbb"/>
                         </constraints>
                     </view>
                 </subviews>

@@ -78,7 +78,7 @@ extension HomeViewController: UICollectionViewDataSource {
         if indexPath.section == 0 {
             if self.VM.goingOnEvent.count == 0 {
                 if let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "NoItemCollectionViewCell", for: indexPath) as? NoItemCollectionViewCell {
-                    cell.tilte.text = "Không có sự kiện nào đang diễn ra"
+                    cell.tilte.text = "Không có sự kiện"
                     cell.indicator.startAnimating()
                    return cell
                 }
@@ -129,7 +129,7 @@ extension HomeViewController: UICollectionViewDataSource {
         } else if indexPath.section == 1{
             if self.VM.isCommingEvent.count == 0 {
                 if let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "NoItemCollectionViewCell", for: indexPath) as? NoItemCollectionViewCell {
-                    cell.tilte.text = "Không có sự kiện nào sắp diễn ra"
+                    cell.tilte.text = "Không có sự kiện"
                     cell.indicator.startAnimating()
                    return cell
                 }

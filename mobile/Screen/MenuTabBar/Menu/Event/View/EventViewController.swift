@@ -88,7 +88,7 @@ extension EventViewController: UICollectionViewDataSource {
                 if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell {
                     
                     cell.eventName.text = event.title
-                    cell.owner.text = "Bởi \(event.user!.fullName)"
+                    cell.owner.text = "Tạo bởi \(event.user!.fullName)"
                     if event.type == "PAID" {
                         cell.paidName.text = "Có Phí"
                     } else {
