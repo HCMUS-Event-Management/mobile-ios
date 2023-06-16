@@ -10,7 +10,10 @@ import WebKit
 import Reachability
 class LoginFirstScreenViewController: UIViewController {
     var webView: WKWebView!
+//    var isPasswordVisible = false
 
+    @IBOutlet weak var txtPassword: PasswordTextField!
+//    @IBOutlet weak var showPasswordButton: UIButton!
     var VM = LoginFirstScreenViewModel()
     @IBOutlet weak var btnCheckBoxRemember: UIButton!
     @IBOutlet weak var btnLogin: UIButton!
@@ -25,7 +28,7 @@ class LoginFirstScreenViewController: UIViewController {
     @IBAction func setUsername(_ sender: UITextField) {
         VM.setUsername(username: sender.text ?? "")
     };
-    @IBOutlet weak var txtPassword: UITextField!
+//    @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtUsername: UITextField!
     
     @IBAction func saveRemember(_ sender: Any) {
@@ -95,6 +98,7 @@ class LoginFirstScreenViewController: UIViewController {
         CheckAndAdd()
         print(Contanst.userdefault.string(forKey: "userToken"))
         btnLoginGG.addTarget(self, action: #selector(redirectGoogle), for: .touchUpInside)
+//        showPasswordButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
 
         
         
@@ -123,6 +127,18 @@ class LoginFirstScreenViewController: UIViewController {
         }
         
     }
+    
+//    @objc func togglePasswordVisibility() {
+//            isPasswordVisible = !isPasswordVisible
+//
+//            // Thay đổi kiểu hiển thị của trường nhập mật khẩu
+//            txtPassword.isSecureTextEntry = !isPasswordVisible
+//
+//            // Thay đổi hình ảnh của biểu tượng con mắt
+//            let imageName = isPasswordVisible ? "eye.fill" : "eye.slash.fill"
+//            let image = UIImage(systemName: imageName)
+//            showPasswordButton.setImage(image, for: .normal)
+//        }
     
     @objc func redirectGoogle() {
         

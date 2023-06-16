@@ -89,6 +89,7 @@
 		A478479D2A14DA0E00090EF3 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A478479C2A14DA0E00090EF3 /* EventViewController.swift */; };
 		A478479F2A14DEB700090EF3 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A478479E2A14DEB700090EF3 /* EventsViewModel.swift */; };
 		A47847A12A14E40000090EF3 /* ReponseGetAllCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47847A02A14E40000090EF3 /* ReponseGetAllCategory.swift */; };
+		A47914B92A3CC09E00A66494 /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47914B82A3CC09E00A66494 /* PasswordTextField.swift */; };
 		A4865BA82A33168C00C1C6DD /* NoItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4865BA62A33168C00C1C6DD /* NoItemCollectionViewCell.swift */; };
 		A4865BA92A33168C00C1C6DD /* NoItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4865BA72A33168C00C1C6DD /* NoItemCollectionViewCell.xib */; };
 		A49D812929F3D08A009AE469 /* UploadAvatarDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49D812829F3D08A009AE469 /* UploadAvatarDto.swift */; };
@@ -285,6 +286,7 @@
 		A478479C2A14DA0E00090EF3 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		A478479E2A14DEB700090EF3 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
 		A47847A02A14E40000090EF3 /* ReponseGetAllCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReponseGetAllCategory.swift; sourceTree = "<group>"; };
+		A47914B82A3CC09E00A66494 /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
 		A4865BA62A33168C00C1C6DD /* NoItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		A4865BA72A33168C00C1C6DD /* NoItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		A49D812829F3D08A009AE469 /* UploadAvatarDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAvatarDto.swift; sourceTree = "<group>"; };
@@ -574,6 +576,7 @@
 		A44F19DC29A7185B00476E9B /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				A47914B72A3CC09000A66494 /* Custom */,
 				A4865BA52A33167500C1C6DD /* NoItemCell */,
 				A4DC310A2A160169003539F6 /* Payment */,
 				A4D240D82A11E33C00B9BF68 /* DetailEvent */,
@@ -803,6 +806,14 @@
 				A47847A02A14E40000090EF3 /* ReponseGetAllCategory.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		A47914B72A3CC09000A66494 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				A47914B82A3CC09E00A66494 /* PasswordTextField.swift */,
+			);
+			path = Custom;
 			sourceTree = "<group>";
 		};
 		A4865BA52A33167500C1C6DD /* NoItemCell */ = {
@@ -1483,6 +1494,7 @@
 				A4506C4329B8755C009B75F6 /* ChangePasswordViewModel.swift in Sources */,
 				A4A1FC762A2C50C50018EDEB /* Authentication.swift in Sources */,
 				A4DCFC8329D960D600A686AC /* Session.swift in Sources */,
+				A47914B92A3CC09E00A66494 /* PasswordTextField.swift in Sources */,
 				A4C5F01129B2FF5600723FC1 /* ProfileViewModel.swift in Sources */,
 				A4CA58B229A8DF2300B5E318 /* EndPointType.swift in Sources */,
 				A4DCFC7229D9584D00A686AC /* EntityEndPoint.swift in Sources */,
