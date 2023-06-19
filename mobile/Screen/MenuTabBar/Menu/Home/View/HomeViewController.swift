@@ -86,7 +86,7 @@ extension HomeViewController: UICollectionViewDataSource {
                 let eventGoingOnEvent = self.VM.goingOnEvent[indexPath.row]
                 if let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell {
                     cell.eventName.text = eventGoingOnEvent.title
-                    cell.owner.text = "By \(eventGoingOnEvent.user!.fullName)"
+                    cell.owner.text = "Tạo bởi \(eventGoingOnEvent.user!.fullName)"
                     if eventGoingOnEvent.type == "PAID" {
                         cell.paidName.text = "Có Phí"
                     } else {
@@ -138,7 +138,7 @@ extension HomeViewController: UICollectionViewDataSource {
                 if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EventCollectionViewCell", for: indexPath) as? EventCollectionViewCell {
                     
                     cell.eventName.text = eventIsCommingEvent.title
-                    cell.owner.text = "By \(eventIsCommingEvent.user!.fullName)"
+                    cell.owner.text = "Tạo bởi \(eventIsCommingEvent.user!.fullName)"
                     if eventIsCommingEvent.type == "PAID" {
                         cell.paidName.text = "Có Phí"
                     } else {

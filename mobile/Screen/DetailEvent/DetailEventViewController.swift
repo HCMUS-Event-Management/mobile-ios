@@ -140,7 +140,7 @@ extension DetailEventViewController: UITableViewDelegate{
         } else if indexPath.section == 2 {
             return tableView.layer.frame.height / 5
         } else if indexPath.section == 3 {
-            return tableView.layer.frame.height / 1.5
+            return tableView.layer.frame.height / 2.5
         }
         
         return tableView.layer.frame.height / 2.5

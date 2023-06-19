@@ -310,6 +310,41 @@ extension TicketViewModel {
     }
 }
 
+extension TicketViewModel {
+    func vadilateTicket(from info: VadilateTicketDto) {
+        self.eventHandler?(.loading)
+        let parameter = try? APIManager.shared.encodeBody(value: info)
+        APIManager.shared.request(modelType: ReponseValidateTicket.self, type: EntityEndPoint.vadilateOnl, params: parameter, completion: {
+            result in
+            self.eventHandler?(.stopLoading)
+            switch result {
+            case .success(let value):
+                self.eventHandler?(.vadilateTicket)
+            case .failure(let error):
+                if case DataError.invalidResponse(let reason) = error {
+                    self.eventHandler?(.error(reason))
+                }
+                else {
+                    self.eventHandler?(.error(error.localizedDescription))
+                }
+            }
+        })
+    }
+    
+    func checkVadilateTicket(from info: VadilateTicketDto) {
+        switch try! Reachability().connection {
+          case .wifi:
+            vadilateTicket(from: info)
+          case .cellular:
+            vadilateTicket(from: info)
+          case .none:
+            self.eventHandler?(.error("Mất kết nối mạng"))
+          case .unavailable:
+            self.eventHandler?(.error("Mất kết nối mạng"))
+        }
+    }
+}
+
 
 extension TicketViewModel {
 
@@ -319,6 +354,7 @@ extension TicketViewModel {
         case dataLoaded
         case error(String?)
         case logout
+        case vadilateTicket
 //        case newProductAdded(product: AddProduct)
     }
 

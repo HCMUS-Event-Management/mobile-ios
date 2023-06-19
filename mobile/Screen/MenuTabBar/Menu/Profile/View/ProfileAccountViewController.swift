@@ -73,7 +73,7 @@ extension ProfileAccountViewController: UITableViewDataSource {
                     
                     task.resume()
                 } else {
-                    cell.imgAvatar.image = UIImage(named: "avatar test")
+                    cell.imgAvatar.image = UIImage(systemName: "person.fill")
                 }
                 
                 cell.txtName.text = self.VM.userInfoDetail?.fullName

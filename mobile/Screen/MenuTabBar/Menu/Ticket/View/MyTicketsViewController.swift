@@ -96,7 +96,7 @@ extension MyTicketsViewController: UITableViewDataSource {
                         let formattedDate = dateFormatter.string(from: date ?? Date())
                         dateFormatter.dateFormat = "h:mm a"
                         let formattedTime = dateFormatter.string(from: date ?? Date())
-                        cell.startTimeSession.text = "\(formattedDate) - \(formattedTime)"
+                        cell.startTimeSession.text = "\(formattedTime) - \(formattedDate)"
                     }
                     
                     //                let dateFormatter = DateFormatter()
@@ -225,6 +225,8 @@ extension MyTicketsViewController {
                 }
             case .logout:
                 print("logout")
+            case .vadilateTicket:
+                break
             }
         }
 

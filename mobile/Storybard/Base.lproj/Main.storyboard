@@ -153,7 +153,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="MiR-Hn-99z">
-                                <rect key="frame" x="51.666666666666657" y="536" width="310.66666666666674" height="303"/>
+                                <rect key="frame" x="51.666666666666657" y="536" width="310.66666666666674" height="197"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vyr-rb-MaM">
                                         <rect key="frame" x="0.0" y="0.0" width="310.66666666666669" height="38"/>
@@ -229,59 +229,6 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VYF-2h-pJ9">
-                                        <rect key="frame" x="0.0" y="212" width="310.66666666666669" height="38"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qpp-Xg-1DH">
-                                                <rect key="frame" x="3" y="18" width="85" height="2"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="2" id="TI9-EQ-bCP"/>
-                                                </constraints>
-                                            </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hoặc đăng nhập bằng" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqD-fB-SHF">
-                                                <rect key="frame" x="91" y="12" width="129" height="14.333333333333336"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vFq-7F-pAk">
-                                                <rect key="frame" x="223.00000000000003" y="18" width="84.666666666666657" height="2"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="2" id="Na1-VE-XTa"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="vFq-7F-pAk" firstAttribute="leading" secondItem="vqD-fB-SHF" secondAttribute="trailing" constant="3" id="3wP-LJ-kph"/>
-                                            <constraint firstItem="vqD-fB-SHF" firstAttribute="leading" secondItem="qpp-Xg-1DH" secondAttribute="trailing" constant="3" id="Tem-jR-LRM"/>
-                                            <constraint firstItem="vFq-7F-pAk" firstAttribute="centerY" secondItem="VYF-2h-pJ9" secondAttribute="centerY" id="Wqi-fh-dn4"/>
-                                            <constraint firstItem="qpp-Xg-1DH" firstAttribute="centerY" secondItem="VYF-2h-pJ9" secondAttribute="centerY" id="akD-S3-va9"/>
-                                            <constraint firstItem="qpp-Xg-1DH" firstAttribute="leading" secondItem="VYF-2h-pJ9" secondAttribute="leading" constant="3" id="gAx-Gt-uSp"/>
-                                            <constraint firstItem="vqD-fB-SHF" firstAttribute="centerY" secondItem="VYF-2h-pJ9" secondAttribute="centerY" id="pVh-Gf-6uT"/>
-                                            <constraint firstAttribute="trailing" secondItem="vFq-7F-pAk" secondAttribute="trailing" constant="3" id="pbm-4K-xDq"/>
-                                            <constraint firstItem="vqD-fB-SHF" firstAttribute="centerX" secondItem="VYF-2h-pJ9" secondAttribute="centerX" id="t5Y-Uz-PsR"/>
-                                        </constraints>
-                                    </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="-100" translatesAutoresizingMaskIntoConstraints="NO" id="PfD-Hp-vmV">
-                                        <rect key="frame" x="0.0" y="265" width="310.66666666666669" height="38"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JWp-b9-nW1">
-                                                <rect key="frame" x="0.0" y="0.0" width="205.33333333333334" height="38"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="icon fb vuong"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="icon fb vuong"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z67-OL-ufI">
-                                                <rect key="frame" x="105.33333333333333" y="0.0" width="205.33333333333337" height="38"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="icon gg vuong"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="icon gg vuong"/>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="zma-fW-Ufj" firstAttribute="height" secondItem="Vyr-rb-MaM" secondAttribute="height" id="6J4-n7-CZV"/>
@@ -304,8 +251,6 @@
                     <connections>
                         <outlet property="btnCheckBoxRemember" destination="hdF-Db-5YD" id="c6j-AJ-2wN"/>
                         <outlet property="btnLogin" destination="GZs-WR-f55" id="DKs-BY-9uA"/>
-                        <outlet property="btnLoginFB" destination="JWp-b9-nW1" id="iYj-kk-d59"/>
-                        <outlet property="btnLoginGG" destination="z67-OL-ufI" id="nu5-QJ-luL"/>
                         <outlet property="fotgetPassword" destination="eBQ-Hm-OC0" id="VOd-78-UsG"/>
                         <outlet property="txtPassword" destination="zma-fW-Ufj" id="Qbj-NY-BGg"/>
                         <outlet property="txtUsername" destination="Vyr-rb-MaM" id="ieG-hu-lLR"/>
@@ -1066,11 +1011,11 @@
             </objects>
             <point key="canvasLocation" x="8037.6811594202909" y="3539.7321428571427"/>
         </scene>
-        <!--Profile-->
+        <!--Thông tin-->
         <scene sceneID="Nag-Gm-fGB">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dth-94-11V" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="VectorIcon" id="XhM-aK-98k">
+                    <tabBarItem key="tabBarItem" title="Thông tin" image="VectorIcon" id="XhM-aK-98k">
                         <color key="badgeColor" name="AccentColor"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -1341,11 +1286,11 @@ PASSWORD</string>
             </objects>
             <point key="canvasLocation" x="2561" y="2077"/>
         </scene>
-        <!--Tickets-->
+        <!--Vé-->
         <scene sceneID="3Ne-zP-XRm">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aqH-tC-sOq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Tickets" image="TicketIcon" id="xe5-Db-l2f"/>
+                    <tabBarItem key="tabBarItem" title="Vé" image="TicketIcon" id="xe5-Db-l2f"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lRb-Lu-H8X">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1619,11 +1564,11 @@ PASSWORD</string>
             </objects>
             <point key="canvasLocation" x="-5943" y="2988"/>
         </scene>
-        <!--Home-->
+        <!--Trang chủ-->
         <scene sceneID="99F-m0-nae">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ucv-Gh-dtV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="HomeIcon" id="1dJ-BL-072"/>
+                    <tabBarItem key="tabBarItem" title="Trang chủ" image="HomeIcon" id="1dJ-BL-072"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="L24-90-EZv">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1758,11 +1703,11 @@ PASSWORD</string>
             </objects>
             <point key="canvasLocation" x="-4651" y="4051"/>
         </scene>
-        <!--Events-->
+        <!--Sự kiện-->
         <scene sceneID="vST-z5-AOm">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mCg-eR-R3s" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Events" image="EventIcon" id="SUv-8t-RRu"/>
+                    <tabBarItem key="tabBarItem" title="Sự kiện" image="EventIcon" id="SUv-8t-RRu"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uYt-Mf-QSH">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1777,11 +1722,11 @@ PASSWORD</string>
             </objects>
             <point key="canvasLocation" x="-2171.0144927536235" y="3094.4196428571427"/>
         </scene>
-        <!--Search-->
+        <!--Tìm kiếm-->
         <scene sceneID="i2E-z5-J7z">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ode-Nt-NGT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search" image="SearchIcon" id="Nic-yD-OOe"/>
+                    <tabBarItem key="tabBarItem" title="Tìm kiếm" image="SearchIcon" id="Nic-yD-OOe"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="61x-8i-ur2">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -2009,9 +1954,7 @@ PASSWORD</string>
         <image name="background header" width="1500" height="2100"/>
         <image name="backgroundGetstarted" width="428" height="926"/>
         <image name="icon fb" width="38" height="38"/>
-        <image name="icon fb vuong" width="53" height="53"/>
         <image name="icon gg" width="38" height="38"/>
-        <image name="icon gg vuong" width="53" height="53"/>
         <image name="search_term_icon" width="14" height="14"/>
         <image name="uncheckbox" width="15" height="15"/>
         <namedColor name="AccentColor">

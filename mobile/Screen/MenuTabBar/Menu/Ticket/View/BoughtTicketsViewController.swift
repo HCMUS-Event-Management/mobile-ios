@@ -85,32 +85,19 @@ extension BoughtTicketsViewController: UITableViewDataSource {
                 let dateFormatter = DateFormatter()
                 dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-                let startDate = dateFormatter.date(from: ticket.session?.startAt ?? "1970-01-01T00:00:00.000Z")
-                let endDate = dateFormatter.date(from: ticket.session?.endAt ?? "1970-01-01T00:00:00.000Z")
-                var formattedStartTime: String
-                var formattedEndTime: String
+                let date = dateFormatter.date(from: ticket.session?.startAt ?? "1970-01-01T00:00:00.000Z")
+                
                 if #available(iOS 15.0, *) {
-                    formattedStartTime = startDate?.formatted(date: .abbreviated, time: .omitted) ?? ""
-                    formattedEndTime = startDate?.formatted(date: .abbreviated, time: .omitted) ?? ""
+                    let formattedDate = date?.formatted(date: .abbreviated, time: .omitted)
+                    let formattedTime = date?.formatted(date: .omitted, time: .shortened)
+                    cell.startTimeSession.text = "\(formattedDate ?? "") - \(formattedTime ?? "")"
                 } else {
-                    let newDateFormatter = DateFormatter()
-                    newDateFormatter.dateStyle = .short
-                    newDateFormatter.timeStyle = .none
-                    formattedStartTime = newDateFormatter.string(from: startDate ?? Date())
-                    formattedEndTime = newDateFormatter.string(from: endDate ?? Date())
+                    dateFormatter.dateFormat = "MMM d, yyyy"
+                    let formattedDate = dateFormatter.string(from: date ?? Date())
+                    dateFormatter.dateFormat = "h:mm a"
+                    let formattedTime = dateFormatter.string(from: date ?? Date())
+                    cell.startTimeSession.text = "\(formattedTime) - \(formattedDate)"
                 }
-                
-                
-                
-                cell.startTimeSession.text = "\(formattedStartTime) - \(formattedEndTime)"
-                
-                
-                //             let dateFormatter = DateFormatter()
-                //             dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-                //             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-                //             let date = dateFormatter.date(from:  ticket.session?.startAt ?? "1970-01-01T00:00:00.000Z")
-                //
-                //             cell.startTimeSession.text = "\(date!.formatted(date: .abbreviated, time: .omitted)) - \(date!.formatted(date: .omitted, time: .shortened))"
                 cell.titleEvent.text = ticket.session?.event?.title
                 cell.location.text = ticket.session?.event?.location?.name
                 
@@ -238,6 +225,8 @@ extension BoughtTicketsViewController {
 //                    self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
 //                }
                 print("logout")
+            case .vadilateTicket:
+                break
             }
         }
 

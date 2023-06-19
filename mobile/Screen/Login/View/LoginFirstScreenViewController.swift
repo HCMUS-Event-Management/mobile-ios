@@ -17,10 +17,7 @@ class LoginFirstScreenViewController: UIViewController {
     var VM = LoginFirstScreenViewModel()
     @IBOutlet weak var btnCheckBoxRemember: UIButton!
     @IBOutlet weak var btnLogin: UIButton!
-    @IBOutlet weak var btnSignUp: UIButton!
     @IBOutlet weak var fotgetPassword: UIButton!
-    @IBOutlet weak var btnLoginFB: UIButton!
-    @IBOutlet weak var btnLoginGG: UIButton!
     @IBAction func setPassword(_ sender: UITextField) {
         VM.setPassword(password: sender.text ?? "")
         
@@ -97,7 +94,6 @@ class LoginFirstScreenViewController: UIViewController {
         configuration()
         CheckAndAdd()
         print(Contanst.userdefault.string(forKey: "userToken"))
-        btnLoginGG.addTarget(self, action: #selector(redirectGoogle), for: .touchUpInside)
 //        showPasswordButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
 
         

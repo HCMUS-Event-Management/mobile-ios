@@ -20,7 +20,7 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
         let dot = tb.cellForRow(at: [0,4]) as? ProfileDetailTableViewCell
         let idCard = tb.cellForRow(at: [0,5]) as? ProfileDetailTableViewCell
         let gender = tb.cellForRow(at: [0,6]) as? ProfileDetailTableViewCell
-        convertImageUrlToUploadDto(urlString: VM.userInfoDetail?.avatar ?? "https://nestjs-user-auth-service-bucket.s3.ap-southeast-1.amazonaws.com/user_id_3/avatar/vT6eDoY3T1umU3rTtkoiV5QTve0yTBQTx5R3XLjRlr5tGNwwB1.%28format_file%3A%20jpeg") { (uploadDto) in
+        convertImageUrlToUploadDto(urlString: VM.userInfoDetail?.avatar ?? "https://mir-s3-cdn-cf.behance.net/project_modules/disp/64623a33850498.56ba69ac2a6f7.png") { (uploadDto) in
             if let uploadDto = uploadDto {
                 
                 // ngày giờ
@@ -190,7 +190,7 @@ extension EditProfileViewController: UITableViewDataSource {
                     
                     task.resume()
                 } else {
-                    cell.avatar.image = UIImage(named: "avatar test")
+                    cell.avatar.image = UIImage(systemName: "person.fill")
                 }
                 
                 

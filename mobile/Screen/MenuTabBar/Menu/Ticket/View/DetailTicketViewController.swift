@@ -72,17 +72,30 @@ extension DetailTicketViewController: UITableViewDataSource {
         let ticket = VM.detail
 
         if indexPath.section == 0 {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "ImageQRCodeTableViewCell", for: indexPath) as? ImageQRCodeTableViewCell  {
-                // hash
-                let info = "\(VM.detail.eventId)-\(VM.detail.ticketCode)-\(profileViewModel.userInfo!.id!)"
-//                let encryptedString = hashRSA(from: info)
-//                decodeRSA(from: encryptedString ?? "")
-//                let image = generateQRCode(from: encryptedString!)
-                let image = generateQRCode(from: info)
+            print(ticket.session)
+            if ticket.session?.event?.isOnline == false {
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "ImageQRCodeTableViewCell", for: indexPath) as? ImageQRCodeTableViewCell  {
+                    // hash
+                    let info = "\(VM.detail.eventId)-\(VM.detail.ticketCode)-\(profileViewModel.userInfo!.id!)"
+    //                let encryptedString = hashRSA(from: info)
+    //                decodeRSA(from: encryptedString ?? "")
+    //                let image = generateQRCode(from: encryptedString!)
+                    let image = generateQRCode(from: info)
 
-                cell.imgQR.image = image
-                return cell
+                    cell.imgQR.image = image
+                    return cell
+                }
+            } else {
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "OpenZoomTableViewCell", for: indexPath) as? OpenZoomTableViewCell  {
+                    cell.zoomURL = ticket.session?.zoomJoinUrl
+                    cell.info = VadilateTicketDto(eventId:  Int(ticket.eventId) ,ownerId:  Int(profileViewModel.userInfo!.id!) ,ticketCode:  ticket.ticketCode)
+                    cell.delegate = self
+                    cell.img.kf.setImage(with: URL(string: ticket.session?.event?.image ?? ""))
+
+                    return cell
+                }
             }
+            
         } else if indexPath.section == 1 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "InfoEventTableViewCell", for: indexPath) as? InfoEventTableViewCell  {
 
@@ -126,10 +139,10 @@ extension DetailTicketViewController: UITableViewDataSource {
                 let formattedStartTime = timeFormatter.string(from: startDate ?? Date())
                 let formattedEndTime = timeFormatter.string(from: endDate ?? Date())
                 
-                cell.date.text = """
-                Start Date: \(formattedStartDate) \(formattedStartTime)\n
-                End Date: \(formattedEndDate) \(formattedEndTime)
-                """
+
+                
+                
+                cell.date.text = "\(formattedStartTime) \(formattedStartDate) - \(formattedEndTime) \(formattedEndDate)"
                 
                 
                 
@@ -141,18 +154,12 @@ extension DetailTicketViewController: UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTicketTableViewCell", for: indexPath) as? InfoTicketTableViewCell  {
                 cell.buyerId.text = ticket.buyer?.fullName
 //                cell.eventTicket.text = ticket.se
-                if let ownerId = ticket.owner?.id {
-                    cell.btnAddOwner.isHidden = true
-                    cell.ownerId.isHidden = false
-                    cell.ownerId.text = ownerId
-                }
                 
                 
                 return cell
             }
         } else if indexPath.section == 3 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "InfoPaymentTableViewCell", for: indexPath) as? InfoPaymentTableViewCell  {
-                cell.eventId.text = ticket.session?.eventId
                 cell.method.text = ticket.paymentMethod
                 let currencyFormatter = NumberFormatter()
                 currencyFormatter.numberStyle = .currency
@@ -194,9 +201,9 @@ extension DetailTicketViewController: UITableViewDelegate{
         if indexPath.section == 0 {
             return tableView.layer.frame.height / 3
         } else if indexPath.section == 2 {
-            return tableView.layer.frame.height / 4
+            return tableView.layer.frame.height / 5
         } else if indexPath.section == 3 {
-            return tableView.layer.frame.height / 3.5
+            return tableView.layer.frame.height / 4
         }
         
         return tableView.layer.frame.height / 2.5
@@ -217,6 +224,7 @@ extension DetailTicketViewController {
         self.tb.register(UINib(nibName: "InfoTicketTableViewCell", bundle: nil), forCellReuseIdentifier: "InfoTicketTableViewCell")
         self.tb.register(UINib(nibName: "ImageQRCodeTableViewCell", bundle: nil), forCellReuseIdentifier: "ImageQRCodeTableViewCell")
         self.tb.register(UINib(nibName: "InfoPaymentTableViewCell", bundle: nil), forCellReuseIdentifier: "InfoPaymentTableViewCell")
+        self.tb.register(UINib(nibName: "OpenZoomTableViewCell", bundle: nil), forCellReuseIdentifier: "OpenZoomTableViewCell")
 
         self.tb.dataSource = self
         self.tb.delegate = self
@@ -273,8 +281,29 @@ extension DetailTicketViewController {
 //                    self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
 //                }
                 print("logout")
+            case .vadilateTicket:
+                DispatchQueue.main.async {
+                    guard let url = URL(string: self?.VM.detail.session?.zoomJoinUrl ?? "") else {
+                        return
+                    }
+            
+                    // Check if the device has Zoom installed
+                    if UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    } else {
+                        // Zoom is not installed, handle the case as needed
+                        // For example, show an error message or redirect to Zoom website
+                    }
+                }
             }
         }
     }
 
+}
+
+
+extension DetailTicketViewController: OpenZoomTableViewCellDelegate {
+    func callApi() {
+        self.VM.vadilateTicket(from: VadilateTicketDto(eventId:  Int(VM.detail.eventId) ,ownerId:  Int(profileViewModel.userInfo!.id!) ,ticketCode:  VM.detail.ticketCode))
+    }
 }

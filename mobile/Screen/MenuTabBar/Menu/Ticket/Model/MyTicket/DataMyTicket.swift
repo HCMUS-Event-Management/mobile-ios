@@ -142,7 +142,6 @@ extension DataMyTicket: Persistable {
         character.owner = owner?.managedObject()
         character.buyer = buyer?.managedObject()
 
-        
 //        character.session = List<SessionObject>()
 //        character.session.append(session?.managedObject() ?? SessionObject())
         return character

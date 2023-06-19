@@ -164,6 +164,11 @@
 		A4F0253929DED416002A5DC0 /* DataBoughtTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F0253829DED416002A5DC0 /* DataBoughtTicket.swift */; };
 		A4F0253D29DF1531002A5DC0 /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F0253B29DF1531002A5DC0 /* LoadingTableViewCell.swift */; };
 		A4F0253E29DF1531002A5DC0 /* LoadingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F0253C29DF1531002A5DC0 /* LoadingTableViewCell.xib */; };
+		A4F2A5172A3D8E4C00601BB5 /* OpenZoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F2A5152A3D8E4C00601BB5 /* OpenZoomTableViewCell.swift */; };
+		A4F2A5182A3D8E4C00601BB5 /* OpenZoomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F2A5162A3D8E4C00601BB5 /* OpenZoomTableViewCell.xib */; };
+		A4F2A51A2A3D9A2800601BB5 /* VadilateTicketDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F2A5192A3D9A2800601BB5 /* VadilateTicketDto.swift */; };
+		A4F2A51C2A3D9C3000601BB5 /* ReponseValidateTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F2A51B2A3D9C3000601BB5 /* ReponseValidateTicket.swift */; };
+		A4F2A51E2A3D9C6600601BB5 /* DataValidateTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F2A51D2A3D9C6600601BB5 /* DataValidateTicket.swift */; };
 		A4F8DFC22A2877C60027E27E /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F8DFC12A2877C60027E27E /* Image.swift */; };
 		A948CF4ECA66FA52979448CB /* Pods_mobileTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4065F6977C7710BD5DF1BAFE /* Pods_mobileTests.framework */; };
 		F10F1D41DA422D4D02EE798A /* Pods_mobile_mobileUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B48C5994500DF455BD47495D /* Pods_mobile_mobileUITests.framework */; };
@@ -352,6 +357,11 @@
 		A4F0253829DED416002A5DC0 /* DataBoughtTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBoughtTicket.swift; sourceTree = "<group>"; };
 		A4F0253B29DF1531002A5DC0 /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
 		A4F0253C29DF1531002A5DC0 /* LoadingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingTableViewCell.xib; sourceTree = "<group>"; };
+		A4F2A5152A3D8E4C00601BB5 /* OpenZoomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenZoomTableViewCell.swift; sourceTree = "<group>"; };
+		A4F2A5162A3D8E4C00601BB5 /* OpenZoomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenZoomTableViewCell.xib; sourceTree = "<group>"; };
+		A4F2A5192A3D9A2800601BB5 /* VadilateTicketDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VadilateTicketDto.swift; sourceTree = "<group>"; };
+		A4F2A51B2A3D9C3000601BB5 /* ReponseValidateTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReponseValidateTicket.swift; sourceTree = "<group>"; };
+		A4F2A51D2A3D9C6600601BB5 /* DataValidateTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataValidateTicket.swift; sourceTree = "<group>"; };
 		A4F8DFC12A2877C60027E27E /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		B48C5994500DF455BD47495D /* Pods_mobile_mobileUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mobile_mobileUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D27CF07476327E8A902B46A1 /* Pods-mobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile.release.xcconfig"; path = "Target Support Files/Pods-mobile/Pods-mobile.release.xcconfig"; sourceTree = "<group>"; };
@@ -760,6 +770,8 @@
 				A4506CA229C45013009B75F6 /* InfoTicketTableViewCell.xib */,
 				A4506CA529C45E3A009B75F6 /* InfoPaymentTableViewCell.swift */,
 				A4506CA629C45E3A009B75F6 /* InfoPaymentTableViewCell.xib */,
+				A4F2A5152A3D8E4C00601BB5 /* OpenZoomTableViewCell.swift */,
+				A4F2A5162A3D8E4C00601BB5 /* OpenZoomTableViewCell.xib */,
 			);
 			path = cellDetailTicket;
 			sourceTree = "<group>";
@@ -1128,6 +1140,9 @@
 				A4DCFC7C29D960D600A686AC /* Session.swift */,
 				A4DCFC7929D960D600A686AC /* User.swift */,
 				A44184A529DC2529000B56B2 /* ReponseDetailTicket.swift */,
+				A4F2A5192A3D9A2800601BB5 /* VadilateTicketDto.swift */,
+				A4F2A51B2A3D9C3000601BB5 /* ReponseValidateTicket.swift */,
+				A4F2A51D2A3D9C6600601BB5 /* DataValidateTicket.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1325,6 +1340,7 @@
 				A4D240D42A0CF10E00B9BF68 /* EventTableViewCell.xib in Resources */,
 				A42702362A13772100E708CC /* EventSessionTableViewCell.xib in Resources */,
 				A44F19FD29A73E9700476E9B /* EventCollectionViewCell.xib in Resources */,
+				A4F2A5182A3D8E4C00601BB5 /* OpenZoomTableViewCell.xib in Resources */,
 				A4D240D52A0CF11100B9BF68 /* EmptyTableViewCell.xib in Resources */,
 				A426854129953D4C00AA424A /* Assets.xcassets in Resources */,
 				A426853C29953D4900AA424A /* Main.storyboard in Resources */,
@@ -1494,6 +1510,7 @@
 				A4506C4329B8755C009B75F6 /* ChangePasswordViewModel.swift in Sources */,
 				A4A1FC762A2C50C50018EDEB /* Authentication.swift in Sources */,
 				A4DCFC8329D960D600A686AC /* Session.swift in Sources */,
+				A4F2A51A2A3D9A2800601BB5 /* VadilateTicketDto.swift in Sources */,
 				A47914B92A3CC09E00A66494 /* PasswordTextField.swift in Sources */,
 				A4C5F01129B2FF5600723FC1 /* ProfileViewModel.swift in Sources */,
 				A4CA58B229A8DF2300B5E318 /* EndPointType.swift in Sources */,
@@ -1547,11 +1564,14 @@
 				A4D240F12A12236B00B9BF68 /* ReponseDetailEvent.swift in Sources */,
 				A4DCFC7E29D960D600A686AC /* Buyer.swift in Sources */,
 				A4C5F00029B2F49300723FC1 /* Extensions.swift in Sources */,
+				A4F2A5172A3D8E4C00601BB5 /* OpenZoomTableViewCell.swift in Sources */,
 				A4CA58B829A8DFD200B5E318 /* Role.swift in Sources */,
+				A4F2A51E2A3D9C6600601BB5 /* DataValidateTicket.swift in Sources */,
 				A44F19D329A3973800476E9B /* EditProfileViewController.swift in Sources */,
 				A4D240F02A12236B00B9BF68 /* Sessions.swift in Sources */,
 				A4268574299A6A2600AA424A /* ProfileAccountViewController.swift in Sources */,
 				A4DCFC7529D95E3400A686AC /* TicketViewModel.swift in Sources */,
+				A4F2A51C2A3D9C3000601BB5 /* ReponseValidateTicket.swift in Sources */,
 				A4268577299E1CB200AA424A /* HomeViewController.swift in Sources */,
 				A426857B299E1CD000AA424A /* ScanQRViewController.swift in Sources */,
 				A4268585299E27F300AA424A /* IconMenuTableViewCell.swift in Sources */,
@@ -1692,8 +1712,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "";
-				"INFOPLIST_KEY_CFBundleDisplayName[sdk=*]" = HCMUSEvMana;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
+				"INFOPLIST_KEY_CFBundleDisplayName[sdk=*]" = "U-HCMUSEvMana";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1747,8 +1767,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				"INFOPLIST_KEY_CFBundleDisplayName[sdk=*]" = HCMUSEvMana;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
+				"INFOPLIST_KEY_CFBundleDisplayName[sdk=*]" = "U-HCMUSEvMana";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
