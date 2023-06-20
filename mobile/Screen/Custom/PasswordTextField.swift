@@ -19,7 +19,7 @@ class PasswordTextField: UITextField {
         let showImage = UIImage(systemName: "eye.fill")
         showPasswordButton.setImage(showImage, for: .normal)
         showPasswordButton.tintColor = .gray
-        showPasswordButton.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
+        showPasswordButton.frame = CGRect(x: 0, y: 0, width: 5, height: 5)
         showPasswordButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
         
         // Đặt kiểu hiển thị cho trường nhập mật khẩu

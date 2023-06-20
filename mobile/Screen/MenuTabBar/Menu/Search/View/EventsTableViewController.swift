@@ -76,6 +76,7 @@ class EventsTableViewController: UITableViewController {
     func search(term: String) {
         switch try! Reachability().connection {
           case .wifi:
+            print(term)
             VM.search(term: term)
           case .cellular:
             VM.search(term: term)
