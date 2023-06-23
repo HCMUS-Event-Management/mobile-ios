@@ -1,12 +1,13 @@
 {
   "images" : [
     {
-      "filename" : "tinywow_ic_launcher_round_26681600.png",
+      "filename" : "Untitled design.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
+      "filename" : "Untitled design-2.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "20x20"
@@ -22,11 +23,13 @@
       "size" : "29x29"
     },
     {
+      "filename" : "Untitled design-5.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
+      "filename" : "Untitled design-7.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"
@@ -47,6 +50,7 @@
       "size" : "20x20"
     },
     {
+      "filename" : "Untitled design 1.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "20x20"
@@ -62,11 +66,13 @@
       "size" : "29x29"
     },
     {
+      "filename" : "Untitled design 2.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "40x40"
     },
     {
+      "filename" : "Untitled design-4.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "40x40"
