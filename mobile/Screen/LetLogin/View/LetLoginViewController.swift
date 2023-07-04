@@ -16,7 +16,7 @@ class LetLoginViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         btnLogin.addTarget(self, action: #selector(changeLoginController), for: .touchUpInside)
-        btnLoginGG.addTarget(self, action: #selector(redirectGoogle), for: .touchUpInside)
+//        btnLoginGG.addTarget(self, action: #selector(redirectGoogle), for: .touchUpInside)
 
     }
     

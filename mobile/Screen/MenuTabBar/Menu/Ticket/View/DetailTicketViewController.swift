@@ -87,9 +87,51 @@ extension DetailTicketViewController: UITableViewDataSource {
                 }
             } else {
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "OpenZoomTableViewCell", for: indexPath) as? OpenZoomTableViewCell  {
-                    cell.zoomURL = ticket.session?.zoomJoinUrl
-                    cell.info = VadilateTicketDto(eventId:  Int(ticket.eventId) ,ownerId:  Int(profileViewModel.userInfo!.id!) ,ticketCode:  ticket.ticketCode)
-                    cell.delegate = self
+                    
+                    let currentDate = Date() // Get the current date and time
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                    let startDate = dateFormatter.date(from: ticket.session?.startAt ?? "1970-01-01T00:00:00.000Z")
+                    let endDate = dateFormatter.date(from: ticket.session?.endAt ?? "1970-01-01T00:00:00.000Z")
+                    
+                    if let startDate = startDate {
+                        let calendar = Calendar.current
+                        let yourStartDate = calendar.date(byAdding: .minute, value: -30, to: startDate)!
+
+                        let comparisonResult = calendar.compare(currentDate, to: yourStartDate, toGranularity: .minute)
+                        if comparisonResult == .orderedDescending {
+                            if let endDate = endDate {
+                                
+                                let comparisonResult1 = calendar.compare(currentDate, to: endDate, toGranularity: .minute)
+                                
+                                if comparisonResult1 == .orderedAscending {
+                                    cell.btnOpenZoom.isEnabled = true
+                                    cell.zoomURL = ticket.session?.zoomJoinUrl
+                                    cell.info = VadilateTicketDto(eventId:  Int(ticket.eventId) ,ownerId:  Int(profileViewModel.userInfo!.id!) ,ticketCode:  ticket.ticketCode)
+                                    cell.delegate = self
+                                } else {
+                                    cell.btnOpenZoom.isEnabled = false
+                                }
+                                
+                            } else {
+                                print("Invalid comparison date format.")
+                            }
+                            
+
+                        } else if comparisonResult == .orderedAscending {
+                            cell.btnOpenZoom.isEnabled = false
+                        } else {
+                            
+                            cell.btnOpenZoom.isEnabled = true
+                            cell.zoomURL = ticket.session?.zoomJoinUrl
+                            cell.info = VadilateTicketDto(eventId:  Int(ticket.eventId) ,ownerId:  Int(profileViewModel.userInfo!.id!) ,ticketCode:  ticket.ticketCode)
+                            cell.delegate = self
+                        }
+                        
+                    } else {
+                        print("Invalid comparison date format.")
+                    }
+
                     cell.img.kf.setImage(with: URL(string: ticket.session?.event?.image ?? ""))
 
                     return cell
