@@ -159,6 +159,7 @@ extension PaymentHistoryViewController: UITableViewDataSource {
 
             if self.VM.numberPageMyTicket >= self.VM.currentPageMyTicket {
                 cell.indicator.startAnimating()
+                print(self.VM.numberPageMyTicket,self.VM.currentPageMyTicket)
             } else {
                 cell.indicator.stopAnimating()
                 cell.indicator.hidesWhenStopped = true

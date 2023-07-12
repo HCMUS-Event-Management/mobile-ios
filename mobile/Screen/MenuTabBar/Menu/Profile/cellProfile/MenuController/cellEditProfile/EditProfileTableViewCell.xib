@@ -21,6 +21,7 @@
                 <subviews>
                     <imageView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar test" translatesAutoresizingMaskIntoConstraints="NO" id="LXd-xY-BAk">
                         <rect key="frame" x="165.5" y="52.5" width="142" height="142"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="LXd-xY-BAk" secondAttribute="height" multiplier="1:1" id="OJC-Dx-35U"/>
                         </constraints>

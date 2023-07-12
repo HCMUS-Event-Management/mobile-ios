@@ -364,7 +364,6 @@ extension EditProfileViewController {
             switch event {
             case .loading:
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    
                     loader = self?.loader()
                 }
             case .stopLoading:

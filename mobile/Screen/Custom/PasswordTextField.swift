@@ -18,7 +18,7 @@ class PasswordTextField: UITextField {
         // Thiết lập hình ảnh cho nút hiển thị mật khẩu
         let showImage = UIImage(systemName: "eye.fill")
         showPasswordButton.setImage(showImage, for: .normal)
-        showPasswordButton.tintColor = .gray
+        showPasswordButton.tintColor = .lightGray
         showPasswordButton.frame = CGRect(x: 0, y: 0, width: 5, height: 5)
         showPasswordButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
         

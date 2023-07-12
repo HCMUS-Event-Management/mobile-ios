@@ -49,7 +49,7 @@ class ProfileDetailViewController: UIViewController {
     func configNaviBar() {
         navigationController?.navigationBar.tintColor = .label
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"), style: .done, target: self, action: #selector(changeEditProfileController))
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"), style: .done, target: self, action: #selector(changeEditProfileController))]
         
         
         let title = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
