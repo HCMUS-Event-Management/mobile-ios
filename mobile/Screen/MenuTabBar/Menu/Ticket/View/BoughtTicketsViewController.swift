@@ -10,6 +10,7 @@ import Reachability
 class BoughtTicketsViewController: UIViewController {
     
     private var isLoading = false
+    let refreshControl = UIRefreshControl()
     private var VM = TicketViewModel()
     @IBOutlet weak var tb: UITableView!
     override func viewDidLoad() {
@@ -166,6 +167,10 @@ extension BoughtTicketsViewController: UITableViewDelegate{
 
 
 extension BoughtTicketsViewController {
+    @objc private func refreshData(_ sender: Any) {
+        
+        self.VM.fetchMyTicket()
+    }
 
     func configuration() {
         self.tb.register(UINib(nibName: "TicketTableViewCell", bundle: nil), forCellReuseIdentifier: "TicketTableViewCell")
@@ -175,6 +180,9 @@ extension BoughtTicketsViewController {
         self.tb.dataSource = self
         self.tb.delegate = self
         
+        self.refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        self.tb.refreshControl = refreshControl
+
         initViewModel()
         observeEvent()
     }
@@ -199,6 +207,8 @@ extension BoughtTicketsViewController {
                 print("Bought Ticket User loaded...")
                 DispatchQueue.main.async {
                     self?.tb.reloadData()
+                    self?.refreshControl.endRefreshing()
+                    self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .error(let error):
 //                let err = error as! DataError

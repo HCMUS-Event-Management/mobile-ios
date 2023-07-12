@@ -9,18 +9,19 @@ import UIKit
 import Reachability
 class MyTicketsViewController: UIViewController {
     private var isLoading = false
+    let refreshControl = UIRefreshControl()
     private var VM = TicketViewModel()
     @IBOutlet weak var tb: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
+        
         VM.fetchMyTicket()
 
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
-        
     }
     
     func loadMoreData() {
@@ -171,6 +172,11 @@ extension MyTicketsViewController: UITableViewDelegate{
  
 extension MyTicketsViewController {
 
+    @objc private func refreshData(_ sender: Any) {
+        
+        self.VM.fetchMyTicket()
+    }
+
     func configuration() {
         self.tb.register(UINib(nibName: "TicketTableViewCell", bundle: nil), forCellReuseIdentifier: "TicketTableViewCell")
         self.tb.register( UINib(nibName: "LoadingTableViewCell", bundle: nil), forCellReuseIdentifier: "LoadingTableViewCell")
@@ -179,6 +185,9 @@ extension MyTicketsViewController {
         self.tb.dataSource = self
         self.tb.delegate = self
         
+        self.refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        self.tb.refreshControl = refreshControl
+
         initViewModel()
         observeEvent()
     }
@@ -202,7 +211,9 @@ extension MyTicketsViewController {
                 print("My Ticket User loaded...")
                 DispatchQueue.main.async {
                     self?.tb.reloadData()
+                    self?.refreshControl.endRefreshing()
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
+
                 }
             case .error(let error):
 //                let err = error as! DataError

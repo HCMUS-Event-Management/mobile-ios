@@ -79,7 +79,6 @@ extension HomeViewController: UICollectionViewDataSource {
             if self.VM.goingOnEvent.count == 0 {
                 if let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "NoItemCollectionViewCell", for: indexPath) as? NoItemCollectionViewCell {
                     cell.tilte.text = "Không có sự kiện"
-                    cell.indicator.startAnimating()
                    return cell
                 }
             } else {
@@ -130,7 +129,6 @@ extension HomeViewController: UICollectionViewDataSource {
             if self.VM.isCommingEvent.count == 0 {
                 if let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "NoItemCollectionViewCell", for: indexPath) as? NoItemCollectionViewCell {
                     cell.tilte.text = "Không có sự kiện"
-                    cell.indicator.startAnimating()
                    return cell
                 }
             } else {
@@ -207,7 +205,21 @@ extension HomeViewController: UICollectionViewDataSource {
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if indexPath.section == 0 {
+            if VM.goingOnEvent.count == 0 {
+                return CGSize(width: collectionView.frame.width, height: 220)
+            } else {
+                return CGSize(width: collectionView.frame.width/2 - 10, height: 220)
+            }
+        } else if indexPath.section == 1 {
+            if VM.isCommingEvent.count == 0 {
+                return CGSize(width: collectionView.frame.width, height: 220)
+            } else {
+                return CGSize(width: collectionView.frame.width/2 - 10, height: 220)
+            }
+        }
         return CGSize(width: collectionView.frame.width/2 - 10, height: 220)
+
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

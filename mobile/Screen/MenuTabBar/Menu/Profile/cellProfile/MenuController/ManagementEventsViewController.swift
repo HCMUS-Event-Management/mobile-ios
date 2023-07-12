@@ -90,7 +90,6 @@ extension ManagementEventsViewController: UICollectionViewDataSource {
             if self.VM.events.count == 0 {
                 if let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "NoItemCollectionViewCell", for: indexPath) as? NoItemCollectionViewCell {
                     cell.tilte.text = "Không có sự kiện"
-                    cell.indicator.startAnimating()
                    return cell
                 }
             } else {
@@ -142,6 +141,9 @@ extension ManagementEventsViewController: UICollectionViewDataSource {
 extension ManagementEventsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.clEvent {
+            if VM.events.count == 0 {
+                return CGSize(width: collectionView.frame.width, height: 50)
+            }
             return CGSize(width: collectionView.frame.width/2 - 10, height: 220)
 
         } else if collectionView == self.clType {

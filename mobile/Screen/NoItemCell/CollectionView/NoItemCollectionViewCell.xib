@@ -21,22 +21,17 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dt8-eF-T6w">
                         <rect key="frame" x="0.0" y="0.0" width="170" height="239"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Không có sự kiện" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uak-EI-JAS">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Không có sự kiện" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uak-EI-JAS">
                                 <rect key="frame" x="10" y="109.33333333333333" width="150" height="20.333333333333329"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="lX6-30-UYr">
-                                <rect key="frame" x="75" y="59.333333333333343" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Uak-EI-JAS" firstAttribute="leading" secondItem="dt8-eF-T6w" secondAttribute="leading" constant="10" id="C2a-9A-1FL"/>
                             <constraint firstAttribute="trailing" secondItem="Uak-EI-JAS" secondAttribute="trailing" constant="10" id="MqI-vZ-BKD"/>
-                            <constraint firstItem="lX6-30-UYr" firstAttribute="centerX" secondItem="dt8-eF-T6w" secondAttribute="centerX" id="h5p-j3-45V"/>
-                            <constraint firstItem="Uak-EI-JAS" firstAttribute="top" secondItem="lX6-30-UYr" secondAttribute="bottom" constant="30" id="mdd-bp-DlU"/>
                             <constraint firstItem="Uak-EI-JAS" firstAttribute="centerY" secondItem="dt8-eF-T6w" secondAttribute="centerY" id="x16-Qc-DZU"/>
                         </constraints>
                     </view>
@@ -51,7 +46,6 @@
             </constraints>
             <size key="customSize" width="170" height="239"/>
             <connections>
-                <outlet property="indicator" destination="lX6-30-UYr" id="zmP-zB-xAT"/>
                 <outlet property="tilte" destination="Uak-EI-JAS" id="yfe-O5-5t2"/>
             </connections>
             <point key="canvasLocation" x="126.71755725190839" y="84.154929577464799"/>

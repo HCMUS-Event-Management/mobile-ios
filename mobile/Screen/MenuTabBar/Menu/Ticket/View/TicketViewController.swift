@@ -64,6 +64,7 @@ extension TicketViewController: LZViewPagerDataSource, LZViewPagerDelegate {
 
     }
     
+    
     func button(at index: Int) -> UIButton {
         //Customize your button styles here
        let button = UIButton()

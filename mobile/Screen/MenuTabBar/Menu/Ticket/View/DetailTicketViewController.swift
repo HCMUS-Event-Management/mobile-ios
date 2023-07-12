@@ -111,6 +111,7 @@ extension DetailTicketViewController: UITableViewDataSource {
                                     cell.delegate = self
                                 } else {
                                     cell.btnOpenZoom.isEnabled = false
+                                    cell.btnOpenZoom.backgroundColor = .gray
                                 }
                                 
                             } else {
@@ -120,6 +121,7 @@ extension DetailTicketViewController: UITableViewDataSource {
 
                         } else if comparisonResult == .orderedAscending {
                             cell.btnOpenZoom.isEnabled = false
+                            cell.btnOpenZoom.backgroundColor = .gray
                         } else {
                             
                             cell.btnOpenZoom.isEnabled = true
