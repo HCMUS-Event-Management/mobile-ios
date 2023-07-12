@@ -9,16 +9,18 @@ import UIKit
 import Reachability
 class PaymentHistoryViewController: UIViewController {
     private var isLoading = false
+    let refreshControl = UIRefreshControl()
     @IBOutlet weak var tb: UITableView!
     private var VM =  PaymentViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
+        VM.fetchPaymentHistory()
+
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        VM.fetchPaymentHistory()
         configNaviBar()
     }
     
@@ -171,7 +173,9 @@ extension PaymentHistoryViewController: UITableViewDataSource {
 
 
 extension PaymentHistoryViewController {
-
+    @objc private func refreshData(_ sender: Any) {
+        self.VM.fetchPaymentHistory()
+    }
     func configuration() {
         
         self.tb.register(UINib(nibName: "PaymentHistoryTableViewCell", bundle: nil), forCellReuseIdentifier: "PaymentHistoryTableViewCell")
@@ -180,6 +184,9 @@ extension PaymentHistoryViewController {
 
         self.tb.dataSource = self
         self.tb.delegate = self
+        
+        self.refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        self.tb.refreshControl = refreshControl
         
         initViewModel()
         observeEvent()
@@ -204,6 +211,7 @@ extension PaymentHistoryViewController {
             case .dataLoaded:
                 DispatchQueue.main.async {
                     self?.tb.reloadData()
+                    self?.refreshControl.endRefreshing()
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .error(let error):

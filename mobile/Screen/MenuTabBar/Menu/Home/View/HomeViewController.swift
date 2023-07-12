@@ -10,7 +10,8 @@ import RealmSwift
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var cl: UICollectionView!
-    
+    let refreshControl = UIRefreshControl()
+
     private var VM = HomeViewModel()
     private var isCollectionViewInteractionEnabled = true
     private var clickProcessing = false
@@ -18,8 +19,8 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
-
         VM.getListEventForHome()
+
         print(Realm.Configuration.defaultConfiguration.fileURL)
         // Do any additional setup after loading the view.
 
@@ -251,13 +252,18 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 
 extension HomeViewController {
-
+    @objc private func refreshData(_ sender: Any) {
+        self.VM.getListEventForHome()
+    }
     func configuration() {
         self.cl.register(UINib(nibName: "EventCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "EventCollectionViewCell")
         self.cl.register(UINib(nibName: "NoItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "NoItemCollectionViewCell")
 
         self.cl.dataSource = self
         self.cl.delegate = self
+        
+        self.refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        self.cl.refreshControl = refreshControl
         
         initViewModel()
         observeEvent()
@@ -282,6 +288,7 @@ extension HomeViewController {
             case .dataLoaded:
                 DispatchQueue.main.async {
                     self?.cl.reloadData()
+                    self?.refreshControl.endRefreshing()
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .error(let error):

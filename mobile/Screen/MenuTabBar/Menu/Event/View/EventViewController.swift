@@ -10,13 +10,15 @@ class EventViewController: UIViewController {
 
     @IBOutlet weak var clEvent: UICollectionView!
     @IBOutlet weak var clType: UICollectionView!
-    
+    let refreshControl = UIRefreshControl()
     @IBOutlet weak var countType: UILabel!
+    private var type = ""
     private var VM = EventsViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
         VM.fetchCategoryAll()
+
         // Do any additional setup after loading the view.
     }
 
@@ -69,6 +71,7 @@ extension EventViewController: UICollectionViewDataSource {
                 cell.layer.masksToBounds = true
                 cell.category.text = VM.catagorys[indexPath.row].name
                 cell.callback = {
+                    self.type = self.VM.catagorys[indexPath.row].label
                     self.countType.text = "\(self.VM.catagorys[indexPath.row].name)"
                 }
                 return cell
@@ -152,7 +155,9 @@ extension EventViewController: UICollectionViewDelegateFlowLayout {
 
 
 extension EventViewController {
-
+    @objc private func refreshData(_ sender: Any) {
+        self.VM.fetchListEventOfUser(fullTextSearch: type)
+    }
     func configuration() {
         self.clEvent.register(UINib(nibName: "EventCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "EventCollectionViewCell")
         self.clType.register(UINib(nibName: "TypeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TypeCollectionViewCell")
@@ -166,6 +171,8 @@ extension EventViewController {
         
         self.clType.contentInsetAdjustmentBehavior = .never;
     
+        self.refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        self.clEvent.refreshControl = refreshControl
         
         initViewModel()
         observeEvent()
@@ -198,6 +205,7 @@ extension EventViewController {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
 //                    self?.clType.reloadData()
                     self?.clEvent.reloadData()
+                    self?.refreshControl.endRefreshing()
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .error(let error):

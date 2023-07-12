@@ -82,6 +82,8 @@ extension HomeViewModel {
 extension HomeViewModel {
     
     func getListGoingOnFromServer() {
+        self.goingOnEvent = [DataEventObject]()
+
         APIManager.shared.request(modelType: ReponseListEvent.self, type: EntityEndPoint.listGoingOnEvent(page: 1, perPage: 10, filterStatus: "APPROVED", sort: "", fullTextSearch: "", type: ""), params: nil, completion: {
             result in
             switch result {
@@ -109,7 +111,6 @@ extension HomeViewModel {
     }
     
     func getListGoingOnFromDB() {
-        self.goingOnEvent = [DataEventObject]()
         let container = try! Container()
         let now = Date();
         try! container.write{
@@ -125,6 +126,8 @@ extension HomeViewModel {
     
     func fetchListGoingOn() {
         //declare this property where it won't go out of scope relative to your listener
+        self.goingOnEvent = [DataEventObject]()
+
         let reachability = try! Reachability()
         
         switch try! Reachability().connection {
@@ -146,6 +149,7 @@ extension HomeViewModel {
     
     
     func getListIsCommingFromServer() {
+
         APIManager.shared.request(modelType: ReponseListEvent.self, type: EntityEndPoint.listIsCommingEvent(page: 1, perPage: 10, filterStatus: "APPROVED", sort: "", fullTextSearch: "", type: ""), params: nil, completion: {
             result in
             switch result {
@@ -173,7 +177,6 @@ extension HomeViewModel {
     
     
     func getListIsCommingFromDB() {
-        self.isCommingEvent = [DataEventObject]()
         let container = try! Container()
         try! container.write{
             transaction in
@@ -190,6 +193,8 @@ extension HomeViewModel {
     
     
     func fetchListIsComming() {
+        self.isCommingEvent = [DataEventObject]()
+
         //declare this property where it won't go out of scope relative to your listener
         let reachability = try! Reachability()
         
