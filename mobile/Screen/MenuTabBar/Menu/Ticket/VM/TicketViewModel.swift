@@ -127,6 +127,7 @@ extension TicketViewModel {
     }
     
     func getMyTicketFromServer() {
+        self.myTicket = [DataMyTicketObject]()
         self.currentPageMyTicket = 1
         self.eventHandler?(.loading)
         APIManager.shared.request(modelType: ReponseMyTicket.self, type: EntityEndPoint.myTicket(page: Int(currentPageMyTicket), perPage: perPage), params: nil, completion: {
@@ -238,6 +239,7 @@ extension TicketViewModel {
     }
     
     func getBoughtTicketFromServer() {
+        self.boughtTicket = [DataBoughtTicketObject]()
         self.currentPageBoughtTicket = 1
         self.eventHandler?(.loading)
         APIManager.shared.request(modelType: ReponseBoughtTicket.self, type: EntityEndPoint.boughtTicket(page: Int(currentPageBoughtTicket), perPage: perPage), params: nil, completion: {

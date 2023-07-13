@@ -106,6 +106,8 @@ extension DetailTicketViewController: UITableViewDataSource {
                                 
                                 if comparisonResult1 == .orderedAscending {
                                     cell.btnOpenZoom.isEnabled = true
+                                    cell.btnOpenZoom.backgroundColor = UIColor(red: 94/255, green: 135/255, blue: 240/255, alpha: 1)
+
                                     cell.zoomURL = ticket.session?.zoomJoinUrl
                                     cell.info = VadilateTicketDto(eventId:  Int(ticket.eventId) ,ownerId:  Int(profileViewModel.userInfo!.id!) ,ticketCode:  ticket.ticketCode)
                                     cell.delegate = self
@@ -125,6 +127,7 @@ extension DetailTicketViewController: UITableViewDataSource {
                         } else {
                             
                             cell.btnOpenZoom.isEnabled = true
+                            cell.btnOpenZoom.backgroundColor = UIColor(red: 94/255, green: 135/255, blue: 240/255, alpha: 1)
                             cell.zoomURL = ticket.session?.zoomJoinUrl
                             cell.info = VadilateTicketDto(eventId:  Int(ticket.eventId) ,ownerId:  Int(profileViewModel.userInfo!.id!) ,ticketCode:  ticket.ticketCode)
                             cell.delegate = self

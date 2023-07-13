@@ -81,7 +81,8 @@ extension MyTicketsViewController: UITableViewDataSource {
                     
                     let ticket = VM.myTicket[indexPath.row]
                     cell.ownerName.text = ticket.owner?.fullName
-                    
+                    print(ticket.ticketCode)
+
                     
                     let dateFormatter = DateFormatter()
                     dateFormatter.locale = Locale(identifier: "en_US_POSIX")

@@ -78,11 +78,9 @@ extension BoughtTicketsViewController: UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "TicketTableViewCell", for: indexPath) as? TicketTableViewCell  {
                 cell.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
                 
-                let ticket = VM.boughtTicket[indexPath.section]
+                let ticket = VM.boughtTicket[indexPath.row]
                 
                 cell.ownerName.text = ticket.owner?.fullName
-                
-                
                 let dateFormatter = DateFormatter()
                 dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
@@ -169,7 +167,7 @@ extension BoughtTicketsViewController: UITableViewDelegate{
 extension BoughtTicketsViewController {
     @objc private func refreshData(_ sender: Any) {
         
-        self.VM.fetchMyTicket()
+        self.VM.fetchBoughtTicket()
     }
 
     func configuration() {
