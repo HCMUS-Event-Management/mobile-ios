@@ -118,7 +118,8 @@ extension MyTicketsViewController: UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingTableViewCell", for: indexPath) as! LoadingTableViewCell
 
-            if self.VM.numberPageMyTicket > self.VM.currentPageMyTicket {
+            print(self.VM.numberPageMyTicket ,self.VM.currentPageMyTicket)
+            if self.VM.numberPageMyTicket >= self.VM.currentPageMyTicket {
                 cell.indicator.startAnimating()
             } else {
                 cell.indicator.stopAnimating()

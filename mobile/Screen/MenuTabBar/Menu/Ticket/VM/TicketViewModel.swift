@@ -69,7 +69,6 @@ class TicketViewModel {
         
         switch try! Reachability().connection {
           case .wifi:
-              print("Reachable via WiFi")
             getDetailTicketFromServer(ticketCode)
           case .cellular:
             getDetailTicketFromServer(ticketCode)
@@ -98,7 +97,7 @@ extension TicketViewModel {
                 switch result {
                 case .success(let ticket):
 //                    Contanst.userdefault.set(ticket.total, forKey: "myTicketTotal")
-                    self.numberPageMyTicket = round(Double(ticket.total!) / Double(self.perPage))
+                    self.numberPageMyTicket = (Double(ticket.total!) / Double(self.perPage)).rounded(.up)
                     let container = try! Container()
                     try! container.write { transaction in
                         ticket.data?.forEach{
@@ -137,7 +136,7 @@ extension TicketViewModel {
             switch result {
             case .success(let ticket):
 //                Contanst.userdefault.set(ticket.total, forKey: "myTicketTotal")
-                self.numberPageMyTicket = round(Double(ticket.total!) / Double(self.perPage))
+                self.numberPageMyTicket = (Double(ticket.total!) / Double(self.perPage)).rounded(.up)
                 self.myTicket = [DataMyTicketObject]()
                 let container = try! Container()
                 try! container.write { transaction in
@@ -210,7 +209,7 @@ extension TicketViewModel {
                 switch result {
                 case .success(let ticket):
 //                    Contanst.userdefault.set(ticket.total, forKey: "myTicketTotal")
-                    self.numberPageBoughtTicket = round(Double(ticket.total!) / Double(self.perPage))
+                    self.numberPageBoughtTicket = (Double(ticket.total!) / Double(self.perPage)).rounded(.up)
                     let container = try! Container()
                     try! container.write { transaction in
                         ticket.data?.forEach{
@@ -249,7 +248,7 @@ extension TicketViewModel {
             switch result {
             case .success(let ticket):
 //                Contanst.userdefault.set(ticket.total, forKey: "myTicketTotal")
-                self.numberPageBoughtTicket = round(Double(ticket.total!) / Double(self.perPage))
+                self.numberPageBoughtTicket = (Double(ticket.total!) / Double(self.perPage)).rounded(.up)
                 self.boughtTicket = [DataBoughtTicketObject]()
                 let container = try! Container()
                 try! container.write { transaction in

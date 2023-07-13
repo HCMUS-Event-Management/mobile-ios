@@ -55,69 +55,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B6441053-6C63-407E-A065-82B48632F5BD"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "mobile/Screen/MenuTabBar/Menu/Ticket/VM/TicketViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "fetchDetailTicket(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "B6441053-6C63-407E-A065-82B48632F5BD - c8360b5e234ff8a6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "mobile.TicketViewModel.fetchDetailTicket(Swift.String) -&gt; ()"
-                  moduleName = "mobile"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbookpro2018/Desktop/Checl/Untitled/mobile-ios/mobile/Screen/MenuTabBar/Menu/Ticket/VM/TicketViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "79"
-                  endingLineNumber = "79"
-                  offsetFromSymbolStart = "919">
-               </Location>
-               <Location
-                  uuid = "B6441053-6C63-407E-A065-82B48632F5BD - c8360b5e234ff849"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "mobile.TicketViewModel.fetchDetailTicket(Swift.String) -&gt; ()"
-                  moduleName = "mobile"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbookpro2018/Desktop/Checl/Untitled/mobile-ios/mobile/Screen/MenuTabBar/Menu/Ticket/VM/TicketViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "78"
-                  endingLineNumber = "78"
-                  offsetFromSymbolStart = "857">
-               </Location>
-               <Location
-                  uuid = "B6441053-6C63-407E-A065-82B48632F5BD - c8360b5e234ff849"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "mobile.TicketViewModel.fetchDetailTicket(Swift.String) -&gt; ()"
-                  moduleName = "mobile"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbookpro2018/Desktop/Checl/Untitled/mobile-ios/mobile/Screen/MenuTabBar/Menu/Ticket/VM/TicketViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "78"
-                  endingLineNumber = "78"
-                  offsetFromSymbolStart = "932">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "7D8A4F86-134F-4561-8B1C-28D7EE8FDE38"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -208,6 +145,22 @@
             startingLineNumber = "97"
             endingLineNumber = "97"
             landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1F2160B1-F146-4E4B-B4EF-B849F6E92EB1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "mobile/Screen/Payment/VM/PaymentViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "getNextPaymentHistory(completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

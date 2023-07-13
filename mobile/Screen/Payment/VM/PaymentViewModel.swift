@@ -38,7 +38,9 @@ class PaymentViewModel {
             switch result {
             case .success(let value):
                 
-                self.numberPageMyTicket = round(Double(value.total!) / Double(self.perPage))
+                self.numberPageMyTicket = (Double(value.total!) / Double(self.perPage)).rounded(.up)
+                
+                
 
                 let container = try! Container()
                 try! container.write { transaction in
@@ -104,7 +106,7 @@ extension PaymentViewModel {
 
                 switch result {
                 case .success(let ticket):
-                    self.numberPageMyTicket = round(Double(ticket.total!) / Double(self.perPage))
+                    self.numberPageMyTicket = (Double(ticket.total!) / Double(self.perPage)).rounded(.up)
                     let container = try! Container()
                     try! container.write { transaction in
                         ticket.data?.forEach{

@@ -27,7 +27,6 @@ class DetailTicketViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         configNaviBar()
     }
     
@@ -295,11 +294,11 @@ extension DetailTicketViewController {
                 loader = self?.loader()
             case .stopLoading:
                 print("stoploading")
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .dataLoaded:
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self?.tb.reloadData()
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
