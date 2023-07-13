@@ -157,10 +157,11 @@ extension PaymentHistoryViewController: UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingTableViewCell", for: indexPath) as! LoadingTableViewCell
 
-            if self.VM.numberPageMyTicket >= self.VM.currentPageMyTicket {
+            if self.VM.numberPageMyTicket > self.VM.currentPageMyTicket {
                 cell.indicator.startAnimating()
                 print(self.VM.numberPageMyTicket,self.VM.currentPageMyTicket)
             } else {
+                print(self.VM.numberPageMyTicket,self.VM.currentPageMyTicket)
                 cell.indicator.stopAnimating()
                 cell.indicator.hidesWhenStopped = true
             }

@@ -253,7 +253,9 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeViewController {
     @objc private func refreshData(_ sender: Any) {
-        self.VM.getListEventForHome()
+        self.VM.fetchListGoingOn()
+        self.VM.fetchListIsComming()
+
     }
     func configuration() {
         self.cl.register(UINib(nibName: "EventCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "EventCollectionViewCell")

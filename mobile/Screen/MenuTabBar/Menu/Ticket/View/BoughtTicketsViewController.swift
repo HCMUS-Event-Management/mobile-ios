@@ -110,7 +110,7 @@ extension BoughtTicketsViewController: UITableViewDataSource {
     } else {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingTableViewCell", for: indexPath) as! LoadingTableViewCell
 
-        if self.VM.numberPageBoughtTicket >= self.VM.currentPageBoughtTicket {
+        if self.VM.numberPageBoughtTicket > self.VM.currentPageBoughtTicket {
             cell.indicator.startAnimating()
         } else {
             cell.indicator.stopAnimating()

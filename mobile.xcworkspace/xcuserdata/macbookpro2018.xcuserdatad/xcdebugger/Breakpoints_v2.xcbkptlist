@@ -118,54 +118,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "74E5795A-E8D1-4EF1-BBD2-9A4C2414C92B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "mobile/Screen/MenuTabBar/Menu/Home/VM/HomeViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "fetchDetailEvent(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "74E5795A-E8D1-4EF1-BBD2-9A4C2414C92B - 5b58325684b0f00"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "mobile.HomeViewModel.fetchDetailEvent(Swift.Int) -&gt; ()"
-                  moduleName = "mobile"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbookpro2018/Desktop/Checl/Untitled/mobile-ios/mobile/Screen/MenuTabBar/Menu/Home/VM/HomeViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
-                  offsetFromSymbolStart = "827">
-               </Location>
-               <Location
-                  uuid = "74E5795A-E8D1-4EF1-BBD2-9A4C2414C92B - 5b58325684b0f00"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "mobile.HomeViewModel.fetchDetailEvent(Swift.Int) -&gt; ()"
-                  moduleName = "mobile"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbookpro2018/Desktop/Checl/Untitled/mobile-ios/mobile/Screen/MenuTabBar/Menu/Home/VM/HomeViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
-                  offsetFromSymbolStart = "892">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "7D8A4F86-134F-4561-8B1C-28D7EE8FDE38"
             shouldBeEnabled = "No"
             ignoreCount = "0"

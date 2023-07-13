@@ -12,7 +12,7 @@ class EventViewController: UIViewController {
     @IBOutlet weak var clType: UICollectionView!
     let refreshControl = UIRefreshControl()
     @IBOutlet weak var countType: UILabel!
-    private var type = ""
+    private var type = "education"
     private var VM = EventsViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -194,7 +194,7 @@ extension EventViewController {
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .categoryLoaded:
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
                     self?.clType.reloadData()
                     let ind =  IndexPath(item: 0, section: 0)
                     self?.clType.selectItem(at:ind, animated: false, scrollPosition: [])
