@@ -19,6 +19,7 @@ enum EntityEndPoint {
     case listEventOfUser(page: Int, perPage: Int, filterStatus: String, sort: String, fullTextSearch: String, type: String)
     case listEventOfManagerUser(page: Int, perPage: Int, filterStatus: String, sort: String, fullTextSearch: String, type: String)
     case vadilateOnl
+    case donate
 
 }
 
@@ -52,7 +53,8 @@ extension EntityEndPoint: EndPointType {
             return APIManager.bearTokenHeaders
         case .vadilateOnl:
             return APIManager.bearTokenHeaders
-
+        case .donate:
+            return APIManager.bearTokenHeaders
         }
     }
     
@@ -82,6 +84,8 @@ extension EntityEndPoint: EndPointType {
             return "api/v1/entity/event/get-my-created-list-event?page=\(page)&perPage=\(perPage)&filterStatus=\(filterStatus)&sort=\(sort)&fullTextSearch=\(fullTextSearch)&type=\(type)"
         case .vadilateOnl:
             return "api/v1/entity/ticket/online/checkin"
+        case .donate:
+            return "api/v1/entity/ticket/donate"
         }
     }
     
@@ -116,6 +120,8 @@ extension EntityEndPoint: EndPointType {
         case .listEventOfManagerUser:
             return .get
         case .vadilateOnl:
+            return .post
+        case .donate:
             return .post
         }
     }

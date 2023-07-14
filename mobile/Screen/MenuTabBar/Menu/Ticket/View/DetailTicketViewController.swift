@@ -200,7 +200,57 @@ extension DetailTicketViewController: UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTicketTableViewCell", for: indexPath) as? InfoTicketTableViewCell  {
                 cell.buyerId.text = ticket.buyer?.fullName
 //                cell.eventTicket.text = ticket.se
-                
+                if let ownerName = ticket.owner?.fullName {
+                    
+                    if ticket.buyer?.id == ticket.owner?.id {
+                        cell.btnDonate.isHidden = false
+                        cell.ownerName.isHidden = true
+                        cell.callback  = {
+                            // Show the popup
+                            // create the actual alert controller view that will be the pop-up
+                            let alertController = UIAlertController(title: "Tặng vé", message: "Điền email bạn muốn tặng", preferredStyle: .alert)
+
+                            alertController.addTextField{ (ticketCodeTextField) in
+                                ticketCodeTextField.text = ticket.ticketCode
+                                ticketCodeTextField.isUserInteractionEnabled = false
+                            }
+                            alertController.addTextField { (emailTextField) in
+                                // configure the properties of the text field
+                                emailTextField.placeholder = "Email"
+                            }
+
+
+                            // add the buttons/actions to the view controller
+                            let cancelAction = UIAlertAction(title: "Huỷ", style: .cancel, handler: nil)
+                            let saveAction = UIAlertAction(title: "Tặng", style: .default) { _ in
+
+                                // this code runs when the user hits the "save" button
+
+                                let email = alertController.textFields![1].text
+                                let ticketCode = alertController.textFields![0].text
+                                
+                                if email == ""  {
+                                    self.showToast(message: "Điền email người nhận", font: .systemFont(ofSize: 12))
+                                } else if (!(email?.isValidEmail() ?? false)) {
+                                    self.showToast(message: "Đây không phải Email", font: .systemFont(ofSize: 12.0))
+                                } else {
+                                    self.VM.checkDonateTicket(from: DonateTicketDto(receiverEmail: email,ticketCode: ticketCode))
+                                }
+                            }
+
+                            alertController.addAction(cancelAction)
+                            alertController.addAction(saveAction)
+
+                            self.present(alertController, animated: true, completion: nil)
+                        }
+                    } else {
+                        cell.btnDonate.isHidden = true
+                        cell.ownerName.isHidden = false
+                        cell.ownerName.text = ownerName
+                    }
+                    
+                    
+                }
                 
                 return cell
             }
@@ -340,6 +390,12 @@ extension DetailTicketViewController {
                         // Zoom is not installed, handle the case as needed
                         // For example, show an error message or redirect to Zoom website
                     }
+                }
+            
+            case .donateSuccess:
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    let ticketCodeDetail = Contanst.userdefault.string(forKey: "ticketCodeDetail")!
+                    self?.VM.fetchDetailTicket(ticketCodeDetail)
                 }
             }
         }

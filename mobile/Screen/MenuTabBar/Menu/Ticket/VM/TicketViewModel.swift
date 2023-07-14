@@ -346,6 +346,43 @@ extension TicketViewModel {
     }
 }
 
+extension TicketViewModel {
+    
+    func donateTicket(from info: DonateTicketDto) {
+        self.eventHandler?(.loading)
+        let parameter = try? APIManager.shared.encodeBody(value: info)
+        APIManager.shared.request(modelType: ReponseCommon.self, type: EntityEndPoint.donate, params: parameter, completion: {
+            result in
+            self.eventHandler?(.stopLoading)
+            switch result {
+            case .success(let value):
+                self.eventHandler?(.donateSuccess)
+            case .failure(let error):
+                if case DataError.invalidResponse(let reason) = error {
+                    self.eventHandler?(.error(reason))
+                }
+                else {
+                    self.eventHandler?(.error(error.localizedDescription))
+                }
+            }
+        })
+    }
+    
+    func checkDonateTicket(from info: DonateTicketDto) {
+        switch try! Reachability().connection {
+          case .wifi:
+            donateTicket(from: info)
+          case .cellular:
+            donateTicket(from: info)
+          case .none:
+            self.eventHandler?(.error("Mất kết nối mạng"))
+          case .unavailable:
+            self.eventHandler?(.error("Mất kết nối mạng"))
+        }
+    }
+    
+}
+
 
 extension TicketViewModel {
 
@@ -356,6 +393,7 @@ extension TicketViewModel {
         case error(String?)
         case logout
         case vadilateTicket
+        case donateSuccess
 //        case newProductAdded(product: AddProduct)
     }
 

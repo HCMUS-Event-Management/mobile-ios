@@ -26,6 +26,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Người sở hữu:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpr-JY-7kj">
+                                <rect key="frame" x="25" y="106" width="79" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Nguyễn Sơn" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="03G-Hp-cbp">
                                 <rect key="frame" x="159" y="67.5" width="184" height="22"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
@@ -44,19 +50,38 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Imc-qi-udd">
+                                <rect key="frame" x="251" y="95.5" width="92" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Tặng vé"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Nguyễn Sơn" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5lM-yS-Jh3">
+                                <rect key="frame" x="159" y="104.5" width="184" height="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="03G-Hp-cbp" secondAttribute="trailing" constant="25" id="1Ag-t8-uWu"/>
+                            <constraint firstItem="Imc-qi-udd" firstAttribute="width" secondItem="5lM-yS-Jh3" secondAttribute="width" multiplier="0.5" id="2aO-xm-hCP"/>
                             <constraint firstItem="03G-Hp-cbp" firstAttribute="width" secondItem="n2E-CT-YLV" secondAttribute="width" id="9hp-40-TWG"/>
                             <constraint firstItem="X6M-Oa-i0I" firstAttribute="leading" secondItem="ce4-Xc-LCb" secondAttribute="leading" constant="25" id="EUM-e1-T7p"/>
+                            <constraint firstItem="Imc-qi-udd" firstAttribute="centerY" secondItem="cpr-JY-7kj" secondAttribute="centerY" id="MbS-dw-PK3"/>
+                            <constraint firstItem="cpr-JY-7kj" firstAttribute="top" secondItem="X6M-Oa-i0I" secondAttribute="bottom" constant="20" id="NFf-Eq-MIG"/>
+                            <constraint firstItem="Imc-qi-udd" firstAttribute="trailing" secondItem="5lM-yS-Jh3" secondAttribute="trailing" id="OHv-5c-4zN"/>
                             <constraint firstItem="X6M-Oa-i0I" firstAttribute="centerY" secondItem="ce4-Xc-LCb" secondAttribute="centerY" id="RKo-0f-r5M"/>
                             <constraint firstItem="X6M-Oa-i0I" firstAttribute="leading" secondItem="PKU-Gc-WSd" secondAttribute="leading" id="V2z-cG-YVc"/>
+                            <constraint firstItem="5lM-yS-Jh3" firstAttribute="width" secondItem="03G-Hp-cbp" secondAttribute="width" id="XHm-Uh-OvB"/>
                             <constraint firstItem="03G-Hp-cbp" firstAttribute="centerY" secondItem="X6M-Oa-i0I" secondAttribute="centerY" id="XbI-hd-pwp"/>
                             <constraint firstItem="n2E-CT-YLV" firstAttribute="centerY" secondItem="PKU-Gc-WSd" secondAttribute="centerY" id="bkZ-In-4c2"/>
+                            <constraint firstItem="5lM-yS-Jh3" firstAttribute="centerY" secondItem="cpr-JY-7kj" secondAttribute="centerY" id="cz6-LF-bhf"/>
                             <constraint firstItem="03G-Hp-cbp" firstAttribute="trailing" secondItem="n2E-CT-YLV" secondAttribute="trailing" id="dnT-G7-RUd"/>
                             <constraint firstItem="03G-Hp-cbp" firstAttribute="top" secondItem="n2E-CT-YLV" secondAttribute="bottom" constant="15" id="nVq-Ep-Qjo"/>
+                            <constraint firstItem="cpr-JY-7kj" firstAttribute="leading" secondItem="X6M-Oa-i0I" secondAttribute="leading" id="o9z-HS-jyO"/>
                             <constraint firstItem="X6M-Oa-i0I" firstAttribute="top" secondItem="PKU-Gc-WSd" secondAttribute="bottom" constant="20" id="oxH-4o-jl4"/>
+                            <constraint firstItem="5lM-yS-Jh3" firstAttribute="trailing" secondItem="03G-Hp-cbp" secondAttribute="trailing" id="p9T-ec-pWx"/>
                             <constraint firstItem="n2E-CT-YLV" firstAttribute="width" secondItem="ce4-Xc-LCb" secondAttribute="width" multiplier="0.5" id="w8s-8y-zzG"/>
                         </constraints>
                     </view>
@@ -71,9 +96,11 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="btnDonate" destination="Imc-qi-udd" id="rbo-NO-y2S"/>
                 <outlet property="buyerId" destination="03G-Hp-cbp" id="xfb-Q4-lF4"/>
                 <outlet property="eventTicket" destination="n2E-CT-YLV" id="VRe-Hf-hzR"/>
                 <outlet property="mainView" destination="ce4-Xc-LCb" id="dyZ-kY-4uz"/>
+                <outlet property="ownerName" destination="5lM-yS-Jh3" id="qdJ-On-Fat"/>
             </connections>
             <point key="canvasLocation" x="136.23188405797103" y="125.55803571428571"/>
         </tableViewCell>

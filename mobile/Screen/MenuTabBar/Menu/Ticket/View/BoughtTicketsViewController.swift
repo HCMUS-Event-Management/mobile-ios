@@ -16,10 +16,10 @@ class BoughtTicketsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configuration()
-        VM.fetchBoughtTicket()
 
     }
     override func viewWillAppear(_ animated: Bool) {
+        VM.fetchBoughtTicket()
     }
     
     func loadMoreData() {
@@ -235,6 +235,8 @@ extension BoughtTicketsViewController {
 //                }
                 print("logout")
             case .vadilateTicket:
+                break
+            case .donateSuccess:
                 break
             }
         }

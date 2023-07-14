@@ -92,6 +92,7 @@
 		A47914B92A3CC09E00A66494 /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47914B82A3CC09E00A66494 /* PasswordTextField.swift */; };
 		A4865BA82A33168C00C1C6DD /* NoItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4865BA62A33168C00C1C6DD /* NoItemCollectionViewCell.swift */; };
 		A4865BA92A33168C00C1C6DD /* NoItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4865BA72A33168C00C1C6DD /* NoItemCollectionViewCell.xib */; };
+		A48F1F922A612AB8001A9876 /* DonateTicketDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48F1F912A612AB8001A9876 /* DonateTicketDto.swift */; };
 		A49D812929F3D08A009AE469 /* UploadAvatarDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49D812829F3D08A009AE469 /* UploadAvatarDto.swift */; };
 		A49EDCE82A3AC4CD00A8953B /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49EDCE62A3AC4CD00A8953B /* TableViewCell.swift */; };
 		A49EDCE92A3AC4CD00A8953B /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A49EDCE72A3AC4CD00A8953B /* TableViewCell.xib */; };
@@ -294,6 +295,7 @@
 		A47914B82A3CC09E00A66494 /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
 		A4865BA62A33168C00C1C6DD /* NoItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		A4865BA72A33168C00C1C6DD /* NoItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		A48F1F912A612AB8001A9876 /* DonateTicketDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateTicketDto.swift; sourceTree = "<group>"; };
 		A49D812829F3D08A009AE469 /* UploadAvatarDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAvatarDto.swift; sourceTree = "<group>"; };
 		A49EDCE62A3AC4CD00A8953B /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		A49EDCE72A3AC4CD00A8953B /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
@@ -1143,6 +1145,7 @@
 				A4F2A5192A3D9A2800601BB5 /* VadilateTicketDto.swift */,
 				A4F2A51B2A3D9C3000601BB5 /* ReponseValidateTicket.swift */,
 				A4F2A51D2A3D9C6600601BB5 /* DataValidateTicket.swift */,
+				A48F1F912A612AB8001A9876 /* DonateTicketDto.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1504,6 +1507,7 @@
 				A4A336772A1EDF86005CF3B9 /* DetailPaymentViewController.swift in Sources */,
 				A4F0253D29DF1531002A5DC0 /* LoadingTableViewCell.swift in Sources */,
 				A4CA40712A171D84004F837B /* ReponsePaymentHistory.swift in Sources */,
+				A48F1F922A612AB8001A9876 /* DonateTicketDto.swift in Sources */,
 				A4A9131D29A36D4B00AC5E75 /* ProfileDetailTableViewCell.swift in Sources */,
 				A44F19D929A7156D00476E9B /* LoginFirstScreenViewModel.swift in Sources */,
 				A46C1C6329ED3D4000F491F1 /* ForgetPasswordViewModel.swift in Sources */,

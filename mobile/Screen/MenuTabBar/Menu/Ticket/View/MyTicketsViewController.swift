@@ -16,12 +16,13 @@ class MyTicketsViewController: UIViewController {
         super.viewDidLoad()
         configuration()
         
-        VM.fetchMyTicket()
 
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
+        VM.fetchMyTicket()
+
     }
     
     func loadMoreData() {
@@ -239,6 +240,8 @@ extension MyTicketsViewController {
             case .logout:
                 print("logout")
             case .vadilateTicket:
+                break
+            case .donateSuccess:
                 break
             }
         }
