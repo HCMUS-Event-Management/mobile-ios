@@ -79,7 +79,7 @@ extension HomeViewController: UICollectionViewDataSource {
         if indexPath.section == 0 {
             if self.VM.goingOnEvent.count == 0 {
                 if let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "NoItemCollectionViewCell", for: indexPath) as? NoItemCollectionViewCell {
-                    cell.tilte.text = "Không có sự kiện"
+                    cell.tilte.text = "Không có sự kiện nào"
                    return cell
                 }
             } else {
@@ -129,7 +129,7 @@ extension HomeViewController: UICollectionViewDataSource {
         } else if indexPath.section == 1{
             if self.VM.isCommingEvent.count == 0 {
                 if let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "NoItemCollectionViewCell", for: indexPath) as? NoItemCollectionViewCell {
-                    cell.tilte.text = "Không có sự kiện"
+                    cell.tilte.text = "Không có sự kiện nào"
                    return cell
                 }
             } else {
@@ -208,13 +208,13 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.section == 0 {
             if VM.goingOnEvent.count == 0 {
-                return CGSize(width: collectionView.frame.width, height: 220)
+                return CGSize(width: collectionView.frame.width, height: 140)
             } else {
                 return CGSize(width: collectionView.frame.width/2 - 10, height: 220)
             }
         } else if indexPath.section == 1 {
             if VM.isCommingEvent.count == 0 {
-                return CGSize(width: collectionView.frame.width, height: 220)
+                return CGSize(width: collectionView.frame.width, height: 140)
             } else {
                 return CGSize(width: collectionView.frame.width/2 - 10, height: 220)
             }

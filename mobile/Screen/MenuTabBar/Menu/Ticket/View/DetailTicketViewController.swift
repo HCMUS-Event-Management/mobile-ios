@@ -199,7 +199,6 @@ extension DetailTicketViewController: UITableViewDataSource {
         } else if indexPath.section == 2 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "InfoTicketTableViewCell", for: indexPath) as? InfoTicketTableViewCell  {
                 cell.buyerId.text = ticket.buyer?.fullName
-//                cell.eventTicket.text = ticket.se
                 if let ownerName = ticket.owner?.fullName {
                     
                     if ticket.buyer?.id == ticket.owner?.id {
