@@ -22,6 +22,8 @@ class InfoTicketTableViewCell: UITableViewCell {
         mainView.layer.cornerRadius = 10
         mainView.layer.masksToBounds = true
         btnDonate.addTarget(self, action: #selector(donateTicket), for: .touchUpInside)
+        btnDonate.layer.cornerRadius = 5
+        btnDonate.layer.masksToBounds = true
 
     }
     

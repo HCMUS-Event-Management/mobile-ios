@@ -207,7 +207,7 @@ extension DetailTicketViewController: UITableViewDataSource {
                         cell.callback  = {
                             // Show the popup
                             // create the actual alert controller view that will be the pop-up
-                            let alertController = UIAlertController(title: "Tặng vé", message: "Điền email bạn muốn tặng", preferredStyle: .alert)
+                            let alertController = UIAlertController(title: "Tặng vé 🎫\n", message: "Điền email bạn muốn tặng", preferredStyle: .alert)
 
                             alertController.addTextField{ (ticketCodeTextField) in
                                 ticketCodeTextField.text = ticket.ticketCode
