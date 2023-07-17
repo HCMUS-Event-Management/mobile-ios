@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 } else {
                     DispatchQueue.main.async {
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let vc = storyboard.instantiateViewController(withIdentifier: "LetLoginViewController") as? LetLoginViewController
+                        let vc = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController
                         let navVC = UINavigationController(rootViewController: vc!)
                         self.window?.rootViewController = navVC
                     }

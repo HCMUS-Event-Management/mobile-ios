@@ -31,7 +31,6 @@
 		A426855B29953D4C00AA424A /* mobileUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A426855A29953D4C00AA424A /* mobileUITestsLaunchTests.swift */; };
 		A426856E29976DA400AA424A /* LetLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A426856D29976DA400AA424A /* LetLoginViewController.swift */; };
 		A426857029976FC900AA424A /* LoginFirstScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A426856F29976FC900AA424A /* LoginFirstScreenViewController.swift */; };
-		A426857229976FDE00AA424A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A426857129976FDE00AA424A /* SignUpViewController.swift */; };
 		A4268574299A6A2600AA424A /* ProfileAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4268573299A6A2600AA424A /* ProfileAccountViewController.swift */; };
 		A4268577299E1CB200AA424A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4268576299E1CB200AA424A /* HomeViewController.swift */; };
 		A426857B299E1CD000AA424A /* ScanQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A426857A299E1CD000AA424A /* ScanQRViewController.swift */; };
@@ -225,7 +224,6 @@
 		A426855A29953D4C00AA424A /* mobileUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mobileUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A426856D29976DA400AA424A /* LetLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetLoginViewController.swift; sourceTree = "<group>"; };
 		A426856F29976FC900AA424A /* LoginFirstScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFirstScreenViewController.swift; sourceTree = "<group>"; };
-		A426857129976FDE00AA424A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		A4268573299A6A2600AA424A /* ProfileAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAccountViewController.swift; sourceTree = "<group>"; };
 		A4268576299E1CB200AA424A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A426857A299E1CD000AA424A /* ScanQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRViewController.swift; sourceTree = "<group>"; };
@@ -509,7 +507,6 @@
 			children = (
 				A4268575299E1C7200AA424A /* NavigationController */,
 				A426853829953D4900AA424A /* ViewController.swift */,
-				A426857129976FDE00AA424A /* SignUpViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1562,7 +1559,6 @@
 				A4DCFC7F29D960D600A686AC /* DataMyTicket.swift in Sources */,
 				A4506C9729C3A21C009B75F6 /* DetailTicketViewController.swift in Sources */,
 				A46C1C6129ED3C9F00F491F1 /* SendOTPDto.swift in Sources */,
-				A426857229976FDE00AA424A /* SignUpViewController.swift in Sources */,
 				A426856E29976DA400AA424A /* LetLoginViewController.swift in Sources */,
 				A41A7B3229FA63900024C6F8 /* Bundle+JSON.swift in Sources */,
 				A4D240F12A12236B00B9BF68 /* ReponseDetailEvent.swift in Sources */,

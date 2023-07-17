@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var btnGetStarted: UIButton!
     
     @objc func changeLoginController() {
-        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "LetLoginViewController") as? LetLoginViewController else {
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginFirstScreenViewController") as? LoginFirstScreenViewController else {
             return
         }
         self.navigationController?.pushViewController(vc, animated: true)

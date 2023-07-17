@@ -58,11 +58,4 @@ class LetLoginViewController: UIViewController {
         }
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    @objc func changeSignUpController() {
-        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController else {
-            return
-        }
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
 }

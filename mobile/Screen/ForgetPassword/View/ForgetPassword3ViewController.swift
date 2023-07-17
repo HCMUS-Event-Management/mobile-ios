@@ -98,8 +98,17 @@ extension ForgetPassword3ViewController {
                     }
                 } else {
                     DispatchQueue.main.async {
+                        if error! == "Mã OTP đã hết hạn hoặc không hợp lệ" {
+                            self?.showToast(message: error!, font: .systemFont(ofSize: 12.0))
+                            self?.stoppedLoader(loader: loader ?? UIAlertController())
+                            self?.navigationController?.popViewController(animated: true)
+                            self?.navigationController?.popViewController(animated: false)
+
+                        }
+                        
                         self?.showToast(message: error!, font: .systemFont(ofSize: 12.0))
                         self?.stoppedLoader(loader: loader ?? UIAlertController())
+                       
                     }
                 }
                 
