@@ -77,16 +77,12 @@ class PaymentViewModel {
         
         switch try! Reachability().connection {
           case .wifi:
-              print("Reachable via WiFi")
             getPaymentHistoryFromServer()
           case .cellular:
-              print("Reachable via Cellular")
             getPaymentHistoryFromServer()
           case .none:
-              print("Network not reachable")
               getPaymentHistoryFromDB()
           case .unavailable:
-              print("Network not reachable")
             getPaymentHistoryFromDB()
         }
 

@@ -21,9 +21,8 @@ final class ProfileViewModel {
             let decoder = JSONDecoder()
             if let savedUser = try? decoder.decode(GetUserInfor.self, from: savedUserData) {
                 self.userInfo = savedUser
-//                if let intValue = userInfo?.id as? Int {
-                    self.eventHandler?(.loading)
-                    APIManager.shared.request(modelType: ReponseCommon.self, type: UserEndPoint.deleteAcc(id: 6), params: nil, completion: {
+                self.eventHandler?(.loading)
+                APIManager.shared.request(modelType: ReponseCommon.self, type: UserEndPoint.deleteAcc(id: Int(self.userInfo?.id ?? "6") ?? 6), params: nil, completion: {
                         result in
                         self.eventHandler?(.stopLoading)
                         switch result {
@@ -38,9 +37,7 @@ final class ProfileViewModel {
                             }
                         }
                     })
-//                } else {
-//                    print("Failed to cast to Int")
-//                }
+
             }
         }
         
@@ -52,7 +49,6 @@ final class ProfileViewModel {
         self.eventHandler?(.loading)
 
         let imageStr = imageData?.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
-//            let strBase64 = im
         let avatar = UploadAvatarDto(data: imageStr)
         
 
@@ -171,16 +167,12 @@ extension ProfileViewModel {
         let reachability = try! Reachability()
         switch try! Reachability().connection {
           case .wifi:
-              print("Reachable via WiFi")
             getUserDetailFromSever()
           case .cellular:
-              print("Reachable via Cellular")
             getUserDetailFromSever()
           case .none:
-              print("Network not reachable")
               getUserDetailFromLocalDB()
           case .unavailable:
-              print("Network not reachable")
               getUserDetailFromLocalDB()
         }
     }

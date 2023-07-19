@@ -1790,7 +1790,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = mobile/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "";
-				"INFOPLIST_KEY_CFBundleDisplayName[sdk=*]" = HCMUSEvMana;
+				"INFOPLIST_KEY_CFBundleDisplayName[sdk=*]" = "U-HCMUSEvMana";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1822,7 +1822,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = mobile/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "";
-				"INFOPLIST_KEY_CFBundleDisplayName[sdk=*]" = HCMUSEvMana;
+				"INFOPLIST_KEY_CFBundleDisplayName[sdk=*]" = "U-HCMUSEvMana";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

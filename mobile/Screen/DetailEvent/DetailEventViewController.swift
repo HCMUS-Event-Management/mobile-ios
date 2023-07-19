@@ -95,7 +95,7 @@ extension DetailEventViewController: UITableViewDataSource {
 
                 cell.date.text = formattedDate
 
-                cell.organizer.text = event.user?.fullName
+                cell.organizer.text = event.organizationName
                 return cell
             }
         } else if indexPath.section == 2 {

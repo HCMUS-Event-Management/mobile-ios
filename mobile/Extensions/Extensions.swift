@@ -117,45 +117,6 @@ extension UIViewController {
         }
         return UIImage(systemName: "xmark") ?? UIImage()
     }
-    
-    func hashRSA(from string: String) -> String? {
-        do {
-
-            let publicKey = try PublicKey(pemEncoded: ProcessInfo.processInfo.environment["RSA_PUBLIC_KEY"]!)
-
-            let clear = try ClearMessage(string: string, using: .utf8)
-            let encrypted = try clear.encrypted(with: publicKey, padding: .PKCS1)
-
-            let base64String = encrypted.base64String
-            return base64String
-        } catch {
-            print(error)
-        }
-        return "Lỗi RSA"
-        
-    }
-    
-    func decodeRSA(from string: String) -> [String]? {
-        do {
-
-            let privateKey = try PrivateKey(pemEncoded: ProcessInfo.processInfo.environment["RSA_PRIVATE_KEY"]!)
-
-            let encrypted = try EncryptedMessage(base64Encoded: string)
-            let clear = try encrypted.decrypted(with: privateKey, padding: .PKCS1)
-
-            let data = clear.data
-            let base64String = clear.base64String
-            let string = try clear.string(encoding: .utf8)
-        
-            print(base64String)
-            print(string)
-            
-        } catch {
-            print(error)
-        }
-        
-        return [String]()
-    }
 }
 
 extension Realm {

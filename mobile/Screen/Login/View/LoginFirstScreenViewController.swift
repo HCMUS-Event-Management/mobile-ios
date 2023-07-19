@@ -25,7 +25,6 @@ class LoginFirstScreenViewController: UIViewController {
     @IBAction func setUsername(_ sender: UITextField) {
         VM.setUsername(username: sender.text ?? "")
     };
-//    @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtUsername: UITextField!
     
     @IBAction func saveRemember(_ sender: Any) {
@@ -35,7 +34,7 @@ class LoginFirstScreenViewController: UIViewController {
             Contanst.userdefault.set(txtUsername.text ?? "" , forKey: "userMail")
             Contanst.userdefault.set(txtPassword.text ?? "", forKey: "userPassword")
                     
-                print("Mail & Password Saved Successfully")
+            showToast(message: "Mail & Password đã được lưu thành công", font: .systemFont(ofSize: 12))
                     
                 }else{
                     
@@ -93,12 +92,7 @@ class LoginFirstScreenViewController: UIViewController {
         super.viewDidLoad()
         configuration()
         CheckAndAdd()
-        print(Contanst.userdefault.string(forKey: "userToken"))
-//        showPasswordButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
 
-        
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -181,7 +175,6 @@ extension LoginFirstScreenViewController: WKNavigationDelegate {
         
         if let currentURL = webView.url?.absoluteString {
             // Check the URL to determine the success or failure response
-            print(currentURL)
             if currentURL.contains("https://api.hcmus.online/api/v1/user-auth/user/google-redirect?code=") {
                 // Successful response, you can handle further actions
 
@@ -263,7 +256,6 @@ extension LoginFirstScreenViewController {
                     let appDelegate = UIApplication.shared.delegate as? AppDelegate
                     let vc = self?.storyboard?.instantiateViewController(withIdentifier: "MenuTabBar") as? MenuViewController
                     let navVC = UINavigationController(rootViewController: vc!)
-                    print(appDelegate?.window)
                     appDelegate?.window?.rootViewController = navVC
                 }
             case .error(let error):

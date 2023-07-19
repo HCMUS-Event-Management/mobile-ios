@@ -71,14 +71,10 @@ extension DetailTicketViewController: UITableViewDataSource {
         let ticket = VM.detail
 
         if indexPath.section == 0 {
-            print(ticket.session)
             if ticket.session?.event?.isOnline == false {
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "ImageQRCodeTableViewCell", for: indexPath) as? ImageQRCodeTableViewCell  {
-                    // hash
                     let info = "\(VM.detail.eventId)-\(VM.detail.ticketCode)-\(profileViewModel.userInfo!.id!)"
-    //                let encryptedString = hashRSA(from: info)
-    //                decodeRSA(from: encryptedString ?? "")
-    //                let image = generateQRCode(from: encryptedString!)
+
                     let image = generateQRCode(from: info)
 
                     cell.imgQR.image = image
@@ -148,15 +144,6 @@ extension DetailTicketViewController: UITableViewDataSource {
                 cell.eventName.text = ticket.session?.event?.title
                 cell.location.text = ticket.session?.event?.location?.name  
                 
-//                let dateFormatter = DateFormatter()
-//                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-//                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-//                let startDate = dateFormatter.date(from:  ticket.session?.startAt ?? "1970-01-01T00:00:00.000Z")
-//                let endDate = dateFormatter.date(from:  ticket.session?.endAt ?? "1970-01-01T00:00:00.000Z")
-//
-//                cell.date.text = "Start Date : \(startDate!.formatted(date: .abbreviated, time: .omitted))  \(startDate!.formatted(date: .omitted, time: .shortened)) \nEnd Date   : \(endDate!.formatted(date: .abbreviated, time: .omitted)) \(endDate!.formatted(date: .omitted, time: .shortened))"
-                
-                
                 let dateFormatter = DateFormatter()
                 dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
@@ -193,7 +180,7 @@ extension DetailTicketViewController: UITableViewDataSource {
                 
                 
                 
-                cell.organizer.text = ticket.owner?.fullName
+                cell.organizer.text = ticket.session?.event?.user?.fullName
                 return cell
             }
         } else if indexPath.section == 2 {
@@ -339,10 +326,8 @@ extension DetailTicketViewController {
         VM.eventHandler = { [weak self] event in
             switch event {
             case .loading:
-                print("loading")
                 loader = self?.loader()
             case .stopLoading:
-                print("stoploading")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
@@ -352,7 +337,6 @@ extension DetailTicketViewController {
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .error(let error):
-//                let err = error as! DataError
                 if (error == DataError.invalidResponse401.localizedDescription) {
                     DispatchQueue.main.async {
                         self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 12.0))
@@ -371,11 +355,7 @@ extension DetailTicketViewController {
                     }
                 }
             case .logout:
-                // xử lý logout tại đây
-//                DispatchQueue.main.async {
-//                    self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
-//                }
-                print("logout")
+                break
             case .vadilateTicket:
                 DispatchQueue.main.async {
                     guard let url = URL(string: self?.VM.detail.session?.zoomJoinUrl ?? "") else {

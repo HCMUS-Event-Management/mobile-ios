@@ -94,9 +94,7 @@ class TokenService {
     }
     
     
-//completion: @escaping Handler<ReponseLogin>
     func loginByRefreshToken(completion: @escaping Handler<ReponseLogin>) {
-//        var check = false
         APIManager.shared.loginByRefresh(completion: {
             result in
             switch result {
@@ -106,7 +104,6 @@ class TokenService {
                 completion(.failure(err))
             }
         })
-//        return check
     }
     
     func removeTokenAndInfo() {
@@ -122,13 +119,7 @@ class TokenService {
             transaction in
             transaction.deleteAll(DataMyTicketObject.self)
         }
-        
-        // test
-//        try! container.write{
-//            transaction in
-//            let data = transaction.get(DataMyTicketObject.self)
-//            print(data)
-//        }
+
     }
 }
 

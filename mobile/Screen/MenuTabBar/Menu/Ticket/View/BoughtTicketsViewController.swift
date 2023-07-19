@@ -37,8 +37,6 @@ class BoughtTicketsViewController: UIViewController {
                    
                 }
             }
-        } else {
-            print("loading")
         }
     }
 }
@@ -107,7 +105,6 @@ extension BoughtTicketsViewController: UITableViewDataSource {
         }
     } else {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingTableViewCell", for: indexPath) as! LoadingTableViewCell
-        print(self.VM.numberPageMyTicket ,self.VM.currentPageMyTicket)
 
         if self.VM.numberPageBoughtTicket >= self.VM.currentPageBoughtTicket {
             cell.indicator.startAnimating()
@@ -203,14 +200,12 @@ extension BoughtTicketsViewController {
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .dataLoaded:
-                print("Bought Ticket User loaded...")
                 DispatchQueue.main.async {
                     self?.tb.reloadData()
                     self?.refreshControl.endRefreshing()
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .error(let error):
-//                let err = error as! DataError
                 if (error == DataError.invalidResponse401.localizedDescription) {
                     DispatchQueue.main.async {
                         self?.showToast(message: "Hết phiên đăng nhập", font: .systemFont(ofSize: 12.0))
@@ -229,11 +224,7 @@ extension BoughtTicketsViewController {
                     }
                 }
             case .logout:
-                // xử lý logout tại đây
-//                DispatchQueue.main.async {
-//                    self?.changeScreen(modelType: LoginFirstScreenViewController.self, id: "LoginFirstScreenViewController")
-//                }
-                print("logout")
+                break
             case .vadilateTicket:
                 break
             case .donateSuccess:

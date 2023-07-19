@@ -35,7 +35,7 @@ class ForgetPassword3ViewController: UIViewController {
     
     @objc func postAPI () {
         if txtNewPass.text == "" || txtConfirmPass.text == ""{
-            print("emtyp")
+            showToast(message: "Chưa điền Password", font: .systemFont(ofSize: 12))
         } else {
             switch try! Reachability().connection {
               case .wifi:
@@ -90,7 +90,6 @@ extension ForgetPassword3ViewController {
                     self?.changeScreen(modelType: LoginFirstScreenViewController.self,id: "LoginFirstScreenViewController")
                 }
             case .error(let error):
-//                let err = error as! DataError
                 if (error == DataError.invalidResponse500.localizedDescription){
                     DispatchQueue.main.async {
                         self?.showToast(message: "Chưa kết nối mạng", font: .systemFont(ofSize: 12.0))

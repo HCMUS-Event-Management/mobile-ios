@@ -56,8 +56,6 @@ class PaymentHistoryViewController: UIViewController {
                    
                 }
             }
-        } else {
-            print("loading")
         }
     }
 
@@ -159,9 +157,7 @@ extension PaymentHistoryViewController: UITableViewDataSource {
 
             if self.VM.numberPageMyTicket > self.VM.currentPageMyTicket {
                 cell.indicator.startAnimating()
-                print(self.VM.numberPageMyTicket,self.VM.currentPageMyTicket)
             } else {
-                print(self.VM.numberPageMyTicket,self.VM.currentPageMyTicket)
                 cell.indicator.stopAnimating()
                 cell.indicator.hidesWhenStopped = true
             }

@@ -34,7 +34,6 @@ class TicketViewModel {
                 case .success(let detail):
                     self.eventHandler?(.stopLoading)
                     self.detail = (detail.data?.managedObject())!
-                    print(self.detail.id)
                     self.eventHandler?(.dataLoaded)
                     
                 case .failure(let error):
@@ -73,10 +72,8 @@ class TicketViewModel {
           case .cellular:
             getDetailTicketFromServer(ticketCode)
           case .none:
-              print("Network not reachable")
               getDetailTicketFromDB(ticketCode)
           case .unavailable:
-              print("Network not reachable")
             getDetailTicketFromDB(ticketCode)
         }
 
@@ -96,7 +93,6 @@ extension TicketViewModel {
 
                 switch result {
                 case .success(let ticket):
-//                    Contanst.userdefault.set(ticket.total, forKey: "myTicketTotal")
                     self.numberPageMyTicket = (Double(ticket.total!) / Double(self.perPage)).rounded(.up)
                     let container = try! Container()
                     try! container.write { transaction in
@@ -135,7 +131,6 @@ extension TicketViewModel {
 
             switch result {
             case .success(let ticket):
-//                Contanst.userdefault.set(ticket.total, forKey: "myTicketTotal")
                 self.numberPageMyTicket = (Double(ticket.total!) / Double(self.perPage)).rounded(.up)
                 self.myTicket = [DataMyTicketObject]()
                 let container = try! Container()
@@ -179,21 +174,16 @@ extension TicketViewModel {
     
     func fetchMyTicket() {
 
-        //declare this property where it won't go out of scope relative to your listener
         let reachability = try! Reachability()
         
         switch try! Reachability().connection {
           case .wifi:
-              print("Reachable via WiFi")
             getMyTicketFromServer()
           case .cellular:
-              print("Reachable via Cellular")
             getMyTicketFromServer()
           case .none:
-              print("Network not reachable")
               getMyTicketDataLocalDB()
           case .unavailable:
-              print("Network not reachable")
               getMyTicketDataLocalDB()
         }
     }
@@ -208,7 +198,6 @@ extension TicketViewModel {
 
                 switch result {
                 case .success(let ticket):
-//                    Contanst.userdefault.set(ticket.total, forKey: "myTicketTotal")
                     self.numberPageBoughtTicket = (Double(ticket.total!) / Double(self.perPage)).rounded(.up)
                     let container = try! Container()
                     try! container.write { transaction in
@@ -247,7 +236,6 @@ extension TicketViewModel {
 
             switch result {
             case .success(let ticket):
-//                Contanst.userdefault.set(ticket.total, forKey: "myTicketTotal")
                 self.numberPageBoughtTicket = (Double(ticket.total!) / Double(self.perPage)).rounded(.up)
                 self.boughtTicket = [DataBoughtTicketObject]()
                 let container = try! Container()
@@ -291,21 +279,16 @@ extension TicketViewModel {
     
     func fetchBoughtTicket() {
 
-        //declare this property where it won't go out of scope relative to your listener
         let reachability = try! Reachability()
         
         switch try! Reachability().connection {
           case .wifi:
-              print("Reachable via WiFi")
             getBoughtTicketFromServer()
           case .cellular:
-              print("Reachable via Cellular")
             getBoughtTicketFromServer()
           case .none:
-              print("Network not reachable")
               getBoughtTicketDataLocalDB()
           case .unavailable:
-              print("Network not reachable")
             getBoughtTicketDataLocalDB()
         }
     }

@@ -28,7 +28,7 @@ class MyTicketsViewController: UIViewController {
     func loadMoreData() {
         if self.isLoading == false {
             self.isLoading = true
-            DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(1)) { // Remove the 1-second delay if you want to load the data without waiting
+            DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(1)) {
                 // Download more data here
                 DispatchQueue.main.async {
                     self.VM.getNextMyTicketFromServer(completion: {
@@ -40,8 +40,6 @@ class MyTicketsViewController: UIViewController {
                    
                 }
             }
-        } else {
-            print("loading")
         }
     }
 }
@@ -82,7 +80,6 @@ extension MyTicketsViewController: UITableViewDataSource {
                     
                     let ticket = VM.myTicket[indexPath.row]
                     cell.ownerName.text = ticket.owner?.fullName
-                    print(ticket.ticketCode)
 
                     
                     let dateFormatter = DateFormatter()
@@ -119,7 +116,6 @@ extension MyTicketsViewController: UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingTableViewCell", for: indexPath) as! LoadingTableViewCell
 
-            print(self.VM.numberPageMyTicket ,self.VM.currentPageMyTicket)
             if self.VM.numberPageMyTicket >= self.VM.currentPageMyTicket {
                 cell.indicator.startAnimating()
             } else {
@@ -211,7 +207,6 @@ extension MyTicketsViewController {
                     self?.stoppedLoader(loader: loader ?? UIAlertController())
                 }
             case .dataLoaded:
-                print("My Ticket User loaded...")
                 DispatchQueue.main.async {
                     self?.tb.reloadData()
                     self?.refreshControl.endRefreshing()
@@ -238,7 +233,7 @@ extension MyTicketsViewController {
                     }
                 }
             case .logout:
-                print("logout")
+                break
             case .vadilateTicket:
                 break
             case .donateSuccess:

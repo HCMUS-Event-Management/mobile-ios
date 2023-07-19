@@ -41,7 +41,6 @@ final class APIManager {
                 if let encodedUser = try? JSONEncoder().encode(info.data?.getUserInfor) {
                     Contanst.userdefault.set(encodedUser, forKey: "userInfo")
                 }
-                print(info)
                 completion(.success(info))
             case .failure(let error):
                 completion(.failure(error))
@@ -125,7 +124,6 @@ final class APIManager {
 
                         rq.allHTTPHeaderFields = type.headers
 
-                        print(Contanst.userdefault.string(forKey: "userToken"))
                         self.handleTaskSession(modelType: modelType, type: type, params: params, request: rq, completion:  {
                             result in
                             switch result {
@@ -165,7 +163,6 @@ final class APIManager {
                   502 ~= response.statusCode {
                 do {
                     let dataType = try JSONDecoder().decode(ReponseError.self, from: data)
-                    print(dataType)
                 }catch {
 //                    completion(.failure(.network(error)))
                 }
@@ -198,7 +195,6 @@ final class APIManager {
         completion: @escaping Handler<T>
     ) {
 
-        print(type.path)
         guard let url = type.url else {
             completion(.failure(.invalidURL)) // I forgot to mention this in the video
             return
@@ -220,7 +216,6 @@ final class APIManager {
             case .success(let value):
                 completion(.success(value))
             case .failure(let error):
-                print(error)
                 completion(.failure(error))
 
             }

@@ -28,13 +28,11 @@ class TicketViewController: UIViewController {
         subControllers = [vc1, vc2]
         pageView.reload()
         
-//        configuration()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = false
         self.navigationController?.isNavigationBarHidden = false
-        print(Realm.Configuration.defaultConfiguration.fileURL)
         configNaviBar()
         
     }

@@ -8,66 +8,10 @@
 import UIKit
 import DropDown
 import Reachability
-class EditProfileViewController: UIViewController, EditProfileButtonTableViewCellDelegate , UINavigationControllerDelegate, UIImagePickerControllerDelegate{
-    func backScreen() {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    func updateProfile() {
-        let fullname = tb.cellForRow(at: [0,1]) as? ProfileDetailTableViewCell
-        let phone = tb.cellForRow(at: [0,2]) as? ProfileDetailTableViewCell
-        let address = tb.cellForRow(at: [0,3]) as? ProfileDetailTableViewCell
-        let dot = tb.cellForRow(at: [0,4]) as? ProfileDetailTableViewCell
-        let idCard = tb.cellForRow(at: [0,5]) as? ProfileDetailTableViewCell
-        let gender = tb.cellForRow(at: [0,6]) as? ProfileDetailTableViewCell
-        convertImageUrlToUploadDto(urlString: VM.userInfoDetail?.avatar ?? "https://mir-s3-cdn-cf.behance.net/project_modules/disp/64623a33850498.56ba69ac2a6f7.png") { (uploadDto) in
-            if let uploadDto = uploadDto {
-                
-                // ngày giờ
-                let dateFormatter = DateFormatter()
-                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
 
-                let date = dateFormatter.date(from:  self.VM.userInfoDetail?.birthday ?? "1970-01-01T00:00:00.000Z")
 
-                var formattedDate: String?
-                if #available(iOS 15.0, *) {
-                    formattedDate = date?.formatted(date: .numeric, time: .omitted) ?? ""
-                } else {
-                    let newDateFormatter = DateFormatter()
-                    newDateFormatter.dateStyle = .short
-                    newDateFormatter.timeStyle = .none
-                    formattedDate = newDateFormatter.string(from: date ?? Date())
-                }
 
-                // so sánh
-                DispatchQueue.main.async {
-                    if (fullname?.tf.text == self.VM.userInfoDetail?.fullName && phone?.tf.text == self.VM.userInfoDetail?.phone && dot?.tf.text == formattedDate && idCard?.tf.text == self.VM.userInfoDetail?.identityCard && gender?.tf.text == self.VM.userInfoDetail?.gender && address?.tf.text == self.VM.userInfoDetail?.address){
-                        print(fullname?.tf.text, self.VM.userInfoDetail?.fullName , phone?.tf.text ,self.VM.userInfoDetail?.phone ,dot?.tf.text , formattedDate,self.VM.userInfoDetail?.birthday ,idCard?.tf.text, self.VM.userInfoDetail?.identityCard , gender?.tf.text, self.VM.userInfoDetail?.gender, address?.tf.text ,self.VM.userInfoDetail?.address)
-                        self.showToast(message: "Không có gì thay đổi", font: .systemFont(ofSize: 12))
-                    } else {
-                        let infoProfile = UpdateProfile(fullName: fullname?.tf.text ?? "", phone: phone?.tf.text ?? "", birthday: self.birthday ?? "", identityCard: idCard?.tf.text ?? "", gender: gender?.tf.text ?? "",address: address?.tf.text ?? "", image: uploadDto)
-                        self.VM.updateUserDetail(params: infoProfile)
-                    }
-                }
-            } else {
-                self.showToast(message: "Lỗi trong quá trình update của convert link ảnh sang updaload avatar", font: .systemFont(ofSize: 12))
-            }
-        }
-    }
-    
-    func callApi() {
-        switch try! Reachability().connection {
-          case .wifi:
-            updateProfile()
-          case .cellular:
-            updateProfile()
-          case .none:
-            showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
-          case .unavailable:
-            showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
-        }
-    }
+class EditProfileViewController: UIViewController {
     
     var VM = ProfileViewModel()
     var birthday:String?
@@ -92,27 +36,6 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
         configNaviBar()
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-
-        if let image = info[.originalImage] as? UIImage {
-            let imageData:Data = image.pngData()!
-            switch try! Reachability().connection {
-              case .wifi:
-                VM.uploadAvatar(imageData: imageData)
-              case .cellular:
-                VM.uploadAvatar(imageData: imageData)
-              case .none:
-                showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
-              case .unavailable:
-                showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
-            }
-        } else{
-           print("Something went wrong")
-        }
-        
-       self.dismiss(animated: true, completion: nil)
-      }
-    
     func configNaviBar() {
         navigationController?.navigationBar.tintColor = .label
         
@@ -124,46 +47,6 @@ class EditProfileViewController: UIViewController, EditProfileButtonTableViewCel
         navigationItem.leftBarButtonItems = [UIBarButtonItem(customView: title)]
     }
     
-    @objc func datePickerValueChanged(sender: UIDatePicker) {
-//        VM.userInfoDetail?.birthday = sender.date.formatted('YYYY-MM-DD')
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        let date = dateFormatter.string(from: sender.date) + "T00:00:00.000Z"
-        birthday = date
-//        VM.userInfoDetail?.birthday = date
-        tb.reloadRows(at: [IndexPath(row: 4, section: 0)], with: .none)
-
-    }
-  
-    
-    
-    func convertImageUrlToUploadDto(urlString: String, completion: @escaping (UploadAvatarDto?) -> Void) {
-        guard let url = URL(string: urlString) else {
-            completion(nil)
-            return
-        }
-        
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let imageData = data else {
-                completion(nil)
-                return
-            }
-            
-            let base64String = imageData.base64EncodedString()
-            
-            let pathExtension = url.pathExtension
-            
-            var uploadDto = UploadAvatarDto(mime: "image/(format_file: \(pathExtension))", data: base64String)
-            
-            completion(uploadDto)
-        }
-        
-        task.resume()
-    }
-
 }
 
 
@@ -198,7 +81,6 @@ extension EditProfileViewController: UITableViewDataSource {
                 
                 cell.callback = {
                     if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
-                        print("Button capture")
             
                         self.imagePicker.delegate = self
                         self.imagePicker.sourceType = .savedPhotosAlbum
@@ -334,6 +216,136 @@ extension EditProfileViewController: UITableViewDelegate {
             return (tableView.layer.frame.height/12) * 3
         }
         return (tableView.layer.frame.height/10)
+    }
+    
+}
+
+extension EditProfileViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+
+        if let image = info[.originalImage] as? UIImage {
+            let imageData:Data = image.pngData()!
+            switch try! Reachability().connection {
+              case .wifi:
+                VM.uploadAvatar(imageData: imageData)
+              case .cellular:
+                VM.uploadAvatar(imageData: imageData)
+              case .none:
+                showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+              case .unavailable:
+                showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+            }
+        } else{
+            showToast(message: "Lỗi trong upload avatar", font: .systemFont(ofSize: 12))
+
+        }
+        
+       self.dismiss(animated: true, completion: nil)
+      }
+    
+    @objc func datePickerValueChanged(sender: UIDatePicker) {
+//        VM.userInfoDetail?.birthday = sender.date.formatted('YYYY-MM-DD')
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        let date = dateFormatter.string(from: sender.date) + "T00:00:00.000Z"
+        birthday = date
+//        VM.userInfoDetail?.birthday = date
+        tb.reloadRows(at: [IndexPath(row: 4, section: 0)], with: .none)
+
+    }
+  
+    
+    
+    func convertImageUrlToUploadDto(urlString: String, completion: @escaping (UploadAvatarDto?) -> Void) {
+        guard let url = URL(string: urlString) else {
+            completion(nil)
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let imageData = data else {
+                completion(nil)
+                return
+            }
+            
+            let base64String = imageData.base64EncodedString()
+            
+            let pathExtension = url.pathExtension
+            
+            var uploadDto = UploadAvatarDto(mime: "image/(format_file: \(pathExtension))", data: base64String)
+            
+            completion(uploadDto)
+        }
+        
+        task.resume()
+    }
+    
+    
+}
+
+extension EditProfileViewController: EditProfileButtonTableViewCellDelegate {
+    func backScreen() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func updateProfile() {
+        let fullname = tb.cellForRow(at: [0,1]) as? ProfileDetailTableViewCell
+        let phone = tb.cellForRow(at: [0,2]) as? ProfileDetailTableViewCell
+        let address = tb.cellForRow(at: [0,3]) as? ProfileDetailTableViewCell
+        let dot = tb.cellForRow(at: [0,4]) as? ProfileDetailTableViewCell
+        let idCard = tb.cellForRow(at: [0,5]) as? ProfileDetailTableViewCell
+        let gender = tb.cellForRow(at: [0,6]) as? ProfileDetailTableViewCell
+        convertImageUrlToUploadDto(urlString: VM.userInfoDetail?.avatar ?? "https://mir-s3-cdn-cf.behance.net/project_modules/disp/64623a33850498.56ba69ac2a6f7.png") { (uploadDto) in
+            if let uploadDto = uploadDto {
+                
+                // ngày giờ
+                let dateFormatter = DateFormatter()
+                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+
+                let date = dateFormatter.date(from:  self.VM.userInfoDetail?.birthday ?? "1970-01-01T00:00:00.000Z")
+
+                var formattedDate: String?
+                if #available(iOS 15.0, *) {
+                    formattedDate = date?.formatted(date: .numeric, time: .omitted) ?? ""
+                } else {
+                    let newDateFormatter = DateFormatter()
+                    newDateFormatter.dateStyle = .short
+                    newDateFormatter.timeStyle = .none
+                    formattedDate = newDateFormatter.string(from: date ?? Date())
+                }
+
+                // so sánh
+                DispatchQueue.main.async {
+                    if (fullname?.tf.text == self.VM.userInfoDetail?.fullName && phone?.tf.text == self.VM.userInfoDetail?.phone && dot?.tf.text == formattedDate && idCard?.tf.text == self.VM.userInfoDetail?.identityCard && gender?.tf.text == self.VM.userInfoDetail?.gender && address?.tf.text == self.VM.userInfoDetail?.address){
+//                        print(fullname?.tf.text, self.VM.userInfoDetail?.fullName , phone?.tf.text ,self.VM.userInfoDetail?.phone ,dot?.tf.text , formattedDate,self.VM.userInfoDetail?.birthday ,idCard?.tf.text, self.VM.userInfoDetail?.identityCard , gender?.tf.text, self.VM.userInfoDetail?.gender, address?.tf.text ,self.VM.userInfoDetail?.address)
+                        self.showToast(message: "Không có gì thay đổi", font: .systemFont(ofSize: 12))
+                    } else {
+                        let infoProfile = UpdateProfile(fullName: fullname?.tf.text ?? "", phone: phone?.tf.text ?? "", birthday: self.birthday ?? "", identityCard: idCard?.tf.text ?? "", gender: gender?.tf.text ?? "",address: address?.tf.text ?? "", image: uploadDto)
+                        self.VM.updateUserDetail(params: infoProfile)
+                    }
+                }
+            } else {
+                self.showToast(message: "Lỗi trong quá trình update của convert link ảnh sang updaload avatar", font: .systemFont(ofSize: 12))
+            }
+        }
+    }
+    
+    func callApi() {
+        switch try! Reachability().connection {
+          case .wifi:
+            updateProfile()
+          case .cellular:
+            updateProfile()
+          case .none:
+            showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+          case .unavailable:
+            showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+        }
     }
     
 }

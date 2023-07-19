@@ -92,8 +92,6 @@ extension ForgetPasswordViewController {
                     self?.changeScreen(modelType: ForgetPassword2ViewController.self,id: "ForgetPassword2ViewController")
                 }
             case .error(let error):
-                print(error)
-//                let err = error as! DataError
                 if (error == DataError.invalidResponse500.localizedDescription){
                     DispatchQueue.main.async {
                         self?.showToast(message: "Chưa kết nối mạng", font: .systemFont(ofSize: 12.0))

@@ -62,16 +62,12 @@ extension HomeViewModel {
         
         switch try! Reachability().connection {
           case .wifi:
-              print("Reachable via WiFi")
             getDetailEventFromServer(id)
           case .cellular:
-              print("Reachable via Cellular")
             getDetailEventFromServer(id)
           case .none:
-              print("Network not reachable")
             self.eventHandler?(.error("Mất kết nối internet"))
           case .unavailable:
-              print("Network not reachable")
             self.eventHandler?(.error("Mất kết nối internet"))
         }
 
@@ -132,16 +128,12 @@ extension HomeViewModel {
         
         switch try! Reachability().connection {
           case .wifi:
-              print("Reachable via WiFi")
             getListGoingOnFromServer()
           case .cellular:
-              print("Reachable via Cellular")
             getListGoingOnFromServer()
           case .none:
-              print("Network not reachable")
               getListGoingOnFromDB()
           case .unavailable:
-              print("Network not reachable")
             getListGoingOnFromDB()
         }
     }
@@ -200,16 +192,12 @@ extension HomeViewModel {
         
         switch try! Reachability().connection {
           case .wifi:
-              print("Reachable via WiFi")
             getListIsCommingFromServer()
           case .cellular:
-              print("Reachable via Cellular")
             getListIsCommingFromServer()
           case .none:
-              print("Network not reachable")
             getListIsCommingFromDB()
           case .unavailable:
-              print("Network not reachable")
             getListIsCommingFromDB()
         }
     }

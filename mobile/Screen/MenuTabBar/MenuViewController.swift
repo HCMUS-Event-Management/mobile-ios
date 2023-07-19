@@ -11,7 +11,6 @@ class MenuViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(TokenService.tokenInstance.getToken(key: "userToken"))
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
