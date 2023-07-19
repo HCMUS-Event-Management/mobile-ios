@@ -27,9 +27,30 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exTicket" translatesAutoresizingMaskIntoConstraints="NO" id="AyP-ce-ihf">
                                         <rect key="frame" x="0.0" y="0.0" width="121" height="121"/>
                                     </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sdj-vu-XOL">
+                                        <rect key="frame" x="8" y="95" width="42.5" height="18"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IfJ-LB-JIz">
+                                                <rect key="frame" x="10" y="0.0" width="22.5" height="18"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.58431372550000005" green="0.82352941180000006" blue="0.56470588239999997" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="IfJ-LB-JIz" secondAttribute="bottom" id="Buf-f9-ORq"/>
+                                            <constraint firstItem="IfJ-LB-JIz" firstAttribute="top" secondItem="sdj-vu-XOL" secondAttribute="top" id="I40-GC-hcU"/>
+                                            <constraint firstItem="IfJ-LB-JIz" firstAttribute="leading" secondItem="sdj-vu-XOL" secondAttribute="leading" constant="10" id="Im7-QG-FY3"/>
+                                            <constraint firstAttribute="trailing" secondItem="IfJ-LB-JIz" secondAttribute="trailing" constant="10" id="L8n-Lt-FAk"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="sdj-vu-XOL" firstAttribute="leading" secondItem="ufl-t9-qYt" secondAttribute="leading" constant="8" id="392-UY-Z5e"/>
+                                    <constraint firstItem="sdj-vu-XOL" firstAttribute="height" secondItem="AyP-ce-ihf" secondAttribute="height" multiplier="0.15" id="B5W-q1-p2B"/>
+                                    <constraint firstAttribute="bottom" secondItem="sdj-vu-XOL" secondAttribute="bottom" constant="8" id="EyQ-Ts-vpo"/>
                                     <constraint firstAttribute="bottom" secondItem="AyP-ce-ihf" secondAttribute="bottom" id="JUh-Xf-QAB"/>
                                     <constraint firstAttribute="width" secondItem="ufl-t9-qYt" secondAttribute="height" multiplier="1:1" id="qIH-rw-7tp"/>
                                     <constraint firstAttribute="trailing" secondItem="AyP-ce-ihf" secondAttribute="trailing" id="qcw-f0-h78"/>
@@ -146,10 +167,12 @@
                 <outlet property="mainView" destination="41K-Xc-8Fb" id="0Tg-kL-wHB"/>
                 <outlet property="ownerName" destination="SJm-LZ-eg3" id="p7P-8S-lmb"/>
                 <outlet property="ownerView" destination="Kfj-De-cAk" id="rlE-vZ-Du3"/>
+                <outlet property="paidName" destination="IfJ-LB-JIz" id="dZe-E0-wzB"/>
+                <outlet property="paidView" destination="sdj-vu-XOL" id="7iR-AA-NGH"/>
                 <outlet property="startTimeSession" destination="Kcr-ps-XoH" id="jpb-HK-mqF"/>
                 <outlet property="titleEvent" destination="UfY-1G-2wQ" id="M9P-2u-uJe"/>
             </connections>
-            <point key="canvasLocation" x="132.60869565217394" y="82.700892857142847"/>
+            <point key="canvasLocation" x="132.60869565217394" y="82.03125"/>
         </tableViewCell>
     </objects>
     <resources>

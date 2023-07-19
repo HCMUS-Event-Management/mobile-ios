@@ -98,6 +98,16 @@ extension BoughtTicketsViewController: UITableViewDataSource {
                 cell.titleEvent.text = ticket.session?.event?.title
                 cell.location.text = ticket.session?.event?.location?.name
                 
+                if let isOnline = ticket.session?.event?.isOnline {
+                    if isOnline {
+                        cell.paidName.text = "Trực tuyến"
+                        cell.paidView.backgroundColor = UIColor(red: 1.0, green: 0, blue: 0, alpha: 0.5)
+                    } else {
+                        cell.paidName.text = "Trực tiếp"
+                        cell.paidView.backgroundColor = UIColor(red: 149/255, green: 210/255, blue: 144/255, alpha: 0.5)
+                    }
+                }
+                
                 cell.img.kf.setImage(with: URL(string: ticket.session?.event!.image ?? "https://nestjs-entity-service-bucket.s3.ap-southeast-1.amazonaws.com/event_id_186/seating_plan/wF9NFk0T7NVnhDAXoh3AU8Uz1xBLBpbkrsS4a2Poo0EybGK5EE.jpeg"))
                 
                 return cell

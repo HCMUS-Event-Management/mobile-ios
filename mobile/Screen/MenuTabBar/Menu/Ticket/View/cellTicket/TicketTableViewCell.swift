@@ -8,7 +8,7 @@
 import UIKit
 
 class TicketTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var paidName: UILabel!
     @IBOutlet weak var ownerName: UILabel!
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var startTimeSession: UILabel!
@@ -17,6 +17,7 @@ class TicketTableViewCell: UITableViewCell {
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var img: UIImageView!
     
+    @IBOutlet weak var paidView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -29,6 +30,9 @@ class TicketTableViewCell: UITableViewCell {
         ownerView.layer.masksToBounds = true
         ownerView.layer.borderColor =  UIColor(red: 94/255, green: 135/255, blue: 240/255, alpha: 1).cgColor
         ownerView.layer.borderWidth = 1
+        
+        paidView.layer.cornerRadius = 10
+        paidView.layer.masksToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
