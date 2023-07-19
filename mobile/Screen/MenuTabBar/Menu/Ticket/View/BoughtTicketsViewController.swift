@@ -104,7 +104,7 @@ extension BoughtTicketsViewController: UITableViewDataSource {
                         cell.paidView.backgroundColor = UIColor(red: 1.0, green: 0, blue: 0, alpha: 0.5)
                     } else {
                         cell.paidName.text = "Trực tiếp"
-                        cell.paidView.backgroundColor = UIColor(red: 149/255, green: 210/255, blue: 144/255, alpha: 0.5)
+                        cell.paidView.backgroundColor = UIColor(red: 149/255, green: 210/255, blue: 144/255, alpha: 0.75)
                     }
                 }
                 
