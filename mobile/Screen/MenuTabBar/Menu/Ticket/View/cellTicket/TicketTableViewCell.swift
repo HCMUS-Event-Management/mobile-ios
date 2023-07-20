@@ -8,6 +8,7 @@
 import UIKit
 
 class TicketTableViewCell: UITableViewCell {
+    @IBOutlet weak var isChecking: UIImageView!
     @IBOutlet weak var paidName: UILabel!
     @IBOutlet weak var ownerName: UILabel!
     @IBOutlet weak var location: UILabel!
@@ -33,6 +34,9 @@ class TicketTableViewCell: UITableViewCell {
         
         paidView.layer.cornerRadius = 10
         paidView.layer.masksToBounds = true
+        
+        isChecking.transform = isChecking.transform.rotated(by: .pi / 3.5)
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
