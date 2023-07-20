@@ -44,6 +44,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="mainView" destination="H2p-sc-9uM" id="kmv-LS-qj0"/>
                 <outlet property="txtDescription" destination="N2d-e0-IH4" id="QUr-T6-tle"/>

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,8 +14,8 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="380" id="eeM-G1-iAb" customClass="InfoTicketEventDetailTableViewCell" customModule="mobile" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="368" height="398"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eeM-G1-iAb" id="5Eo-EE-wGc">
-                <rect key="frame" x="0.0" y="0.0" width="368" height="398"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" tableViewCell="eeM-G1-iAb" id="5Eo-EE-wGc">
+                <rect key="frame" x="48" y="0.0" width="272" height="398"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ngày giờ phiên sự kiện:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9B-wg-Xyw">
@@ -45,12 +46,28 @@
                         <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </tableView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9dv-Yq-b1D">
+                        <rect key="frame" x="323" y="18.5" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="FvQ-ZW-rh7"/>
+                            <constraint firstAttribute="width" secondItem="9dv-Yq-b1D" secondAttribute="height" multiplier="1:1" id="VIc-6q-YbB"/>
+                        </constraints>
+                        <color key="tintColor" red="0.36862745099999999" green="0.52941176469999995" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" image="link.circle.fill" catalog="system"/>
+                        <buttonConfiguration key="configuration" style="plain" image="ticket.fill" catalog="system"/>
+                        <connections>
+                            <action selector="goToWebsite:" destination="eeM-G1-iAb" eventType="touchUpInside" id="Fly-aU-jeC"/>
+                        </connections>
+                    </button>
                 </subviews>
-                <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="2kW-w0-PMb" firstAttribute="height" secondItem="L9B-wg-Xyw" secondAttribute="height" multiplier="1.5" id="0KM-10-iuk"/>
                     <constraint firstItem="L9B-wg-Xyw" firstAttribute="top" secondItem="5Eo-EE-wGc" secondAttribute="top" constant="20" id="D23-fR-7re"/>
                     <constraint firstItem="2kW-w0-PMb" firstAttribute="trailing" secondItem="L9B-wg-Xyw" secondAttribute="trailing" id="M4J-iY-Qa0"/>
+                    <constraint firstItem="9dv-Yq-b1D" firstAttribute="centerY" secondItem="L9B-wg-Xyw" secondAttribute="centerY" id="OYs-Da-Udt"/>
+                    <constraint firstAttribute="trailing" secondItem="9dv-Yq-b1D" secondAttribute="trailing" constant="25" id="PUU-EW-Ncr"/>
                     <constraint firstItem="L9B-wg-Xyw" firstAttribute="leading" secondItem="5Eo-EE-wGc" secondAttribute="leading" constant="25" id="QHu-Ev-GdZ"/>
                     <constraint firstItem="2kW-w0-PMb" firstAttribute="top" secondItem="L9B-wg-Xyw" secondAttribute="bottom" constant="20" id="QRL-qa-aUR"/>
                     <constraint firstItem="2kW-w0-PMb" firstAttribute="top" secondItem="L9B-wg-Xyw" secondAttribute="bottom" constant="20" id="etB-Ad-8aR"/>
@@ -63,6 +80,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="Uhe-Wz-SMR"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <connections>
                 <outlet property="StartEndSession" destination="8xe-by-oBJ" id="Kpd-sl-tGq"/>
                 <outlet property="mainView" destination="5Eo-EE-wGc" id="PlQ-mr-Lpa"/>
@@ -72,4 +90,11 @@
             <point key="canvasLocation" x="123.18840579710145" y="196.875"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="link.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="ticket.fill" catalog="system" width="128" height="86"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

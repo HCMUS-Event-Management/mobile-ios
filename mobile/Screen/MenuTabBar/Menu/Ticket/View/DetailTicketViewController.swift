@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import SwiftyRSA
+import Reachability
 class DetailTicketViewController: UIViewController {
     
     private var VM = TicketViewModel()
@@ -350,7 +350,7 @@ extension DetailTicketViewController {
                     }
                 } else {
                     DispatchQueue.main.async {
-                        self?.showToast(message: error!, font: .systemFont(ofSize: 12.0))
+                        self?.showToast(message: error!, font: .systemFont(ofSize: 10.0))
                         self?.stoppedLoader(loader: loader ?? UIAlertController())
                     }
                 }
@@ -385,6 +385,15 @@ extension DetailTicketViewController {
 
 extension DetailTicketViewController: OpenZoomTableViewCellDelegate {
     func callApi() {
-        self.VM.vadilateTicket(from: VadilateTicketDto(eventId:  Int(VM.detail.eventId) ,ownerId:  Int(profileViewModel.userInfo!.id!) ,ticketCode:  VM.detail.ticketCode))
+        switch try! Reachability().connection {
+          case .wifi:
+            self.VM.vadilateTicket(from: VadilateTicketDto(eventId:  Int(VM.detail.eventId) ,ownerId:  Int(profileViewModel.userInfo!.id!) ,ticketCode:  VM.detail.ticketCode))
+        case .cellular:
+            self.VM.vadilateTicket(from: VadilateTicketDto(eventId:  Int(VM.detail.eventId) ,ownerId:  Int(profileViewModel.userInfo!.id!) ,ticketCode:  VM.detail.ticketCode))
+        case .none:
+            showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+          case .unavailable:
+            showToast(message: "Mất kết nối mạng", font: .systemFont(ofSize: 12))
+        }
     }
 }

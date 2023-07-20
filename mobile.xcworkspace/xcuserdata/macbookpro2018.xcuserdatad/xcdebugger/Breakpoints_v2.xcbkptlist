@@ -52,5 +52,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "61FAEDF0-E2DA-49AE-A0BF-AF1A3168842D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "mobile/Screen/MenuTabBar/Menu/Ticket/View/DetailTicketViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "357"
+            endingLineNumber = "357"
+            landmarkName = "observeEvent()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "61FAEDF0-E2DA-49AE-A0BF-AF1A3168842D - e49412d1876b2d60"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (mobile.TicketViewModel.Event) -&gt; () in mobile.DetailTicketViewController.observeEvent() -&gt; ()"
+                  moduleName = "mobile"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macbookpro2018/Desktop/Checl/Untitled/mobile-ios/mobile/Screen/MenuTabBar/Menu/Ticket/View/DetailTicketViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "358"
+                  endingLineNumber = "358"
+                  offsetFromSymbolStart = "3120">
+               </Location>
+               <Location
+                  uuid = "61FAEDF0-E2DA-49AE-A0BF-AF1A3168842D - e49412d1876b2d60"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (mobile.TicketViewModel.Event) -&gt; () in mobile.DetailTicketViewController.observeEvent() -&gt; ()"
+                  moduleName = "mobile"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macbookpro2018/Desktop/Checl/Untitled/mobile-ios/mobile/Screen/MenuTabBar/Menu/Ticket/View/DetailTicketViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "358"
+                  endingLineNumber = "358"
+                  offsetFromSymbolStart = "3963">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -19,11 +19,9 @@ class EventsTableViewController: UITableViewController {
         configuration()
     }
     
-    
-
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Tìm \(VM.apps.count) kết quả"
-    }
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return "Tìm \(VM.apps.count) kết quả"
+//    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if VM.apps.count == 0 {

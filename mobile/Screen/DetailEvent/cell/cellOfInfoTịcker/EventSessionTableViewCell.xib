@@ -100,6 +100,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="end" destination="ouG-oz-P74" id="rum-Az-7l6"/>
                 <outlet property="mainView" destination="H2p-sc-9uM" id="g2w-48-odW"/>

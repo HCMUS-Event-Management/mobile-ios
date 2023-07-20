@@ -8,6 +8,11 @@
 import UIKit
 import RealmSwift
 class InfoTicketEventDetailTableViewCell: UITableViewCell {
+    var callback : (() -> Void)?
+
+    @IBAction func goToWebsite(_ sender: UIButton) {
+        callback?()
+    }
     private var data = List<ProposalSessionTicketsObject>()
     private var startFSession = ""
     private var startESession = ""
