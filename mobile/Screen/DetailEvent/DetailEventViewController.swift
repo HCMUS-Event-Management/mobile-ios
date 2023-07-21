@@ -114,7 +114,7 @@ extension DetailEventViewController: UITableViewDataSource {
                             
                     // Tạo hành động cho nút "OK"
                     let okAction = UIAlertAction(title: "Website", style: .default) { _ in
-                        let urlString = "https://user.hcmus.online/" // Replace with the URL of the website you want to open
+                        let urlString = "https://user.hcmus.online/signin" // Replace with the URL of the website you want to open
                                 
                         if let url = URL(string: urlString) {
                             if UIApplication.shared.canOpenURL(url) {
@@ -128,7 +128,7 @@ extension DetailEventViewController: UITableViewDataSource {
                     }
                     
                     // Tạo hành động cho nút "Cancel"
-                    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+                    let cancelAction = UIAlertAction(title: "Huỷ", style: .cancel) { _ in
                     }
                     
                     // Thêm các hành động vào cửa sổ thông báo
