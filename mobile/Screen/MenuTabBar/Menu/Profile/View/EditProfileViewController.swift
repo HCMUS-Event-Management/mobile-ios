@@ -17,7 +17,7 @@ class EditProfileViewController: UIViewController {
     var birthday:String?
     var gender:String?
 
-    var imagePicker = UIImagePickerController()
+    private lazy var imagePicker = UIImagePickerController()
 
     var dataLabel = ["Họ và tên:","Số điện thoại:","Địa chỉ:","Ngày sinh:","Chứng minh thư:","Giới tính:"]
     var dataPlaceHolder = ["Ex: ngyenvana@gmail.com","Ex: 01234567892","Ex: 123 Võ Văn Kiệt, P6, Quận 5, TP.HCM","Ex: 09/07/2001","Ex: 212950358","Ex: Male"]
